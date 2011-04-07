@@ -285,7 +285,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/operand_spec.rb",
-    "tasks/clean.rake",
     "tasks/quality/ci.rake",
     "tasks/quality/flay.rake",
     "tasks/quality/flog.rake",
