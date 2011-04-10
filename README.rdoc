@@ -1,6 +1,6 @@
 = Veritas Optimizer
 
-Optimize Veritas Relations
+Relational algebra optimizer
 
 == Note on Patches/Pull Requests
 

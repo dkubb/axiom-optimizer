@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2011-04-07}
+  s.date = %q{2011-04-10}
   s.description = %q{Optimizes veritas relations}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -300,7 +300,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{https://github.com/dkubb/veritas-optimizer}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
-  s.summary = %q{Relational Algebra Optimizer}
+  s.summary = %q{Relational algebra optimizer}
   s.test_files = [
     "spec/integration/veritas/algebra/difference/optimize_spec.rb",
     "spec/integration/veritas/algebra/intersection/optimize_spec.rb",

@@ -8,7 +8,7 @@ begin
 
   Jeweler::Tasks.new do |gem|
     gem.name        = 'veritas-optimizer'
-    gem.summary     = 'Relational Algebra Optimizer'
+    gem.summary     = 'Relational algebra optimizer'
     gem.description = 'Optimizes veritas relations'
     gem.email       = 'dan.kubb@gmail.com'
     gem.homepage    = 'https://github.com/dkubb/veritas-optimizer'
