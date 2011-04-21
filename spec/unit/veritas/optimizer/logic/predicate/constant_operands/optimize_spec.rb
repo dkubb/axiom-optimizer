@@ -10,5 +10,5 @@ describe Optimizer::Logic::Predicate::ConstantOperands, '#optimize' do
     object.should be_optimizable
   end
 
-  it { should equal(Logic::Proposition::True.instance) }
+  it { should equal(Logic::Proposition::Tautology.instance) }
 end

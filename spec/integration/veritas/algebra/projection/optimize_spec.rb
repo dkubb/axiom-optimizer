@@ -68,8 +68,8 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing an empty relation when optimized' do
-    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
-    let(:attributes) { [ :id ]                                                                }
+    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::Contradiction.instance) }
+    let(:attributes) { [ :id ]                                                                        }
 
     it { should eql(Relation::Empty.new(object.header)) }
 
@@ -86,8 +86,8 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing an optimizable relation' do
-    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::True.instance) }
-    let(:attributes) { [ :id ]                                                               }
+    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::Tautology.instance) }
+    let(:attributes) { [ :id ]                                                                    }
 
     it { should_not equal(object) }
 

@@ -87,33 +87,33 @@ module Veritas
 
         end # class ConstantOperands
 
-        # Optimize when the operands are always false
-        module AlwaysFalse
+        # Optimize when the operands are a contradiction
+        module Contradiction
 
-          # Return false
+          # Return a contradiction
           #
-          # @return [False]
-          #
-          # @api private
-          def optimize
-            Veritas::Logic::Proposition::False.instance
-          end
-
-        end # module AlwaysFalse
-
-        # Optimize when the operands are always true
-        module AlwaysTrue
-
-          # Return true
-          #
-          # @return [True]
+          # @return [Contradiction]
           #
           # @api private
           def optimize
-            Veritas::Logic::Proposition::True.instance
+            Veritas::Logic::Proposition::Contradiction.instance
           end
 
-        end # module AlwaysTrue
+        end # module Contradiction
+
+        # Optimize when the operands are a tautology
+        module Tautology
+
+          # Return a tautology
+          #
+          # @return [Tautology]
+          #
+          # @api private
+          def optimize
+            Veritas::Logic::Proposition::Tautology.instance
+          end
+
+        end # module Tautology
 
         # Utility methods for Predicate optimization
         module Util

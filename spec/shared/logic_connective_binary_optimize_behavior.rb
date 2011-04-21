@@ -9,9 +9,9 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'left and right are the same, after optimizing the left' do
-    let(:original_left) { attribute.gt(1)                                      }
-    let(:left)          { original_left.and(Logic::Proposition::True.instance) }
-    let(:right)         { attribute.gt(1)                                      }
+    let(:original_left) { attribute.gt(1)                                           }
+    let(:left)          { original_left.and(Logic::Proposition::Tautology.instance) }
+    let(:right)         { attribute.gt(1)                                           }
 
     it { should equal(original_left) }
 
@@ -19,8 +19,8 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'left and right are the same, after optimizing the right' do
-    let(:left)  { attribute.gt(1)                                        }
-    let(:right) { attribute.gt(1).and(Logic::Proposition::True.instance) }
+    let(:left)  { attribute.gt(1)                                             }
+    let(:right) { attribute.gt(1).and(Logic::Proposition::Tautology.instance) }
 
     it { should equal(left) }
 
@@ -37,9 +37,9 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'left and right are different, after optimizing the left' do
-    let(:original_left) { attribute.gt(1)                                      }
-    let(:left)          { original_left.and(Logic::Proposition::True.instance) }
-    let(:right)         { attribute.lt(1)                                      }
+    let(:original_left) { attribute.gt(1)                                           }
+    let(:left)          { original_left.and(Logic::Proposition::Tautology.instance) }
+    let(:right)         { attribute.lt(1)                                           }
 
     add_method_missing
 
@@ -55,9 +55,9 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'left and right are different, after optimizing the right' do
-    let(:original_right) { attribute.lt(1)                                       }
-    let(:left)           { attribute.gt(1)                                       }
-    let(:right)          { original_right.and(Logic::Proposition::True.instance) }
+    let(:original_right) { attribute.lt(1)                                            }
+    let(:left)           { attribute.gt(1)                                            }
+    let(:right)          { original_right.and(Logic::Proposition::Tautology.instance) }
 
     add_method_missing
 

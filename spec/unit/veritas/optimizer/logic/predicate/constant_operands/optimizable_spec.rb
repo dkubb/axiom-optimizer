@@ -14,15 +14,15 @@ describe Optimizer::Logic::Predicate::ConstantOperands, '#optimizable?' do
   end
 
   context 'when left is a constant, and right is not a constant' do
-    let(:left)  { 1                                 }
-    let(:right) { Logic::Proposition::True.instance }
+    let(:left)  { 1                                      }
+    let(:right) { Logic::Proposition::Tautology.instance }
 
     it { should be(false) }
   end
 
   context 'when left is not a constant, and right is a constant' do
-    let(:left)  { Logic::Proposition::True.instance }
-    let(:right) { 1                                 }
+    let(:left)  { Logic::Proposition::Tautology.instance }
+    let(:right) { 1                                      }
 
     it { should be(false) }
   end

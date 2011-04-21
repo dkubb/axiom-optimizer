@@ -8,19 +8,19 @@ module Veritas
         # Abstract base class representing Disjunction optimizations
         class Disjunction < Binary
 
-          # Optimize when the left operand is false
-          class FalseLeftOperand < self
+          # Optimize when the left operand is a contradiction
+          class ContradictionLeftOperand < self
 
-            # Test if the left operand is false
+            # Test if the left operand is a contradiction
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              left_false?
+              left_contradiction?
             end
 
-            # A Disjunction with a false left operand is equivalent to the right
+            # A Disjunction with a contradiction left operand is equivalent to the right
             #
             # @return [Expression]
             #
@@ -29,21 +29,21 @@ module Veritas
               right
             end
 
-          end # class FalseLeftOperand
+          end # class ContradictionLeftOperand
 
-          # Optimize when the right operand is false
-          class FalseRightOperand < self
+          # Optimize when the right operand is a contradiction
+          class ContradictionRightOperand < self
 
-            # Test if the right operand is false
+            # Test if the right operand is a contradiction
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              right_false?
+              right_contradiction?
             end
 
-            # A Disjunction with a false right operand is equivalent to the left
+            # A Disjunction with a contradiction right operand is equivalent to the left
             #
             # @return [Expression]
             #
@@ -52,7 +52,7 @@ module Veritas
               left
             end
 
-          end # class FalseRightOperand
+          end # class ContradictionRightOperand
 
           # Optimize when the operands are equality predicates for the same attribute
           class OptimizableToInclusion < self
@@ -78,40 +78,40 @@ module Veritas
 
           end # class OptimizableToInclusion
 
-          # Optimize when the operands are always true
-          class AlwaysTrue < self
+          # Optimize when the operands are a tuatology
+          class Tautology < self
 
-            # Test if the operands are always true
+            # Test if the operands are a tuatology
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              left_true?                       ||
-              right_true?                      ||
+              left_tautology?                       ||
+              right_tautology?                      ||
               inequality_with_same_attributes? ||
               left.inverse.eql?(right)
             end
 
-            # Return true
+            # Return a tuatology
             #
-            # @return [True]
+            # @return [Tautology]
             #
             # @api private
             def optimize
-              Veritas::Logic::Proposition::True.instance
+              Veritas::Logic::Proposition::Tautology.instance
             end
 
-          end # class AlwaysTrue
+          end # class Tautology
 
           Veritas::Logic::Connective::Disjunction.optimizer = chain(
-            FalseLeftOperand,
-            FalseRightOperand,
+            ContradictionLeftOperand,
+            ContradictionRightOperand,
             OptimizableToInclusion,
             EqualOperands,
             RedundantLeftOperand,
             RedundantRightOperand,
-            AlwaysTrue,
+            Tautology,
             UnoptimizedOperand
           )
 

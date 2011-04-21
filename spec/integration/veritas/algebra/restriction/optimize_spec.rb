@@ -8,8 +8,8 @@ describe Algebra::Restriction, '#optimize' do
   let(:operand)  { relation                                 }
   let(:object)   { described_class.new(operand, predicate)  }
 
-  context 'with a true proposition' do
-    let(:predicate) { Logic::Proposition::True.instance }
+  context 'with a tautology' do
+    let(:predicate) { Logic::Proposition::Tautology.instance }
 
     it { should equal(relation) }
 
@@ -21,8 +21,8 @@ describe Algebra::Restriction, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with a false proposition' do
-    let(:predicate) { Logic::Proposition::False.instance }
+  context 'with a contradiction' do
+    let(:predicate) { Logic::Proposition::Contradiction.instance }
 
     it { should eql(Relation::Empty.new(relation.header)) }
 
@@ -52,7 +52,7 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an optimizable predicate' do
-    let(:predicate) { relation[:id].eq(1).and(Logic::Proposition::True.instance) }
+    let(:predicate) { relation[:id].eq(1).and(Logic::Proposition::Tautology.instance) }
 
     it { should_not equal(object) }
 
@@ -117,8 +117,8 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an empty relation when optimized' do
-    let(:operand)   { described_class.new(relation, Logic::Proposition::False.instance) }
-    let(:predicate) { operand[:id].gte(1)                                               }
+    let(:operand)   { described_class.new(relation, Logic::Proposition::Contradiction.instance) }
+    let(:predicate) { operand[:id].gte(1)                                                       }
 
     it { should eql(Relation::Empty.new(relation.header)) }
 

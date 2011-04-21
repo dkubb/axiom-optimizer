@@ -39,18 +39,18 @@ describe Logic::Connective::Disjunction, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are true propositions' do
-    let(:left)  { Logic::Proposition::True.instance }
-    let(:right) { Logic::Proposition::True.instance }
+  context 'left and right are tautologys' do
+    let(:left)  { Logic::Proposition::Tautology.instance }
+    let(:right) { Logic::Proposition::Tautology.instance }
 
     it { should equal(left) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are false propositions' do
-    let(:left)  { Logic::Proposition::False.instance }
-    let(:right) { Logic::Proposition::False.instance }
+  context 'left and right are contradictions' do
+    let(:left)  { Logic::Proposition::Contradiction.instance }
+    let(:right) { Logic::Proposition::Contradiction.instance }
 
 
     it { should equal(left) }
@@ -58,36 +58,36 @@ describe Logic::Connective::Disjunction, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'right is a true proposition' do
-    let(:left)  { attribute.gt(1)                   }
-    let(:right) { Logic::Proposition::True.instance }
+  context 'right is a tautology' do
+    let(:left)  { attribute.gt(1)                        }
+    let(:right) { Logic::Proposition::Tautology.instance }
 
     it { should equal(right) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left is a true proposition' do
-    let(:left)  { Logic::Proposition::True.instance }
-    let(:right) { attribute.lt(3)                   }
+  context 'left is a tautology' do
+    let(:left)  { Logic::Proposition::Tautology.instance }
+    let(:right) { attribute.lt(3)                        }
 
     it { should equal(left) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'right is a false proposition' do
-    let(:left)  { attribute.gt(1)                    }
-    let(:right) { Logic::Proposition::False.instance }
+  context 'right is a contradiction' do
+    let(:left)  { attribute.gt(1)                            }
+    let(:right) { Logic::Proposition::Contradiction.instance }
 
     it { should equal(left) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left is a false proposition' do
-    let(:left)  { Logic::Proposition::False.instance }
-    let(:right) { attribute.lt(3)                    }
+  context 'left is a contradiction' do
+    let(:left)  { Logic::Proposition::Contradiction.instance }
+    let(:right) { attribute.lt(3)                            }
 
     it { should equal(right) }
 
@@ -107,7 +107,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.ne(1) }
     let(:right) { attribute.ne(3) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -116,7 +116,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.ne(1) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -125,7 +125,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.ne(1) }
     let(:right) { attribute.eq(1) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -134,7 +134,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.include([ 1, 2 ]) }
     let(:right) { attribute.exclude([ 1, 2 ]) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -143,7 +143,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.exclude([ 1, 2 ]) }
     let(:right) { attribute.include([ 1, 2 ]) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -152,7 +152,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.gt(1)  }
     let(:right) { attribute.lte(1) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -161,7 +161,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.lte(1) }
     let(:right) { attribute.gt(1)  }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -170,7 +170,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.gte(1) }
     let(:right) { attribute.lt(1)  }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -179,7 +179,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.lt(1)  }
     let(:right) { attribute.gte(1) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -189,7 +189,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)      { attribute.match(/Dan Kubb/)    }
     let(:right)     { attribute.no_match(/Dan Kubb/) }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -199,7 +199,7 @@ describe Logic::Connective::Disjunction, '#optimize' do
     let(:left)      { attribute.no_match(/Dan Kubb/) }
     let(:right)     { attribute.match(/Dan Kubb/)    }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end

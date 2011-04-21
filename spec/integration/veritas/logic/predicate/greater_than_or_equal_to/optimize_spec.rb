@@ -10,7 +10,7 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
 
   context 'left and right are attributes' do
     context 'and equivalent' do
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -18,7 +18,7 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
     context 'and are not comparable' do
       let(:right) { Attribute::Float.new(:float) }
 
-      it { should equal(Logic::Proposition::False.instance) }
+      it { should equal(Logic::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -27,7 +27,7 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
       let(:left)  { attribute                                             }
       let(:right) { Attribute::Integer.new(:right, :size => 2**31..2**31) }
 
-      it { should equal(Logic::Proposition::False.instance) }
+      it { should equal(Logic::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -36,7 +36,7 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
       let(:left)  { attribute                                       }
       let(:right) { Attribute::Integer.new(:right, :size => -1..-1) }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -54,7 +54,7 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
     context 'right is an invalid primitive' do
       let(:right) { nil }
 
-      it { should equal(Logic::Proposition::False.instance) }
+      it { should equal(Logic::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -72,27 +72,27 @@ describe Logic::Predicate::GreaterThanOrEqualTo, '#optimize' do
     context 'left is an invalid primitive' do
       let(:left) { nil }
 
-      it { should equal(Logic::Proposition::False.instance) }
+      it { should equal(Logic::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
   end
 
   context 'left and right are constants' do
-    context 'that will evaluate to true' do
+    context 'that will evaluate to a tautology' do
       let(:left)  { 1 }
       let(:right) { 1 }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
 
-    context 'that will evaluate to false' do
+    context 'that will evaluate to a contradiction' do
       let(:left)  { 1 }
       let(:right) { 2 }
 
-      it { should equal(Logic::Proposition::False.instance) }
+      it { should equal(Logic::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end

@@ -23,18 +23,18 @@ describe Logic::Connective::Negation, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'operand is a true proposition' do
-    let(:operand) { Logic::Proposition::True.instance }
+  context 'operand is a tautology' do
+    let(:operand) { Logic::Proposition::Tautology.instance }
 
-    it { should equal(Logic::Proposition::False.instance) }
+    it { should equal(Logic::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'operand is a false proposition' do
-    let(:operand) { Logic::Proposition::False.instance }
+  context 'operand is a contradiction' do
+    let(:operand) { Logic::Proposition::Contradiction.instance }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end

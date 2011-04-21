@@ -9,17 +9,17 @@ module Veritas
         class Equality < self
           include Comparable
 
-          # Optimize when the operand are always false
-          class AlwaysFalse < self
+          # Optimize when the operand are a contradiction
+          class Contradiction < self
             include Comparable::NeverEquivalent
-            include Predicate::AlwaysFalse
-          end # class AlwaysFalse
+            include Predicate::Contradiction
+          end # class Contradiction
 
-          # Optimize when the operand are always true
-          class AlwaysTrue < self
-            include Predicate::AlwaysTrue
+          # Optimize when the operand are a tautology
+          class Tautology < self
+            include Predicate::Tautology
 
-            # Test if the operands are always true
+            # Test if the operands are a tautology
             #
             # @return [Boolean]
             #
@@ -28,12 +28,12 @@ module Veritas
               left.equal?(right)
             end
 
-          end # class AlwaysTrue
+          end # class Tautology
 
           Veritas::Logic::Predicate::Equality.optimizer = chain(
             ConstantOperands,
-            AlwaysFalse,
-            AlwaysTrue,
+            Contradiction,
+            Tautology,
             NormalizableOperands
           )
 

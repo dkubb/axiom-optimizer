@@ -46,19 +46,19 @@ module Veritas
           predicate.respond_to?(:optimize) ? predicate.optimize : predicate
         end
 
-        # Optimize when the predicate is true
-        class TruePredicate < self
+        # Optimize when the predicate is a tautology
+        class Tautology < self
 
-          # Test if the predicate is true
+          # Test if the predicate is a tautology
           #
           # @return [Boolean]
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Logic::Proposition::True.instance)
+            predicate.equal?(Veritas::Logic::Proposition::Tautology.instance)
           end
 
-          # A Restriction with a true predicate is a noop
+          # A Restriction with a tautology is a noop
           #
           # @return [Relation]
           #
@@ -67,21 +67,21 @@ module Veritas
             operand
           end
 
-        end # class TruePredicate
+        end # class Tautology
 
-        # Optimize when the predicate is false
-        class FalsePredicate < self
+        # Optimize when the predicate is a contradiction
+        class Contradiction < self
 
-          # Test if the predicate is false
+          # Test if the predicate is a contradiction
           #
           # @return [Boolean]
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Logic::Proposition::False.instance)
+            predicate.equal?(Veritas::Logic::Proposition::Contradiction.instance)
           end
 
-          # A Restriction with a false predicate matches nothing
+          # A Restriction with a contradiction matches nothing
           #
           # @return [Relation]
           #
@@ -90,7 +90,7 @@ module Veritas
             Veritas::Relation::Empty.new(operation.header)
           end
 
-        end # class FalsePredicate
+        end # class Contradiction
 
         # Optimize when the operand is a Restriction
         class RestrictionOperand < self
@@ -242,8 +242,8 @@ module Veritas
         end # class UnoptimizedOperand
 
         Veritas::Algebra::Restriction.optimizer = chain(
-          TruePredicate,
-          FalsePredicate,
+          Tautology,
+          Contradiction,
           RestrictionOperand,
           SetOperand,
           ReverseOperand,

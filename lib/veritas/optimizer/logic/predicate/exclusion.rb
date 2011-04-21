@@ -15,11 +15,11 @@ module Veritas
 
             # An Exclusion with an empty right operand matches everything
             #
-            # @return [True]
+            # @return [Tautology]
             #
             # @api private
             def optimize
-              Veritas::Logic::Proposition::True.instance
+              Veritas::Logic::Proposition::Tautology.instance
             end
 
           end # class EmptyRightOperand

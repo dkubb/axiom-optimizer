@@ -15,11 +15,11 @@ module Veritas
 
             # An Inclusion with an empty right operand matches nothing
             #
-            # @return [False]
+            # @return [Contradiction]
             #
             # @api private
             def optimize
-              Veritas::Logic::Proposition::False.instance
+              Veritas::Logic::Proposition::Contradiction.instance
             end
 
           end # class EmptyRightOperand

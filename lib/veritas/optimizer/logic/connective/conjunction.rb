@@ -8,19 +8,19 @@ module Veritas
         # Abstract base class representing Conjunction optimizations
         class Conjunction < Binary
 
-          # Optimize when the left operand is true
-          class TrueLeftOperand < self
+          # Optimize when the left operand is a tautology
+          class LeftOperandTautology < self
 
-            # Test if the left operand is true
+            # Test if the left operand is a tautology
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              left_true?
+              left_tautology?
             end
 
-            # A Conjunction with a true left operand is equivalent to the right
+            # A Conjunction with a tautology left operand is equivalent to the right
             #
             # @return [Expression]
             #
@@ -29,21 +29,21 @@ module Veritas
               right
             end
 
-          end # class TrueLeftOperand
+          end # class LeftOperandTautology
 
-          # Optimize when the right operand is true
-          class TrueRightOperand < self
+          # Optimize when the right operand is a tautology
+          class RightOperandTautology < self
 
-            # Test if the right operand is true
+            # Test if the right operand is a tautology
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              right_true?
+              right_tautology?
             end
 
-            # A Conjunction with a true right operand is equivalent to the left
+            # A Conjunction with a tautology right operand is equivalent to the left
             #
             # @return [Expression]
             #
@@ -52,7 +52,7 @@ module Veritas
               left
             end
 
-          end # class TrueRightOperand
+          end # class RightOperandTautology
 
           # Optimize when the operands are inequality predicates for the same attribute
           class OptimizableToExclusion < self
@@ -78,40 +78,40 @@ module Veritas
 
           end # class OptimizableToExclusion
 
-          # Optimize when the operands are always false
-          class AlwaysFalse < self
+          # Optimize when the operands are a contradiction
+          class Contradiction < self
 
-            # Test if the operands are always false
+            # Test if the operands are a contradiction
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              left_false?                    ||
-              right_false?                   ||
+              left_contradiction?                    ||
+              right_contradiction?                   ||
               equality_with_same_attributes? ||
               left.inverse.eql?(right)
             end
 
-            # Return false
+            # Return a contradiction
             #
-            # @return [False]
+            # @return [Contradiction]
             #
             # @api private
             def optimize
-              Veritas::Logic::Proposition::False.instance
+              Veritas::Logic::Proposition::Contradiction.instance
             end
 
-          end # class AlwaysFalse
+          end # class Contradiction
 
           Veritas::Logic::Connective::Conjunction.optimizer = chain(
-            TrueLeftOperand,
-            TrueRightOperand,
+            LeftOperandTautology,
+            RightOperandTautology,
             OptimizableToExclusion,
             EqualOperands,
             RedundantLeftOperand,
             RedundantRightOperand,
-            AlwaysFalse,
+            Contradiction,
             UnoptimizedOperand
           )
 

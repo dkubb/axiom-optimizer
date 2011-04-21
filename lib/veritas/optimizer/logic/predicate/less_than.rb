@@ -9,27 +9,27 @@ module Veritas
         class LessThan < self
           include Comparable
 
-          # Optimize when the operands are always false
-          class AlwaysFalse < self
-            include Predicate::AlwaysFalse
+          # Optimize when the operands are a contradiction
+          class Contradiction < self
+            include Predicate::Contradiction
 
-            # Test if the operands are always false
+            # Test if the operands are a contradiction
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
               left.equal?(right) ||
-              LessThanOrEqualTo::AlwaysFalse.new(operation).optimizable?
+              LessThanOrEqualTo::Contradiction.new(operation).optimizable?
             end
 
-          end # class AlwaysFalse
+          end # class Contradiction
 
-          # Optimize when the operands are always true
-          class AlwaysTrue < self
-            include Predicate::AlwaysTrue
+          # Optimize when the operands are a tautology
+          class Tautology < self
+            include Predicate::Tautology
 
-            # Test if the operands are always true
+            # Test if the operands are a tautology
             #
             # @return [Boolean]
             #
@@ -38,12 +38,12 @@ module Veritas
               operation.class.call(Predicate::Util.max(left), Predicate::Util.min(right))
             end
 
-          end # class AlwaysTrue
+          end # class Tautology
 
           Veritas::Logic::Predicate::LessThan.optimizer = chain(
             ConstantOperands,
-            AlwaysFalse,
-            AlwaysTrue,
+            Contradiction,
+            Tautology,
             NormalizableOperands
           )
 

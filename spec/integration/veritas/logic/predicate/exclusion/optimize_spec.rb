@@ -11,7 +11,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
       context 'and empty' do
         let(:right) { 1..0 }
 
-        it { should equal(Logic::Proposition::True.instance) }
+        it { should equal(Logic::Proposition::Tautology.instance) }
 
         it_should_behave_like 'an optimize method'
       end
@@ -29,7 +29,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
       context 'and empty' do
         let(:right) { 1...1 }
 
-        it { should equal(Logic::Proposition::True.instance) }
+        it { should equal(Logic::Proposition::Tautology.instance) }
 
         it_should_behave_like 'an optimize method'
       end
@@ -49,7 +49,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
       let(:left)  { Attribute::String.new(:string) }
       let(:right) { 'a'..'z'                       }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -57,7 +57,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
     context 'that is greater than the left range' do
       let(:right) { 2**31..2**31 }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -65,7 +65,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
     context 'that is less than the left range' do
       let(:right) { -1..-1 }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -75,7 +75,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
     context 'that is empty' do
       let(:right) { [] }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -83,7 +83,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
     context 'that is empty after filtering invalid entries' do
       let(:right) { [ 'a' ] }
 
-      it { should equal(Logic::Proposition::True.instance) }
+      it { should equal(Logic::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -124,7 +124,7 @@ describe Logic::Predicate::Exclusion, '#optimize' do
   context 'right is a nil' do
     let(:right) { nil }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end

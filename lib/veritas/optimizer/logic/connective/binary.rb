@@ -98,40 +98,40 @@ module Veritas
             util.constant?(left.right) && util.constant?(right.right)
           end
 
-          # Test if the left is true
+          # Test if the left is a tautology
           #
           # @return [Boolean]
           #
           # @api private
-          def left_true?
-            left.equal?(Veritas::Logic::Proposition::True.instance)
+          def left_tautology?
+            left.equal?(Veritas::Logic::Proposition::Tautology.instance)
           end
 
-          # Test if the right is true
+          # Test if the right is a tautology
           #
           # @return [Boolean]
           #
           # @api private
-          def right_true?
-            right.equal?(Veritas::Logic::Proposition::True.instance)
+          def right_tautology?
+            right.equal?(Veritas::Logic::Proposition::Tautology.instance)
           end
 
-          # Test if the left is false
+          # Test if the left is a contradiction
           #
           # @return [Boolean]
           #
           # @api private
-          def left_false?
-            left.equal?(Veritas::Logic::Proposition::False.instance)
+          def left_contradiction?
+            left.equal?(Veritas::Logic::Proposition::Contradiction.instance)
           end
 
-          # Test if the right is false
+          # Test if the right is a contradiction
           #
           # @return [Boolean]
           #
           # @api private
-          def right_false?
-            right.equal?(Veritas::Logic::Proposition::False.instance)
+          def right_contradiction?
+            right.equal?(Veritas::Logic::Proposition::Contradiction.instance)
           end
 
           # Optimize when the operands are equal

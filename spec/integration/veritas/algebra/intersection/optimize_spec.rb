@@ -47,8 +47,8 @@ describe Algebra::Intersection, '#optimize' do
   end
 
   context 'left is an empty relation when optimized' do
-    let(:left)  { Algebra::Restriction.new(original_left, Logic::Proposition::False.instance) }
-    let(:right) { original_right                                                              }
+    let(:left)  { Algebra::Restriction.new(original_left, Logic::Proposition::Contradiction.instance) }
+    let(:right) { original_right                                                                      }
 
     it { should eql(Relation::Empty.new(left.header | right.header)) }
 
@@ -70,8 +70,8 @@ describe Algebra::Intersection, '#optimize' do
   end
 
   context 'right is an empty relation when optimized' do
-    let(:left)  { original_left                                                                }
-    let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
+    let(:left)  { original_left                                                                        }
+    let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::Contradiction.instance) }
 
     it { should eql(Relation::Empty.new(left.header | right.header)) }
 

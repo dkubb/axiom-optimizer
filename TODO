@@ -30,18 +30,18 @@
         * "attr" = "string" AND "attr" =~ /string/ -> "attr" = "string"
           * If the regexp matches the constant, then it should be
             optimized down to a constant match. If it does not match
-            then it should be optimized to False.
+            then it should be optimized to a Contradiction.
         * Constant folding, eg:
           "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
           * This will probably only work across Conjunctions.
         * "attr > 5 AND attr = 6" -> "attr = 6", because attr must be
           equal to 6. this will probably be related to constant folding;
-          the first expression will become 6 > 5, which evaluates to
-          True, then the expression is True AND attr = 6, which simplifies
-          down to attr = 6.
-        * "attr < 5 AND attr = 6" -> "False", because attr must be equal to
-          6, and 6 < 5 evaluates to False.  False AND attr = 6 simplifies
-          down to False.
+          the first expression will become 6 > 5, which evaluates to a
+          Tautology, then the expression is a Tautology AND attr = 6,
+          which simplifies down to attr = 6.
+        * "attr < 5 AND attr = 6" -> "Contradiction", because attr must be equal to
+          6, and 6 < 5 evaluates to a Contradiction.  A Contradiction AND attr = 6
+          simplifies down to a Contradiction.
       * Figure out how to reorganize the Restriction predicates so that all
         similar operations are closer together to allow more efficient
         optimizations. This would allow optimizations of stuff like this:

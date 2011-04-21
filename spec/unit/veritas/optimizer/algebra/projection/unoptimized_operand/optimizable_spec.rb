@@ -13,7 +13,7 @@ describe Optimizer::Algebra::Projection::UnoptimizedOperand, '#optimizable?' do
   end
 
   context 'when the operand is optimizable' do
-    let(:operand) { base.restrict(Logic::Proposition::True.instance) }
+    let(:operand) { base.restrict(Logic::Proposition::Tautology.instance) }
 
     it { should be(true) }
   end
