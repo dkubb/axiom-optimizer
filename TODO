@@ -1,7 +1,10 @@
 * Add further optimizations:
   * Projection
-    * When it contains a Rename, if the renamed attributes are projected
-      away, then the rename can be removed.
+    * When it contains a Rename, if the renamed attributes are removed,
+      then the rename can be removed.
+    * When it contains a Restriction, if the removed attributes are *not*
+      used in the predicate, then move the Restriction to contain the
+      Projection.
   * Operation Order:
     * Projection containing an Order
       * Should remove the Order, since it is a noop
