@@ -5,7 +5,7 @@ describe Optimizer::Algebra::Restriction::OrderOperand, '#optimize' do
 
   let(:base)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:predicate) { base[:id].eq(1)                                    }
-  let(:relation)  { base.order.restrict(predicate)                     }
+  let(:relation)  { base.order.restrict { predicate }                  }
   let(:object)    { described_class.new(relation)                      }
 
   before do
@@ -14,5 +14,5 @@ describe Optimizer::Algebra::Restriction::OrderOperand, '#optimize' do
 
   it { should be_kind_of(Relation::Operation::Order) }
 
-  its(:operand) { should eql(base.restrict(predicate)) }
+  its(:operand) { should eql(base.restrict { predicate }) }
 end

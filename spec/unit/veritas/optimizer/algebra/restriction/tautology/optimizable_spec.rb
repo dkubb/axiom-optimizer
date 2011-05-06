@@ -4,7 +4,7 @@ describe Optimizer::Algebra::Restriction::Tautology, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:relation) { base.restrict(predicate)                           }
+  let(:relation) { base.restrict { predicate }                        }
   let(:object)   { described_class.new(relation)                      }
 
   before do

@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Restriction::SetOperand, '#optimizable?' do
   let(:left)      { Relation.new(header, [ [ 1 ] ].each)       }
   let(:right)     { Relation.new(header, [ [ 2 ] ].each)       }
   let(:predicate) { header[:id].eq(1)                          }
-  let(:relation)  { operand.restrict(predicate)                }
+  let(:relation)  { operand.restrict { predicate }             }
   let(:object)    { described_class.new(relation)              }
 
   before do

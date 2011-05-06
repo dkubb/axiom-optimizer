@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Restriction::RestrictionOperand, '#optimizable?' do
   let(:header)    { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:base)      { Relation.new(header, [ [ 1 ] ].each)       }
   let(:predicate) { header[:id].eq(1)                          }
-  let(:relation)  { operand.restrict(predicate)                }
+  let(:relation)  { operand.restrict { predicate }             }
   let(:object)    { described_class.new(relation)              }
 
   before do
@@ -14,8 +14,8 @@ describe Optimizer::Algebra::Restriction::RestrictionOperand, '#optimizable?' do
   end
 
   context 'when the operand is an restriction operation' do
-    let(:other_predicate) { header[:id].include([ 1 ])     }
-    let(:operand)         { base.restrict(other_predicate) }
+    let(:other_predicate) { header[:id].include([ 1 ])        }
+    let(:operand)         { base.restrict { other_predicate } }
 
     it { should be(true) }
   end

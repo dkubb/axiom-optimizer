@@ -14,7 +14,7 @@ describe Optimizer::Algebra::Rename::RestrictionOperand, '#optimizable?' do
   end
 
   context 'when the operand is a restriction' do
-    let(:operand) { base.restrict(predicate) }
+    let(:operand) { base.restrict { predicate } }
 
     it { should be(true) }
   end

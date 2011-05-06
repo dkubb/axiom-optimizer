@@ -186,7 +186,7 @@ describe Algebra::Restriction, '#optimize' do
     let(:predicate) { operand[:id].gte(1) }
 
     it 'pushes the object under the order' do
-      should eql(relation.restrict(predicate).order)
+      should eql(relation.restrict { predicate }.order)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

@@ -5,7 +5,7 @@ describe Optimizer::Algebra::Restriction::ReverseOperand, '#optimizable?' do
 
   let(:base)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
   let(:predicate) { base[:id].eq(1)                                          }
-  let(:relation)  { operand.restrict(predicate)                              }
+  let(:relation)  { operand.restrict { predicate }                           }
   let(:object)    { described_class.new(relation)                            }
 
   before do

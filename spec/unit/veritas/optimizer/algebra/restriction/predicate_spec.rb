@@ -5,7 +5,7 @@ describe Optimizer::Algebra::Restriction, '#predicate' do
 
   let(:base)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:predicate) { base[:id].eq(1)                               }
-  let(:relation)  { base.restrict(predicate)                      }
+  let(:relation)  { base.restrict { predicate }                   }
   let(:object)    { described_class.new(relation)                 }
 
   before do

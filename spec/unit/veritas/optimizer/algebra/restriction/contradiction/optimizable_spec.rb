@@ -5,7 +5,7 @@ describe Optimizer::Algebra::Restriction::Contradiction, '#optimizable?' do
 
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:base)     { Relation.new(header, [ [ 1 ] ].each)       }
-  let(:relation) { base.restrict(predicate)                   }
+  let(:relation) { base.restrict { predicate }                }
   let(:object)   { described_class.new(relation)              }
 
   before do
