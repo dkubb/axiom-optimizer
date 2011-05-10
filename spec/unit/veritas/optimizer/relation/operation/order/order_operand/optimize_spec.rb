@@ -5,7 +5,7 @@ describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimize' do
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:order)    { base.order                                         }
-  let(:relation) { order.order(order.directions.reverse)              }
+  let(:relation) { order.order { |order| order.directions.reverse }   }
   let(:object)   { described_class.new(relation)                      }
 
   before do

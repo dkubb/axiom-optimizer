@@ -50,7 +50,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'with an order operation' do
-    it { should eql(relation.order(object.directions)) }
+    it { should eql(relation.order { object.directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -67,7 +67,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   context 'with an order operation when optimized' do
     let(:operand) { order.rename({}) }
 
-    it { should eql(relation.order(object.directions)) }
+    it { should eql(relation.order { object.directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

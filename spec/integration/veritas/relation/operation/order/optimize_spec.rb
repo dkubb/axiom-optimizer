@@ -23,7 +23,7 @@ describe Relation::Operation::Order, '#optimize' do
   context 'containing an optimizable relation' do
     let(:operand) { relation.project(relation.header) }
 
-    it { should eql(relation.order(directions)) }
+    it { should eql(relation.order { directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -40,7 +40,7 @@ describe Relation::Operation::Order, '#optimize' do
   context 'containing an object operation' do
     let(:operand) { relation.order { |r| [ r[:id].desc ] } }
 
-    it { should eql(relation.order(directions)) }
+    it { should eql(relation.order { directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

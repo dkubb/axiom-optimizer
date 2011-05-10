@@ -6,7 +6,7 @@ describe Relation::Operation::Limit, '#optimize' do
   let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:directions) { [ relation[:id] ]                        }
-  let(:order)      { relation.order(directions)               }
+  let(:order)      { relation.order { directions }            }
   let(:operand)    { order                                    }
   let(:limit)      { 1                                        }
   let(:object)     { described_class.new(operand, limit)      }
