@@ -78,10 +78,10 @@ module Veritas
 
           end # class OptimizableToInclusion
 
-          # Optimize when the operands are a tuatology
+          # Optimize when the operands are a tautology
           class Tautology < self
 
-            # Test if the operands are a tuatology
+            # Test if the operands are a tautology
             #
             # @return [Boolean]
             #
@@ -93,7 +93,7 @@ module Veritas
               left.inverse.eql?(right)
             end
 
-            # Return a tuatology
+            # Return a tautology
             #
             # @return [Tautology]
             #
