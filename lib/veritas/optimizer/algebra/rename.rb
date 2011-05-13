@@ -180,7 +180,7 @@ module Veritas
 
           # Rename the operand predicate
           #
-          # @return [Expression]
+          # @return [Function]
           #
           # @api private
           def rename_predicate

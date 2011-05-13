@@ -8,9 +8,9 @@ describe Optimizer::Algebra::Restriction, '.optimize_predicate' do
   let(:object)    { Optimizer::Algebra::Restriction }
 
   context 'when the predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Negation.new(attribute.eq(1)) }
+    let(:predicate) { Function::Connective::Negation.new(attribute.eq(1)) }
 
-    it { should be_kind_of(Logic::Predicate::Inequality) }
+    it { should be_kind_of(Function::Predicate::Inequality) }
 
     its(:left) { should equal(attribute) }
 

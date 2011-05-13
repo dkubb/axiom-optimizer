@@ -13,13 +13,13 @@ describe Optimizer::Algebra::Restriction::Contradiction, '#optimizable?' do
   end
 
   context 'when the predicate is a contradiction' do
-    let(:predicate) { Logic::Proposition::Contradiction.instance }
+    let(:predicate) { Function::Proposition::Contradiction.instance }
 
     it { should be(true) }
   end
 
   context 'when the predicate is not a contradiction' do
-    let(:predicate) { Logic::Proposition::Tautology.instance }
+    let(:predicate) { Function::Proposition::Tautology.instance }
 
     it { should be(false) }
   end

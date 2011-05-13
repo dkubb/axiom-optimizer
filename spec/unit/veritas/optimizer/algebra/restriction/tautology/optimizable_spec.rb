@@ -12,13 +12,13 @@ describe Optimizer::Algebra::Restriction::Tautology, '#optimizable?' do
   end
 
   context 'when the predicate is a tautology' do
-    let(:predicate) { Logic::Proposition::Tautology.instance }
+    let(:predicate) { Function::Proposition::Tautology.instance }
 
     it { should be(true) }
   end
 
   context 'when the predicate is not a tautology' do
-    let(:predicate) { Logic::Proposition::Contradiction.instance }
+    let(:predicate) { Function::Proposition::Contradiction.instance }
 
     it { should be(false) }
   end

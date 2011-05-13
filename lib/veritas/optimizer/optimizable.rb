@@ -56,4 +56,4 @@ module Veritas
 end # module Veritas
 
 Veritas::Relation.class_eval          { include Veritas::Optimizer::Optimizable }
-Veritas::Logic::Expression.class_eval { include Veritas::Optimizer::Optimizable }
+Veritas::Function.class_eval { include Veritas::Optimizer::Optimizable }

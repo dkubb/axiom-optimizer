@@ -9,7 +9,7 @@ module Veritas
 
         # The optimized predicate
         #
-        # @return [Expression]
+        # @return [Function]
         #
         # @api private
         attr_reader :predicate
@@ -37,9 +37,9 @@ module Veritas
 
         # Optimize the predicate if possible
         #
-        # @param [Expression] predicate
+        # @param [Function] predicate
         #
-        # @return [Expression]
+        # @return [Function]
         #
         # @api private
         def self.optimize_predicate(predicate)
@@ -55,7 +55,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Logic::Proposition::Tautology.instance)
+            predicate.equal?(Veritas::Function::Proposition::Tautology.instance)
           end
 
           # A Restriction with a tautology is a noop
@@ -78,7 +78,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Logic::Proposition::Contradiction.instance)
+            predicate.equal?(Veritas::Function::Proposition::Contradiction.instance)
           end
 
           # A Restriction with a contradiction matches nothing
@@ -117,11 +117,11 @@ module Veritas
 
           # Join the operand and operation predicates and optimize them
           #
-          # @return [Expression]
+          # @return [Function]
           #
           # @api private
           def optimized_predicate
-            Veritas::Logic::Connective::Conjunction.new(operand.predicate, predicate).optimize
+            Veritas::Function::Connective::Conjunction.new(operand.predicate, predicate).optimize
           end
 
         end # class RestrictionOperand

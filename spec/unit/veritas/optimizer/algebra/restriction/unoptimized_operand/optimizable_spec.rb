@@ -13,8 +13,8 @@ describe Optimizer::Algebra::Restriction::UnoptimizedOperand, '#optimizable?' do
   end
 
   context 'when the operand and predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Negation.new(header[:id].eq(1)) }
-    let(:operand)   { base.rename({})                                    }
+    let(:predicate) { Function::Connective::Negation.new(header[:id].eq(1)) }
+    let(:operand)   { base.rename({})                                       }
 
     it { should be(true) }
   end
@@ -27,8 +27,8 @@ describe Optimizer::Algebra::Restriction::UnoptimizedOperand, '#optimizable?' do
   end
 
   context 'when the operand is not optimizable, but the predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Negation.new(header[:id].eq(1)) }
-    let(:operand)   { base                                               }
+    let(:predicate) { Function::Connective::Negation.new(header[:id].eq(1)) }
+    let(:operand)   { base                                                  }
 
     it { should be(true) }
   end

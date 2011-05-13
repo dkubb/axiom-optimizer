@@ -9,7 +9,7 @@ describe Algebra::Restriction, '#optimize' do
   let(:object)   { described_class.new(operand, predicate)  }
 
   context 'with a tautology' do
-    let(:predicate) { Logic::Proposition::Tautology.instance }
+    let(:predicate) { Function::Proposition::Tautology.instance }
 
     it { should equal(relation) }
 
@@ -22,7 +22,7 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with a contradiction' do
-    let(:predicate) { Logic::Proposition::Contradiction.instance }
+    let(:predicate) { Function::Proposition::Contradiction.instance }
 
     it { should eql(Relation::Empty.new(relation.header)) }
 
@@ -52,7 +52,7 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an optimizable predicate' do
-    let(:predicate) { relation[:id].eq(1).and(Logic::Proposition::Tautology.instance) }
+    let(:predicate) { relation[:id].eq(1).and(Function::Proposition::Tautology.instance) }
 
     it { should_not equal(object) }
 
@@ -117,8 +117,8 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an empty relation when optimized' do
-    let(:operand)   { described_class.new(relation, Logic::Proposition::Contradiction.instance) }
-    let(:predicate) { operand[:id].gte(1)                                                       }
+    let(:operand)   { described_class.new(relation, Function::Proposition::Contradiction.instance) }
+    let(:predicate) { operand[:id].gte(1)                                                          }
 
     it { should eql(Relation::Empty.new(relation.header)) }
 
