@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module AddMethodMissing
   def add_method_missing(name = :described_class)
     before do

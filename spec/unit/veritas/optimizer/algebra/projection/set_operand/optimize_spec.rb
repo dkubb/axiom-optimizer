@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Optimizer::Algebra::Projection::SetOperand, '#optimize' do

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 shared_examples_for 'Function::Connective::Binary#optimize' do
   context 'left and right are the same' do
     let(:left)  { attribute.gt(1) }
