@@ -46,6 +46,8 @@ module Veritas
 
         # Return true if the predicate is not callable, and not a true value
         #
+        # In the system anything not a Tautology or true is false.
+        #
         # @return [Boolean]
         #
         # @api private
