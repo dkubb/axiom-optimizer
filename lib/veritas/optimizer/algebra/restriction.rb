@@ -44,7 +44,7 @@ module Veritas
           predicate.equal?(true)
         end
 
-        # Return true predicate is not callable, and not a true value
+        # Return true if the predicate is not callable, and not a true value
         #
         # @return [Boolean]
         #
