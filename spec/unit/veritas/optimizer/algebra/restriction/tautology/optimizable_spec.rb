@@ -24,4 +24,10 @@ describe Optimizer::Algebra::Restriction::Tautology, '#optimizable?' do
 
     it { should be(false) }
   end
+
+  context 'when the predicate is true' do
+    let(:predicate) { true }
+
+    it { should be(true) }
+  end
 end

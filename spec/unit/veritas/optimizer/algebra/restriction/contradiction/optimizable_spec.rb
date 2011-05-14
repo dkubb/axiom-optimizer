@@ -25,4 +25,22 @@ describe Optimizer::Algebra::Restriction::Contradiction, '#optimizable?' do
 
     it { should be(false) }
   end
+
+  context 'when the predicate is false' do
+    let(:predicate) { false }
+
+    it { should be(true) }
+  end
+
+  context 'when the predicate is true' do
+    let(:predicate) { true }
+
+    it { should be(false) }
+  end
+
+  context 'when the predicate is a Proc' do
+    let(:predicate) { proc { false } }
+
+    it { should be(false) }
+  end
 end

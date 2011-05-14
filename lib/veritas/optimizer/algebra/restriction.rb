@@ -35,6 +35,24 @@ module Veritas
           operation.class.new(operand.operand, predicate)
         end
 
+        # Return true if the predicate is a true value
+        #
+        # @return [Boolean]
+        #
+        # @api private
+        def constant_true_predicate?
+          predicate.equal?(true)
+        end
+
+        # Return true predicate is not callable, and not a true value
+        #
+        # @return [Boolean]
+        #
+        # @api private
+        def constant_false_predicate?
+          !(predicate.respond_to?(:call) || constant_true_predicate?)
+        end
+
         # Optimize the predicate if possible
         #
         # @param [Function] predicate
@@ -55,7 +73,8 @@ module Veritas
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Function::Proposition::Tautology.instance)
+            predicate.equal?(Veritas::Function::Proposition::Tautology.instance) ||
+            constant_true_predicate?
           end
 
           # A Restriction with a tautology is a noop
@@ -78,7 +97,8 @@ module Veritas
           #
           # @api private
           def optimizable?
-            predicate.equal?(Veritas::Function::Proposition::Contradiction.instance)
+            predicate.equal?(Veritas::Function::Proposition::Contradiction.instance) ||
+            constant_false_predicate?
           end
 
           # A Restriction with a contradiction matches nothing
