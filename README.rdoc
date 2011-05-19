@@ -2,6 +2,8 @@
 
 Relational algebra optimizer
 
+http://travis-ci.org/dkubb/veritas-optimizer.png
+
 == Note on Patches/Pull Requests
 
 * If you want your code merged into the mainline, please discuss
