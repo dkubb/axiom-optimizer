@@ -26,7 +26,7 @@ module Veritas
           # @api private
           def optimize
             operation = self.operation
-            operation.class.new(operand, operation.summarize_by, operation.summarizers)
+            operation.class.new(operand, operation.summarize_per, operation.summarizers)
           end
 
         end # class UnoptimizedOperand
