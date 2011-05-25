@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)      { Relation::Header.new([ [ :id, Integer ] ])             }
-  let(:base)        { Relation.new(header, [ [ 1 ] ].each)                   }
-  let(:summarizers) { [ :text, lambda { |acc, tuple| 1 } ]                   }
-  let(:relation)    { operand.summarize(operand) { |r| r.add(*summarizers) } }
-  let(:object)      { described_class.new(relation)                          }
+  let(:header)      { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:base)        { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)              }
+  let(:summarizers) { [ :text, lambda { |acc, tuple| 1 } ]                          }
+  let(:relation)    { operand.summarize([ :id ]) { |r| r.add(*summarizers) }        }
+  let(:object)      { described_class.new(relation)                                 }
 
   before do
     object.operation.should be_kind_of(Algebra::Summarization)
