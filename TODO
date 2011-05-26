@@ -78,7 +78,6 @@
       relation, since at most there can be only one match.
 
 * Summarization
-  * Optimize the summarize_per relation
   * Optimize the summarization aggregate functions
   * When summarize_per is TABLE_DUM, optimize to an empty relation
   * When summarize_per is TABLE_DEE, and it is wrapped by Order, at most only
