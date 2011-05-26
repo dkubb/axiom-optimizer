@@ -1,3 +1,18 @@
+* All relations, even optimized ones, need to hold a reference to the
+  original (possibly optimized) operations.
+  * Especially "empty" relations should hold a reference to the original
+    relation so that insert/update can be performed on them if they are
+    empty not because they are valid, but because the source object is empty
+  * Materialized relations will need references to the original objects.
+
+* Optimization can replace one or more AST nodes with a simpler/more efficient
+  structure as long as it is lossless. Just changing it to empty or
+  materialized, the way things are now, we lose what the original relation
+  was so it becomes impossible to insert/update/delete from those relations.
+  * A write to a materialized object should first propagate the write down
+    to the @operand, allowing it to raise exceptions if it's read*only,
+    then it should make the change in the materialized object.
+
 * Add further optimizations:
   * Projection
     * When it contains a Rename, if the renamed attributes are removed,
