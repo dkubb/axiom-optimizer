@@ -223,6 +223,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/function/predicate/constant_operands/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/function/predicate/constant_operands/optimize_spec.rb",
     "spec/unit/veritas/optimizer/function/predicate/contradiction/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/function/predicate/enumerable/class_methods/sort_by_value_spec.rb",
     "spec/unit/veritas/optimizer/function/predicate/enumerable/empty_right_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/function/predicate/enumerable/one_right_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/function/predicate/enumerable/unoptimized_operand/optimizable_spec.rb",

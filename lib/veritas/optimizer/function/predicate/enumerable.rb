@@ -8,6 +8,22 @@ module Veritas
         # Abstract base class representing Enumerable predicate optimizations
         module Enumerable
 
+          # Return a value to sort the obejct with
+          #
+          # @param [Object] object
+          #
+          # @return [Object]
+          #
+          # @api private
+          def self.sort_by_value(object)
+            case object
+              when TrueClass  then 1
+              when FalseClass then 0
+              else
+                object
+            end
+          end
+
         private
 
           # Optimize the right operand
@@ -58,9 +74,8 @@ module Veritas
           # @api private
           def normalized_right_enumerable
             enumerable = operation.right.select { |value| left.valid_value?(value) }
-            enumerable.sort!
             enumerable.uniq!
-            enumerable
+            enumerable.sort_by! { |value| Enumerable.sort_by_value(value) }
           end
 
           # Optimize when the right operand is empty

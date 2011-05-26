@@ -23,6 +23,17 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperand, '#optim
     its(:right) { should == [ 1, 2 ] }
   end
 
+  context 'when the operand contains an Enumerable with boolean values' do
+    let(:attribute) { Attribute::Boolean.new(:status) }
+    let(:operand)   { [ true, false ]                 }
+
+    it { should be_kind_of(Function::Predicate::Inclusion) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == [ false, true ] }
+  end
+
   context 'when the operand contains an exclusive Range' do
     let(:operand) { 1...3 }
 
