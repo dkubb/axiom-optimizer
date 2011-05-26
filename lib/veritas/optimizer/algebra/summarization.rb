@@ -38,6 +38,19 @@ module Veritas
         # Optimize when the operand is Empty
         class EmptyOperand < self
 
+          # Return the default value for a function
+          #
+          # @param [Object] function
+          #
+          # @return [Object]
+          #
+          # @api private
+          def self.extension_default(function)
+            if function.respond_to?(:default)
+              function.finalize(function.default)
+            end
+          end
+
           # Test if the operand is empty
           #
           # @return [Boolean]
@@ -60,15 +73,13 @@ module Veritas
 
           # Return the extensions for the optimized relation
           #
-          # @return [Hhash{Attribute => #call}]
+          # @return [Hash{Attribute => #call}]
           #
           # @api private
           def extensions
             extensions = {}
             operation.summarizers.each do |attribute, function|
-              extensions[attribute] = if function.respond_to?(:default)
-                function.finalize(function.default)
-              end
+              extensions[attribute] = self.class.extension_default(function)
             end
             extensions
           end

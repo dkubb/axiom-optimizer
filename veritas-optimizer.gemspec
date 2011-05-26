@@ -174,6 +174,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/restriction/tautology/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/unoptimized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/unoptimized_operand/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/summarization/empty_operand/class_methods/extension_default_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/empty_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/empty_summarize_per/optimizable_spec.rb",
