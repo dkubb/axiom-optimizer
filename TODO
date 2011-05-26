@@ -79,7 +79,6 @@
 
 * Summarization
   * Optimize the summarization aggregate functions
-  * When summarize_per is TABLE_DUM, optimize to an empty relation
   * When summarize_per is TABLE_DEE, and it is wrapped by Order, at most only
     one row can be returned, so Order can probably be dropped.
     * Consider making relations that represents a 0 or 1 tuple relations
