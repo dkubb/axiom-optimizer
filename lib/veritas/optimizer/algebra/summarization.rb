@@ -35,6 +35,69 @@ module Veritas
           operation.summarize_per.optimize
         end
 
+        # Optimize when the operand is Empty
+        class EmptyOperand < self
+
+          # Test if the operand is empty
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand.kind_of?(Veritas::Relation::Empty)
+          end
+
+          # Return an extended relation with the same headers
+          #
+          # @return [Extension]
+          #
+          # @api private
+          def optimize
+            Veritas::Algebra::Extension.new(summarize_per, extensions)
+          end
+
+        private
+
+          # Return the extensions for the optimized relation
+          #
+          # @return [Hhash{Attribute => #call}]
+          #
+          # @api private
+          def extensions
+            extensions = {}
+            operation.summarizers.each do |attribute, function|
+              extensions[attribute] = if function.respond_to?(:default)
+                function.finalize(function.default)
+              end
+            end
+            extensions
+          end
+
+        end # class EmptyOperand
+
+        # Optimize when the summarize_per is empty
+        class EmptySummarizePer < self
+
+          # Test if summarize_per is empty
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            summarize_per.kind_of?(Veritas::Relation::Empty)
+          end
+
+          # Return an empty relation if there is nothing to summarize over
+          #
+          # @return [Relation::Empty]
+          #
+          # @api private
+          def optimize
+            Veritas::Relation::Empty.new(operation.header)
+          end
+
+        end # class EmptySummarizePer
+
         # Optimize when operand is optimizable
         class UnoptimizedOperand < self
 
@@ -80,6 +143,8 @@ module Veritas
         end # class UnoptimizedOperand
 
         Veritas::Algebra::Summarization.optimizer = chain(
+          EmptyOperand,
+          EmptySummarizePer,
           MaterializedOperand,
           UnoptimizedOperand
         )
