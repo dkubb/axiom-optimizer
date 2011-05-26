@@ -44,8 +44,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            !operand.equal?(operation.operand) ||
-            !summarize_per.equal?(operation.summarize_per)
+            operand_optimizable? || summarize_per_optimizable?
           end
 
           # Return a Summarization with an optimized operand
@@ -56,6 +55,26 @@ module Veritas
           def optimize
             operation = self.operation
             operation.class.new(operand, summarize_per, operation.summarizers)
+          end
+
+        private
+
+          # Test if the operand is optimizable
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def operand_optimizable?
+            !operand.equal?(operation.operand)
+          end
+
+          # Test if the summarize_per relation is optimizable
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def summarize_per_optimizable?
+            !summarize_per.equal?(operation.summarize_per)
           end
 
         end # class UnoptimizedOperand
