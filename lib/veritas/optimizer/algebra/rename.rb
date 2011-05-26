@@ -72,7 +72,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            header.to_a == operand.header.to_a
+            header == operand.header
           end
 
           # A Rename with unchanged headers is a noop
