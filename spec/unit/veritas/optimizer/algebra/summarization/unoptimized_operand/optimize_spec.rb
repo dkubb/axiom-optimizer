@@ -10,7 +10,7 @@ describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
   let(:attribute)     { Attribute::Object.new(:text)                                        }
   let(:function)      { lambda { |acc, tuple| 1 }                                           }
   let(:operand)       { base.rename({})                                                     }
-  let(:summarize_per) { operand.project([])                                                 }
+  let(:summarize_per) { TABLE_DEE.project([])                                               }
   let(:relation)      { operand.summarize(summarize_per) { |r| r.add(attribute, function) } }
   let(:object)        { described_class.new(relation)                                       }
 
@@ -24,7 +24,7 @@ describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
 
   its(:operand) { should equal(base) }
 
-  its(:summarize_per) { should equal(summarize_per) }
+  its(:summarize_per) { should equal(TABLE_DEE) }
 
   its(:summarizers) { should == { attribute => function } }
 end
