@@ -4,7 +4,7 @@ module Veritas
   class Optimizer
     module Function
 
-      # Mixin for optimizations to binary functions
+      # Mixin for optimizations to Binary functions
       module Binary
 
         # The optimized left operand
@@ -58,6 +58,8 @@ module Veritas
         #
         # @return [Object]
         #
+        # @todo this does not belong in this module
+        #
         # @api private
         def self.optimize_operand(operand)
           operand.respond_to?(:optimize) ? operand.optimize : operand
@@ -87,7 +89,7 @@ module Veritas
 
         end # module ConstantOperands
 
-        # Utility methods for Predicate optimization
+        # Utility methods for Function optimization
         module Util
 
           # Test if the operand is a constant
