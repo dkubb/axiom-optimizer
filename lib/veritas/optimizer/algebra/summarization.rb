@@ -16,7 +16,7 @@ module Veritas
 
         # The optimized summarizers
         #
-        # @return [Hash]
+        # @return [Hash{Attribute => Function}]
         #
         # @api private
         attr_reader :summarizers
@@ -45,7 +45,7 @@ module Veritas
 
         # Optimize the summarizers
         #
-        # @return [Hash]
+        # @return [Hash{Attribute => Function}]
         #
         # @api private
         def optimize_summarizers
@@ -53,7 +53,7 @@ module Veritas
           operation.summarizers.each do |attribute, function|
             summarizers[attribute] = Function.optimize_operand(function)
           end
-          summarizers
+          summarizers.freeze
         end
 
         # Optimize when the operand is Empty
