@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperand, '#optimize' do
+describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#optimize' do
   subject { object.optimize }
 
   let(:attribute) { Attribute::Integer.new(:id)    }

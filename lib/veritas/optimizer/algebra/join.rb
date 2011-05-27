@@ -35,7 +35,7 @@ module Veritas
           EmptyRight,
           EqualHeaders,
           MaterializedOperand,
-          UnoptimizedOperand
+          UnoptimizedOperands
         )
 
       end # class Join

@@ -122,7 +122,7 @@ module Veritas
           end # class MaterializedOperand
 
           # Optimize when the operands are unoptimized
-          class UnoptimizedOperand < self
+          class UnoptimizedOperands < self
 
             # Test if the operands are unoptimized
             #
@@ -162,7 +162,7 @@ module Veritas
               !right.equal?(operation.right)
             end
 
-          end # class UnoptimizedOperand
+          end # class UnoptimizedOperands
         end # class Binary
       end # module Operation
     end # module Relation

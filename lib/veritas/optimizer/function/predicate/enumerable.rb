@@ -129,7 +129,7 @@ module Veritas
           end # module OneRightOperand
 
           # Optimize when the operands are unoptimized
-          class UnoptimizedOperand < Predicate
+          class UnoptimizedOperands < Predicate
             include Enumerable
 
             # Test if the operands are unoptimized
@@ -150,7 +150,7 @@ module Veritas
               operation.class.new(left, right)
             end
 
-          end # class UnoptimizedOperand
+          end # class UnoptimizedOperands
         end # module Enumerable
       end # class Predicate
     end # module Function

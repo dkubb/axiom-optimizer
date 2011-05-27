@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Binary::UnoptimizedOperand, '#optimize' do
+describe Optimizer::Function::Binary::UnoptimizedOperands, '#optimize' do
   subject { object.optimize }
 
   let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary }                        }
@@ -13,7 +13,7 @@ describe Optimizer::Function::Binary::UnoptimizedOperand, '#optimize' do
   let(:object)          { described_class.new(function)                                                       }
 
   before do
-    described_class.class_eval { include Optimizer::Function::Binary::UnoptimizedOperand }
+    described_class.class_eval { include Optimizer::Function::Binary::UnoptimizedOperands }
     object.should be_optimizable
   end
 

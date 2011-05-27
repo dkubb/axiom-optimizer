@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Binary::UnoptimizedOperand, '#optimizable?' do
+describe Optimizer::Function::Binary::UnoptimizedOperands, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:attribute)       { Attribute::Integer.new(:id)                                                         }
@@ -11,7 +11,7 @@ describe Optimizer::Function::Binary::UnoptimizedOperand, '#optimizable?' do
   let(:object)          { described_class.new(function)                                                       }
 
   before do
-    described_class.class_eval { include Optimizer::Function::Binary::UnoptimizedOperand }
+    described_class.class_eval { include Optimizer::Function::Binary::UnoptimizedOperands }
   end
 
   context 'when left is optimizable' do

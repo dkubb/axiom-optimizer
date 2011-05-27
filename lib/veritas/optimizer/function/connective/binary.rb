@@ -178,7 +178,7 @@ module Veritas
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperand < self
-            include Function::Binary::UnoptimizedOperand
+            include Function::Binary::UnoptimizedOperands
           end # class UnoptimizedOperand
         end # class Binary
       end # module Connective

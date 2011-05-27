@@ -77,7 +77,7 @@ module Veritas
         end # module ConstantOperands
 
         # Optimize when the operand is unoptimized
-        module UnoptimizedOperand
+        module UnoptimizedOperands
 
           # Test if the operands are unoptimized
           #
@@ -117,7 +117,7 @@ module Veritas
             !right.equal?(operation.right)
           end
 
-        end # module UnoptimizedOperand
+        end # module UnoptimizedOperands
       end # class Binary
     end # module Function
   end # class Optimizer

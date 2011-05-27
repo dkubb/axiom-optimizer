@@ -61,7 +61,7 @@ module Veritas
           EmptyLeft,
           EmptyRight,
           MaterializedOperand,
-          UnoptimizedOperand
+          UnoptimizedOperands
         )
 
       end # class Product

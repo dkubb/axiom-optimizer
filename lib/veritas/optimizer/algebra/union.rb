@@ -57,7 +57,7 @@ module Veritas
           EmptyRight,
           EmptyLeft,
           MaterializedOperand,
-          UnoptimizedOperand
+          UnoptimizedOperands
         )
 
       end # class Union

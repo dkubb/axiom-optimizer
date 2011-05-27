@@ -33,7 +33,7 @@ module Veritas
             ConstantOperands,
             EmptyRightOperand,
             OneRightOperand,
-            UnoptimizedOperand
+            UnoptimizedOperands
           )
 
         end # class Exclusion
