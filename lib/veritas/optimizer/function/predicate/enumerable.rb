@@ -130,26 +130,7 @@ module Veritas
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperands < Predicate
-            include Enumerable
-
-            # Test if the operands are unoptimized
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              !right.equal?(operation.right)
-            end
-
-            # Return a Enumerable predicate with optimized operands
-            #
-            # @return [Binary]
-            #
-            # @api private
-            def optimize
-              operation.class.new(left, right)
-            end
-
+            include Enumerable, Function::Binary::UnoptimizedOperands
           end # class UnoptimizedOperands
         end # module Enumerable
       end # class Predicate

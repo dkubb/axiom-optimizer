@@ -97,6 +97,10 @@ require 'veritas/optimizer/version'
 
 require 'veritas/optimizer/optimizable'
 
+require 'veritas/optimizer/function'
+require 'veritas/optimizer/function/binary'
+require 'veritas/optimizer/function/unary'
+
 require 'veritas/optimizer/relation/materialized'
 
 require 'veritas/optimizer/relation/operation/binary'
@@ -117,10 +121,6 @@ require 'veritas/optimizer/algebra/rename'
 require 'veritas/optimizer/algebra/restriction'
 require 'veritas/optimizer/algebra/summarization'
 require 'veritas/optimizer/algebra/union'
-
-require 'veritas/optimizer/function'
-require 'veritas/optimizer/function/binary'
-require 'veritas/optimizer/function/unary'
 
 require 'veritas/optimizer/function/connective/binary'
 require 'veritas/optimizer/function/connective/conjunction'

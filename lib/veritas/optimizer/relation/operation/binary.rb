@@ -123,45 +123,7 @@ module Veritas
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperands < self
-
-            # Test if the operands are unoptimized
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              left_optimizable? || right_optimizable?
-            end
-
-            # Return a Relation with optimized operands
-            #
-            # @return [Relation]
-            #
-            # @api private
-            def optimize
-              operation.class.new(left, right)
-            end
-
-          private
-
-            # Test if the left operand is optimizable
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def left_optimizable?
-              !left.equal?(operation.left)
-            end
-
-            # Test if the right operand is optimizable
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def right_optimizable?
-              !right.equal?(operation.right)
-            end
-
+            include Function::Binary::UnoptimizedOperands
           end # class UnoptimizedOperands
         end # class Binary
       end # module Operation
