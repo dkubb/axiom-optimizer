@@ -151,3 +151,4 @@ require 'veritas/optimizer/function/numeric/subtraction'
 require 'veritas/optimizer/function/numeric/unary_minus'
 require 'veritas/optimizer/function/numeric/unary_plus'
 
+require 'veritas/optimizer/function/string/length'
