@@ -11,8 +11,7 @@ module Veritas
 
           # Optimize when the operands are a contradiction
           class Contradiction < self
-            include Comparable::NeverComparable
-            include Predicate::Contradiction
+            include Comparable::NeverComparable, Predicate::Contradiction
 
             # Test if the operands are a contradiction
             #

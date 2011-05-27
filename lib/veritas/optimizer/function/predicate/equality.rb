@@ -11,8 +11,7 @@ module Veritas
 
           # Optimize when the operand are a contradiction
           class Contradiction < self
-            include Comparable::NeverEquivalent
-            include Predicate::Contradiction
+            include Comparable::NeverEquivalent, Predicate::Contradiction
           end # class Contradiction
 
           # Optimize when the operand are a tautology

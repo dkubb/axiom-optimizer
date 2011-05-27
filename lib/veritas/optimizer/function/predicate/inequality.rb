@@ -26,8 +26,7 @@ module Veritas
 
           # Optimize when the operand are a tautology
           class Tautology < self
-            include Comparable::NeverEquivalent
-            include Predicate::Tautology
+            include Comparable::NeverEquivalent, Predicate::Tautology
           end # class Tautology
 
           Veritas::Function::Predicate::Inequality.optimizer = chain(

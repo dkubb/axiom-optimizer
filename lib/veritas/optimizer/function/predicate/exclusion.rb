@@ -11,17 +11,7 @@ module Veritas
 
           # Optimize when the right operand is empty
           class EmptyRightOperand < self
-            include Enumerable::EmptyRightOperand
-
-            # An Exclusion with an empty right operand matches everything
-            #
-            # @return [Tautology]
-            #
-            # @api private
-            def optimize
-              Veritas::Function::Proposition::Tautology.instance
-            end
-
+            include Enumerable::EmptyRightOperand, Predicate::Tautology
           end # class EmptyRightOperand
 
           # Optimize when the right operand has one entry
