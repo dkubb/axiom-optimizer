@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Binary::Util, '.constant?' do
+describe Optimizer::Function::Util, '.constant?' do
   subject { object.constant?(operand) }
 
-  let(:object) { Optimizer::Function::Binary::Util }
+  let(:object) { Optimizer::Function::Util }
 
   context 'with a constant' do
     let(:operand) { 1 }

@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Binary::Util, '.min' do
+describe Optimizer::Function::Util, '.min' do
   subject { object.min(operand) }
 
-  let(:object) { Optimizer::Function::Binary::Util }
+  let(:object) { Optimizer::Function::Util }
 
   context 'with an Integer attribute' do
     let(:operand) { Attribute::Integer.new(:id, :size => 1..10) }

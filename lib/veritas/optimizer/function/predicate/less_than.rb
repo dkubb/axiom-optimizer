@@ -35,7 +35,7 @@ module Veritas
             #
             # @api private
             def optimizable?
-              operation.class.call(Binary::Util.max(left), Binary::Util.min(right))
+              operation.class.call(Util.max(left), Util.min(right))
             end
 
           end # class Tautology

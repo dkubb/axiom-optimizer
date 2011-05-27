@@ -88,57 +88,6 @@ module Veritas
           end
 
         end # module ConstantOperands
-
-        # Utility methods for Function optimization
-        module Util
-
-          # Test if the operand is a constant
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def self.constant?(operand)
-            !operand.nil? && !operand.respond_to?(:call)
-          end
-
-          # Test if the operand is an attribute
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def self.attribute?(operand)
-            operand.kind_of?(Attribute)
-          end
-
-          # Return the minimum value for the operand
-          #
-          # @return [Object]
-          #
-          # @api private
-          def self.min(operand)
-            case operand
-              when Attribute::String  then operand.min_length
-              when Attribute::Numeric then operand.range.first
-            else
-              operand
-            end
-          end
-
-          # Return the maximum value for the operand
-          #
-          # @return [Object]
-          #
-          # @api private
-          def self.max(operand)
-            case operand
-              when Attribute::String  then operand.max_length
-              when Attribute::Numeric then operand.range.last
-            else
-              operand
-            end
-          end
-
-        end # module Util
       end # class Binary
     end # module Function
   end # class Optimizer

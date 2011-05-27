@@ -44,7 +44,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            Binary::Util.constant?(operand)
+            Util.constant?(operand)
           end
 
           # Evaluate the operand and return the constant

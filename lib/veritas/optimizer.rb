@@ -118,6 +118,7 @@ require 'veritas/optimizer/algebra/restriction'
 require 'veritas/optimizer/algebra/summarization'
 require 'veritas/optimizer/algebra/union'
 
+require 'veritas/optimizer/function'
 require 'veritas/optimizer/function/binary'
 require 'veritas/optimizer/function/unary'
 

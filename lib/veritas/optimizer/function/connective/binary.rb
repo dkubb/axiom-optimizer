@@ -50,7 +50,7 @@ module Veritas
           #
           # @api private
           def constant_value?
-            util = Function::Binary::Util
+            util = Util
             util.constant?(left.right) && util.constant?(right.right)
           end
 
