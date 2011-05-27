@@ -36,7 +36,9 @@ module Veritas
       # @todo simplify by setting a default Noop optimizer for all relations
       def optimize(optimizer = self.class.optimizer || Optimizer::Noop)
         optimized = optimizer.call(self)
-        equal?(optimized) ? self : optimized.optimize
+        equal?(optimized)                ? self               :
+        optimized.respond_to?(:optimize) ? optimized.optimize :
+                                           optimized
       end
 
       memoize :optimize
@@ -55,5 +57,6 @@ module Veritas
   end # class Optimizer
 end # module Veritas
 
-Veritas::Relation.class_eval { include Veritas::Optimizer::Optimizable }
-Veritas::Function.class_eval { include Veritas::Optimizer::Optimizable }
+Veritas::Aggregate.class_eval { include Veritas::Optimizer::Optimizable }
+Veritas::Function.class_eval  { include Veritas::Optimizer::Optimizable }
+Veritas::Relation.class_eval  { include Veritas::Optimizer::Optimizable }

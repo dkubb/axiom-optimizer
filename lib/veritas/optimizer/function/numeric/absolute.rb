@@ -9,7 +9,8 @@ module Veritas
         class Absolute < self
 
           Veritas::Function::Numeric::Absolute.optimizer = chain(
-            ConstantOperand
+            ConstantOperand,
+            UnoptimizedOperand
           )
 
         end # class Absolute

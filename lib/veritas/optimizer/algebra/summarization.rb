@@ -14,6 +14,13 @@ module Veritas
         # @api private
         attr_reader :summarize_per
 
+        # The optimized summarizers
+        #
+        # @return [Hash]
+        #
+        # @api private
+        attr_reader :summarizers
+
         # Initialize a Summarization optimizer
         #
         # @return [undefined]
@@ -22,6 +29,7 @@ module Veritas
         def initialize(*)
           super
           @summarize_per = optimize_summarize_per
+          @summarizers   = optimize_summarizers
         end
 
       private
@@ -33,6 +41,19 @@ module Veritas
         # @api private
         def optimize_summarize_per
           operation.summarize_per.optimize
+        end
+
+        # Optimize the summarizers
+        #
+        # @return [Hash]
+        #
+        # @api private
+        def optimize_summarizers
+          summarizers = {}
+          operation.summarizers.each do |attribute, function|
+            summarizers[attribute] = Function.optimize_operand(function)
+          end
+          summarizers.eql?(operation.summarizers) ? operation.summarizers : summarizers
         end
 
         # Optimize when the operand is Empty
@@ -118,7 +139,9 @@ module Veritas
           #
           # @api private
           def optimizable?
-            operand_optimizable? || summarize_per_optimizable?
+            operand_optimizable?       ||
+            summarize_per_optimizable? ||
+            summarizers_optimizable?
           end
 
           # Return a Summarization with an optimized operand
@@ -128,7 +151,7 @@ module Veritas
           # @api private
           def optimize
             operation = self.operation
-            operation.class.new(operand, summarize_per, operation.summarizers)
+            operation.class.new(operand, summarize_per, summarizers)
           end
 
         private
@@ -149,6 +172,15 @@ module Veritas
           # @api private
           def summarize_per_optimizable?
             !summarize_per.equal?(operation.summarize_per)
+          end
+
+          # Test if the summarizers are optimizable
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def summarizers_optimizable?
+            !summarizers.equal?(operation.summarizers)
           end
 
         end # class UnoptimizedOperand

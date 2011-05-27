@@ -9,7 +9,8 @@ module Veritas
         class UnaryMinus < self
 
           Veritas::Function::Numeric::UnaryMinus.optimizer = chain(
-            ConstantOperand
+            ConstantOperand,
+            UnoptimizedOperand
           )
 
         end # class UnaryMinus

@@ -57,6 +57,40 @@ module Veritas
           end
 
         end # module ConstantOperand
+
+        # Optimize when the operand is unoptimized
+        module UnoptimizedOperand
+
+          # Test if the operand is unoptimized
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand_optimizable?
+          end
+
+          # Return a Aggregate with an optimized operand
+          #
+          # @return [Aggregate]
+          #
+          # @api private
+          def optimize
+            operation.class.new(operand)
+          end
+
+        private
+
+          # Test if the operand is optimizable
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def operand_optimizable?
+            !operand.equal?(operation.operand)
+          end
+
+        end # module UnoptimizedOperand
       end # class Unary
     end # module Function
   end # class Optimizer

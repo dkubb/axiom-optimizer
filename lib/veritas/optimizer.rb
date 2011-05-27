@@ -152,3 +152,12 @@ require 'veritas/optimizer/function/numeric/unary_minus'
 require 'veritas/optimizer/function/numeric/unary_plus'
 
 require 'veritas/optimizer/function/string/length'
+
+require 'veritas/optimizer/aggregate'
+require 'veritas/optimizer/aggregate/count'
+require 'veritas/optimizer/aggregate/maximum'
+require 'veritas/optimizer/aggregate/mean'
+require 'veritas/optimizer/aggregate/minimum'
+require 'veritas/optimizer/aggregate/sum'
+require 'veritas/optimizer/aggregate/variance'
+require 'veritas/optimizer/aggregate/standard_deviation'

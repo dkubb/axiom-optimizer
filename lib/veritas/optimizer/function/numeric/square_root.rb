@@ -9,7 +9,8 @@ module Veritas
         class SquareRoot < self
 
           Veritas::Function::Numeric::SquareRoot.optimizer = chain(
-            ConstantOperand
+            ConstantOperand,
+            UnoptimizedOperand
           )
 
         end # class SquareRoot
