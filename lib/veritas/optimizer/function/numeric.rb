@@ -8,6 +8,11 @@ module Veritas
       class Numeric < Optimizer
         include AbstractClass
 
+        # Optimize when the operand is constant
+        class ConstantOperand < self
+          include Unary::ConstantOperand
+        end # class ConstantOperand
+
         # Optimize when the operands are constants
         class ConstantOperands < self
           include Binary::ConstantOperands
