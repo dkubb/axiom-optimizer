@@ -178,45 +178,7 @@ module Veritas
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperand < self
-
-            # Test if the operands are unoptimized
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              left_optimizable? || right_optimizable?
-            end
-
-            # Return a Binary connective with optimized operands
-            #
-            # @return [Binary]
-            #
-            # @api private
-            def optimize
-              operation.class.new(left, right)
-            end
-
-          private
-
-            # Test if the left operand is optimizable
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def left_optimizable?
-              !left.equal?(operation.left)
-            end
-
-            # Test if the right operand is optimizable
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def right_optimizable?
-              !right.equal?(operation.right)
-            end
-
+            include Function::Binary::UnoptimizedOperand
           end # class UnoptimizedOperand
         end # class Binary
       end # module Connective
