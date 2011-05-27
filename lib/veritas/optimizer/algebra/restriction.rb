@@ -21,7 +21,7 @@ module Veritas
         # @api private
         def initialize(*)
           super
-          @predicate = self.class.optimize_predicate(operation.predicate)
+          @predicate = Function.optimize_operand(operation.predicate)
         end
 
       private
@@ -53,17 +53,6 @@ module Veritas
         # @api private
         def constant_false_predicate?
           !(predicate.respond_to?(:call) || constant_true_predicate?)
-        end
-
-        # Optimize the predicate if possible
-        #
-        # @param [Function] predicate
-        #
-        # @return [Function]
-        #
-        # @api private
-        def self.optimize_predicate(predicate)
-          predicate.respond_to?(:optimize) ? predicate.optimize : predicate
         end
 
         # Optimize when the predicate is a tautology

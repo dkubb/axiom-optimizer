@@ -181,7 +181,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/rename/unchanged_header/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/unoptimized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/unoptimized_operand/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/restriction/class_methods/optimize_predicate_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/contradiction/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/contradiction/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/order_operand/optimizable_spec.rb",
