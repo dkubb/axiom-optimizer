@@ -118,6 +118,8 @@ require 'veritas/optimizer/algebra/restriction'
 require 'veritas/optimizer/algebra/summarization'
 require 'veritas/optimizer/algebra/union'
 
+require 'veritas/optimizer/function/binary'
+
 require 'veritas/optimizer/function/connective/binary'
 require 'veritas/optimizer/function/connective/conjunction'
 require 'veritas/optimizer/function/connective/disjunction'

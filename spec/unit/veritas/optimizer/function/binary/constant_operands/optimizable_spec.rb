@@ -2,11 +2,16 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Predicate::ConstantOperands, '#optimizable?' do
+describe Optimizer::Function::Binary::ConstantOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:predicate) { Function::Predicate::Equality.new(left, right) }
-  let(:object)    { described_class.new(predicate)                 }
+  let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary } }
+  let(:predicate)       { Function::Predicate::Equality.new(left, right)               }
+  let(:object)          { described_class.new(predicate)                               }
+
+  before do
+    described_class.class_eval { include Optimizer::Function::Binary::ConstantOperands }
+  end
 
   context 'when left and right are constants' do
     let(:left)  { 1 }

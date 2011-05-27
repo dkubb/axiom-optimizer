@@ -41,7 +41,7 @@ module Veritas
             #
             # @api private
             def optimizable?
-              util = Util
+              util = Binary::Util
               if    util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
@@ -89,7 +89,7 @@ module Veritas
             #
             # @api private
             def optimizable?
-              util = Util
+              util = Binary::Util
               if    util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else

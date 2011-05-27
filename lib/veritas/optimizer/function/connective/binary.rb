@@ -41,8 +41,7 @@ module Veritas
           #
           # @api private
           def optimize_left
-            # TODO: move Predicate.optimize_operand to a better location
-            Predicate.optimize_operand(operation.left)
+            Function::Binary.optimize_operand(operation.left)
           end
 
           # Optimize the right operand
@@ -51,8 +50,7 @@ module Veritas
           #
           # @api private
           def optimize_right
-            # TODO: move Predicate.optimize_operand to a better location
-            Predicate.optimize_operand(operation.right)
+            Function::Binary.optimize_operand(operation.right)
           end
 
           # Test if the operands are equality predicates for the same attribute
@@ -94,7 +92,7 @@ module Veritas
           #
           # @api private
           def constant_value?
-            util = Predicate::Util
+            util = Function::Binary::Util
             util.constant?(left.right) && util.constant?(right.right)
           end
 

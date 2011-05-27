@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Predicate, '.optimize_operand' do
+describe Optimizer::Function::Binary, '.optimize_operand' do
   subject { object.optimize_operand(predicate) }
 
-  let(:object) { Optimizer::Function::Predicate }
+  let(:object) { self.class.described_type }
 
   context 'when optimizable' do
     let(:optimized) { mock('Optimized')                           }

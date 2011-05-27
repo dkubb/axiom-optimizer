@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Predicate::Util, '.attribute?' do
+describe Optimizer::Function::Binary::Util, '.attribute?' do
   subject { object.attribute?(operand) }
 
-  let(:object) { Optimizer::Function::Predicate::Util }
+  let(:object) { Optimizer::Function::Binary::Util }
 
   context 'with an attribute' do
     let(:operand) { Attribute::Integer.new(:id) }

@@ -60,6 +60,8 @@ module Veritas
             #
             # @return [Boolean]
             #
+            # @todo do not materialize the operands to compare them
+            #
             # @api private
             def optimizable?
               left.eql?(right)

@@ -33,8 +33,7 @@ module Veritas
           #
           # @api private
           def optimize_operand
-            # TODO: move Predicate.optimize_operand to a better location
-            Predicate.optimize_operand(operation.operand)
+            Function::Binary.optimize_operand(operation.operand)
           end
 
           # Optimize when the operand can be inverted
