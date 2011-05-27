@@ -32,7 +32,7 @@ module Veritas
         #
         # @api private
         def optimize_operand
-          Binary.optimize_operand(operation.operand)
+          Function.optimize_operand(operation.operand)
         end
 
         # Optimize when the operand is constant

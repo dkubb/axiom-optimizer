@@ -40,7 +40,7 @@ module Veritas
         #
         # @api private
         def optimize_left
-          Binary.optimize_operand(operation.left)
+          Function.optimize_operand(operation.left)
         end
 
         # Optimize the right operand
@@ -49,20 +49,7 @@ module Veritas
         #
         # @api private
         def optimize_right
-          Binary.optimize_operand(operation.right)
-        end
-
-        # Optimize the operand if possible
-        #
-        # @param [#optimize, Object] operand
-        #
-        # @return [Object]
-        #
-        # @todo this does not belong in this module
-        #
-        # @api private
-        def self.optimize_operand(operand)
-          operand.respond_to?(:optimize) ? operand.optimize : operand
+          Function.optimize_operand(operation.right)
         end
 
         # Optimize when the operands are constants

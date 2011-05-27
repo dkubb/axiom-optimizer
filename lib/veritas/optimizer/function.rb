@@ -6,6 +6,19 @@ module Veritas
     # Mixin for function optimizations
     module Function
 
+      # Optimize the operand if possible
+      #
+      # @param [#optimize, Object] operand
+      #
+      # @return [Object]
+      #
+      # @todo this does not belong in this module
+      #
+      # @api private
+      def self.optimize_operand(operand)
+        operand.respond_to?(:optimize) ? operand.optimize : operand
+      end
+
       # Utility methods for Function optimization
       module Util
 

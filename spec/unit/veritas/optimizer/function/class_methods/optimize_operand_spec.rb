@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Function::Binary, '.optimize_operand' do
+describe Optimizer::Function, '.optimize_operand' do
   subject { object.optimize_operand(predicate) }
 
   let(:object) { self.class.described_type }
