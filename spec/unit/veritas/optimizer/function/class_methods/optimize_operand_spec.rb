@@ -3,20 +3,20 @@
 require 'spec_helper'
 
 describe Optimizer::Function, '.optimize_operand' do
-  subject { object.optimize_operand(predicate) }
+  subject { object.optimize_operand(function) }
 
   let(:object) { self.class.described_type }
 
   context 'when optimizable' do
     let(:optimized) { mock('Optimized')                           }
-    let(:predicate) { mock('Optimizable', :optimize => optimized) }
+    let(:function) { mock('Optimizable', :optimize => optimized) }
 
     it { should equal(optimized) }
   end
 
   context 'when not optimizable' do
-    let(:predicate) { mock('Not Optimizable') }
+    let(:function) { mock('Not Optimizable') }
 
-    it { should equal(predicate) }
+    it { should equal(function) }
   end
 end

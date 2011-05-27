@@ -19,6 +19,21 @@ module Veritas
         operand.respond_to?(:optimize) ? operand.optimize : operand
       end
 
+      # Optimize the summarizers
+      #
+      # @param [Hash{Attribute => Function}]
+      #
+      # @return [Hash{Attribute => Function}]
+      #
+      # @api private
+      def self.optimize_functions(functions)
+        optimized = {}
+        functions.each do |attribute, function|
+          optimized[attribute] = optimize_operand(function)
+        end
+        optimized.freeze
+      end
+
       # Utility methods for Function optimization
       module Util
 

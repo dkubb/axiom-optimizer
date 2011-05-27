@@ -32,11 +32,7 @@ module Veritas
           #
           # @api private
           def optimize_extensions
-            extensions = {}
-            operation.extensions.each do |attribute, function|
-              extensions[attribute] = Function.optimize_operand(function)
-            end
-            extensions.freeze
+            Function.optimize_functions(operation.extensions)
           end
 
         # Optimize when operands are optimizable

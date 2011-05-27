@@ -49,11 +49,7 @@ module Veritas
         #
         # @api private
         def optimize_summarizers
-          summarizers = {}
-          operation.summarizers.each do |attribute, function|
-            summarizers[attribute] = Function.optimize_operand(function)
-          end
-          summarizers.freeze
+          Function.optimize_functions(operation.summarizers)
         end
 
         # Optimize when the operand is Empty
