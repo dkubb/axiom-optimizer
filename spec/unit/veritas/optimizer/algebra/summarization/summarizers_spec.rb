@@ -18,7 +18,7 @@ describe Optimizer::Algebra::Summarization, '#summarizers' do
   context 'when summarizers are optimized' do
     let(:function) { base[:id].sum }
 
-    it { should equal(relation.summarizers) }
+    it { should eql(relation.summarizers) }
   end
 
   context 'when summarizers are not optimized' do

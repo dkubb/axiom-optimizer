@@ -53,7 +53,7 @@ module Veritas
           operation.summarizers.each do |attribute, function|
             summarizers[attribute] = Function.optimize_operand(function)
           end
-          summarizers.eql?(operation.summarizers) ? operation.summarizers : summarizers
+          summarizers
         end
 
         # Optimize when the operand is Empty
@@ -172,7 +172,7 @@ module Veritas
           #
           # @api private
           def summarizers_optimizable?
-            !summarizers.equal?(operation.summarizers)
+            !summarizers.eql?(operation.summarizers)
           end
 
         end # class UnoptimizedOperand
