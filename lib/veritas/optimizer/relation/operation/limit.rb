@@ -112,15 +112,7 @@ module Veritas
 
           # Optimize when operand is optimizable
           class UnoptimizedOperand < self
-
-            # Test if the operand is unoptimized
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              !operand.equal?(operation.operand)
-            end
+            include Function::Unary::UnoptimizedOperand
 
             # Return a Limit with an optimized operand
             #

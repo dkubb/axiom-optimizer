@@ -132,6 +132,7 @@ module Veritas
 
         # Optimize when operand is optimizable
         class UnoptimizedOperand < self
+          include Function::Unary::UnoptimizedOperand
 
           # Test if the operand is unoptimized
           #
@@ -139,7 +140,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            operand_optimizable?       ||
+            super                      ||
             summarize_per_optimizable? ||
             summarizers_optimizable?
           end
@@ -155,15 +156,6 @@ module Veritas
           end
 
         private
-
-          # Test if the operand is optimizable
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def operand_optimizable?
-            !operand.equal?(operation.operand)
-          end
 
           # Test if the summarize_per relation is optimizable
           #
