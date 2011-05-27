@@ -10,12 +10,12 @@ module Veritas
 
         # Optimize when the operand is constant
         class ConstantOperand < self
-          include Unary::ConstantOperand
+          include Unary::ConstantOperand, Unary
         end # class ConstantOperand
 
         # Optimize when the operands are constants
         class ConstantOperands < self
-          include Binary::ConstantOperands
+          include Binary::ConstantOperands, Binary
         end # class ConstantOperands
       end # class Numeric
     end # module Function
