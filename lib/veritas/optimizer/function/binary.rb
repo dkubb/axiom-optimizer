@@ -87,7 +87,7 @@ module Veritas
           #
           # @api private
           def self.constant?(operand)
-            !operand.respond_to?(:call)
+            !operand.nil? && !operand.respond_to?(:call)
           end
 
           # Test if the operand is an attribute

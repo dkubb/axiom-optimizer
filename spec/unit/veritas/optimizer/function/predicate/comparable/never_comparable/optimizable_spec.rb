@@ -57,4 +57,18 @@ describe Optimizer::Function::Predicate::Comparable::NeverComparable, '#optimiza
 
     it { should be(true) }
   end
+
+  context 'when left is nil' do
+    let(:left)  { nil       }
+    let(:right) { attribute }
+
+    it { should be(true) }
+  end
+
+  context 'when right is nil' do
+    let(:left)  { attribute }
+    let(:right) { nil       }
+
+    it { should be(true) }
+  end
 end

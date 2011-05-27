@@ -75,7 +75,8 @@ module Veritas
             #
             # @api private
             def not_joinable?
-              !left.joinable?(right)
+              left = self.left
+              !(left.respond_to?(:joinable?) && left.joinable?(right))
             end
 
           end # module NeverEquivalent
@@ -123,7 +124,8 @@ module Veritas
             #
             # @api private
             def not_comparable?
-              !left.comparable?(right)
+              left = self.left
+              !(left.respond_to?(:comparable?) && left.comparable?(right))
             end
 
           end # module NeverComparable
