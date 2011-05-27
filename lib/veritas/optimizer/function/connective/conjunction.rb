@@ -87,8 +87,8 @@ module Veritas
             #
             # @api private
             def optimizable?
-              left_contradiction?                    ||
-              right_contradiction?                   ||
+              left_contradiction?            ||
+              right_contradiction?           ||
               equality_with_same_attributes? ||
               left.inverse.eql?(right)
             end

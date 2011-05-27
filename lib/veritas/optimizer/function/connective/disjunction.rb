@@ -87,8 +87,8 @@ module Veritas
             #
             # @api private
             def optimizable?
-              left_tautology?                       ||
-              right_tautology?                      ||
+              left_tautology?                  ||
+              right_tautology?                 ||
               inequality_with_same_attributes? ||
               left.inverse.eql?(right)
             end
