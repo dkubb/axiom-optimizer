@@ -7,34 +7,7 @@ module Veritas
 
         # Abstract base class representing Unary relation optimizations
         class Unary < Optimizer
-
-          # The optimized operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          attr_reader :operand
-
-          # Initialize a Unary optimizer
-          #
-          # @return [undefined]
-          #
-          # @api private
-          def initialize(*)
-            super
-            @operand = optimize_operand
-          end
-
-        private
-
-          # Optimize the operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize_operand
-            operation.operand.optimize
-          end
+          include Function::Unary
 
           # Optimize when the operand is Empty
           class EmptyOperand < self

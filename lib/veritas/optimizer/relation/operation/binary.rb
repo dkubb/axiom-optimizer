@@ -7,51 +7,7 @@ module Veritas
 
         # Abstract base class representing Binary relation optimizations
         class Binary < Optimizer
-
-          # The optimized left operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          attr_reader :left
-
-          # The optimized right operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          attr_reader :right
-
-          # Initialize an Binary optimizer
-          #
-          # @return [undefined]
-          #
-          # @api private
-          def initialize(*)
-            super
-            @left  = optimize_left
-            @right = optimize_right
-          end
-
-        private
-
-          # Optimize the left operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize_left
-            operation.left.optimize
-          end
-
-          # Optimize the right operand
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize_right
-            operation.right.optimize
-          end
+          include Function::Binary
 
           # Optimize when operands are equal
           module EqualOperands
