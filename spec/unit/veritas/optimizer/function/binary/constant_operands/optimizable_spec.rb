@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Function::Binary::ConstantOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary } }
-  let(:predicate)       { Function::Predicate::Equality.new(left, right)               }
-  let(:object)          { described_class.new(predicate)                               }
+  let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary }                        }
+  let(:function)        { Class.new(Veritas::Function) { include Veritas::Function::Binary }.new(left, right) }
+  let(:object)          { described_class.new(function)                                                       }
 
   before do
     described_class.class_eval { include Optimizer::Function::Binary::ConstantOperands }
@@ -21,15 +21,15 @@ describe Optimizer::Function::Binary::ConstantOperands, '#optimizable?' do
   end
 
   context 'when left is a constant, and right is not a constant' do
-    let(:left)  { 1                                         }
-    let(:right) { Function::Proposition::Tautology.instance }
+    let(:left)  { 1       }
+    let(:right) { proc {} }
 
     it { should be(false) }
   end
 
   context 'when left is not a constant, and right is a constant' do
-    let(:left)  { Function::Proposition::Tautology.instance }
-    let(:right) { 1                                         }
+    let(:left)  { proc {} }
+    let(:right) { 1       }
 
     it { should be(false) }
   end

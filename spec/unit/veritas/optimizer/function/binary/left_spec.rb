@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Function::Binary, '#left' do
   subject { object.left }
 
-  let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary } }
-  let(:right)           { 'Right'                                                      }
-  let(:predicate)       { Class.new(Function::Predicate).new(left, right)              }
-  let(:object)          { described_class.new(predicate)                               }
+  let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary }                        }
+  let(:right)           { 'Right'                                                                             }
+  let(:function)        { Class.new(Veritas::Function) { include Veritas::Function::Binary }.new(left, right) }
+  let(:object)          { described_class.new(function)                                                       }
 
   context 'when left operand is frozen' do
     let(:left) { 'Left'.freeze }
