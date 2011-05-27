@@ -7,51 +7,9 @@ module Veritas
 
         # Abstract base class representing Binary connective optimizations
         class Binary < Optimizer
-
-          # The optimized left operand
-          #
-          # @return [Function]
-          #
-          # @api private
-          attr_reader :left
-
-          # The optimized right operand
-          #
-          # @return [Function]
-          #
-          # @api private
-          attr_reader :right
-
-          # Initialize an Binary optimizer
-          #
-          # @return [undefined]
-          #
-          # @api private
-          def initialize(*)
-            super
-            @left  = optimize_left
-            @right = optimize_right
-          end
+          include Function::Binary
 
         private
-
-          # Optimize the left operand
-          #
-          # @return [Function]
-          #
-          # @api private
-          def optimize_left
-            Function::Binary.optimize_operand(operation.left)
-          end
-
-          # Optimize the right operand
-          #
-          # @return [Function]
-          #
-          # @api private
-          def optimize_right
-            Function::Binary.optimize_operand(operation.right)
-          end
 
           # Test if the operands are equality predicates for the same attribute
           #
