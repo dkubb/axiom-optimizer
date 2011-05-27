@@ -105,6 +105,7 @@ module Veritas
           end # class Tautology
 
           Veritas::Function::Connective::Disjunction.optimizer = chain(
+            ConstantOperands,
             ContradictionLeftOperand,
             ContradictionRightOperand,
             OptimizableToInclusion,

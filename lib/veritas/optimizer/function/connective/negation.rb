@@ -32,7 +32,13 @@ module Veritas
 
           end # class InvertibleOperand
 
+          # Optimize when the operand is constant
+          class ConstantOperand < self
+            include Unary::ConstantOperand
+          end # class ConstantOperand
+
           Veritas::Function::Connective::Negation.optimizer = chain(
+            ConstantOperand,
             InvertibleOperand
           )
 

@@ -105,6 +105,7 @@ module Veritas
           end # class Contradiction
 
           Veritas::Function::Connective::Conjunction.optimizer = chain(
+            ConstantOperands,
             LeftOperandTautology,
             RightOperandTautology,
             OptimizableToExclusion,

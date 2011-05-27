@@ -90,6 +90,21 @@ module Veritas
             right.equal?(Veritas::Function::Proposition::Contradiction.instance)
           end
 
+          # Optimize when the operands are constants
+          class ConstantOperands < self
+            include Function::Binary::ConstantOperands
+
+            # A Connective with constant values is equivalent to a Proposition
+            #
+            # @return [Proposition]
+            #
+            # @api private
+            def optimize
+              Veritas::Function::Proposition.new(super)
+            end
+
+          end # class ConstantOperands
+
           # Optimize when the operands are equal
           class EqualOperands < self
 
