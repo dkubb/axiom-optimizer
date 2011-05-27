@@ -9,7 +9,8 @@ module Veritas
         class Match < self
 
           Veritas::Function::Predicate::Match.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Match

@@ -47,9 +47,15 @@ module Veritas
 
           end # class ConstantOperand
 
+          # Optimize when the operand is unoptimized
+          class UnoptimizedOperand < self
+            include Function::Unary::UnoptimizedOperand
+          end # class UnoptimizedOperand
+
           Veritas::Function::Connective::Negation.optimizer = chain(
             ConstantOperand,
-            InvertibleOperand
+            InvertibleOperand,
+            UnoptimizedOperand
           )
 
         end # class Negation

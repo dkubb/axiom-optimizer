@@ -9,7 +9,8 @@ module Veritas
         class Multiplication < self
 
           Veritas::Function::Numeric::Multiplication.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Multiplication

@@ -9,7 +9,8 @@ module Veritas
         class NoMatch < self
 
           Veritas::Function::Predicate::NoMatch.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class NoMatch

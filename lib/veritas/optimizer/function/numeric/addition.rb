@@ -9,7 +9,8 @@ module Veritas
         class Addition < self
 
           Veritas::Function::Numeric::Addition.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Addition

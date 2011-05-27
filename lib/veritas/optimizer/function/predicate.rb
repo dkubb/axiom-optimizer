@@ -23,6 +23,11 @@ module Veritas
 
         end # class ConstantOperands
 
+        # Optimize when the operands are unoptimized
+        class UnoptimizedOperands < self
+          include Binary::UnoptimizedOperands
+        end # class UnoptimizedOperands
+
         # Optimize when the operands are a contradiction
         module Contradiction
 

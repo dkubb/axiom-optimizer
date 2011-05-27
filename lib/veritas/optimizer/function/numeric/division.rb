@@ -9,7 +9,8 @@ module Veritas
         class Division < self
 
           Veritas::Function::Numeric::Division.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Division

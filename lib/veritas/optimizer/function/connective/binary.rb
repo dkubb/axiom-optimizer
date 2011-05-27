@@ -177,9 +177,9 @@ module Veritas
           end # class RedundantRightOperand
 
           # Optimize when the operands are unoptimized
-          class UnoptimizedOperand < self
+          class UnoptimizedOperands < self
             include Function::Binary::UnoptimizedOperands
-          end # class UnoptimizedOperand
+          end # class UnoptimizedOperands
         end # class Binary
       end # module Connective
     end # module Function

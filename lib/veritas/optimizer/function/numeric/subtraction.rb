@@ -9,7 +9,8 @@ module Veritas
         class Subtraction < self
 
           Veritas::Function::Numeric::Subtraction.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Subtraction

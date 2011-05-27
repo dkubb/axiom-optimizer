@@ -33,7 +33,8 @@ module Veritas
             ConstantOperands,
             Contradiction,
             Tautology,
-            NormalizableOperands
+            NormalizableOperands,
+            UnoptimizedOperands
           )
 
         end # class Inequality

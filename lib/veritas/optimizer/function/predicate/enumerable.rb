@@ -129,7 +129,7 @@ module Veritas
           end # module OneRightOperand
 
           # Optimize when the operands are unoptimized
-          class UnoptimizedOperands < Predicate
+          class UnoptimizedOperands < Predicate::UnoptimizedOperands
             include Enumerable, Function::Binary::UnoptimizedOperands
           end # class UnoptimizedOperands
         end # module Enumerable

@@ -9,7 +9,8 @@ module Veritas
         class Modulo < self
 
           Veritas::Function::Numeric::Modulo.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Modulo

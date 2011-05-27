@@ -113,7 +113,7 @@ module Veritas
             RedundantLeftOperand,
             RedundantRightOperand,
             Tautology,
-            UnoptimizedOperand
+            UnoptimizedOperands
           )
 
         end # class Disjunction

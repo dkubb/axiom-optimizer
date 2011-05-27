@@ -23,6 +23,11 @@ module Veritas
           include Unary::UnoptimizedOperand, Unary
         end # class UnoptimizedOperand
 
+        # Optimize when the operand is unoptimized
+        class UnoptimizedOperands < self
+          include Binary::UnoptimizedOperands, Binary
+        end # class UnoptimizedOperands
+
       end # class Numeric
     end # module Function
   end # class Optimizer

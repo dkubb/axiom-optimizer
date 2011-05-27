@@ -33,7 +33,7 @@ module Veritas
             ConstantOperands,
             EmptyRightOperand,
             OneRightOperand,
-            UnoptimizedOperands
+            Enumerable::UnoptimizedOperands
           )
 
         end # class Inclusion

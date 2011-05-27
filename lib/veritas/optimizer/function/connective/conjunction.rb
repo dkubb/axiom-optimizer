@@ -113,7 +113,7 @@ module Veritas
             RedundantLeftOperand,
             RedundantRightOperand,
             Contradiction,
-            UnoptimizedOperand
+            UnoptimizedOperands
           )
 
         end # class Conjunction

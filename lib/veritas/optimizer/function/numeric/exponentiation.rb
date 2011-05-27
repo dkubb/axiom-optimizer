@@ -9,7 +9,8 @@ module Veritas
         class Exponentiation < self
 
           Veritas::Function::Numeric::Exponentiation.optimizer = chain(
-            ConstantOperands
+            ConstantOperands,
+            UnoptimizedOperands
           )
 
         end # class Exponentiation
