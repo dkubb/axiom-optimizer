@@ -18,7 +18,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Function::Proposition.new(operation.class.call(left, right))
+            Veritas::Function::Proposition.new(super)
           end
 
         end # class ConstantOperands

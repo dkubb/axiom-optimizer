@@ -76,6 +76,15 @@ module Veritas
             util.constant?(left) && util.constant?(right)
           end
 
+          # Evaluate the operands and return the constant
+          #
+          # @return [Object]
+          #
+          # @api private
+          def optimize
+            operation.class.call(left, right)
+          end
+
         end # module ConstantOperands
 
         # Utility methods for Predicate optimization
