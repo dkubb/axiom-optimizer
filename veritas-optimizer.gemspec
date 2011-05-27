@@ -233,6 +233,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/function/connective/disjunction/optimizable_to_inclusion/optimize_spec.rb",
     "spec/unit/veritas/optimizer/function/connective/disjunction/tautology/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/function/connective/disjunction/tautology/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/function/connective/negation/constant_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/function/connective/negation/invertible_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/function/connective/negation/invertible_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/function/connective/negation/operand_spec.rb",

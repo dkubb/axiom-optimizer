@@ -35,6 +35,16 @@ module Veritas
           # Optimize when the operand is constant
           class ConstantOperand < self
             include Unary::ConstantOperand
+
+            # A Negation with constant values is equivalent to a Proposition
+            #
+            # @return [Proposition]
+            #
+            # @api private
+            def optimize
+              Veritas::Function::Proposition.new(super)
+            end
+
           end # class ConstantOperand
 
           Veritas::Function::Connective::Negation.optimizer = chain(
