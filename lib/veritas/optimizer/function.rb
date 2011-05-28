@@ -12,8 +12,6 @@ module Veritas
       #
       # @return [Object]
       #
-      # @todo this does not belong in this module
-      #
       # @api private
       def self.optimize_operand(operand)
         operand.respond_to?(:optimize) ? operand.optimize : operand
