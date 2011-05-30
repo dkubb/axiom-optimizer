@@ -1,7 +1,11 @@
-* Add UnoptimizedOperand(s) optimizers to the chain for every function
-  and aggregate
-
-* Optimize the functions (if any) inside extension and summarization
+* All operations besides Order, Reverse, Offset and Limit that wrap an
+  Order should remove the Order since it essentially is a noop. The
+  directions are not preserved in those cases, so the ordering is
+  redundant. Ordering only makes sense when slicing specific rows out
+  or when presenting results to the user (in which case it will be the
+  outer-most op, so it won't be optimized out).
+  * Create a module or class in Unary & Binary for the common code related
+    to this.
 
 * All relations, even optimized ones, need to hold a reference to the
   original (possibly optimized) operations.
@@ -25,6 +29,13 @@
     * When it contains a Restriction, if the removed attributes are *not*
       used in the predicate, then move the Restriction to contain the
       Projection.
+    * When renames or extensions or summarizations are projected away and
+      not used in any intermediary operation, then they can be dropped
+      altogether. There's no point in going through all that work to
+      not bother using an attribute at all. It would be better to simplify
+      the renames/extensions/summarizations to not add the attribute, and
+      then call optimize again on the op to potentially remove the op altogether
+      (like in the case of an extension adding one attribute that is removed).
   * Operation Order:
     * Projection containing an Order
       * Should remove the Order, since it is a noop
@@ -101,7 +112,21 @@
   * Optimize the summarization aggregate functions
   * When there are no aggregate functions, drop the Summarization and
     return the summarize_per (?)
+    * Use the UnchangedHeader optimizer
   * When summarize_per is TABLE_DEE, and it is wrapped by Order, at most only
     one row can be returned, so Order can probably be dropped.
     * Consider making relations that represents a 0 or 1 tuple relations
       and use them in this case.
+
+* Extension
+  * Use UnchangedHeader to drop the operation if it does not modify
+    the headers at all
+    * Look at pushing it into a shared module and including it, at least
+      the #optimizable? operation. Refactor from Rename, Summarization and
+      Projection.
+
+* Projection
+  * It does not distribute over Intersection or Difference, but see if
+    perhaps an exception can be made if there is a functional dependency
+    between the columns projected away and the one remaining. Then I *think*
+    it might still work, but more research will be needed.
