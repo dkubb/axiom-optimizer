@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Algebra::Projection::SetOperand, '#optimizable?' do
+describe Optimizer::Algebra::Projection::UnionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }

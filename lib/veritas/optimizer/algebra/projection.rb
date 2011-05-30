@@ -70,19 +70,19 @@ module Veritas
 
         end # class ProjectionOperand
 
-        # Optimize when the operand is a Set
-        class SetOperand < self
+        # Optimize when the operand is a Union
+        class UnionOperand < self
 
-          # Test if the operand is a Set
+          # Test if the operand is a Union
           #
           # @return [Boolean]
           #
           # @api private
           def optimizable?
-            operand.kind_of?(Veritas::Relation::Operation::Set)
+            operand.kind_of?(Veritas::Algebra::Union)
           end
 
-          # Wrap each operand in the Set in a Projection
+          # Wrap each operand in the Union in a Projection
           #
           # @return [Set]
           #
@@ -111,7 +111,7 @@ module Veritas
             operation.class.new(operand.right, header)
           end
 
-        end # class SetOperand
+        end # class UnionOperand
 
         # Optimize when the operand is Empty
         class EmptyOperand < self
@@ -154,7 +154,7 @@ module Veritas
         Veritas::Algebra::Projection.optimizer = chain(
           UnchangedHeader,
           ProjectionOperand,
-          SetOperand,
+          UnionOperand,
           EmptyOperand,
           MaterializedOperand,
           UnoptimizedOperand
