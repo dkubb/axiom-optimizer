@@ -53,6 +53,52 @@ module Veritas
 
           end # module EmptyRight
 
+          # Optimize when the left operand is an Order
+          class LeftOrderOperand < self
+
+            # Test if the left operand is an Order
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              left.kind_of?(Veritas::Relation::Operation::Order)
+            end
+
+            # Drop the Order and wrap the left operand
+            #
+            # @return [Binary]
+            #
+            # @api private
+            def optimize
+              operation.class.new(left.operand, right)
+            end
+
+          end # class LeftOrderOperand
+
+          # Optimize when the right operand is an Order
+          class RightOrderOperand < self
+
+            # Test if the right operand is an Order
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              right.kind_of?(Veritas::Relation::Operation::Order)
+            end
+
+            # Drop the Order and wrap the right operand
+            #
+            # @return [Binary]
+            #
+            # @api private
+            def optimize
+              operation.class.new(left, right.operand)
+            end
+
+          end # class RightOrderOperand
+
           # Optimize when the operands are Materialized
           class MaterializedOperand < self
 

@@ -31,8 +31,8 @@ module Veritas
         # @return [Restriction]
         #
         # @api private
-        def wrap_operand
-          operation.class.new(operand.operand, predicate)
+        def wrap_operand(operand = operand.operand)
+          operation.class.new(operand, predicate)
         end
 
         # Return true if the predicate is a true value
@@ -117,11 +117,11 @@ module Veritas
 
           # Flatten nested Restrictions into a single Restriction
           #
-          # @return [Projection]
+          # @return [Restriction]
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, optimized_predicate)
+            wrap_operand
           end
 
         private
@@ -131,8 +131,8 @@ module Veritas
           # @return [Function]
           #
           # @api private
-          def optimized_predicate
-            Veritas::Function::Connective::Conjunction.new(operand.predicate, predicate).optimize
+          def predicate
+            Veritas::Function::Connective::Conjunction.new(operand.predicate, super).optimize
           end
 
         end # class RestrictionOperand
@@ -166,7 +166,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, predicate)
+            wrap_operand(operand.left)
           end
 
           # Utility method to wrap the right operand in a Restriction
@@ -175,32 +175,14 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, predicate)
+            wrap_operand(operand.right)
           end
 
         end # class SetOperand
 
         # Optimize when the operand is an Order
         class OrderOperand < self
-
-          # Test if the operand is an Order
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            operand.kind_of?(Veritas::Relation::Operation::Order)
-          end
-
-          # Wrap the Restriction in an Order
-          #
-          # @return [Order]
-          #
-          # @api private
-          def optimize
-            wrap_operand
-          end
-
+          include Relation::Operation::Unary::OrderOperand
         end # class OrderOperand
 
         # Optimize when operand is optimizable
@@ -222,7 +204,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, predicate)
+            wrap_operand(operand)
           end
 
         end # class UnoptimizedOperand

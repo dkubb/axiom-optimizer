@@ -35,6 +35,20 @@ module Veritas
           Function.optimize_functions(operation.extensions)
         end
 
+        # Wrap the operand's operand in an Extension
+        #
+        # @return [Extension]
+        #
+        # @api private
+        def wrap_operand(operand = operand.operand)
+          operation.class.new(operand, extensions)
+        end
+
+        # Optimize when the operand is an Order
+        class OrderOperand < self
+          include Relation::Operation::Unary::OrderOperand
+        end # class OrderOperand
+
         # Optimize when operands are optimizable
         class UnoptimizedOperand < self
           include Function::Unary::UnoptimizedOperand
@@ -54,8 +68,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation = self.operation
-            operation.class.new(operand, extensions)
+            wrap_operand(operand)
           end
 
         private
@@ -73,6 +86,7 @@ module Veritas
 
         Veritas::Algebra::Extension.optimizer = chain(
           MaterializedOperand,
+          OrderOperand,
           UnoptimizedOperand
         )
 

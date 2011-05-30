@@ -9,6 +9,29 @@ module Veritas
         class Unary < Optimizer
           include Function::Unary
 
+          # Optimize when the operand is an Order
+          module OrderOperand
+
+            # Test if the operand is an Order
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              operand.kind_of?(Veritas::Relation::Operation::Order)
+            end
+
+            # Drop the Order and wrap the operand
+            #
+            # @return [Order]
+            #
+            # @api private
+            def optimize
+              wrap_operand
+            end
+
+          end # module OrderOperand
+
           # Optimize when the operand is Empty
           class EmptyOperand < self
 
@@ -54,6 +77,7 @@ module Veritas
             end
 
           end # class MaterializedOperand
+
         end # class Unary
       end # module Operation
     end # module Relation

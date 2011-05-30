@@ -41,8 +41,8 @@ module Veritas
         # @return [Rename]
         #
         # @api private
-        def wrap_operand
-          operation.class.new(operand.operand, aliases)
+        def wrap_operand(operand = operand.operand)
+          operation.class.new(operand, aliases)
         end
 
         # Union the operation aliases with any operand aliases
@@ -127,7 +127,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, aliases)
+            wrap_operand
           end
 
         end # class RenameOperand
@@ -218,7 +218,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, aliases)
+            wrap_operand(operand.left)
           end
 
           # Utility method to wrap the right operand in a Rename
@@ -227,7 +227,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, aliases)
+            wrap_operand(operand.right)
           end
 
         end # class SetOperand
@@ -257,15 +257,7 @@ module Veritas
 
         # Optimize when the operand is an Order
         class OrderOperand < self
-
-          # Test if the operand is an Order
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            operand.kind_of?(Veritas::Relation::Operation::Order)
-          end
+          include Relation::Operation::Unary::OrderOperand
 
           # Wrap the Rename in an Order
           #
@@ -368,7 +360,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, aliases)
+            wrap_operand(operand)
           end
 
         end # class UnoptimizedOperand

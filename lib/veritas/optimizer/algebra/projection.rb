@@ -24,6 +24,17 @@ module Veritas
           @header = operation.header
         end
 
+      private
+
+        # Wrap the operand's operand in a Projection
+        #
+        # @return [Projection]
+        #
+        # @api private
+        def wrap_operand(operand = operand.operand)
+          operation.class.new(operand, header)
+        end
+
         # Optimize when the headers are not changed
         class UnchangedHeader < self
 
@@ -65,7 +76,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, header)
+            wrap_operand
           end
 
         end # class ProjectionOperand
@@ -99,7 +110,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, header)
+            wrap_operand(operand.left)
           end
 
           # Utility method to wrap the right operand in a Projection
@@ -108,10 +119,15 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, header)
+            wrap_operand(operand.right)
           end
 
         end # class UnionOperand
+
+        # Optimize when the operand is an Order
+        class OrderOperand < self
+          include Relation::Operation::Unary::OrderOperand
+        end # class OrderOperand
 
         # Optimize when the operand is Empty
         class EmptyOperand < self
@@ -146,7 +162,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, header)
+            wrap_operand(operand)
           end
 
         end # class UnoptimizedOperand
@@ -155,6 +171,7 @@ module Veritas
           UnchangedHeader,
           ProjectionOperand,
           UnionOperand,
+          OrderOperand,
           EmptyOperand,
           MaterializedOperand,
           UnoptimizedOperand

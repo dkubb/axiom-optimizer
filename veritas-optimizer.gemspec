@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-30}
+  s.date = %q{2011-05-31}
   s.description = %q{Optimizes veritas relations}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -133,6 +133,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/difference/empty_right/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/difference/equal_operands/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/extension/extensions_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/extension/order_operand/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/extension/order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/extension/unoptimized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/extension/unoptimized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/intersection/empty_left/optimize_spec.rb",
@@ -200,6 +202,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/summarization/empty_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/empty_summarize_per/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/empty_summarize_per/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/summarization/order_operand/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/summarization/order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/summarize_per_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/summarizers_spec.rb",
     "spec/unit/veritas/optimizer/algebra/summarization/unoptimized_operand/optimizable_spec.rb",
@@ -290,9 +294,13 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/binary/empty_left/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/empty_right/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/equal_operands/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/left_order_operand/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/left_order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/left_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operand/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/right_order_operand/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/right_order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/right_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operands/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operands/optimize_spec.rb",
@@ -328,6 +336,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/operand_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/unary/order_operand/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/unary/order_operand/optimize_spec.rb",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",
     "tasks/metrics/flog.rake",

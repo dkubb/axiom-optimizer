@@ -60,6 +60,8 @@ module Veritas
           TableDeeRight,
           EmptyLeft,
           EmptyRight,
+          LeftOrderOperand,
+          RightOrderOperand,
           MaterializedOperand,
           UnoptimizedOperands
         )

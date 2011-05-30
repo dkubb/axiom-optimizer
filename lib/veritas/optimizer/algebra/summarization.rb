@@ -52,6 +52,15 @@ module Veritas
           Function.optimize_functions(operation.summarizers)
         end
 
+        # Wrap the operand's operand in a Summarization
+        #
+        # @return [Summarization]
+        #
+        # @api private
+        def wrap_operand(operand = operand.operand)
+          operation.class.new(operand, summarize_per, summarizers)
+        end
+
         # Optimize when the operand is Empty
         class EmptyOperand < self
 
@@ -126,6 +135,11 @@ module Veritas
 
         end # class EmptySummarizePer
 
+        # Optimize when the operand is an Order
+        class OrderOperand < self
+          include Relation::Operation::Unary::OrderOperand
+        end # class OrderOperand
+
         # Optimize when operand is optimizable
         class UnoptimizedOperand < self
           include Function::Unary::UnoptimizedOperand
@@ -147,8 +161,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation = self.operation
-            operation.class.new(operand, summarize_per, summarizers)
+            wrap_operand(operand)
           end
 
         private
@@ -176,6 +189,7 @@ module Veritas
         Veritas::Algebra::Summarization.optimizer = chain(
           EmptyOperand,
           EmptySummarizePer,
+          OrderOperand,
           MaterializedOperand,
           UnoptimizedOperand
         )
