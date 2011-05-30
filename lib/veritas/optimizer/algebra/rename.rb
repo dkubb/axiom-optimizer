@@ -134,7 +134,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            operand.kind_of?(Veritas::Algebra::Projection)
+            operand.kind_of?(Veritas::Algebra::Projection) && distributive?
           end
 
           # Wrap the Rename in a Projection
@@ -144,6 +144,37 @@ module Veritas
           # @api private
           def optimize
             operand.class.new(wrap_operand, header)
+          end
+
+        private
+
+          # Test if the rename can be distributed over the projection
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def distributive?
+            inverted = inverted_aliases
+            removed_attributes.all? { |attribute| !inverted.key?(attribute) }
+          end
+
+          # Return the aliases as an inverted Hash
+          #
+          # @return [Hash]
+          #
+          # @api private
+          def inverted_aliases
+            aliases.to_hash.invert
+          end
+
+          # Returns the attributes removed from the projection
+          #
+          # @return [#all?]
+          #
+          # @api private
+          def removed_attributes
+            operand = self.operand
+            operand.operand.header - operand.header
           end
 
         end # class ProjectionOperand
