@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
   subject { object.optimize }
 
-  let(:attribute) { Attribute::Integer.new(:id, :required => false) }
-  let(:left)      { attribute                                       }
-  let(:right)     { attribute                                       }
-  let(:object)    { described_class.new(left, right)                }
+  let(:attribute) { Attribute::Integer.new(:id, :required => false, :size => 1..2**31-1) }
+  let(:left)      { attribute                                                            }
+  let(:right)     { attribute                                                            }
+  let(:object)    { described_class.new(left, right)                                     }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
@@ -64,9 +64,9 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
 
   context 'right is an attribute' do
     context 'left is a valid value' do
-      let(:left) { 1 }
+      let(:left) { 2 }
 
-      it { should eql(Function::Predicate::GreaterThanOrEqualTo.new(attribute, 1)) }
+      it { should eql(Function::Predicate::GreaterThanOrEqualTo.new(attribute, 2)) }
 
       it_should_behave_like 'an optimize method'
     end

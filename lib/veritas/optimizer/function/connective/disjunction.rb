@@ -90,7 +90,7 @@ module Veritas
               left_tautology?                  ||
               right_tautology?                 ||
               inequality_with_same_attributes? ||
-              left.inverse.eql?(right)
+              contradiction?
             end
 
             # Return a tautology

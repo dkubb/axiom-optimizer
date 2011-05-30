@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Function::Predicate::Exclusion, '#optimize' do
   subject { object.optimize }
 
-  let(:left)   { Attribute::Integer.new(:id)      }
-  let(:object) { described_class.new(left, right) }
+  let(:left)   { Attribute::Integer.new(:id, :size => 1..2**31-1) }
+  let(:object) { described_class.new(left, right)                 }
 
   context 'right is a Range' do
     context 'that is inclusive' do

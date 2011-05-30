@@ -90,6 +90,19 @@ module Veritas
             right.equal?(Veritas::Function::Proposition::Contradiction.instance)
           end
 
+          # Test if the left and right
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def contradiction?
+            left  = self.left
+            right = self.right
+            left.respond_to?(:inverse)  &&
+            right.respond_to?(:inverse) &&
+            left.inverse.eql?(right)
+          end
+
           # Optimize when the operands are constants
           class ConstantOperands < self
             include Function::Binary::ConstantOperands

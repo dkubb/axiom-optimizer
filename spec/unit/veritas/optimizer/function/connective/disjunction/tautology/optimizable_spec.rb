@@ -40,4 +40,25 @@ describe Optimizer::Function::Connective::Disjunction::Tautology, '#optimizable?
 
     it { should be(true) }
   end
+
+  context 'when left and right are procs' do
+    let(:left)  { proc {} }
+    let(:right) { proc {} }
+
+    it { should be(false) }
+  end
+
+  context 'when left is a proc' do
+    let(:left)  { proc {}         }
+    let(:right) { attribute.ne(1) }
+
+    it { should be(false) }
+  end
+
+  context 'when right is a proc' do
+    let(:left)  { attribute.eq(1) }
+    let(:right) { proc {}         }
+
+    it { should be(false) }
+  end
 end

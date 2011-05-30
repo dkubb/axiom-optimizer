@@ -90,7 +90,7 @@ module Veritas
               left_contradiction?            ||
               right_contradiction?           ||
               equality_with_same_attributes? ||
-              left.inverse.eql?(right)
+              contradiction?
             end
 
             # Return a contradiction
