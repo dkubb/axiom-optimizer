@@ -9,7 +9,7 @@ describe Optimizer::Function, '.optimize_operand' do
 
   context 'when optimizable' do
     let(:optimized) { mock('Optimized')                           }
-    let(:function) { mock('Optimizable', :optimize => optimized) }
+    let(:function)  { mock('Optimizable', :optimize => optimized) }
 
     it { should equal(optimized) }
   end
