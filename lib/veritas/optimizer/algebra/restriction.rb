@@ -180,29 +180,6 @@ module Veritas
 
         end # class SetOperand
 
-        # Optimize when the operand is a Reverse
-        class ReverseOperand < self
-
-          # Test if the operand is a Reverse
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            operand.kind_of?(Veritas::Relation::Operation::Reverse)
-          end
-
-          # Wrap the Restriction in a Reverse
-          #
-          # @return [Reverse]
-          #
-          # @api private
-          def optimize
-            operand.class.new(wrap_operand)
-          end
-
-        end # class ReverseOperand
-
         # Optimize when the operand is an Order
         class OrderOperand < self
 
@@ -221,8 +198,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand = self.operand
-            operand.class.new(wrap_operand, operand.directions)
+            wrap_operand
           end
 
         end # class OrderOperand
@@ -256,7 +232,6 @@ module Veritas
           Contradiction,
           RestrictionOperand,
           SetOperand,
-          ReverseOperand,
           OrderOperand,
           EmptyOperand,
           MaterializedOperand,

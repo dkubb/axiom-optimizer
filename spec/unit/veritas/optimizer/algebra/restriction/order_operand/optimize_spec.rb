@@ -14,7 +14,9 @@ describe Optimizer::Algebra::Restriction::OrderOperand, '#optimize' do
     object.should be_optimizable
   end
 
-  it { should be_kind_of(Relation::Operation::Order) }
+  it { should be_kind_of(Algebra::Restriction) }
 
-  its(:operand) { should eql(base.restrict { predicate }) }
+  its(:operand) { should equal(base) }
+
+  its(:predicate) { should equal(predicate) }
 end
