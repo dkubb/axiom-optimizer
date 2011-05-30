@@ -15,7 +15,7 @@ describe Optimizer::Optimizable, '#optimize' do
   end
 
   context 'when there is an optimizer for the class' do
-    let(:optimized) { mock('Optimized')                     }
+    let(:optimized) { mock('Optimized', :frozen? => true)   }
     let(:optimizer) { mock('Optimizer', :call => optimized) }
 
     before do
