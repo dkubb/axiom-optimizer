@@ -1,11 +1,4 @@
-* All operations besides Order, Reverse, Offset and Limit that wrap an
-  Order should remove the Order since it essentially is a noop. The
-  directions are not preserved in those cases, so the ordering is
-  redundant. Ordering only makes sense when slicing specific rows out
-  or when presenting results to the user (in which case it will be the
-  outer-most op, so it won't be optimized out).
-  * Create a module or class in Unary & Binary for the common code related
-    to this.
+* Add OrderSummarizePer for factoring out Order objects inside a Summarization
 
 * All relations, even optimized ones, need to hold a reference to the
   original (possibly optimized) operations.
