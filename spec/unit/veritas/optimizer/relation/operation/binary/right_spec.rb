@@ -11,9 +11,5 @@ describe Optimizer::Relation::Operation::Binary, '#right' do
   let(:relation)  { mock('Relation', :left => left, :right => right) }
   let(:object)    { described_class.new(relation)                    }
 
-  before do
-    left.stub!(:optimize).and_return(left)
-  end
-
   it { should equal(optimized) }
 end

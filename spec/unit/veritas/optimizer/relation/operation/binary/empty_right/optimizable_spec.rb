@@ -14,10 +14,6 @@ describe Optimizer::Relation::Operation::Binary::EmptyRight, '#optimizable?' do
     described_class.class_eval { include superclass::EmptyRight }
   end
 
-  before do
-    left.stub!(:optimize).and_return(left)
-  end
-
   context 'when right is empty' do
     let(:right) { Relation::Empty.new([ [ :id, Integer ] ]) }
 

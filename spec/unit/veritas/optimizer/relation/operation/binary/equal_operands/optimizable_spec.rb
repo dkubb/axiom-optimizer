@@ -15,11 +15,6 @@ describe Optimizer::Relation::Operation::Binary::EqualOperands, '#optimizable?' 
     described_class.class_eval { include superclass::EqualOperands }
   end
 
-  before do
-    left.stub!(:optimize).and_return(left)
-    right.stub!(:optimize).and_return(right)
-  end
-
   context 'when left and right are equal' do
     let(:left)  { not_materialized }
     let(:right) { not_materialized }
