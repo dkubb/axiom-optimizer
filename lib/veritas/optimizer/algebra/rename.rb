@@ -154,8 +154,8 @@ module Veritas
           #
           # @api private
           def distributive?
-            inverted = inverted_aliases
-            removed_attributes.all? { |attribute| !inverted.key?(attribute) }
+            names = alias_names
+            removed_attributes.all? { |attribute| !names.include?(attribute.name) }
           end
 
           # Return the aliases as an inverted Hash
@@ -163,8 +163,8 @@ module Veritas
           # @return [Hash]
           #
           # @api private
-          def inverted_aliases
-            aliases.to_hash.invert
+          def alias_names
+            aliases.to_hash.values.map { |attribute| attribute.name }
           end
 
           # Returns the attributes removed from the projection
