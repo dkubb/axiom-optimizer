@@ -31,7 +31,7 @@ module Veritas
         def initialize(operation)
           super
           @header  = operation.header
-          @aliases = self.class.union_aliases(operation.aliases, operand)
+          @aliases = operation.aliases
         end
 
       private
@@ -43,24 +43,6 @@ module Veritas
         # @api private
         def wrap_operand(operand = operand.operand)
           operation.class.new(operand, aliases)
-        end
-
-        # Union the operation aliases with any operand aliases
-        #
-        # @param [Rename::Aliases]
-        #   the original aliases
-        # @param [Relation]
-        #   the operand
-        #
-        # @return [Rename::Aliases]
-        #
-        # @api private
-        def self.union_aliases(aliases, operand)
-          if operand.respond_to?(:aliases)
-            aliases.union(operand.aliases)
-          else
-            aliases
-          end
         end
 
         # Optimize when the headers are not changed
@@ -86,29 +68,6 @@ module Veritas
 
         end # class UnchangedHeader
 
-        # Optimize when the operand is a Rename with aliases that cancel out
-        class RenameOperandAndEmptyAliases < self
-
-          # Test if the operand is a Rename with aliases that cancel out
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            operand.kind_of?(operation.class) && aliases.empty?
-          end
-
-          # A Rename wrapping a Rename with aliases that cancel out is a noop
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize
-            operand.operand
-          end
-
-        end # class RenameOperandAndEmptyAliases
-
         # Optimize when the operand is a Rename
         class RenameOperand < self
 
@@ -130,7 +89,41 @@ module Veritas
             wrap_operand
           end
 
+        private
+
+          # The optimized aliases
+          #
+          # @return [Rename::Aliases]
+          #
+          # @api private
+          def aliases
+            super.union(operand.aliases)
+          end
+
         end # class RenameOperand
+
+        # Optimize when the operand is a Rename with aliases that cancel out
+        class RenameOperandAndEmptyAliases < RenameOperand
+
+          # Test if the operand is a Rename with aliases that cancel out
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            super && aliases.empty?
+          end
+
+          # A Rename wrapping a Rename with aliases that cancel out is a noop
+          #
+          # @return [Relation]
+          #
+          # @api private
+          def optimize
+            operand.operand
+          end
+
+        end # class RenameOperandAndEmptyAliases
 
         # Optimize when the operand is a Projection
         class ProjectionOperand < self
@@ -344,15 +337,6 @@ module Veritas
         # Optimize when operand is optimizable
         class UnoptimizedOperand < self
           include Function::Unary::UnoptimizedOperand
-
-          # Test if the operand is unoptimized
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            super || !aliases.equal?(operation.aliases)
-          end
 
           # Return a Rename with an optimized operand
           #

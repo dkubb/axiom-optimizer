@@ -158,7 +158,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/projection/unoptimized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/unoptimized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/aliases_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/rename/class_methods/union_aliases_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/header_spec.rb",

@@ -15,19 +15,9 @@ describe Optimizer::Algebra::Rename, '#aliases' do
     object.operation.should be_kind_of(Algebra::Rename)
   end
 
-  context 'when the operand is a rename' do
-    let(:relation) { base.rename(aliases).rename(:other_id => :another_id) }
+  let(:relation) { base.rename(aliases) }
 
-    it { should be_kind_of(Algebra::Rename::Aliases) }
+  it { should be_kind_of(Algebra::Rename::Aliases) }
 
-    it { should == { attribute => attribute.rename(:another_id) } }
-  end
-
-  context 'when the operand is not a rename' do
-    let(:relation) { base.rename(aliases) }
-
-    it { should be_kind_of(Algebra::Rename::Aliases) }
-
-    it { should == { attribute => attribute.rename(:other_id) } }
-  end
+  it { should equal(relation.aliases) }
 end
