@@ -7,23 +7,6 @@ module Veritas
       # Abstract base class representing Projection optimizations
       class Projection < Relation::Operation::Unary
 
-        # The projected header
-        #
-        # @return [Header]
-        #
-        # @api private
-        attr_reader :header
-
-        # Initialize an Projection optimizer
-        #
-        # @return [undefined]
-        #
-        # @api private
-        def initialize(*)
-          super
-          @header = operation.header
-        end
-
       private
 
         # Wrap the operand's operand in a Projection
@@ -34,29 +17,6 @@ module Veritas
         def wrap_operand(operand = operand.operand)
           operation.class.new(operand, header)
         end
-
-        # Optimize when the headers are not changed
-        class UnchangedHeader < self
-
-          # Test if the projected headers are the same as the operand's
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            header == operand.header
-          end
-
-          # A Projection with unchanged headers is a noop
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize
-            operand
-          end
-
-        end # class UnchangedHeader
 
         # Optimize when the operand is a Projection
         class ProjectionOperand < self

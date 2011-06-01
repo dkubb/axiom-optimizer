@@ -85,6 +85,7 @@ module Veritas
         end # class UnoptimizedOperand
 
         Veritas::Algebra::Extension.optimizer = chain(
+          UnchangedHeader,
           MaterializedOperand,
           OrderOperand,
           UnoptimizedOperand

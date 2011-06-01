@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-31}
+  s.date = %q{2011-06-01}
   s.description = %q{Optimizes veritas relations}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -148,11 +148,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/product/table_dee_right/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/empty_operand/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/projection/header_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/projection_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/projection_operand/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/projection/unchanged_header/optimizable_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/projection/unchanged_header/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/union_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/union_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/projection/unoptimized_operand/optimizable_spec.rb",
@@ -160,7 +157,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/rename/aliases_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/rename/header_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/offset_operand/optimizable_spec.rb",
@@ -179,8 +175,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/rename/reverse_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/set_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/set_operand/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/rename/unchanged_header/optimizable_spec.rb",
-    "spec/unit/veritas/optimizer/algebra/rename/unchanged_header/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/unoptimized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/rename/unoptimized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/restriction/contradiction/optimizable_spec.rb",
@@ -332,11 +326,14 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/reverse/unoptimized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/empty_operand/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/unary/header_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/materialized_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/operand_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/order_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/unary/order_operand/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/unary/unchanged_header/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/unary/unchanged_header/optimize_spec.rb",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",
     "tasks/metrics/flog.rake",

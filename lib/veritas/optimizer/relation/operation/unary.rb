@@ -9,6 +9,23 @@ module Veritas
         class Unary < Optimizer
           include Function::Unary
 
+          # The operation header
+          #
+          # @return [Header]
+          #
+          # @api private
+          attr_reader :header
+
+          # Initialize a Unary optimizer
+          #
+          # @return [undefined]
+          #
+          # @api private
+          def initialize(*)
+            super
+            @header = operation.header
+          end
+
           # Optimize when the operand is an Order
           module OrderOperand
 
@@ -31,6 +48,29 @@ module Veritas
             end
 
           end # module OrderOperand
+
+          # Optimize when the header is not changed
+          class UnchangedHeader < self
+
+            # Test if the operation header are the same as the operand's
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              header == operand.header
+            end
+
+            # A Projection, Rename or Extension with an unchanged header is a noop
+            #
+            # @return [Relation]
+            #
+            # @api private
+            def optimize
+              operand
+            end
+
+          end # class UnchangedHeader
 
           # Optimize when the operand is Empty
           class EmptyOperand < self

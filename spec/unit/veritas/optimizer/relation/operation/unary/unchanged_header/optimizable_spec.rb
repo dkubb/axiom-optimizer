@@ -2,21 +2,22 @@
 
 require 'spec_helper'
 
-describe Optimizer::Relation::Operation::Unary::MaterializedOperand, '#optimizable?' do
+describe Optimizer::Relation::Operation::Unary::UnchangedHeader, '#optimizable?' do
   subject { object.optimizable? }
 
+  let(:operand)  { mock('Operand', :header => operand_header)               }
   let(:header)   { mock('Header')                                           }
   let(:relation) { mock('Relation', :operand => operand, :header => header) }
   let(:object)   { described_class.new(relation)                            }
 
-  context 'when the operand is materialized' do
-    let(:operand) { Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  context 'when the header is not changed' do
+    let(:operand_header) { header }
 
     it { should be(true) }
   end
 
-  context 'when the operand is not materialized' do
-    let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+  context 'when the header is changed' do
+    let(:operand_header) { mock('Changed Header') }
 
     it { should be(false) }
   end

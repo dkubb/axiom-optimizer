@@ -7,13 +7,6 @@ module Veritas
       # Abstract base class representing Rename optimizations
       class Rename < Relation::Operation::Unary
 
-        # The renamed header
-        #
-        # @return [Header]
-        #
-        # @api private
-        attr_reader :header
-
         # The optimized aliases
         #
         # @return [Rename::Aliases]
@@ -30,7 +23,6 @@ module Veritas
         # @api private
         def initialize(operation)
           super
-          @header  = operation.header
           @aliases = operation.aliases
         end
 
@@ -44,29 +36,6 @@ module Veritas
         def wrap_operand(operand = operand.operand)
           operation.class.new(operand, aliases)
         end
-
-        # Optimize when the headers are not changed
-        class UnchangedHeader < self
-
-          # Test if the renamed headers are the same as the operand's
-          #
-          # @return [Boolean]
-          #
-          # @api private
-          def optimizable?
-            header == operand.header
-          end
-
-          # A Rename with unchanged headers is a noop
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def optimize
-            operand
-          end
-
-        end # class UnchangedHeader
 
         # Optimize when the operand is a Rename
         class RenameOperand < self
