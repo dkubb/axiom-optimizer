@@ -348,7 +348,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{https://github.com/dkubb/veritas-optimizer}
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.4}
+  s.rubygems_version = %q{1.8.5}
   s.summary = %q{Relational algebra optimizer}
 
   if s.respond_to? :specification_version then
