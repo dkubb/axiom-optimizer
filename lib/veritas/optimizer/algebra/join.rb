@@ -7,10 +7,10 @@ module Veritas
       # Abstract base class representing Join optimizations
       class Join < Relation::Operation::Combination
 
-        # Optimize when operand headers are equivalent
+        # Optimize when operands' headers are equal
         class EqualHeaders < self
 
-          # Test if the operands' headers are equal
+          # Test if the operands' headers are equal to the join's headers
           #
           # @return [Boolean]
           #
@@ -19,7 +19,7 @@ module Veritas
             left.header.eql?(right.header)
           end
 
-          # A Join with equal headers is an Intersection
+          # A Join with an equal header is an Intersection
           #
           # @return [Algebra::Intersection]
           #
