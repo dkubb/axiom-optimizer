@@ -1,5 +1,3 @@
-* Add OrderSummarizePer for factoring out Order objects inside a Summarization
-
 * All relations, even optimized ones, need to hold a reference to the
   original (possibly optimized) operations.
   * Especially "empty" relations should hold a reference to the original
@@ -102,21 +100,14 @@
       relation, since at most there can be only one match.
 
 * Summarization
-  * Optimize the summarization aggregate functions
+  * Add OrderSummarizePer for factoring out Order objects inside a Summarization
   * When there are no aggregate functions, drop the Summarization and
     return the summarize_per (?)
-    * Use the UnchangedHeader optimizer
+    * Use the UnchangedHeader optimizer as a base class
   * When summarize_per is TABLE_DEE, and it is wrapped by Order, at most only
     one row can be returned, so Order can probably be dropped.
     * Consider making relations that represents a 0 or 1 tuple relations
       and use them in this case.
-
-* Extension
-  * Use UnchangedHeader to drop the operation if it does not modify
-    the headers at all
-    * Look at pushing it into a shared module and including it, at least
-      the #optimizable? operation. Refactor from Rename, Summarization and
-      Projection.
 
 * Projection
   * It does not distribute over Intersection or Difference, but see if
