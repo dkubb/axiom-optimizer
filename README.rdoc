@@ -20,7 +20,7 @@ http://travis-ci.org/dkubb/veritas-optimizer.png
 
 == Description
 
-The purpose of this gem is to provide a simple API that can be used to optimize a relation, scalar or aggregate function. An optional optimizer can be passed in to the #optimize method and return an equivalent but simplified version of the object.
+The purpose of this gem is to provide a simple API that can be used to optimize a veritas[https://github.com/dkubb/veritas] relation, scalar or aggregate function. An optional optimizer can be passed in to the #optimize method and return an equivalent but simplified version of the object.
 
 One of the primary benefits of Relational Algebra is that it's based on logic, and the rules for simplifying logic are well known and studied. An optimizer can pass through user-generated objects and typically find ways to simplify or organize them in a way that will be more efficient when the operation is executed.
 
