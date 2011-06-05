@@ -14,15 +14,53 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
   end
 
   context 'when the right operands are optimizable' do
-    let(:left)  { attribute.eq(2) }
-    let(:right) { attribute.eq(1) }
+    context 'when the left and right are equality predicates' do
+      let(:left)  { attribute.eq(2) }
+      let(:right) { attribute.eq(1) }
 
-    it { should be_kind_of(Function::Predicate::Inclusion) }
+      it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+      its(:left) { should equal(attribute) }
 
-    # enumerable order is normalized
-    its(:right) { should == [ 1, 2 ] }
+      # enumerable order is normalized
+      its(:right) { should == [ 1, 2 ] }
+    end
+
+    context 'when the left is an equality predicate and the right is an inclusion predicate' do
+      let(:left)  { attribute.eq(2)          }
+      let(:right) { attribute.include([ 1 ]) }
+
+      it { should be_kind_of(Function::Predicate::Inclusion) }
+
+      its(:left) { should equal(attribute) }
+
+      # enumerable order is normalized
+      its(:right) { should == [ 1, 2 ] }
+    end
+
+    context 'when the left is an inclusion predicate and the right is an equality predicate' do
+      let(:left)  { attribute.include([ 2 ]) }
+      let(:right) { attribute.eq(1)          }
+
+      it { should be_kind_of(Function::Predicate::Inclusion) }
+
+      its(:left) { should equal(attribute) }
+
+      # enumerable order is normalized
+      its(:right) { should == [ 1, 2 ] }
+    end
+
+    context 'when the left and right are inclusion predicatess' do
+      let(:left)  { attribute.include([ 2 ]) }
+      let(:right) { attribute.include([ 1 ]) }
+
+      it { should be_kind_of(Function::Predicate::Inclusion) }
+
+      its(:left) { should equal(attribute) }
+
+      # enumerable order is normalized
+      its(:right) { should == [ 1, 2 ] }
+    end
   end
 
   context 'when the right operands are not optimizable' do

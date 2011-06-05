@@ -11,27 +11,27 @@ module Veritas
 
         private
 
-          # Test if the operands are equality predicates for the same attribute
+          # Test if the operands are equality or inclusion predicates for the same attribute
           #
           # @return [Boolean]
           #
           # @api private
           def equality_with_same_attributes?
-            left.kind_of?(Veritas::Function::Predicate::Equality)  &&
-            right.kind_of?(Veritas::Function::Predicate::Equality) &&
-            same_attribute?                                        &&
+            left_equality?  &&
+            right_equality? &&
+            same_attribute? &&
             constant_value?
           end
 
-          # Test if the operands are inequality predicates for the same attribute
+          # Test if the operands are inequality or exclusion predicates for the same attribute
           #
           # @return [Boolean]
           #
           # @api private
           def inequality_with_same_attributes?
-            left.kind_of?(Veritas::Function::Predicate::Inequality)  &&
-            right.kind_of?(Veritas::Function::Predicate::Inequality) &&
-            same_attribute?                                          &&
+            left_inequality?  &&
+            right_inequality? &&
+            same_attribute?   &&
             constant_value?
           end
 
@@ -52,6 +52,50 @@ module Veritas
           def constant_value?
             util = Util
             util.constant?(left.right) && util.constant?(right.right)
+          end
+
+          # Test if the left is an equality or inclusion
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def left_equality?
+            util = Veritas::Function::Predicate
+            left = self.left
+            left.kind_of?(util::Equality) || left.kind_of?(util::Inclusion)
+          end
+
+          # Test if the right is an equality or inclusion
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def right_equality?
+            util  = Veritas::Function::Predicate
+            right = self.right
+            right.kind_of?(util::Equality) || right.kind_of?(util::Inclusion)
+          end
+
+          # Test if the left is an inequality or exclusion
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def left_inequality?
+            util = Veritas::Function::Predicate
+            left = self.left
+            left.kind_of?(util::Inequality) || left.kind_of?(util::Exclusion)
+          end
+
+          # Test if the right is an inequality or exclusion
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def right_inequality?
+            util  = Veritas::Function::Predicate
+            right = self.right
+            right.kind_of?(util::Inequality) || right.kind_of?(util::Exclusion)
           end
 
           # Test if the left is a tautology
@@ -101,6 +145,15 @@ module Veritas
             left.respond_to?(:inverse)  &&
             right.respond_to?(:inverse) &&
             left.inverse.eql?(right)
+          end
+
+          # Merge the right enumerables from the operands
+          #
+          # @return [Array]
+          #
+          # @api private
+          def merged_right_enumerables
+            [ left.right, right.right ].flatten
           end
 
           # Optimize when the operands are constants
