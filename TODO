@@ -28,8 +28,6 @@
       then call optimize again on the op to potentially remove the op altogether
       (like in the case of an extension adding one attribute that is removed).
   * Operation Order:
-    * Projection containing an Order
-      * Should remove the Order, since it is a noop
     * Projection should follow Rename
       * When a Projection contains a Restriction, wrap the Projection
         in the Restriction, projecting away any attributes not used in
@@ -76,7 +74,7 @@
         Into:
 
           "attr1 IN(..) OR attr2 = ?"
-    * Rename should distribute over Join, Product and Set operations
+    * Rename should distribute over Join, Product (all Binary?) operations
       * The goal should be to push Rename as close to the base tables
         as possible so that the names of attribute will be consistent
         throughout the whole tree.
@@ -94,7 +92,6 @@
     * Make sure the smallest relation (with a known size) is always the
       right-most operation.
   * When a restriction uses a unique index:
-    * Order can be factored out
     * Limit with a limit >= 1 can be factored out
     * Offset with an offset > 0 can be transformed into an empty
       relation, since at most there can be only one match.
