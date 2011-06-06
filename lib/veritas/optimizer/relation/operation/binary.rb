@@ -100,7 +100,7 @@ module Veritas
           end # class RightOrderOperand
 
           # Optimize when the operands are Materialized
-          class MaterializedOperand < self
+          class MaterializedOperands < self
 
             # Test if the operands are materialized
             #

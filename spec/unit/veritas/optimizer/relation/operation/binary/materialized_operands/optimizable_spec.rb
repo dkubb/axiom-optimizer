@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Relation::Operation::Binary::MaterializedOperand, '#optimizable?' do
+describe Optimizer::Relation::Operation::Binary::MaterializedOperands, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:materialized)     { Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ]) }

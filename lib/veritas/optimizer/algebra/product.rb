@@ -62,7 +62,7 @@ module Veritas
           EmptyRight,
           LeftOrderOperand,
           RightOrderOperand,
-          MaterializedOperand,
+          MaterializedOperands,
           UnoptimizedOperands
         )
 

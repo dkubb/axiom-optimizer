@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Optimizer::Relation::Operation::Binary::MaterializedOperand, '#optimize' do
+describe Optimizer::Relation::Operation::Binary::MaterializedOperands, '#optimize' do
   subject { object.optimize }
 
   let(:left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }

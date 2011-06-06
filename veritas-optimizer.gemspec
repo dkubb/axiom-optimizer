@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-06-01}
+  s.date = %q{2011-06-06}
   s.description = %q{Optimizes veritas relations}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -290,8 +290,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/binary/left_order_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/left_order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/left_spec.rb",
-    "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operand/optimizable_spec.rb",
-    "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operand/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operands/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/relation/operation/binary/materialized_operands/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/right_order_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/right_order_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/right_spec.rb",

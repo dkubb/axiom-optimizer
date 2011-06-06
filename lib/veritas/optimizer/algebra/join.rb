@@ -36,7 +36,7 @@ module Veritas
           EqualHeaders,
           LeftOrderOperand,
           RightOrderOperand,
-          MaterializedOperand,
+          MaterializedOperands,
           UnoptimizedOperands
         )
 
