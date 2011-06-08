@@ -63,7 +63,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left, right.restrict { left_predicate.optimize })
+            Veritas::Algebra::Join.new(left, right.restrict { left_predicate })
           end
 
         private
@@ -84,9 +84,11 @@ module Veritas
           #
           # @api private
           def left_predicate
-            left.project(join_key).reduce(CONTRADICTION) do |predicate, tuple|
-              predicate.or(tuple.predicate)
+            predicate = CONTRADICTION
+            left.project(join_key).each do |tuple|
+              predicate = predicate.or(tuple.predicate)
             end
+            predicate.optimize
           end
 
           memoize :left_predicate
@@ -111,7 +113,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left.restrict { right_predicate.optimize }, right)
+            Veritas::Algebra::Join.new(left.restrict { right_predicate }, right)
           end
 
         private
@@ -132,9 +134,11 @@ module Veritas
           #
           # @api private
           def right_predicate
-            right.project(join_key).reduce(CONTRADICTION) do |predicate, tuple|
-              predicate.or(tuple.predicate)
+            predicate = CONTRADICTION
+            right.project(join_key).each do |tuple|
+              predicate = predicate.or(tuple.predicate)
             end
+            predicate.optimize
           end
 
           memoize :right_predicate
