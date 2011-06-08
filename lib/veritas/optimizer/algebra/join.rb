@@ -22,6 +22,15 @@ module Veritas
           operation.join_header
         end
 
+        # Return a predicate that matches every tuple in the materialized operand
+        #
+        # @return [Function]
+        #
+        # @api private
+        def materialized_predicate
+          matching_projection.reduce(CONTRADICTION) { |predicate, tuple| predicate.or(tuple.predicate) }.optimize
+        end
+
         # Optimize when operands' headers are equal
         class EqualHeaders < self
 
@@ -63,7 +72,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left, right.restrict { left_predicate })
+            Veritas::Algebra::Join.new(left, right.restrict { materialized_predicate })
           end
 
         private
@@ -75,23 +84,17 @@ module Veritas
           # @api private
           def right_matching_left?
             right = self.right
-            right.kind_of?(Veritas::Algebra::Restriction) && right.predicate.eql?(left_predicate)
+            right.kind_of?(Veritas::Algebra::Restriction) && right.predicate.eql?(materialized_predicate)
           end
 
-          # Return a predicate to match every tuple in the left operand
+          # Return a the matching projection of the materializd relation
           #
-          # @return [Function]
+          # @return [Projection]
           #
           # @api private
-          def left_predicate
-            predicate = CONTRADICTION
-            left.project(join_key).each do |tuple|
-              predicate = predicate.or(tuple.predicate)
-            end
-            predicate.optimize
+          def matching_projection
+            left.project(join_key)
           end
-
-          memoize :left_predicate
 
         end # class LeftMaterializedOperand
 
@@ -113,7 +116,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left.restrict { right_predicate }, right)
+            Veritas::Algebra::Join.new(left.restrict { materialized_predicate }, right)
           end
 
         private
@@ -125,23 +128,17 @@ module Veritas
           # @api private
           def left_matching_right?
             left = self.left
-            left.kind_of?(Veritas::Algebra::Restriction) && left.predicate.eql?(right_predicate)
+            left.kind_of?(Veritas::Algebra::Restriction) && left.predicate.eql?(materialized_predicate)
           end
 
-          # Return a predicate to match every tuple in the right operand
+          # Return a the matching projection of the materializd relation
           #
-          # @return [Function]
+          # @return [Projection]
           #
           # @api private
-          def right_predicate
-            predicate = CONTRADICTION
-            right.project(join_key).each do |tuple|
-              predicate = predicate.or(tuple.predicate)
-            end
-            predicate.optimize
+          def matching_projection
+            right.project(join_key)
           end
-
-          memoize :right_predicate
 
         end # class RightMaterializedOperand
 
@@ -156,6 +153,8 @@ module Veritas
           RightMaterializedOperand,
           UnoptimizedOperands
         )
+
+        memoize :materialized_predicate
 
       end # class Join
     end # module Algebra
