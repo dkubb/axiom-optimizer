@@ -18,21 +18,38 @@
     empty not because they are valid, but because the source object is empty
   * Materialized relations will need references to the original objects.
 
-* Optimization can replace one or more AST nodes with a simpler/more efficient
-  structure as long as it is lossless. Just changing it to empty or
-  materialized, the way things are now, we lose what the original relation
-  was so it becomes impossible to insert/update/delete from those relations.
-  * A write to a materialized object should first propagate the write down
-    to the @operand, allowing it to raise exceptions if it's read*only,
-    then it should make the change in the materialized object.
+* More optimizations:
+  * Union
+    * A Union of relations with the same base, header, and restrictions should
+      try to combine into a single relation with the restrictions using OR.
 
-* Add further optimizations:
+  * Intersection
+    * An Intersection of relations with the same base, header, and restrictions
+      should try to combine into a single relation with the restrictions using
+      AND.
+    * Use the Join::RightMaterializedOperand and Join::LeftMaterializedOperand
+      optimizers to simplify Intersection operations
+
+  * Difference
+    * A Difference of relations with the same base and restrictions should
+      try to combine into a single relation with the restrictions using NOT.
+
+  * Summarization
+    * Add OrderSummarizePer for factoring out Order objects inside a Summarization
+    * When there are no aggregate functions, drop the Summarization and
+      return the summarize_per (?)
+      * Use the UnchangedHeader optimizer as a base class
+    * When summarize_per is an Order, the Order can be dropped.
+
   * Projection
-    * When it contains a Rename, if the renamed attributes are removed,
-      then the rename can be removed.
     * When it contains a Restriction, if the removed attributes are *not*
       used in the predicate, then move the Restriction to contain the
       Projection.
+    * When a Projection contains a Restriction, wrap the Projection
+      in the Restriction, projecting away any attributes not used in
+      the restriction. If there are any remaining attributes, then
+      wrap the operation in a Projection removing those attributes.
+      * If all attributes are being used in the Restriction do nothing
     * When renames or extensions or summarizations are projected away and
       not used in any intermediary operation, then they can be dropped
       altogether. There's no point in going through all that work to
@@ -40,98 +57,61 @@
       the renames/extensions/summarizations to not add the attribute, and
       then call optimize again on the op to potentially remove the op altogether
       (like in the case of an extension adding one attribute that is removed).
-  * Operation Order:
-    * Projection should follow Rename
-      * When a Projection contains a Restriction, wrap the Projection
-        in the Restriction, projecting away any attributes not used in
-        the restriction. If there are any remaining attributes, then
-        wrap the operation in a Projection removing those attributes.
-        * If all attributes are being used in the Restriction do nothing
-      * When a Projection contains a Join, wrap the Join with a Projection
-        of all the headers, minus those used in the Join. If there were
-        any used, then wrap the whole operation in a Projection with
-        the remaining attributes.
-        * If all the attributes are used in the Join, do nothing
-        * Try to use the same approach for Product
-        * Test if it's possible to fully distribute projections over
-          joins rather than splitting it up like this.
-    * Restriction should follow Projection
-      * Restriction optimizations:
-        * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
-          * Do the same for >=, <, <=
-        * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value
-          * Do the same for >=, <, <=
-        * "attr > 5 OR attr == 5" -> "attr >= 5"
-        * "attr < 5 OR attr == 5" -> "attr <= 5"
-        * "attr" = "string" AND "attr" =~ /string/ -> "attr" = "string"
-          * If the regexp matches the constant, then it should be
-            optimized down to a constant match. If it does not match
-            then it should be optimized to a Contradiction.
-        * Constant folding, eg:
-          "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
-          * This will probably only work across Conjunctions.
-        * "attr > 5 AND attr = 6" -> "attr = 6", because attr must be
-          equal to 6. this will probably be related to constant folding;
-          the first expression will become 6 > 5, which evaluates to a
-          Tautology, then the expression is a Tautology AND attr = 6,
-          which simplifies down to attr = 6.
-        * "attr < 5 AND attr = 6" -> "Contradiction", because attr must be equal to
-          6, and 6 < 5 evaluates to a Contradiction.  A Contradiction AND attr = 6
-          simplifies down to a Contradiction.
-      * Figure out how to reorganize the Restriction predicates so that all
-        similar operations are closer together to allow more efficient
-        optimizations. This would allow optimizations of stuff like this:
+    * It does not distribute over Intersection or Difference, but see if
+      perhaps an exception can be made if there is a functional dependency
+      between the columns projected away and the one remaining. Then I *think*
+      it might still work, but more research will be needed.
+    * When a Projection contains a Join, wrap the Join with a Projection
+      of all the headers, minus those used in the Join. If there were
+      any used, then wrap the whole operation in a Projection with
+      the remaining attributes.
+      * If all the attributes are used in the Join, do nothing
+      * Try to use the same approach for Product
+      * Test if it's possible to fully distribute projections over
+        joins rather than splitting it up like this.
 
-          "attr1 = ? OR attr2 = ? OR attr1 = ?"
+  * Rename
+    * When wrapping a Summarization or Extension, and renaming the new attribute,
+      it should change the new attribute name, and remove it from the rename.
 
-        Into:
+  * Restriction
+    * Figure out how to reorganize the Restriction predicates so that all
+      similar operations are closer together to allow more efficient
+      optimizations. This would allow optimizations of stuff like this:
 
-          "attr1 IN(..) OR attr2 = ?"
-    * Rename should distribute over Join, Product (all Binary?) operations
-      * The goal should be to push Rename as close to the base tables
-        as possible so that the names of attribute will be consistent
-        throughout the whole tree.
-  * A Union of relations with the same base, header, and restrictions should
-    try to combine into a single relation with the restrictions using OR.
-  * An Intersection of relations with the same base, header, and restrictions
-    should try to combine into a single relation with the restrictions using
-    AND.
-  * A Difference of relations with the same base and restrictions should
-    try to combine into a single relation with the restrictions using NOT.
-  * Join Optimizations
-    * When a Join contains a Join, and the size of the base relations is
-      known, join the smallest with the largest, and then join that result
-      with the remaining relation.
-    * Make sure the smallest relation (with a known size) is always the
-      right-most operation.
-  * When a restriction uses a unique index:
-    * Limit with a limit >= 1 can be factored out
-    * Offset with an offset > 0 can be transformed into an empty
-      relation, since at most there can be only one match.
+        "attr1 = ? OR attr2 = ? OR attr1 = ?"
 
-* Summarization
-  * Add OrderSummarizePer for factoring out Order objects inside a Summarization
-  * When there are no aggregate functions, drop the Summarization and
-    return the summarize_per (?)
-    * Use the UnchangedHeader optimizer as a base class
-  * When summarize_per is TABLE_DEE, and it is wrapped by Order, at most only
-    one row can be returned, so Order can probably be dropped.
-    * Consider making relations that represents a 0 or 1 tuple relations
-      and use them in this case.
+      Into:
 
-* Projection
-  * It does not distribute over Intersection or Difference, but see if
-    perhaps an exception can be made if there is a functional dependency
-    between the columns projected away and the one remaining. Then I *think*
-    it might still work, but more research will be needed.
+        "attr1 IN(..) OR attr2 = ?"
 
-* Intersection
-  * Use the Join::RightMaterializedOperand and Join::LeftMaterializedOperand
-    optimizers to simplify Intersection operations
+    * When it has an equality on a unique attribute:
+      * Limit with a limit >= 1 can be factored out
+      * Offset with an offset > 0 can be transformed into an empty
+        relation, since at most there can be only one match.
 
-* Inclusion/Exclusion
-  * When the enumerable is a contiguous sequence transform it into a Range
+  * Connective
+    * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
+      * Do the same for >=, <, <=
+    * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value
+      * Do the same for >=, <, <=
+    * "attr > 5 OR attr == 5" -> "attr >= 5"
+    * "attr < 5 OR attr == 5" -> "attr <= 5"
+    * "attr" = "string" AND "attr" =~ /string/ -> "attr" = "string"
+      * If the regexp matches the constant, then it should be
+        optimized down to a constant match. If it does not match
+        then it should be optimized to a Contradiction.
+    * Constant folding, eg:
+      "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
+      * This will probably only work across Conjunctions.
+    * "attr > 5 AND attr = 6" -> "attr = 6", because attr must be
+      equal to 6. this will probably be related to constant folding;
+      the first expression will become 6 > 5, which evaluates to a
+      Tautology, then the expression is a Tautology AND attr = 6,
+      which simplifies down to attr = 6.
+    * "attr < 5 AND attr = 6" -> "Contradiction", because attr must be equal to
+      6, and 6 < 5 evaluates to a Contradiction.  A Contradiction AND attr = 6
+      simplifies down to a Contradiction.
 
-* Rename
-  * When wrapping a Summarization or Extension, and renaming the new attribute,
-    it should change the new attribute name, and remove it from the rename.
+  * Inclusion/Exclusion
+    * When the enumerable is a contiguous sequence transform it into a Range
