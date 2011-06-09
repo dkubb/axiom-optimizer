@@ -72,7 +72,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left, right.restrict { materialized_predicate })
+            operation.class.new(left, right.restrict { materialized_predicate })
           end
 
         private
@@ -116,7 +116,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Join.new(left.restrict { materialized_predicate }, right)
+            operation.class.new(left.restrict { materialized_predicate }, right)
           end
 
         private
