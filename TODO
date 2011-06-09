@@ -131,3 +131,7 @@
 
 * Inclusion/Exclusion
   * When the enumerable is a contiguous sequence transform it into a Range
+
+* Rename
+  * When wrapping a Summarization or Extension, and renaming the new attribute,
+    it should change the new attribute name, and remove it from the rename.
