@@ -124,3 +124,10 @@
     perhaps an exception can be made if there is a functional dependency
     between the columns projected away and the one remaining. Then I *think*
     it might still work, but more research will be needed.
+
+* Intersection
+  * Use the Join::RightMaterializedOperand and Join::LeftMaterializedOperand
+    optimizers to simplify Intersection operations
+
+* Inclusion/Exclusion
+  * When the enumerable is a contiguous sequence transform it into a Range
