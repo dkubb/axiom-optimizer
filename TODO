@@ -1,3 +1,11 @@
+* Pull up Rename rather than pushing it down
+  * Currently a Rename applies to every tuple in a result-set, and
+    doing the rename prematurely means that lots of tuples that would
+    otherwise be filtered out are going to be processed. A better
+    approach should be to push the rename up, dropping renames that
+    are projected away. It should not distribute over Binary ops
+    unless the other side of the binary op has he same aliases.
+
 * For Binary operations, when the left or right is materialized then
   change the other relation to use a restriction to filter the records.
   * This will help optimize the fetching of the underlying records.
