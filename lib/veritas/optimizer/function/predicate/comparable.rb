@@ -45,7 +45,7 @@ module Veritas
               if    util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
-                not_joinable?
+                !joinable?
               end
             end
 
@@ -69,14 +69,14 @@ module Veritas
               !left.valid_value?(right)
             end
 
-            # Test if the left and right operand are not joinable
+            # Test if the left and right operand are joinable
             #
             # @return [Boolean]
             #
             # @api private
-            def not_joinable?
+            def joinable?
               left = self.left
-              !(left.respond_to?(:joinable?) && left.joinable?(right))
+              left.respond_to?(:joinable?) && left.joinable?(right)
             end
 
           end # module NeverEquivalent
