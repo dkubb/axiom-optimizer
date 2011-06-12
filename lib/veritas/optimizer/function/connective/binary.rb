@@ -11,7 +11,7 @@ module Veritas
 
         private
 
-          # Test if the operands are equality or inclusion predicates for the same attribute
+          # Test if the operands are equality/inclusion predicates for the same attribute
           #
           # @return [Boolean]
           #
@@ -23,7 +23,7 @@ module Veritas
             constant_value?
           end
 
-          # Test if the operands are inequality or exclusion predicates for the same attribute
+          # Test if the operands are inequality/exclusion predicates for the same attribute
           #
           # @return [Boolean]
           #
