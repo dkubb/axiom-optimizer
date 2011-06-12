@@ -137,6 +137,92 @@ module Veritas
 
         end # class RestrictionOperand
 
+        # Optimize when the operand is a Join
+        class JoinOperand < self
+
+          # Test if the operand is a Join and the restriction is commutative
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand.kind_of?(Veritas::Algebra::Join) &&
+            restriction_commutative?
+          end
+
+          # Distribute the restriction across the join and apply to the operands
+          #
+          # @return [Restriction]
+          #
+          # @api private
+          def optimize
+            left_restriction.join(right_restriction).restrict { partition.remainder }
+          end
+
+        private
+
+          # Return a predicate partition for the restriction and join operand headers
+          #
+          # @return [PredicatePartition]
+          #
+          # @api private
+          def partition
+            operand = self.operand
+            PredicatePartition.new(predicate, operand.left.header, operand.right.header)
+          end
+
+          # Test if the restriction can be distributed over the join
+          #
+          # If the predicates for the left and right operands would match
+          # everything, there is no point in distributing the restriction
+          # across the join, since it will not affect the result.
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def restriction_commutative?
+            !(partition_left_tautology? && partition_right_tautology?)
+          end
+
+          # Test if the predicate for the left operand would match everything
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def partition_left_tautology?
+            partition.left.equal?(Veritas::Function::Proposition::Tautology.instance)
+          end
+
+          # Test if the predicate for the right operand would match everything
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def partition_right_tautology?
+            partition.right.equal?(Veritas::Function::Proposition::Tautology.instance)
+          end
+
+          # Restrict the left operand of the join with the left predicate partition
+          #
+          # @return [Restriction]
+          #
+          # @api private
+          def left_restriction
+            operand.left.restrict { partition.left }
+          end
+
+          # Restrict the right operand of the join with the right predicate partition
+          #
+          # @return [Restriction]
+          #
+          # @api private
+          def right_restriction
+            operand.right.restrict { partition.right }
+          end
+
+          memoize :partition
+        end
+
         # Optimize when the operand is a Set
         class SetOperand < self
 
@@ -213,6 +299,7 @@ module Veritas
           Tautology,
           Contradiction,
           RestrictionOperand,
+          JoinOperand,
           SetOperand,
           OrderOperand,
           EmptyOperand,
