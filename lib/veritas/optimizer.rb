@@ -95,6 +95,8 @@ end # module Veritas
 
 require 'veritas/optimizer/version'
 
+require 'veritas/optimizer/support/predicate_partition'
+
 require 'veritas/optimizer/optimizable'
 
 require 'veritas/optimizer/function'

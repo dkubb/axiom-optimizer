@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-06-07}
+  s.date = %q{2011-06-12}
   s.description = %q{Optimizes veritas relations}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -93,6 +93,7 @@ Gem::Specification.new do |s|
     "lib/veritas/optimizer/relation/operation/order.rb",
     "lib/veritas/optimizer/relation/operation/reverse.rb",
     "lib/veritas/optimizer/relation/operation/unary.rb",
+    "lib/veritas/optimizer/support/predicate_partition.rb",
     "lib/veritas/optimizer/version.rb",
     "spec/integration/veritas/algebra/difference/optimize_spec.rb",
     "spec/integration/veritas/algebra/intersection/optimize_spec.rb",
@@ -286,6 +287,9 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/optimizable/optimize_spec.rb",
     "spec/unit/veritas/optimizer/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/predicate_partition/left_spec.rb",
+    "spec/unit/veritas/optimizer/predicate_partition/remainder_spec.rb",
+    "spec/unit/veritas/optimizer/predicate_partition/right_spec.rb",
     "spec/unit/veritas/optimizer/relation/materialized/empty_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/materialized/empty_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/binary/empty_left/optimizable_spec.rb",
