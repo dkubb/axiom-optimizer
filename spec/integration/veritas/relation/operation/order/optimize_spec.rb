@@ -25,7 +25,7 @@ describe Relation::Operation::Order, '#optimize' do
   context 'containing an optimizable relation' do
     let(:operand) { relation.project(relation.header) }
 
-    it { should eql(relation.order { directions }) }
+    it { should eql(relation.sort_by { directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -40,9 +40,9 @@ describe Relation::Operation::Order, '#optimize' do
   end
 
   context 'containing an object operation' do
-    let(:operand) { relation.order { |r| [ r[:id].desc ] } }
+    let(:operand) { relation.sort_by { |r| [ r[:id].desc ] } }
 
-    it { should eql(relation.order { directions }) }
+    it { should eql(relation.sort_by { directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -57,9 +57,9 @@ describe Relation::Operation::Order, '#optimize' do
   end
 
   context 'containing a reverse operation' do
-    let(:operand) { relation.order.reverse }
+    let(:operand) { relation.sort_by { |r| r[:id] }.reverse }
 
-    it { should eql(relation.order) }
+    it { should eql(relation.sort_by { |r| r[:id] }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -74,7 +74,7 @@ describe Relation::Operation::Order, '#optimize' do
   end
 
   context 'containing a limit(1) operation' do
-    let(:operand) { relation.order.take(1) }
+    let(:operand) { relation.sort_by { |r| r[:id] }.take(1) }
 
     it { should equal(operand) }
 

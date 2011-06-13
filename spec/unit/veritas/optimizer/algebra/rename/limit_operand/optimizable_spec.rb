@@ -15,7 +15,7 @@ describe Optimizer::Algebra::Rename::LimitOperand, '#optimizable?' do
   end
 
   context 'when the operand is an limit operation' do
-    let(:operand) { base.order.take(1) }
+    let(:operand) { base.sort_by { |r| r[:id] }.take(1) }
 
     it { should be(true) }
   end

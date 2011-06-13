@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Binary::LeftOrderOperand, '#optimizable
   let(:object)   { described_class.new(relation)                    }
 
   context 'when left is an order' do
-    let(:left) { Relation.new([ [ :id, Integer ] ], [].each).order }
+    let(:left) { Relation.new([ [ :id, Integer ] ], [].each).sort_by { |r| r[:id] } }
 
     it { should be(true) }
   end

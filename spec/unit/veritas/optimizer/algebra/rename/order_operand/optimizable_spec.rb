@@ -15,7 +15,7 @@ describe Optimizer::Algebra::Rename::OrderOperand, '#optimizable?' do
   end
 
   context 'when the operand is an order operation' do
-    let(:operand) { base.order }
+    let(:operand) { base.sort_by { |r| r[:id] } }
 
     it { should be(true) }
   end

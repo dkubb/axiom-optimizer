@@ -267,11 +267,11 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a reverse operation' do
-    let(:limit)   { relation.order.take(2) }
-    let(:operand) { limit.reverse          }
+    let(:limit)   { relation.sort_by { |r| [ r[:id], r[:name] ] }.take(2) }
+    let(:operand) { limit.reverse                                         }
 
     it 'pushes the object under the order, limit and reverse' do
-      should eql(relation.rename(aliases).order.take(2).reverse)
+      should eql(relation.rename(aliases).sort_by { |r| [ r[:other_id], r[:name] ] }.take(2).reverse)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -287,12 +287,12 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a reverse operation, containing a object that cancels out' do
-    let(:limit)   { relation.order.take(2)                 }
-    let(:operand) { limit.rename(:id => :other_id).reverse }
-    let(:aliases) { { :other_id => :id }                   }
+    let(:limit)   { relation.sort_by { |r| [ r[:id], r[:name] ] }.take(2) }
+    let(:operand) { limit.rename(:id => :other_id).reverse                }
+    let(:aliases) { { :other_id => :id }                                  }
 
     it 'pushes the object under the order, limit and reverse, and then cancel it out' do
-      should eql(relation.order.take(2).reverse)
+      should eql(relation.sort_by { |r| [ r[:id], r[:name] ] }.take(2).reverse)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -308,10 +308,10 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an order operation' do
-    let(:operand) { relation.order }
+    let(:operand) { relation.sort_by { |r| [ r[:id], r[:name] ] } }
 
     it 'pushes the object under the order' do
-      should eql(relation.rename(aliases).order)
+      should eql(relation.rename(aliases).sort_by { |r| [ r[:other_id], r[:name] ] })
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -327,11 +327,11 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an order operation, containing a object that cancels out' do
-    let(:operand) { relation.rename(:id => :other_id).order }
-    let(:aliases) { { :other_id => :id }                    }
+    let(:operand) { relation.rename(:id => :other_id).sort_by { |r| [ r[:other_id], r[:name] ] } }
+    let(:aliases) { { :other_id => :id }                                                         }
 
     it 'pushes the object under the order, and then cancel it out' do
-      should eql(relation.order)
+      should eql(relation.sort_by { |r| [ r[:id], r[:name] ] })
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -347,11 +347,11 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a limit operation' do
-    let(:order)   { relation.order }
-    let(:operand) { order.take(2)  }
+    let(:order)   { relation.sort_by { |r| [ r[:id], r[:name] ] } }
+    let(:operand) { order.take(2)                                 }
 
     it 'pushes the object under the limit and order' do
-      should eql(relation.rename(aliases).order.take(2))
+      should eql(relation.rename(aliases).sort_by { |r| [ r[:other_id], r[:name] ] }.take(2))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -367,12 +367,12 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a limit operation, containing a object that cancels out' do
-    let(:order)   { relation.order                         }
-    let(:operand) { order.rename(:id => :other_id).take(2) }
-    let(:aliases) { { :other_id => :id }                   }
+    let(:order)   { relation.sort_by { |r| [ r[:id], r[:name] ] } }
+    let(:operand) { order.rename(:id => :other_id).take(2)        }
+    let(:aliases) { { :other_id => :id }                          }
 
     it 'pushes the object under the limit and order, and then cancel it out' do
-      should eql(relation.order.take(2))
+      should eql(relation.sort_by { |r| [ r[:id], r[:name] ] }.take(2))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -388,11 +388,11 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an offset operation' do
-    let(:order)   { relation.order }
-    let(:operand) { order.drop(1)  }
+    let(:order)   { relation.sort_by { |r| [ r[:id], r[:name] ] } }
+    let(:operand) { order.drop(1)                                 }
 
     it 'pushes the object under the offset and order' do
-      should eql(relation.rename(aliases).order.drop(1))
+      should eql(relation.rename(aliases).sort_by { |r| [ r[:other_id], r[:name] ] }.drop(1))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -408,12 +408,12 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an offset operation, containing a object that cancels out' do
-    let(:order)   { relation.order                         }
-    let(:operand) { order.rename(:id => :other_id).drop(1) }
-    let(:aliases) { { :other_id => :id }                   }
+    let(:order)   { relation.sort_by { |r| [ r[:id], r[:name] ] } }
+    let(:operand) { order.rename(:id => :other_id).drop(1)        }
+    let(:aliases) { { :other_id => :id }                          }
 
     it 'pushes the object under the offset and order, and then cancel it out' do
-      should eql(relation.order.drop(1))
+      should eql(relation.sort_by { |r| [ r[:id], r[:name] ] }.drop(1))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

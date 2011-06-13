@@ -7,7 +7,7 @@ describe Optimizer::Relation::Operation::Binary::RightOrderOperand, '#optimize' 
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [].each) }
   let(:left)     { base                                        }
-  let(:right)    { base.order                                  }
+  let(:right)    { base.sort_by { |r| r[:id] }                 }
   let(:relation) { left.union(right)                           }
   let(:object)   { described_class.new(relation)               }
 

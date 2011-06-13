@@ -7,7 +7,7 @@ describe Optimizer::Relation::Operation::Unary::OrderOperand, '#optimize' do
 
   let(:described_class) { Class.new(Optimizer::Relation::Operation::Unary) }
   let(:base)            { Relation.new([ [ :id, Integer ] ], [].each)      }
-  let(:operand)         { base.order                                       }
+  let(:operand)         { base.sort_by { |r| r[:id] }                      }
   let(:relation)        { operand.project([])                              }
   let(:object)          { described_class.new(relation)                    }
 

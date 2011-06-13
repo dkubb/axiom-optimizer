@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Rename::OffsetOperand, '#optimize' do
 
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:base)     { Relation.new(header, [ [ 1 ] ].each)       }
-  let(:order)    { base.order                                 }
+  let(:order)    { base.sort_by { |r| r[:id] }                }
   let(:relation) { order.drop(1).rename(:id => :other_id)     }
   let(:object)   { described_class.new(relation)              }
 

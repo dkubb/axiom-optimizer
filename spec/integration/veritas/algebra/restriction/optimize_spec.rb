@@ -184,8 +184,8 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an order operation' do
-    let(:operand)   { relation.order      }
-    let(:predicate) { operand[:id].gte(1) }
+    let(:operand)   { relation.sort_by { |r| r[:id] } }
+    let(:predicate) { operand[:id].gte(1)             }
 
     it 'cancels out the order' do
       should eql(relation.restrict { predicate })

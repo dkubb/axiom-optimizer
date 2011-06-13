@@ -7,7 +7,7 @@ describe Relation::Operation::Reverse, '#optimize' do
 
   let(:body)     { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
-  let(:order)    { relation.order                           }
+  let(:order)    { relation.sort_by { |r| r[:id] }          }
   let(:operand)  { order                                    }
   let(:object)   { described_class.new(operand)             }
 
@@ -52,7 +52,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'with an order operation' do
-    it { should eql(relation.order { object.directions }) }
+    it { should eql(relation.sort_by { object.directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -69,7 +69,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   context 'with an order operation when optimized' do
     let(:operand) { order.rename({}) }
 
-    it { should eql(relation.order { object.directions }) }
+    it { should eql(relation.sort_by { object.directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

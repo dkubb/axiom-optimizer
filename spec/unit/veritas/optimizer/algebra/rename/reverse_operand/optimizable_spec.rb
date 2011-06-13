@@ -14,7 +14,7 @@ describe Optimizer::Algebra::Rename::ReverseOperand, '#optimizable?' do
   end
 
   context 'when the operand is an reverse operation' do
-    let(:operand) { base.order.take(2).reverse }
+    let(:operand) { base.sort_by { |r| r[:id] }.take(2).reverse }
 
     it { should be(true) }
   end
