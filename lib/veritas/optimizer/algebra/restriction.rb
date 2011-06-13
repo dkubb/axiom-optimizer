@@ -137,31 +137,31 @@ module Veritas
 
         end # class RestrictionOperand
 
-        # Optimize when the operand is a Join
-        class JoinOperand < self
+        # Optimize when the operand is a combine operation
+        class CombinationOperand < self
 
-          # Test if the operand is a Join and the restriction is commutative
+          # Test if the restriction is commutative
           #
           # @return [Boolean]
           #
           # @api private
           def optimizable?
-            operand.kind_of?(Veritas::Algebra::Join) &&
             restriction_commutative?
           end
 
-          # Distribute the restriction across the join and apply to the operands
+          # Abstract method to optimize the combination operand
           #
-          # @return [Restriction]
+          # @raise [NotImplementedError]
+          #   raised when the subclass does not implement the method
           #
           # @api private
           def optimize
-            left_restriction.join(right_restriction).restrict { partition.remainder }
+            raise NotImplementedError, "#{self.class}#optimize must be implemented"
           end
 
         private
 
-          # Return a predicate partition for the restriction and join operand headers
+          # Return a predicate partition for the restriction and operand headers
           #
           # @return [PredicatePartition]
           #
@@ -171,11 +171,11 @@ module Veritas
             PredicatePartition.new(predicate, operand.left.header, operand.right.header)
           end
 
-          # Test if the restriction can be distributed over the join
+          # Test if the restriction can be distributed over the operation
           #
           # If the predicates for the left and right operands would match
           # everything, there is no point in distributing the restriction
-          # across the join, since it will not affect the result.
+          # across the operation, since it will not affect the result.
           #
           # @return [Boolean]
           #
@@ -202,7 +202,7 @@ module Veritas
             partition.right.equal?(Veritas::Function::Proposition::Tautology.instance)
           end
 
-          # Restrict the left operand of the join with the left predicate partition
+          # Restrict the left operand with the left predicate partition
           #
           # @return [Restriction]
           #
@@ -211,7 +211,7 @@ module Veritas
             operand.left.restrict { partition.left }
           end
 
-          # Restrict the right operand of the join with the right predicate partition
+          # Restrict the right operand with the right predicate partition
           #
           # @return [Restriction]
           #
@@ -222,6 +222,52 @@ module Veritas
 
           memoize :partition
         end
+
+        # Optimize when the operand is a Join
+        class JoinOperand < CombinationOperand
+
+          # Test if the operand is a Join and the restriction is commutative
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand.kind_of?(Veritas::Algebra::Join) && super
+          end
+
+          # Distribute the restriction across the join and apply to the operands
+          #
+          # @return [Restriction]
+          #
+          # @api private
+          def optimize
+            left_restriction.join(right_restriction).restrict { partition.remainder }
+          end
+
+        end # class JoinOperand
+
+        # Optimize when the operand is a Product
+        class ProductOperand < CombinationOperand
+
+          # Test if the operand is a Join and the restriction is commutative
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand.kind_of?(Veritas::Algebra::Product) && super
+          end
+
+          # Distribute the restriction across the product and apply to the operands
+          #
+          # @return [Restriction]
+          #
+          # @api private
+          def optimize
+            left_restriction.product(right_restriction).restrict { partition.remainder }
+          end
+
+        end # class ProductOperand
 
         # Optimize when the operand is a Set
         class SetOperand < self
@@ -300,6 +346,7 @@ module Veritas
           Contradiction,
           RestrictionOperand,
           JoinOperand,
+          ProductOperand,
           SetOperand,
           OrderOperand,
           EmptyOperand,
