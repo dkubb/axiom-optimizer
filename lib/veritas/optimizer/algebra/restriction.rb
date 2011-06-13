@@ -149,14 +149,13 @@ module Veritas
             restriction_commutative?
           end
 
-          # Abstract method to optimize the combination operand
+          # Distribute the restriction across the operation and apply to the operands
           #
-          # @raise [NotImplementedError]
-          #   raised when the subclass does not implement the method
+          # @return [Restriction]
           #
           # @api private
           def optimize
-            raise NotImplementedError, "#{self.class}#optimize must be implemented"
+            left_restriction.send(relation_method, right_restriction).restrict { partition.remainder }
           end
 
         private
@@ -202,6 +201,16 @@ module Veritas
             partition.right.equal?(Veritas::Function::Proposition::Tautology.instance)
           end
 
+          # Abstract method to return the relation method name
+          #
+          # @raise [NotImplementedError]
+          #   raised when the subclass does not implement the method
+          #
+          # @api private
+          def relation_method
+            raise NotImplementedError, "#{self.class}#relation_method must be implemented"
+          end
+
           # Restrict the left operand with the left predicate partition
           #
           # @return [Restriction]
@@ -235,13 +244,15 @@ module Veritas
             operand.kind_of?(Veritas::Algebra::Join) && super
           end
 
-          # Distribute the restriction across the join and apply to the operands
+        private
+
+          # Return the relation method name for a Join operation
           #
-          # @return [Restriction]
+          # @return [Symbol]
           #
           # @api private
-          def optimize
-            left_restriction.join(right_restriction).restrict { partition.remainder }
+          def relation_method
+            :join
           end
 
         end # class JoinOperand
@@ -258,13 +269,16 @@ module Veritas
             operand.kind_of?(Veritas::Algebra::Product) && super
           end
 
-          # Distribute the restriction across the product and apply to the operands
+        private
+
+          # Return the relation method name for a Product operation
           #
-          # @return [Restriction]
+          # @return [Symbol]
           #
           # @api private
-          def optimize
-            left_restriction.product(right_restriction).restrict { partition.remainder }
+
+          def relation_method
+            :product
           end
 
         end # class ProductOperand
