@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:order)  { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).sort_by { |r| r[:id] } }
-  let(:limit)  { order.take(2)                                                             }
-  let(:object) { described_class.new(relation)                                             }
+  let(:order)  { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).sort_by { |r| r.id } }
+  let(:limit)  { order.take(2)                                                           }
+  let(:object) { described_class.new(relation)                                           }
 
   before do
     object.should be_optimizable

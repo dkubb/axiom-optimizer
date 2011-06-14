@@ -6,7 +6,7 @@ describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:relation) { operand.sort_by { |r| r[:id] }                     }
+  let(:relation) { operand.sort_by { |r| r.id }                       }
   let(:object)   { described_class.new(relation)                      }
 
   before do
@@ -14,7 +14,7 @@ describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimizable?' do
   end
 
   context 'when the operand is ordered' do
-    let(:operand) { base.sort_by { |r| r[:id] } }
+    let(:operand) { base.sort_by { |r| r.id } }
 
     it { should be(true) }
   end

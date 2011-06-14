@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Summarization::OrderOperand, '#optimize' do
   subject { object.optimize }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [].each) }
-  let(:operand)  { base.sort_by { |r| r[:id] }                 }
+  let(:operand)  { base.sort_by { |r| r.id }                   }
   let(:relation) { operand.summarize([]) {}                    }
   let(:object)   { described_class.new(relation)               }
 

@@ -31,7 +31,7 @@ describe Optimizer::Algebra::Join::LeftMaterializedOperand, '#optimize' do
 
     its(:left) { should equal(left) }
 
-    its(:right) { should eql(right.restrict { |r| r[:id].eq(1) }) }
+    its(:right) { should eql(right.restrict { |r| r.id.eq(1) }) }
 
     it 'is not further optimizable' do
       described_class.new(subject).should_not be_optimizable
@@ -46,7 +46,7 @@ describe Optimizer::Algebra::Join::LeftMaterializedOperand, '#optimize' do
 
     its(:left) { should equal(left) }
 
-    its(:right) { should eql(right.restrict { |r| r[:id].include([ 1, 2 ]) }) }
+    its(:right) { should eql(right.restrict { |r| r.id.include([ 1, 2 ]) }) }
 
     it 'is not further optimizable' do
       described_class.new(subject).should_not be_optimizable

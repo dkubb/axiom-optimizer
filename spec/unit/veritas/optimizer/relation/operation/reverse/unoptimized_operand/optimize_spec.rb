@@ -6,7 +6,7 @@ describe Optimizer::Relation::Operation::Reverse::UnoptimizedOperand, '#optimize
   subject { object.optimize }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:order)    { base.sort_by { |r| r[:id] }                        }
+  let(:order)    { base.sort_by { |r| r.id }                          }
   let(:relation) { order.rename({}).reverse                           }
   let(:object)   { described_class.new(relation)                      }
 

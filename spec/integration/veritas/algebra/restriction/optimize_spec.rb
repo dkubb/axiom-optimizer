@@ -168,7 +168,7 @@ describe Algebra::Restriction, '#optimize' do
     let(:predicate) { operand[:id].gte(1)                                }
 
     it 'pushes the object to each relation' do
-      should eql(left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }))
+      should eql(left.restrict { |r| r.id.gte(1) }.union(right.restrict { |r| r.id.gte(1) }))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -184,8 +184,8 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an order operation' do
-    let(:operand)   { relation.sort_by { |r| r[:id] } }
-    let(:predicate) { operand[:id].gte(1)             }
+    let(:operand)   { relation.sort_by { |r| r.id } }
+    let(:predicate) { operand[:id].gte(1)           }
 
     it 'cancels out the order' do
       should eql(relation.restrict { predicate })

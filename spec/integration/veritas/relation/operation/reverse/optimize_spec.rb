@@ -7,7 +7,7 @@ describe Relation::Operation::Reverse, '#optimize' do
 
   let(:body)     { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
-  let(:order)    { relation.sort_by { |r| r[:id] }          }
+  let(:order)    { relation.sort_by { |r| r.id }            }
   let(:operand)  { order                                    }
   let(:object)   { described_class.new(operand)             }
 

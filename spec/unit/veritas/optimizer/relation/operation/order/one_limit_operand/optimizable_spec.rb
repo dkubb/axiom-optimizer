@@ -6,7 +6,7 @@ describe Optimizer::Relation::Operation::Order::OneLimitOperand, '#optimizable?'
   subject { object.optimizable? }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:relation) { operand.sort_by { |r| r[:id] }                     }
+  let(:relation) { operand.sort_by { |r| r.id }                       }
   let(:object)   { described_class.new(relation)                      }
 
   before do
@@ -14,13 +14,13 @@ describe Optimizer::Relation::Operation::Order::OneLimitOperand, '#optimizable?'
   end
 
   context 'when the operand is limited to 1' do
-    let(:operand) { base.sort_by { |r| r[:id] }.take(1) }
+    let(:operand) { base.sort_by { |r| r.id }.take(1) }
 
     it { should be(true) }
   end
 
   context 'when the operand is not limited to 1' do
-    let(:operand) { base.sort_by { |r| r[:id] }.take(2) }
+    let(:operand) { base.sort_by { |r| r.id }.take(2) }
 
     it { should be(false) }
   end

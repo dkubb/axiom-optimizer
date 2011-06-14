@@ -29,7 +29,7 @@ describe Optimizer::Algebra::Join::RightMaterializedOperand, '#optimize' do
 
     it { should be_kind_of(Algebra::Join) }
 
-    its(:left) { should eql(left.restrict { |r| r[:id].eq(1) }) }
+    its(:left) { should eql(left.restrict { |r| r.id.eq(1) }) }
 
     its(:right) { should equal(right) }
 
@@ -44,7 +44,7 @@ describe Optimizer::Algebra::Join::RightMaterializedOperand, '#optimize' do
 
     it { should be_kind_of(Algebra::Join) }
 
-    its(:left) { should eql(left.restrict { |r| r[:id].include([ 1, 2 ]) }) }
+    its(:left) { should eql(left.restrict { |r| r.id.include([ 1, 2 ]) }) }
 
     its(:right) { should equal(right) }
 

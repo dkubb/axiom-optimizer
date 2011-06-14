@@ -15,7 +15,7 @@ describe Optimizer::Algebra::Rename::OffsetOperand, '#optimizable?' do
   end
 
   context 'when the operand is an offset operation' do
-    let(:operand) { base.sort_by { |r| r[:id] }.drop(1) }
+    let(:operand) { base.sort_by { |r| r.id }.drop(1) }
 
     it { should be(true) }
   end

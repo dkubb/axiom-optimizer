@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization::EmptySummarizePer, '#optimize' do
   subject { object.optimize }
 
-  let(:header)        { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])             }
-  let(:base)          { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)                          }
-  let(:attribute)     { Attribute::Object.new(:test)                                              }
-  let(:operand)       { base                                                                      }
-  let(:summarize_per) { base.project([ :id ]).restrict { false }                                  }
-  let(:relation)      { operand.summarize(summarize_per) { |r| r.add(attribute, r[:name].count) } }
-  let(:object)        { described_class.new(relation)                                             }
+  let(:header)        { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])           }
+  let(:base)          { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)                        }
+  let(:attribute)     { Attribute::Object.new(:test)                                            }
+  let(:operand)       { base                                                                    }
+  let(:summarize_per) { base.project([ :id ]).restrict { false }                                }
+  let(:relation)      { operand.summarize(summarize_per) { |r| r.add(attribute, r.name.count) } }
+  let(:object)        { described_class.new(relation)                                           }
 
   before do
     object.should be_optimizable

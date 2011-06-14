@@ -15,7 +15,7 @@ describe Optimizer::Relation::Operation::Unary::OrderOperand, '#optimizable?' do
   end
 
   context 'when operand is an order' do
-    let(:operand) { base.sort_by { |r| r[:id] } }
+    let(:operand) { base.sort_by { |r| r.id } }
 
     it { should be(true) }
   end

@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Binary::RightOrderOperand, '#optimizabl
   let(:object)   { described_class.new(relation)                    }
 
   context 'when right is an order' do
-    let(:right) { Relation.new([ [ :id, Integer ] ], [].each).sort_by { |r| r[:id] } }
+    let(:right) { Relation.new([ [ :id, Integer ] ], [].each).sort_by { |r| r.id } }
 
     it { should be(true) }
   end

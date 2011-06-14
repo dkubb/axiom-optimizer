@@ -14,13 +14,13 @@ describe Optimizer::Relation::Operation::Reverse::OrderOperand, '#optimizable?' 
   end
 
   context 'when the operand is ordered' do
-    let(:operand) { base.sort_by { |r| r[:id] } }
+    let(:operand) { base.sort_by { |r| r.id } }
 
     it { should be(true) }
   end
 
   context 'when the operand is not ordered' do
-    let(:operand) { base.sort_by { |r| r[:id] }.take(2) }
+    let(:operand) { base.sort_by { |r| r.id }.take(2) }
 
     it { should be(false) }
   end

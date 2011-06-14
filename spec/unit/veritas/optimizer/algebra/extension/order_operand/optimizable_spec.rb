@@ -10,7 +10,7 @@ describe Optimizer::Algebra::Extension::OrderOperand, '#optimizable?' do
   let(:object)   { described_class.new(relation)               }
 
   context 'when operand is an order' do
-    let(:operand) { base.sort_by { |r| r[:id] } }
+    let(:operand) { base.sort_by { |r| r.id } }
 
     it { should be(true) }
   end

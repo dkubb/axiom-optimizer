@@ -13,7 +13,7 @@ describe Optimizer::Algebra::Summarization::EmptyOperand, '#optimize' do
   let(:object)        { described_class.new(relation)              }
 
   context 'when the function has a default' do
-    let(:relation) { operand.summarize(summarize_per) { |r| r.add(attribute, r[:id].count) } }
+    let(:relation) { operand.summarize(summarize_per) { |r| r.add(attribute, r.id.count) } }
 
     before do
       object.should be_optimizable

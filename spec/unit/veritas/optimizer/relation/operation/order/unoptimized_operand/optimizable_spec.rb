@@ -7,7 +7,7 @@ describe Optimizer::Relation::Operation::Order::UnoptimizedOperand, '#optimizabl
 
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:base)     { Relation.new(header, [ [ 1 ] ].each)       }
-  let(:relation) { operand.sort_by { |r| r[:id] }             }
+  let(:relation) { operand.sort_by { |r| r.id }               }
   let(:object)   { described_class.new(relation)              }
 
   before do

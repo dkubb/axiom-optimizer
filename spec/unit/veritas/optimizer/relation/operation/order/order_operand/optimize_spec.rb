@@ -6,8 +6,8 @@ describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimize' do
   subject { object.optimize }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:order)    { base.sort_by { |r| r[:id] }                        }
-  let(:relation) { order.sort_by { |order| order.directions.reverse } }
+  let(:order)    { base.sort_by { |r| r.id }                          }
+  let(:relation) { order.sort_by { order.directions.reverse }         }
   let(:object)   { described_class.new(relation)                      }
 
   before do
