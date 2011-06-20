@@ -258,7 +258,18 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand, operation.directions)
+            operand.class.new(wrap_operand, directions)
+          end
+
+        private
+
+          # Return the renamed directions
+          #
+          # @return [Relation::Operation::Order::DirectionSet]
+          #
+          # @api private
+          def directions
+            operand.directions.rename(aliases)
           end
 
         end # class OrderOperand
