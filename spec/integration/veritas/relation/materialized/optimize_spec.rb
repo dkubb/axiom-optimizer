@@ -16,11 +16,6 @@ describe Relation::Materialized, '#optimize' do
       should == object
     end
 
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
-
     it_should_behave_like 'an optimize method'
   end
 
@@ -28,11 +23,6 @@ describe Relation::Materialized, '#optimize' do
     let(:body) { [ [ 1 ] ] }
 
     it { should equal(object) }
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
 
     it_should_behave_like 'an optimize method'
   end
