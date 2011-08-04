@@ -117,7 +117,6 @@ module Veritas
             end
 
           end # class MaterializedOperand
-
         end # class Unary
       end # module Operation
     end # module Relation
