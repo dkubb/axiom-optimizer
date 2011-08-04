@@ -107,7 +107,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Relation::Empty.new(header)
+            Veritas::Relation::Empty.new(header, operation)
           end
 
         end # class EmptyOperand

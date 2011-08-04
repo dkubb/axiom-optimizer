@@ -14,7 +14,8 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Relation::Empty.new(operation.header)
+            operation = self.operation
+            Veritas::Relation::Empty.new(operation.header, operation)
           end
 
           # Optimize when the left operand is Empty

@@ -18,4 +18,6 @@ describe Optimizer::Algebra::Difference::EqualOperands, '#optimize' do
   it { should be_kind_of(Relation::Empty) }
 
   its(:header) { should equal(header) }
+
+  its(:tuples) { should equal(relation) }
 end

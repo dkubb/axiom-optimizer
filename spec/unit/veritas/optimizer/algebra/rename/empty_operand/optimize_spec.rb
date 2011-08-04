@@ -16,4 +16,6 @@ describe Optimizer::Algebra::Rename::EmptyOperand, '#optimize' do
   it { should be_kind_of(Relation::Empty) }
 
   its(:header) { should equal(relation.header) }
+
+  its(:tuples) { should equal(relation) }
 end
