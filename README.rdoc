@@ -2,7 +2,7 @@
 
 Relational algebra optimizer
 
-http://travis-ci.org/dkubb/veritas-optimizer.png
+{<img src="https://secure.travis-ci.org/dkubb/veritas-optimizer.png" />}[http://travis-ci.org/dkubb/veritas-optimizer]
 
 == Installation
 
