@@ -24,7 +24,7 @@ module Veritas
             #
             # @api private
             def optimize
-              Veritas::Function::Predicate::Inequality.new(left, right.first)
+              left.ne(right.first)
             end
 
           end # class OneRightOperand

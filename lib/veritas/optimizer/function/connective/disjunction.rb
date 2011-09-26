@@ -72,8 +72,7 @@ module Veritas
             #
             # @api private
             def optimize
-              left = self.left
-              Veritas::Function::Predicate::Inclusion.new(left.left, merged_right_enumerables).optimize
+              left.left.include(merged_right_enumerables).optimize
             end
 
           end # class OptimizableToInclusion

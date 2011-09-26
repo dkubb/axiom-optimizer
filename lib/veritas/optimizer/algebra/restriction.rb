@@ -133,7 +133,7 @@ module Veritas
           #
           # @api private
           def predicate
-            Veritas::Function::Connective::Conjunction.new(operand.predicate, super).optimize
+            operand.predicate.and(super).optimize
           end
 
         end # class RestrictionOperand
