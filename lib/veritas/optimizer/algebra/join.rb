@@ -49,7 +49,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Intersection.new(left, right)
+            left.intersect(right)
           end
 
         end # class EqualHeaders
@@ -72,7 +72,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(left, right.restrict { materialized_predicate })
+            left.join(right.restrict { materialized_predicate })
           end
 
         private
@@ -116,7 +116,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(left.restrict { materialized_predicate }, right)
+            left.restrict { materialized_predicate }.join(right)
           end
 
         private

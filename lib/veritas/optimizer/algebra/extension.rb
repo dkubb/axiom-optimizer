@@ -41,7 +41,11 @@ module Veritas
         #
         # @api private
         def wrap_operand(operand = operand.operand)
-          operation.class.new(operand, extensions)
+          operand.extend do |context|
+            extensions.each do |extension|
+              context.add(*extension)
+            end
+          end
         end
 
         # Optimize when the operand is an Order

@@ -32,7 +32,7 @@ module Veritas
         #
         # @api private
         def wrap_operand(operand = operand.operand)
-          operation.class.new(operand, predicate)
+          operand.restrict { predicate }
         end
 
         # Return true if the predicate is a true value

@@ -15,7 +15,7 @@ module Veritas
         #
         # @api private
         def wrap_operand(operand = operand.operand)
-          operation.class.new(operand, header)
+          operand.project(header)
         end
 
         # Optimize when the operand is a Projection
@@ -59,7 +59,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_left, wrap_right)
+            wrap_left.union(wrap_right)
           end
 
         private

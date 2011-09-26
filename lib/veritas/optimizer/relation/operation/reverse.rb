@@ -49,8 +49,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operand = self.operand
-              operand.class.new(operand.operand, operation.directions)
+              operand.operand.sort_by { operation.directions }
             end
 
           end # class OrderOperand
@@ -65,7 +64,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(operand)
+              operand.reverse
             end
 
           end # class UnoptimizedOperand
