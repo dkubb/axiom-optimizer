@@ -26,5 +26,5 @@ describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
 
   its(:summarize_per) { should equal(TABLE_DEE) }
 
-  its(:summarizers) { pending { should == { attribute => Aggregate::Sum.new(1) } } }
+  its(:summarizers) { should == { attribute => Aggregate::Sum.new(1) } }
 end
