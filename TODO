@@ -1,12 +1,3 @@
-* Convert all the direct Veritas class usage to use the corresponding
-  methods. So for example instead of Algebra::Join.new(left, right) I
-  would want left.join(right).
-  * The reason for this is that as the Relation Gateway is created
-    it will have operands that will not be directly joinable without
-    gateway specific processing. By using the method directly I give the
-    chance for the gateway to step in and perform other work before
-    delegating up to the built-in operators in veritas.
-
 * Pull up Rename rather than pushing it down
   * Currently a Rename applies to every tuple in a result-set, and
     doing the rename prematurely means that lots of tuples that would
