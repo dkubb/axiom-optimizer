@@ -83,7 +83,7 @@ module Veritas
           #
           # @api private
           def extensions_optimizable?
-            !extensions.eql?(operation.extensions)
+            ! extensions.eql?(operation.extensions)
           end
 
         end # class UnoptimizedOperand

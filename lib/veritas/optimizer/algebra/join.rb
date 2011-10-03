@@ -63,7 +63,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            left.materialized? && !right_matching_left?
+            left.materialized? && ! right_matching_left?
           end
 
           # Return the join of the left and right with the right restricted
@@ -107,7 +107,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            right.materialized? && !left_matching_right?
+            right.materialized? && ! left_matching_right?
           end
 
           # Return the join of the left and right with the left restricted

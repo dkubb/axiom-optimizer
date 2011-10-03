@@ -67,7 +67,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            !operand.equal?(operation.operand)
+            ! operand.equal?(operation.operand)
           end
 
           # Return a Aggregate with an optimized operand

@@ -17,7 +17,7 @@ module Veritas
           # @api private
           def optimizable?
             left = self.left
-            left.header.empty? && !left.kind_of?(Veritas::Relation::Empty)
+            left.header.empty? && ! left.kind_of?(Veritas::Relation::Empty)
           end
 
           # A Product with a left TABLE DEE is equivalent to the right operand
@@ -41,7 +41,7 @@ module Veritas
           # @api private
           def optimizable?
             right = self.right
-            right.header.empty? && !right.kind_of?(Veritas::Relation::Empty)
+            right.header.empty? && ! right.kind_of?(Veritas::Relation::Empty)
           end
 
           # A Product with a right TABLE DEE is equivalent to the left operand

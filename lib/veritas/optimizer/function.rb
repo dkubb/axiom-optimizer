@@ -41,7 +41,7 @@ module Veritas
         #
         # @api private
         def self.constant?(operand)
-          !operand.nil? && !operand.respond_to?(:call)
+          ! (operand.nil? || operand.respond_to?(:call))
         end
 
         # Test if the operand is an attribute
@@ -60,8 +60,8 @@ module Veritas
         # @api private
         def self.min(operand)
           case operand
-            when Attribute::String  then operand.min_length
-            when Attribute::Numeric then operand.range.first
+          when Attribute::String  then operand.min_length
+          when Attribute::Numeric then operand.range.first
           else
             operand
           end
@@ -74,8 +74,8 @@ module Veritas
         # @api private
         def self.max(operand)
           case operand
-            when Attribute::String  then operand.max_length
-            when Attribute::Numeric then operand.range.last
+          when Attribute::String  then operand.max_length
+          when Attribute::Numeric then operand.range.last
           else
             operand
           end

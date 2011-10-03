@@ -45,7 +45,7 @@ module Veritas
               if    util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
-                !joinable?
+                ! joinable?
               end
             end
 
@@ -57,7 +57,7 @@ module Veritas
             #
             # @api private
             def left_invalid_constant?
-              !right.valid_value?(left)
+              ! right.valid_value?(left)
             end
 
             # Test if the right operand is an invalid constant
@@ -66,7 +66,7 @@ module Veritas
             #
             # @api private
             def right_invalid_constant?
-              !left.valid_value?(right)
+              ! left.valid_value?(right)
             end
 
             # Test if the left and right operand are joinable
@@ -106,7 +106,7 @@ module Veritas
             #
             # @api private
             def left_invalid_constant?
-              !right.valid_primitive?(left)
+              ! right.valid_primitive?(left)
             end
 
             # Test if the right operand is an invalid constant
@@ -115,7 +115,7 @@ module Veritas
             #
             # @api private
             def right_invalid_constant?
-              !left.valid_primitive?(right)
+              ! left.valid_primitive?(right)
             end
 
             # Test if the left and right operand are not comparable
@@ -125,7 +125,7 @@ module Veritas
             # @api private
             def not_comparable?
               left = self.left
-              !(left.respond_to?(:comparable?) && left.comparable?(right))
+              ! (left.respond_to?(:comparable?) && left.comparable?(right))
             end
 
           end # module NeverComparable

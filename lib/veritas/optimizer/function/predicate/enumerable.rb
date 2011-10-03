@@ -17,10 +17,10 @@ module Veritas
           # @api private
           def self.sort_by_value(object)
             case object
-              when TrueClass  then 1
-              when FalseClass then 0
-              else
-                object
+            when TrueClass  then 1
+            when FalseClass then 0
+            else
+              object
             end
           end
 

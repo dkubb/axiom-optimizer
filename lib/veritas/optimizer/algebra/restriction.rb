@@ -52,7 +52,7 @@ module Veritas
         #
         # @api private
         def constant_false_predicate?
-          !(predicate.respond_to?(:call) || constant_true_predicate?)
+          ! (predicate.respond_to?(:call) || constant_true_predicate?)
         end
 
         # Optimize when the predicate is a tautology
@@ -181,7 +181,7 @@ module Veritas
           #
           # @api private
           def restriction_commutative?
-            !(partition_left_tautology? && partition_right_tautology?)
+            ! (partition_left_tautology? && partition_right_tautology?)
           end
 
           # Test if the predicate for the left operand would match everything
@@ -342,7 +342,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            super || !predicate.equal?(operation.predicate)
+            super || ! predicate.equal?(operation.predicate)
           end
 
           # Return a Restriction with an optimized operand
