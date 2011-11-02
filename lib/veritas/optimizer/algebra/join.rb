@@ -34,7 +34,7 @@ module Veritas
         # Optimize when operands' headers are equal
         class EqualHeaders < self
 
-          # Test if the operands' headers are equal to the join's headers
+          # Test if the operands' headers are equal
           #
           # @return [Boolean]
           #
@@ -43,7 +43,7 @@ module Veritas
             left.header.eql?(right.header)
           end
 
-          # A Join with an equal header is an Intersection
+          # A Join with equal headers is an Intersection
           #
           # @return [Algebra::Intersection]
           #
