@@ -54,6 +54,29 @@ module Veritas
 
         end # class EqualHeaders
 
+        # Optimize when operands' headers are disjoint
+        class DisjointHeaders < self
+
+          # Test if the operands' headers are disjoint
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            (left.header & right.header).none?
+          end
+
+          # A Join with disjoint headers is a Product
+          #
+          # @return [Algebra::Product]
+          #
+          # @api private
+          def optimize
+            left.product(right)
+          end
+
+        end # class EqualHeaders
+
         # Optimize when the left operand is materialized
         class LeftMaterializedOperand < self
 
@@ -146,6 +169,7 @@ module Veritas
           EmptyLeft,
           EmptyRight,
           EqualHeaders,
+          DisjointHeaders,
           LeftOrderOperand,
           RightOrderOperand,
           MaterializedOperands,

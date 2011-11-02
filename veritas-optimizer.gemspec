@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-10-04"
+  s.date = "2011-11-02"
   s.description = "Optimizes veritas relations"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -141,6 +141,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/algebra/intersection/empty_left/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/intersection/empty_right/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/intersection/equal_operands/optimize_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/join/disjoint_headers/optimizable_spec.rb",
+    "spec/unit/veritas/optimizer/algebra/join/disjoint_headers/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/join/equal_headers/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/algebra/join/equal_headers/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/join/left_materialized_operand/optimizable_spec.rb",
@@ -362,7 +364,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/dkubb/veritas-optimizer"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.11"
   s.summary = "Relational algebra optimizer"
 
   if s.respond_to? :specification_version then
