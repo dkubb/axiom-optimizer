@@ -82,6 +82,10 @@
       * Offset with an offset > 0 can be transformed into an empty
         relation, since at most there can be only one match.
 
+   * When wrapping a Product and the predicate only contains
+     equality/conjunction between attributes from the left and right
+     operands, then transform into a Join.
+
   * Connective
     * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
       * Do the same for >=, <, <=
