@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-11-02"
+  s.date = "2012-03-08"
   s.description = "Optimizes veritas relations"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -364,7 +364,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/dkubb/veritas-optimizer"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.16"
   s.summary = "Relational algebra optimizer"
 
   if s.respond_to? :specification_version then
@@ -394,3 +394,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, ["~> 0.7.2"])
   end
 end
+
