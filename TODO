@@ -1,3 +1,5 @@
+* Rename the Util.constant? method as Util.value?
+
 * Pull up Rename rather than pushing it down
   * Currently a Rename applies to every tuple in a result-set, and
     doing the rename prematurely means that lots of tuples that would
