@@ -42,7 +42,8 @@ module Veritas
             # @api private
             def optimizable?
               util = Util
-              if    util.constant?(left)  then left_invalid_constant?
+              if    nil_operand?          then true
+              elsif util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
                 ! joinable?
@@ -50,6 +51,15 @@ module Veritas
             end
 
           private
+
+            # Test if an operand is nil
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def nil_operand?
+              left.nil? || right.nil?
+            end
 
             # Test if the left operand is an invalid constant
             #
@@ -76,7 +86,7 @@ module Veritas
             # @api private
             def joinable?
               left = self.left
-              left.respond_to?(:joinable?) && left.joinable?(right)
+              left == right.rename(left.name)
             end
 
           end # module NeverEquivalent
@@ -91,14 +101,24 @@ module Veritas
             # @api private
             def optimizable?
               util = Util
-              if    util.constant?(left)  then left_invalid_constant?
+              if    nil_operand?          then true
+              elsif util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
-                not_comparable?
+                ! comparable?
               end
             end
 
           private
+
+            # Test if an operand is nil
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def nil_operand?
+              left.nil? || right.nil?
+            end
 
             # Test if the left operand is an invalid constant
             #
@@ -118,14 +138,13 @@ module Veritas
               ! left.valid_primitive?(right)
             end
 
-            # Test if the left and right operand are not comparable
+            # Test if the left and right operand are comparable
             #
             # @return [Boolean]
             #
             # @api private
-            def not_comparable?
-              left = self.left
-              ! (left.respond_to?(:comparable?) && left.comparable?(right))
+            def comparable?
+              left.class <=> right.class
             end
 
           end # module NeverComparable
