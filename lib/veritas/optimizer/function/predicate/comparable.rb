@@ -101,8 +101,7 @@ module Veritas
             # @api private
             def optimizable?
               util = Util
-              if    nil_operand?          then true
-              elsif util.constant?(left)  then left_invalid_constant?
+              if    util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
                 ! comparable?
@@ -110,15 +109,6 @@ module Veritas
             end
 
           private
-
-            # Test if an operand is nil
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def nil_operand?
-              left.nil? || right.nil?
-            end
 
             # Test if the left operand is an invalid constant
             #
