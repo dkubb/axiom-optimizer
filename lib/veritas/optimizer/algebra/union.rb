@@ -4,7 +4,7 @@ module Veritas
   class Optimizer
     module Algebra
 
-      # Abstract base class representing Difference optimizations
+      # Abstract base class representing Union optimizations
       class Union < Relation::Operation::Binary
 
         # Optimize when operands are equal
