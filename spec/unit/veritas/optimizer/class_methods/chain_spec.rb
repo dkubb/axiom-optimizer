@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Optimizer, '.chain' do
   let(:operation)       { mock('Operation')    }
   let(:object)          { Optimizer            }
-  let(:noop)            { object::Noop         }
+  let(:identity)        { object::Identity     }
   let(:optimizer_class) { Class.new(Optimizer) }
 
   context 'with no optimizers' do
     subject { object.chain }
 
-    it { should equal(noop) }
+    it { should equal(identity) }
 
     it 'returns a block that returns the operation' do
       subject.call(operation).should equal(operation)
@@ -29,7 +29,7 @@ describe Optimizer, '.chain' do
       optimizer_class.send(:define_method, :optimize)     { optimized }
     end
 
-    it { should_not equal(noop) }
+    it { should_not equal(identity) }
 
     it { should be_kind_of(Proc) }
 
@@ -45,11 +45,11 @@ describe Optimizer, '.chain' do
       optimizer_class.send(:define_method, :optimizable?) { false }
     end
 
-    it { should_not equal(noop) }
+    it { should_not equal(identity) }
 
     it { should be_kind_of(Proc) }
 
-    it 'returns a block that calls the successor (Noop) with the operation' do
+    it 'returns a block that calls the successor (Identity) with the operation' do
       subject.call(operation).should equal(operation)
     end
   end

@@ -8,8 +8,8 @@ module Veritas
   class Optimizer
     include AbstractClass, Immutable
 
-    # A noop optimizer that returns the operation as-is
-    Noop = lambda { |operation| operation }.freeze
+    # An optimizer that returns the operation
+    Identity = lambda { |operation| operation }.freeze
 
     # The operation to optimize
     #
@@ -66,7 +66,7 @@ module Veritas
     #
     # @api public
     def self.chain(*optimizers)
-      optimizers.reverse_each.reduce(Noop) do |successor, optimizer|
+      optimizers.reverse_each.reduce(Identity) do |successor, optimizer|
         link_optimizers(optimizer, successor)
       end
     end

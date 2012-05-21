@@ -33,8 +33,8 @@ module Veritas
       #
       # @api public
       #
-      # @todo simplify by setting a default Noop optimizer for all relations
-      def optimize(optimizer = self.class.optimizer || Optimizer::Noop)
+      # @todo simplify by setting a default Identity optimizer for all relations
+      def optimize(optimizer = self.class.optimizer || Optimizer::Identity)
         optimized = optimizer.call(self)
         equal?(optimized)                ? self               :
         optimized.respond_to?(:optimize) ? optimized.optimize :
