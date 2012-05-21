@@ -30,6 +30,7 @@ describe Relation::Operation::Insertion, '#optimize' do
       subject
     end
 
+    # check to make sure the right rename is factored out
     its(:operand) { should eql(original_left.insert(original_right)) }
 
     it_should_behave_like 'an optimize method'
