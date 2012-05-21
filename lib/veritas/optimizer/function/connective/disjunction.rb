@@ -9,7 +9,7 @@ module Veritas
         class Disjunction < Binary
 
           # Optimize when the left operand is a contradiction
-          class ContradictionLeftOperand < self
+          class ContradictionLeft < self
 
             # Test if the left operand is a contradiction
             #
@@ -29,10 +29,10 @@ module Veritas
               right
             end
 
-          end # class ContradictionLeftOperand
+          end # class ContradictionLeft
 
           # Optimize when the right operand is a contradiction
-          class ContradictionRightOperand < self
+          class ContradictionRight < self
 
             # Test if the right operand is a contradiction
             #
@@ -52,7 +52,7 @@ module Veritas
               left
             end
 
-          end # class ContradictionRightOperand
+          end # class ContradictionRight
 
           # Optimize when the operands are equality predicates for the same attribute
           class OptimizableToInclusion < self
@@ -105,12 +105,12 @@ module Veritas
 
           Veritas::Function::Connective::Disjunction.optimizer = chain(
             ConstantOperands,
-            ContradictionLeftOperand,
-            ContradictionRightOperand,
+            ContradictionLeft,
+            ContradictionRight,
             OptimizableToInclusion,
             EqualOperands,
-            RedundantLeftOperand,
-            RedundantRightOperand,
+            RedundantLeft,
+            RedundantRight,
             Tautology,
             UnoptimizedOperands
           )

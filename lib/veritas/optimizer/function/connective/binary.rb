@@ -195,7 +195,7 @@ module Veritas
           end # class EqualOperands
 
           # Optimize when the left operand is redundant
-          class RedundantLeftOperand < self
+          class RedundantLeft < self
 
             # Test if the left operand is redundant
             #
@@ -216,10 +216,10 @@ module Veritas
               left
             end
 
-          end # class RedundantLeftOperand
+          end # class RedundantLeft
 
           # Optimize when the right operand is redundant
-          class RedundantRightOperand < self
+          class RedundantRight < self
 
             # Test if the right operand is redundant
             #
@@ -240,7 +240,7 @@ module Veritas
               right
             end
 
-          end # class RedundantRightOperand
+          end # class RedundantRight
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperands < self

@@ -9,7 +9,7 @@ module Veritas
         class Insertion < Relation::Operation::Binary
 
           # Optimize when the left operand is a rename
-          class RenameLeftOperand < self
+          class RenameLeft < self
 
             # Test if the left operand is a Rename
             #
@@ -62,12 +62,12 @@ module Veritas
               left.aliases
             end
 
-          end # class RenameLeftOperand
+          end # class RenameLeft
 
           Veritas::Relation::Operation::Insertion.optimizer = chain(
-            RenameLeftOperand,
-            LeftOrderOperand,
-            RightOrderOperand,
+            RenameLeft,
+            OrderLeft,
+            OrderRight,
             MaterializedOperands,
             UnoptimizedOperands
           )

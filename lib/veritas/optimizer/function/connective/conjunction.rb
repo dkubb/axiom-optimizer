@@ -9,7 +9,7 @@ module Veritas
         class Conjunction < Binary
 
           # Optimize when the left operand is a tautology
-          class LeftOperandTautology < self
+          class TautologyLeft < self
 
             # Test if the left operand is a tautology
             #
@@ -29,10 +29,10 @@ module Veritas
               right
             end
 
-          end # class LeftOperandTautology
+          end # class TautologyLeft
 
           # Optimize when the right operand is a tautology
-          class RightOperandTautology < self
+          class TautologyRight < self
 
             # Test if the right operand is a tautology
             #
@@ -52,7 +52,7 @@ module Veritas
               left
             end
 
-          end # class RightOperandTautology
+          end # class TautologyRight
 
           # Optimize when the operands are inequality predicates for the same attribute
           class OptimizableToExclusion < self
@@ -105,12 +105,12 @@ module Veritas
 
           Veritas::Function::Connective::Conjunction.optimizer = chain(
             ConstantOperands,
-            LeftOperandTautology,
-            RightOperandTautology,
+            TautologyLeft,
+            TautologyRight,
             OptimizableToExclusion,
             EqualOperands,
-            RedundantLeftOperand,
-            RedundantRightOperand,
+            RedundantLeft,
+            RedundantRight,
             Contradiction,
             UnoptimizedOperands
           )

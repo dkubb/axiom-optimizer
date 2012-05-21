@@ -78,7 +78,7 @@ module Veritas
         end # class EqualHeaders
 
         # Optimize when the left operand is materialized
-        class LeftMaterializedOperand < self
+        class MaterializedLeft < self
 
           # Test if the left operand is materialized
           #
@@ -119,10 +119,10 @@ module Veritas
             left.project(join_key)
           end
 
-        end # class LeftMaterializedOperand
+        end # class MaterializedLeft
 
         # Optimize when the right operand is materialized
-        class RightMaterializedOperand < self
+        class MaterializedRight < self
 
           # Test if the right operand is materialized
           #
@@ -163,18 +163,18 @@ module Veritas
             right.project(join_key)
           end
 
-        end # class RightMaterializedOperand
+        end # class MaterializedRight
 
         Veritas::Algebra::Join.optimizer = chain(
           EmptyLeft,
           EmptyRight,
           EqualHeaders,
           DisjointHeaders,
-          LeftOrderOperand,
-          RightOrderOperand,
+          OrderLeft,
+          OrderRight,
           MaterializedOperands,
-          LeftMaterializedOperand,
-          RightMaterializedOperand,
+          MaterializedLeft,
+          MaterializedRight,
           UnoptimizedOperands
         )
 

@@ -54,7 +54,7 @@ module Veritas
           end # module EmptyRight
 
           # Optimize when the left operand is an Order
-          class LeftOrderOperand < self
+          class OrderLeft < self
 
             # Test if the left operand is an Order
             #
@@ -74,10 +74,10 @@ module Veritas
               operation.class.new(left.operand, right)
             end
 
-          end # class LeftOrderOperand
+          end # class OrderLeft
 
           # Optimize when the right operand is an Order
-          class RightOrderOperand < self
+          class OrderRight < self
 
             # Test if the right operand is an Order
             #
@@ -97,7 +97,7 @@ module Veritas
               operation.class.new(left, right.operand)
             end
 
-          end # class RightOrderOperand
+          end # class OrderRight
 
           # Optimize when the operands are Materialized
           class MaterializedOperands < self

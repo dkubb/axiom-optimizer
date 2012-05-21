@@ -56,8 +56,8 @@ module Veritas
           EqualOperands,
           EmptyLeft,
           EmptyRight,
-          LeftOrderOperand,
-          RightOrderOperand,
+          OrderLeft,
+          OrderRight,
           MaterializedOperands,
           UnoptimizedOperands
         )

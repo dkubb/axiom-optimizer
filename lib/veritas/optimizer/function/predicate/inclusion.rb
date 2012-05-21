@@ -10,13 +10,13 @@ module Veritas
           include Enumerable
 
           # Optimize when the right operand is empty
-          class EmptyRightOperand < self
-            include Enumerable::EmptyRightOperand, Predicate::Contradiction
-          end # class EmptyRightOperand
+          class EmptyRight < self
+            include Enumerable::EmptyRight, Predicate::Contradiction
+          end # class EmptyRight
 
           # Optimize when the right operand has one entry
-          class OneRightOperand < self
-            include Enumerable::OneRightOperand
+          class OneRight < self
+            include Enumerable::OneRight
 
             # An Inclusion with a single right operand is equivalent to an Equality
             #
@@ -27,12 +27,12 @@ module Veritas
               left.eq(right.first)
             end
 
-          end # class OneRightOperand
+          end # class OneRight
 
           Veritas::Function::Predicate::Inclusion.optimizer = chain(
             ConstantOperands,
-            EmptyRightOperand,
-            OneRightOperand,
+            EmptyRight,
+            OneRight,
             Enumerable::UnoptimizedOperands
           )
 

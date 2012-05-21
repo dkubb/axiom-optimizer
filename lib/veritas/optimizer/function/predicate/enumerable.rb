@@ -79,7 +79,7 @@ module Veritas
           end
 
           # Optimize when the right operand is empty
-          module EmptyRightOperand
+          module EmptyRight
             include Enumerable
 
             # Test if the right operand is empty
@@ -111,10 +111,10 @@ module Veritas
               right.none? { true }
             end
 
-          end # module EmptyRightOperand
+          end # module EmptyRight
 
           # Optimize when the right operand has one entry
-          module OneRightOperand
+          module OneRight
             include Enumerable
 
             # Test if the right operand has one entry
@@ -126,7 +126,7 @@ module Veritas
               right.one? { true }
             end
 
-          end # module OneRightOperand
+          end # module OneRight
 
           # Optimize when the operands are unoptimized
           class UnoptimizedOperands < Predicate::UnoptimizedOperands
