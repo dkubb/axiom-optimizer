@@ -8,6 +8,17 @@ module Veritas
         # Abstract base class representing Difference optimizations
         class Insertion < Relation::Operation::Binary
 
+        private
+
+          # Unwrap the operand from the left relation
+          #
+          # @return [Relation]
+          #
+          # @api private
+          def unwrap_left
+            left.operand
+          end
+
           # Optimize when the left operand is a rename
           class RenameLeft < self
 
@@ -35,15 +46,6 @@ module Veritas
 
           private
 
-            # Unwrap the operand from the left relation
-            #
-            # @return [Relation]
-            #
-            # @api private
-            def unwrap_left
-              left.operand
-            end
-
             # Wrap the right relation in a Rename
             #
             # @return [Relation]
@@ -64,8 +66,60 @@ module Veritas
 
           end # class RenameLeft
 
+          # Optimize when the left operand is a restriction
+          class RestrictionLeft < self
+
+            # Test if the left operand is a Restriction
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              left.kind_of?(Veritas::Algebra::Restriction)
+            end
+
+            # An Insertion into a Restriction applies to its operand
+            #
+            # Push-down the insertion to apply to the restriction operand,
+            # and make sure the inserted tuples match the predicate since
+            # they must be included in the new relation.
+            #
+            # @return [Veritas::Algebra::Restriction]
+            #
+            # @api private
+            def optimize
+              unwrap_left.insert(materialize_right).restrict { tuple_predicate }
+            end
+
+          private
+
+            # Materialize the right operand
+            #
+            # @return [Relation::Materialized]
+            #
+            # @api private
+            def materialize_right
+              right.materialize
+            end
+
+            # Predicate matching the left or right tuples
+            #
+            # @return [Function]
+            #
+            # @api private
+            def tuple_predicate
+              materialize_right.reduce(left.predicate) do |predicate, tuple|
+                predicate.or(tuple.predicate)
+              end
+            end
+
+            memoize :materialize_right
+
+          end # class RestrictionLeft
+
           Veritas::Relation::Operation::Insertion.optimizer = chain(
             RenameLeft,
+            RestrictionLeft,
             OrderLeft,
             OrderRight,
             MaterializedOperands,

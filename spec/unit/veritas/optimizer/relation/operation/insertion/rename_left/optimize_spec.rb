@@ -18,10 +18,6 @@ describe Optimizer::Relation::Operation::Insertion::RenameLeft, '#optimize' do
 
   it { should be_instance_of(Algebra::Rename) }
 
-  it { should == Relation.new([ [ :other_id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-
-  its(:operand) { should be_instance_of(Relation::Operation::Insertion) }
-
   # the operand is unwrapped from the left, and right becomes an inverted rename
   its(:operand) { should eql(base_left.insert(right.rename(aliases.invert))) }
 end
