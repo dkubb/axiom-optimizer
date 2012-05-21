@@ -20,7 +20,7 @@ module Veritas
               left.kind_of?(Veritas::Algebra::Rename)
             end
 
-            # An Insertion into a Rename applies to the Rename operand
+            # An Insertion into a Rename applies to its operand
             #
             # Push-down the insertion to apply to the rename operand, and make
             # sure the inserted tuples are properly renamed to match the
