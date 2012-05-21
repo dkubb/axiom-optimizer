@@ -1,3 +1,6 @@
+* Add more Union optimizations to Insertion optimizer chain
+  * Add optimizer for empty left or right operands
+
 * Rename the Util.constant? method as Util.value?
 
 * Pull up Rename rather than pushing it down
