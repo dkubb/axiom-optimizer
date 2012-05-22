@@ -50,7 +50,8 @@ NestedIterators:
     # none of these use nested iterators, they use nested blocks only
     Veritas::Optimizer::Algebra::Extension#wrap_operand,
     Veritas::Optimizer::Algebra::Summarization#wrap_operand,
-    Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize
+    Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize,
+    Veritas::Optimizer::Relation::Operation::Insertion::ProjectionLeft#extend_right
   ]
   enabled: true
   max_allowed_nesting: 1

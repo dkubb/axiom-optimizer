@@ -63,4 +63,26 @@ describe Relation::Operation::Insertion, '#optimize' do
 
     it_should_behave_like 'an optimize method'
   end
+
+  context 'left is a projection relation' do
+    let(:original_left) { Relation.new([ [ :id, Integer ], [ :name, String, { :required => false } ] ], [ [ 1, 'John Doe' ] ].each) }
+    let(:left)          { original_left.project([ :id ])                                                                            }
+    let(:right)         { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)                                                        }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == object
+    end
+
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
 end
