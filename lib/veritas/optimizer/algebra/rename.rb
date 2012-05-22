@@ -124,7 +124,9 @@ module Veritas
           # @api private
           def distributive?
             names = alias_names
-            removed_attributes.all? { |attribute| ! names.include?(attribute.name) }
+            removed_attributes.none? do |attribute|
+              names.include?(attribute.name)
+            end
           end
 
           # Return the aliases as an inverted Hash
