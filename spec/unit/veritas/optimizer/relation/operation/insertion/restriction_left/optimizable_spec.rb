@@ -21,7 +21,7 @@ describe Optimizer::Relation::Operation::Insertion::RestrictionLeft, '#optimizab
     it { should be(true) }
   end
 
-  context 'when the left is not a rename' do
+  context 'when the left is not a restriction' do
     let(:left) { base_left }
 
     it { should be(false) }
