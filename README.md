@@ -114,4 +114,4 @@ Once the optimization passes are finished, and no further optimization is possib
 
 ## Copyright
 
-Copyright &copy; 2011 Dan Kubb. See LICENSE for details.
+Copyright &copy; 2011-2012 Dan Kubb. See LICENSE for details.
