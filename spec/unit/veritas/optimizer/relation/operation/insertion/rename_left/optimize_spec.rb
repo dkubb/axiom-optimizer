@@ -20,4 +20,6 @@ describe Optimizer::Relation::Operation::Insertion::RenameLeft, '#optimize' do
 
   # the operand is unwrapped from the left, and right becomes an inverted rename
   its(:operand) { should eql(base_left.insert(right.rename(aliases.invert))) }
+
+  its(:aliases) { should == Algebra::Rename::Aliases.coerce(base_left.header, aliases) }
 end
