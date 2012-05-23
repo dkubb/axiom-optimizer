@@ -1,6 +1,22 @@
 * Add more Union optimizations to Insertion optimizer chain
   * Add optimizer for empty left or right operands
 
+* Add an assertion to every #optimize spec that if #optimizable? is true, then
+  the object returned by #optimize must *not* be equivalent. This will ensure
+  that the guard clause in #optimizable? only evaluates to true if the
+  optimization is actually going to return a new object; no point in going
+  through the work of optimizing if it won't result in any change, and it should
+  be possible to test for this before carrying out the work.
+  * Add a shared spec for #optimize and #optimizable?. Note that the current
+    shared spec for #optimize is for the Relation#optimize integration specs
+    (it should probably be renamed to avoid confusion)
+    * Should ensure that when #optimize is being tested #optimizable? should
+      only return true.
+    * Should ensure #optimizable? only returns true if #optimize returns an
+      object that is different (should return equivalent tuples, but have
+      different internal state, otherwise the #optimize step was totally
+      unecessary)
+
 * Rename the Util.constant? method as Util.value?
 
 * Pull up Rename rather than pushing it down
@@ -47,13 +63,10 @@
       the restriction. If there are any remaining attributes, then
       wrap the operation in a Projection removing those attributes.
       * If all attributes are being used in the Restriction do nothing
-    * When renames or extensions or summarizations are projected away and
-      not used in any intermediary operation, then they can be dropped
-      altogether. There's no point in going through all that work to
-      not bother using an attribute at all. It would be better to simplify
-      the renames/extensions/summarizations to not add the attribute, and
-      then call optimize again on the op to potentially remove the op altogether
-      (like in the case of an extension adding one attribute that is removed).
+    * When an attribute is renamed, then projected away, the alias should be
+      removed from the rename.
+    * When an attribute is added by a summarization, then projected away, the
+      attribute should be removed from the summarization.
     * It does not distribute over Intersection or Difference, but see if
       perhaps an exception can be made if there is a functional dependency
       between the columns projected away and the one remaining. Then I *think*
