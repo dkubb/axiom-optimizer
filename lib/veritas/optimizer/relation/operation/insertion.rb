@@ -19,7 +19,7 @@ module Veritas
             left.operand
           end
 
-          # Optimize when the left operand is a rename
+          # Optimize when the left operand is a Rename
           class RenameLeft < self
 
             # Test if the left operand is a Rename
@@ -66,7 +66,7 @@ module Veritas
 
           end # class RenameLeft
 
-          # Optimize when the left operand is a restriction
+          # Optimize when the left operand is a Restriction
           class RestrictionLeft < self
 
             # Test if the left operand is a Restriction
@@ -117,6 +117,7 @@ module Veritas
 
           end # class RestrictionLeft
 
+          # Optimize when the left operand is a Projection
           class ProjectionLeft < self
 
             # Test if the left operand is a Projection

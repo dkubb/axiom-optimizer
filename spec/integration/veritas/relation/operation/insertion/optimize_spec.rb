@@ -32,7 +32,7 @@ describe Relation::Operation::Insertion, '#optimize' do
     end
 
     # check to make sure the insertion is pushed-down, and the right rename
-    # is factored out (since it is a rename, then an inverted rename)
+    # is factored out (since the rename is inverted)
     its(:operand) { should eql(original_left.insert(original_right)) }
 
     it_should_behave_like 'an optimize method'
