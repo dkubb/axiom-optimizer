@@ -48,6 +48,7 @@ NestedIterators:
   ignore_iterators: []
   exclude: [
     # none of these use nested iterators, they use nested blocks only
+    Veritas::Optimizer::Algebra::Projection::ExtensionOperand#extend_operand,
     Veritas::Optimizer::Algebra::Extension#wrap_operand,
     Veritas::Optimizer::Algebra::Summarization#wrap_operand,
     Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize,

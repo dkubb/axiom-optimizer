@@ -41,6 +41,79 @@ module Veritas
 
         end # class ProjectionOperand
 
+        # Optimize when the operand is an Extension
+        class ExtensionOperand < self
+
+          # Test if the operand is an Extension
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            operand = self.operand
+            operand.kind_of?(Veritas::Algebra::Extension) &&
+            operand.extensions != new_extensions
+          end
+
+          # Extend the operand with the attributes not projected away
+          #
+          # This avoid performing an extension when the new attributes are
+          # immediately removed.
+          #
+          # @return [Projection]
+          #
+          # @api private
+          def optimize
+            extend_operand.project(operation.header)
+          end
+
+        private
+
+          # Extend the operand with only the new extensions
+          #
+          # @return [Extension]
+          #
+          # @api private
+          def extend_operand
+            unwrap_operand.extend do |context|
+              new_extensions.each do |extension|
+                context.add(*extension)
+              end
+            end
+          end
+
+          # Extensions minus the removed attributes
+          #
+          # @return [Hash{Attribute => Function}]
+          #
+          # @api private
+          def new_extensions
+            extensions = operand.extensions
+            attributes = extensions.keys - removed_attributes
+            Hash[attributes.zip(extensions.values_at(*attributes))]
+          end
+
+          # Unwrap the operand from the Extension
+          #
+          # @return [Relation]
+          #
+          # @api private
+          def unwrap_operand
+            operand.operand
+          end
+
+          # Attributes removed by the projection
+          #
+          # @return [Header]
+          #
+          # @api private
+          def removed_attributes
+            operand.header - operation.header
+          end
+
+          memoize :new_extensions, :removed_attributes
+        end
+
         # Optimize when the operand is a Union
         class UnionOperand < self
 
@@ -130,6 +203,7 @@ module Veritas
         Veritas::Algebra::Projection.optimizer = chain(
           UnchangedHeader,
           ProjectionOperand,
+          ExtensionOperand,
           UnionOperand,
           OrderOperand,
           EmptyOperand,
