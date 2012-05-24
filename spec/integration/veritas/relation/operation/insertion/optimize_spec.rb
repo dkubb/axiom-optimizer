@@ -91,4 +91,13 @@ describe Relation::Operation::Insertion, '#optimize' do
 
     it_should_behave_like 'an optimize method'
   end
+
+  context 'left is an extension relation' do
+    let(:left)  { original_left.extend  { |r| r.add(:name, 'John Doe') } }
+    let(:right) { original_right.extend { |r| r.add(:name, 'John Doe') } }
+
+    it 'does not propagate writes' do
+      should equal(object)
+    end
+  end
 end
