@@ -82,6 +82,15 @@ module Veritas
             end
           end
 
+          # Unwrap the operand from the Extension
+          #
+          # @return [Relation]
+          #
+          # @api private
+          def unwrap_operand
+            operand.operand
+          end
+
           # Extensions minus the removed attributes
           #
           # @return [Hash{Attribute => Function}]
@@ -91,15 +100,6 @@ module Veritas
             extensions = operand.extensions
             attributes = extensions.keys - removed_attributes
             Hash[attributes.zip(extensions.values_at(*attributes))]
-          end
-
-          # Unwrap the operand from the Extension
-          #
-          # @return [Relation]
-          #
-          # @api private
-          def unwrap_operand
-            operand.operand
           end
 
           # Attributes removed by the projection
