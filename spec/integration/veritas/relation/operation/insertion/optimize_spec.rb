@@ -31,6 +31,8 @@ describe Relation::Operation::Insertion, '#optimize' do
       subject
     end
 
+    it { should be_instance_of(Algebra::Rename) }
+
     # check to make sure the insertion is pushed-down, and the right rename
     # is factored out (since the rename is inverted)
     its(:operand) { should eql(original_left.insert(original_right)) }
@@ -55,6 +57,8 @@ describe Relation::Operation::Insertion, '#optimize' do
       right_body.should_receive(:each)
       subject
     end
+
+    it { should be_instance_of(Algebra::Restriction) }
 
     # check to make sure the insertion is pushed-down, and the right relation is
     # materialized, and the predicate matches tuples from the left and right
@@ -82,6 +86,8 @@ describe Relation::Operation::Insertion, '#optimize' do
       right_body.should_not_receive(:each)
       subject
     end
+
+    it { should be_instance_of(Algebra::Projection) }
 
     it_should_behave_like 'an optimize method'
   end
