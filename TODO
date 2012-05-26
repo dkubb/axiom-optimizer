@@ -1,5 +1,4 @@
-* Add more Union optimizations to Insertion optimizer chain
-  * Add optimizer for empty left or right operands
+* Add optimizer for empty left or empty right operands to an Insertion
 
 * Add an assertion to every #optimize spec that if #optimizable? is true, then
   the object returned by #optimize must *not* be equivalent. This will ensure
