@@ -141,6 +141,17 @@ describe Relation::Operation::Insertion, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
+  context 'left is a product' do
+    let(:left)       { left_left.product(left_right)                                                     }
+    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Jane Doe' ] ].each) }
+    let(:left_left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ]          ].each)                     }
+    let(:left_right) { Relation.new([ [ :name, String  ] ], [ [ 'John Doe' ] ].each)                     }
+
+    it 'does not push-down insertions' do
+      should equal(object)
+    end
+  end
+
   context 'left is an order relation' do
     let(:left)  { original_left.sort_by  { header } }
     let(:right) { original_right.sort_by { header } }
