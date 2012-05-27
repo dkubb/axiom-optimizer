@@ -211,11 +211,65 @@ module Veritas
 
           end # class OrderLeft
 
+          class JoinLeft < self
+
+            # Test if the left operand is a Join
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def optimizable?
+              left.kind_of?(Veritas::Algebra::Join)
+            end
+
+            # An Insertion into a Join applies to the left and right operand
+            #
+            # @return [Veritas::Algebra::Join]
+            #
+            # @api private
+            def optimize
+              wrap_left.join(wrap_right)
+            end
+
+          private
+
+            # Wrap the left operand of the join in an insertion
+            #
+            # @return [Veritas::Relation::Operation::Insertion]
+            #
+            # @api private
+            def wrap_left
+              insert(left.left)
+            end
+
+            # Wrap the right operand of the join in an insertion
+            #
+            # @return [Veritas::Relation::Operation::Insertion]
+            #
+            # @api private
+            def wrap_right
+              insert(left.right)
+            end
+
+            # Insert a projection of the right operand into the relation
+            #
+            # @param [Veritas::Relation] relation
+            #
+            # @return [Veritas::Relation::Operation::Insertion]
+            #
+            # @api private
+            def insert(relation)
+              relation.insert(right.project(relation.header))
+            end
+
+          end # class Join
+
           Veritas::Relation::Operation::Insertion.optimizer = chain(
             RenameLeft,
             RestrictionLeft,
             ProjectionLeft,
             OrderLeft,
+            JoinLeft,
             MaterializedOperands,
             UnoptimizedOperands
           )
