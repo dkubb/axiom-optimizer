@@ -324,8 +324,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/optimizer/relation/operation/insertion/order_left/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/insertion/projection_left/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/insertion/projection_left/optimize_spec.rb",
-    "spec/unit/veritas/optimizer/relation/operation/insertion/rename_left/optimizable_spec.rb",
-    "spec/unit/veritas/optimizer/relation/operation/insertion/rename_left/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimizable_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimize_spec.rb",
     "spec/unit/veritas/optimizer/relation/operation/limit/limit_operand/optimizable_spec.rb",

@@ -28,53 +28,6 @@ module Veritas
             right.operand
           end
 
-          # Optimize when the left operand is a Rename
-          class RenameLeft < self
-
-            # Test if the left operand is a Rename
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              left.kind_of?(Veritas::Algebra::Rename)
-            end
-
-            # An Insertion into a Rename applies to its operand
-            #
-            # Push-down the insertion to apply to the rename operand, and make
-            # sure the inserted tuples are properly renamed to match the
-            # operand. Apply the rename to the insertion.
-            #
-            # @return [Veritas::Algebra::Rename]
-            #
-            # @api private
-            def optimize
-              unwrap_left.insert(rename_right).rename(aliases)
-            end
-
-          private
-
-            # Wrap the right relation in a Rename
-            #
-            # @return [Relation]
-            #
-            # @api private
-            def rename_right
-              right.rename(aliases.inverse)
-            end
-
-            # The left Rename aliases
-            #
-            # @return [Veritas::Algebra::Rename::Aliases]
-            #
-            # @api private
-            def aliases
-              left.aliases
-            end
-
-          end # class RenameLeft
-
           # Optimize when the left operand is a Projection
           class ProjectionLeft < self
 
@@ -214,7 +167,6 @@ module Veritas
           end # class Join
 
           Veritas::Relation::Operation::Insertion.optimizer = chain(
-            RenameLeft,
             ProjectionLeft,
             OrderLeft,
             JoinLeft,
