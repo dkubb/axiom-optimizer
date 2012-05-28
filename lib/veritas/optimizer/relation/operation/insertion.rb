@@ -75,57 +75,6 @@ module Veritas
 
           end # class RenameLeft
 
-          # Optimize when the left operand is a Restriction
-          class RestrictionLeft < self
-
-            # Test if the left operand is a Restriction
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def optimizable?
-              left.kind_of?(Veritas::Algebra::Restriction)
-            end
-
-            # An Insertion into a Restriction applies to its operand
-            #
-            # Push-down the insertion to apply to the restriction operand,
-            # and make sure the inserted tuples match the predicate since
-            # they must be included in the new relation.
-            #
-            # @return [Veritas::Algebra::Restriction]
-            #
-            # @api private
-            def optimize
-              unwrap_left.insert(materialize_right).restrict { tuple_predicate }
-            end
-
-          private
-
-            # Materialize the right operand
-            #
-            # @return [Relation::Materialized]
-            #
-            # @api private
-            def materialize_right
-              right.materialize
-            end
-
-            # Predicate matching the left or right tuples
-            #
-            # @return [Function]
-            #
-            # @api private
-            def tuple_predicate
-              materialize_right.reduce(left.predicate) do |predicate, tuple|
-                predicate.or(tuple.predicate)
-              end
-            end
-
-            memoize :materialize_right
-
-          end # class RestrictionLeft
-
           # Optimize when the left operand is a Projection
           class ProjectionLeft < self
 
@@ -266,7 +215,6 @@ module Veritas
 
           Veritas::Relation::Operation::Insertion.optimizer = chain(
             RenameLeft,
-            RestrictionLeft,
             ProjectionLeft,
             OrderLeft,
             JoinLeft,

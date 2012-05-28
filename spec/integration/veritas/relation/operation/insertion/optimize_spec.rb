@@ -40,34 +40,6 @@ describe Relation::Operation::Insertion, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left is a restriction relation' do
-    let(:left)  { original_left.restrict { |r| r.id.eq(1) } }
-    let(:right) { original_right                            }
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
-    end
-
-    it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
-      subject
-    end
-
-    it 'executes right_body#each' do
-      right_body.should_receive(:each)
-      subject
-    end
-
-    it { should be_instance_of(Algebra::Restriction) }
-
-    # check to make sure the insertion is pushed-down, and the right relation is
-    # materialized, and the predicate matches tuples from the left and right
-    its(:operand)   { should eql(original_left.insert(right.materialize)) }
-    its(:predicate) { should eql(attribute.include([ 1, 2 ]))             }
-
-    it_should_behave_like 'an optimize method'
-  end
-
   context 'left is a projection relation' do
     let(:left)          { original_left.project([ :id ])                                                                            }
     let(:right)         { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)                                                        }
