@@ -13,15 +13,6 @@ describe Relation::Operation::Insertion, '#optimize' do
   let(:left_body)      { [ [ 1 ] ].each                   }
   let(:right_body)     { [ [ 2 ] ].each                   }
 
-  context 'left is an extension relation' do
-    let(:left)  { original_left.extend  { |r| r.add(:name, 'John Doe') } }
-    let(:right) { original_right.extend { |r| r.add(:name, 'John Doe') } }
-
-    it 'does not push-down insertions' do
-      should equal(object)
-    end
-  end
-
   context 'left is a summarization' do
     let(:left)  { original_left.summarize  { |r| r.add(:count, r.id.count) } }
     let(:right) { original_right.summarize { |r| r.add(:count, r.id.count) } }
