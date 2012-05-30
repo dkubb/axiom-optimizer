@@ -119,7 +119,6 @@ Gem::Specification.new do |s|
     "spec/integration/veritas/function/predicate/less_than_or_equal_to/optimize_spec.rb",
     "spec/integration/veritas/relation/empty/optimize_spec.rb",
     "spec/integration/veritas/relation/materialized/optimize_spec.rb",
-    "spec/integration/veritas/relation/operation/insertion/optimize_spec.rb",
     "spec/integration/veritas/relation/operation/limit/optimize_spec.rb",
     "spec/integration/veritas/relation/operation/offset/optimize_spec.rb",
     "spec/integration/veritas/relation/operation/order/optimize_spec.rb",
