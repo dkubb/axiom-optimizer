@@ -103,6 +103,13 @@
      equality/conjunction between attributes from the left and right
      operands, then transform into a Join.
 
+  * Order
+    * When the operation is an instance of Order, and the operand is sorted in
+      reversed order, change to a Reverse operation. This should occur after the
+      Order optimization that collapses two Order objects into one; it would be
+      expected that the operand is a Limit or Offset, but it probably isn't
+      necessary to test that.
+
   * Connective
     * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
       * Do the same for >=, <, <=
