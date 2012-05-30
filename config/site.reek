@@ -26,9 +26,7 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: [
-    Veritas::Optimizer::Relation::Operation::Insertion::JoinLeft#insert
-  ]
+  exclude: []
   enabled: true
 ClassVariable:
   exclude: []
@@ -53,8 +51,7 @@ NestedIterators:
     Veritas::Optimizer::Algebra::Projection::ExtensionOperand#extend_operand,
     Veritas::Optimizer::Algebra::Extension#wrap_operand,
     Veritas::Optimizer::Algebra::Summarization#wrap_operand,
-    Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize,
-    Veritas::Optimizer::Relation::Operation::Insertion::ProjectionLeft#extend_right
+    Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize
   ]
   enabled: true
   max_allowed_nesting: 1
