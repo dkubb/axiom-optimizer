@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'veritas', '~> 0.0.7',  :github => 'dkubb/veritas', :branch => 'writable_relations'
+gem 'veritas', '~> 0.0.7',  :github => 'dkubb/veritas'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'
