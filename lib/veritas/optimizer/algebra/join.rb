@@ -95,7 +95,7 @@ module Veritas
           #
           # @api private
           def optimize
-            left.join(right.restrict { materialized_predicate })
+            left.join(right.restrict(materialized_predicate))
           end
 
         private
@@ -139,7 +139,7 @@ module Veritas
           #
           # @api private
           def optimize
-            left.restrict { materialized_predicate }.join(right)
+            left.restrict(materialized_predicate).join(right)
           end
 
         private

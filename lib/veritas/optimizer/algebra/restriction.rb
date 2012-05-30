@@ -32,7 +32,7 @@ module Veritas
         #
         # @api private
         def wrap_operand(operand = operand.operand)
-          operand.restrict { predicate }
+          operand.restrict(predicate)
         end
 
         # Return true if the predicate is a true value
@@ -156,7 +156,7 @@ module Veritas
           #
           # @api private
           def optimize
-            left_restriction.send(relation_method, right_restriction).restrict { partition.remainder }
+            left_restriction.send(relation_method, right_restriction).restrict(partition.remainder)
           end
 
         private
@@ -218,7 +218,7 @@ module Veritas
           #
           # @api private
           def left_restriction
-            operand.left.restrict { partition.left }
+            operand.left.restrict(partition.left)
           end
 
           # Restrict the right operand with the right predicate partition
@@ -227,7 +227,7 @@ module Veritas
           #
           # @api private
           def right_restriction
-            operand.right.restrict { partition.right }
+            operand.right.restrict(partition.right)
           end
 
           memoize :partition

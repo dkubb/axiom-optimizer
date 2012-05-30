@@ -168,7 +168,7 @@ module Veritas
           #
           # @api private
           def optimize
-            wrap_operand.restrict { rename_predicate }
+            wrap_operand.restrict(rename_predicate)
           end
 
         private

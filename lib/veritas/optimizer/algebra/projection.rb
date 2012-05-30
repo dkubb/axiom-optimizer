@@ -75,11 +75,7 @@ module Veritas
           #
           # @api private
           def extend_operand
-            unwrap_operand.extend do |context|
-              new_extensions.each do |extension|
-                context.add(*extension)
-              end
-            end
+            unwrap_operand.extend(new_extensions)
           end
 
           # Unwrap the operand from the Extension

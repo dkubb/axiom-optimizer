@@ -58,11 +58,7 @@ module Veritas
         #
         # @api private
         def wrap_operand(operand = operand.operand)
-          operand.summarize(summarize_per) do |context|
-            summarizers.each do |summarizer|
-              context.add(*summarizer)
-            end
-          end
+          operand.summarize(summarize_per, summarizers)
         end
 
         # Optimize when the operand is Empty
@@ -96,11 +92,7 @@ module Veritas
           #
           # @api private
           def optimize
-            summarize_per.extend do |context|
-              extensions.each do |extension|
-                context.add(*extension)
-              end
-            end
+            summarize_per.extend(extensions)
           end
 
         private
