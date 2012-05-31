@@ -124,6 +124,7 @@ require 'veritas/optimizer/algebra/restriction'
 require 'veritas/optimizer/algebra/summarization'
 require 'veritas/optimizer/algebra/union'
 
+require 'veritas/optimizer/relation/operation/deletion'
 require 'veritas/optimizer/relation/operation/insertion'
 
 require 'veritas/optimizer/function/connective/binary'
