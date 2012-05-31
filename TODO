@@ -1,5 +1,11 @@
-* Add optimizer for empty left or empty right operands to an Insertion
-* Add optimizer for empty left or empty right operands to a Deletion
+* Add optimizer for empty right operand to an Insertion
+  * Should factor out the Insertion
+
+* Add optimizer for empty left operand to a Deletion
+  * Should return an Empty relation, since deleting anything from an empty
+    relation always results in an empty Relation
+* Add optimizer for empty right operand to a Deletion
+  * Should factor out the Deletion
 
 * Add an assertion to every #optimize spec that if #optimizable? is true, then
   the object returned by #optimize must *not* be equivalent. This will ensure
