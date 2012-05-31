@@ -1,4 +1,5 @@
 * Add optimizer for empty left or empty right operands to an Insertion
+* Add optimizer for empty left or empty right operands to a Deletion
 
 * Add an assertion to every #optimize spec that if #optimizable? is true, then
   the object returned by #optimize must *not* be equivalent. This will ensure
