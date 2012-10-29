@@ -6,7 +6,7 @@ module Veritas
 
   # A optimization for an operation
   class Optimizer
-    include AbstractClass, Immutable
+    include AbstractClass, Adamantium
 
     # An optimizer that returns the operation
     Identity = lambda { |operation| operation }.freeze

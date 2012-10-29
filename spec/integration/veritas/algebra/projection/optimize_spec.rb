@@ -11,6 +11,11 @@ describe Algebra::Projection, '#optimize' do
   let(:operand)  { relation                                                   }
   let(:object)   { described_class.new(operand, attributes)                   }
 
+  before do
+    # skip dup of the body to avoid clearing the method stubs
+    body.stub!(:frozen?).and_return(true)
+  end
+
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
     let(:attributes) { header }
 
@@ -167,6 +172,12 @@ describe Algebra::Projection, '#optimize' do
     let(:right)      { Relation.new(header, right_body)                                  }
     let(:operand)    { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
     let(:attributes) { [ :name ]                                                         }
+
+    before do
+      # skip dup of the left and right body to avoid clearing the method stubs
+      left_body.stub!(:frozen?).and_return(true)
+      right_body.stub!(:frozen?).and_return(true)
+    end
 
     it 'pushes the object to each relation, and combine the nested objects' do
       should eql(left.project([ :name ]).union(right.project([ :name ])))

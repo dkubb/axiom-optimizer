@@ -5,7 +5,7 @@ module Veritas
 
     # Allow operations to be optimizable
     module Optimizable
-      include Immutable
+      include Adamantium
 
       # Hook called when module is included
       #

@@ -5,7 +5,7 @@ module Veritas
 
     # Partition a predicate to distribute it over binary operations
     class PredicatePartition
-      include Immutable
+      include Adamantium
 
       TAUTOLOGY = Veritas::Function::Proposition::Tautology.instance
 

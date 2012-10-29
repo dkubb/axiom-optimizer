@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Optimizable, '#optimize' do
   subject { object.optimize }
 
-  let(:described_class) { Class.new { include Optimizer::Optimizable, Immutable } }
+  let(:described_class) { Class.new { include Optimizer::Optimizable, Adamantium } }
   let(:object)          { described_class.new                                     }
 
   context 'when there is no optimizer for the class' do

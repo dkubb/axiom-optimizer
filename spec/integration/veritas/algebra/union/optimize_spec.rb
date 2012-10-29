@@ -12,6 +12,12 @@ describe Algebra::Union, '#optimize' do
   let(:original_right) { Relation.new(header, right_body) }
   let(:object)         { described_class.new(left, right) }
 
+  before do
+    # skip dup of the left and right body to avoid clearing the method stubs
+    left_body.stub!(:frozen?).and_return(true)
+    right_body.stub!(:frozen?).and_return(true)
+  end
+
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }
     let(:right) { original_right              }

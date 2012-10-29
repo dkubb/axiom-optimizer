@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Optimizable::ClassMethods, '#optimizer' do
   subject { object.optimizer }
 
-  let(:object) { Class.new { include Optimizer::Optimizable, Immutable } }
+  let(:object) { Class.new { include Optimizer::Optimizable, Adamantium } }
 
   context 'when the optimizer is not set' do
     it { should be_nil }
@@ -26,7 +26,7 @@ describe Optimizer::Optimizable::ClassMethods, '#optimizer=' do
   subject { object.optimizer = optimizer }
 
   let(:optimizer) { mock('Optimizer')                                       }
-  let(:object)    { Class.new { include Optimizer::Optimizable, Immutable } }
+  let(:object)    { Class.new { include Optimizer::Optimizable, Adamantium } }
 
   it 'sets the optimizer' do
     expect { subject }.to change { object.optimizer }.from(nil).to(optimizer)
