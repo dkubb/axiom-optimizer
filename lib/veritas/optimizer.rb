@@ -59,7 +59,7 @@ module Veritas
     # @example
     #   Optimizer.chain(Optimizer::Foo, Optimizer::Bar)
     #
-    # @param [Array<Class<Optimizer>>] *optimizers
+    # @param [Array<Class<Optimizer>>] optimizers
     #   a list of optimizer classes to apply
     #
     # @return [#call]

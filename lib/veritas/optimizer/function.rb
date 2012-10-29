@@ -19,7 +19,7 @@ module Veritas
 
       # Optimize the summarizers
       #
-      # @param [Hash{Attribute => Function}]
+      # @param [Hash{Attribute => Function}] functions
       #
       # @return [Hash{Attribute => Function}]
       #
