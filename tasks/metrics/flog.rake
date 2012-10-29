@@ -43,7 +43,9 @@ begin
     end
   end
 rescue LoadError
-  task :flog do
-    $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
+  namespace :metrics do
+    task :flog do
+      $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
+    end
   end
 end

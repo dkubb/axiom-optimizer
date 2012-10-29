@@ -17,9 +17,11 @@ begin
     end
   end
 rescue LoadError
-  %w[ yardstick_measure verify_measurements ].each do |name|
-    task name.to_s do
-      $stderr.puts "Yardstick is not available. In order to run #{name}, you must: gem install yardstick"
+  namespace :metrics do
+    %w[ yardstick_measure verify_measurements ].each do |name|
+      task name.to_s do
+        $stderr.puts "Yardstick is not available. In order to run #{name}, you must: gem install yardstick"
+      end
     end
   end
 end

@@ -13,7 +13,9 @@ begin
     end
   end
 rescue LoadError
-  task :roodi do
-    $stderr.puts 'Roodi is not available. In order to run roodi, you must: gem install roodi'
+  namespace :metrics do
+    task :roodi do
+      $stderr.puts 'Roodi is not available. In order to run roodi, you must: gem install roodi'
+    end
   end
 end

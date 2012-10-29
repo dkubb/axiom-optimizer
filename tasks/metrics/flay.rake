@@ -4,7 +4,9 @@ begin
   require 'flay'
   require 'yaml'
 
-  config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
+  ruby_type = RUBY_VERSION < '1.9' ? 1.8 : 1.9
+
+  config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__))[ruby_type].freeze
   threshold   = config.fetch('threshold').to_i
   total_score = config.fetch('total_score').to_f
   files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib')).sort
@@ -39,7 +41,9 @@ begin
     end
   end
 rescue LoadError
-  task :flay do
-    $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+  namespace :metrics do
+    task :flay do
+      $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+    end
   end
 end

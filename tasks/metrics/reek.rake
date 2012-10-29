@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 begin
+  require File.expand_path('../../../spec/support/config_alias', __FILE__)
   require 'reek/rake/task'
 
   RBX_18_MODE = RUBY_VERSION < '1.9' && defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
@@ -15,7 +16,9 @@ begin
     end
   end
 rescue LoadError
-  task :reek do
-    $stderr.puts 'Reek is not available. In order to run reek, you must: gem install reek'
+  namespace :metrics do
+    task :reek do
+      $stderr.puts 'Reek is not available. In order to run reek, you must: gem install reek'
+    end
   end
 end

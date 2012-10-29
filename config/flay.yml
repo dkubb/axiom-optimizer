@@ -1,3 +1,7 @@
 ---
-threshold: 113
-total_score: 888
+1.8:
+  threshold: 113
+  total_score: 888
+1.9:
+  threshold: 113
+  total_score: 1469
