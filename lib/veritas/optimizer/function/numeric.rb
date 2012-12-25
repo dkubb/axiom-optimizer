@@ -6,7 +6,7 @@ module Veritas
 
       # Abstract base class representing Numeric optimizations
       class Numeric < Optimizer
-        include AbstractClass
+        include AbstractType
 
         # Optimize when the operand is constant
         class ConstantOperand < self

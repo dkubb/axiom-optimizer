@@ -5,7 +5,7 @@ module Veritas
 
     # Abstract base class representing Aggregate optimizations
     class Aggregate < Optimizer
-      include AbstractClass, Function::Unary
+      include AbstractType, Function::Unary
 
       # Optimize when the operands are unoptimized
       class UnoptimizedOperand < self

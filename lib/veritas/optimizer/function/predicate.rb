@@ -6,7 +6,7 @@ module Veritas
 
       # Abstract base class representing Predicate optimizations
       class Predicate < Optimizer
-        include AbstractClass, Binary
+        include AbstractType, Binary
 
         # Optimize when the operands are constants
         class ConstantOperands < self
