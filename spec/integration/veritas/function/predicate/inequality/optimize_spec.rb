@@ -26,7 +26,7 @@ describe Function::Predicate::Inequality, '#optimize' do
     end
 
     context 'and are joinable' do
-      let(:right) { Attribute::Numeric.new(:other) }
+      let(:right) { Attribute::Integer.new(:other) }
 
       it { should equal(object) }
 

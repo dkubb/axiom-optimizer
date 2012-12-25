@@ -86,7 +86,7 @@ module Veritas
             # @api private
             def joinable?
               left = self.left
-              left == right.rename(left.name)
+              left.eql?(right.rename(left.name))
             end
 
           end # module NeverEquivalent
