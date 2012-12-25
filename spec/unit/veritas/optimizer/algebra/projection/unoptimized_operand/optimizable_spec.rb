@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Projection::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)              }
-  let(:relation) { operand.project([ :id ])                                      }
-  let(:object)   { described_class.new(relation)                                 }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)                 }
+  let(:relation) { operand.project([ :id ])                                         }
+  let(:object)   { described_class.new(relation)                                    }
 
   before do
     object.operation.should be_kind_of(Algebra::Projection)

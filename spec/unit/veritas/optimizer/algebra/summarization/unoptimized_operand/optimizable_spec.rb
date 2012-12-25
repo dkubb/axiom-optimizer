@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)    { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])       }
+  let(:header)    { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ])    }
   let(:base)      { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)                    }
   let(:attribute) { Attribute::Object.new(:test)                                        }
   let(:relation)  { operand.summarize(summarize_per) { |r| r.add(attribute, function) } }

@@ -13,9 +13,9 @@ describe Optimizer::Algebra::Join::EqualHeaders, '#optimizable?' do
   end
 
   context 'when left and right headers are equal' do
-    let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-    let(:left)   { Relation.new(header, [ [ 1 ] ].each)       }
-    let(:right)  { Relation.new(header, [ [ 1 ] ].each)       }
+    let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
+    let(:left)   { Relation.new(header, [ [ 1 ] ].each)          }
+    let(:right)  { Relation.new(header, [ [ 1 ] ].each)          }
 
     it { should be(true) }
   end

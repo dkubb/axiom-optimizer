@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)        { Relation::Header.new([ [ :id, Integer ] ])                          }
+  let(:header)        { Relation::Header.coerce([ [ :id, Integer ] ])                       }
   let(:base)          { Relation.new(header, [ [ 1 ] ].each)                                }
   let(:attribute)     { Attribute::Object.new(:text)                                        }
   let(:function)      { Aggregate::Sum.new(Function::Numeric::Absolute.new(1))              }

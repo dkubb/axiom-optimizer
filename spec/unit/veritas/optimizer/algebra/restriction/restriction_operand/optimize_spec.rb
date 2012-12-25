@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Algebra::Restriction::RestrictionOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)          { Relation::Header.new([ [ :id, Integer ] ])               }
+  let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ])            }
   let(:base)            { Relation.new(header, [ [ 1 ] ].each)                     }
   let(:predicate)       { header[:id].eq(1)                                        }
   let(:other_predicate) { header[:id].include([ 1 ])                               }

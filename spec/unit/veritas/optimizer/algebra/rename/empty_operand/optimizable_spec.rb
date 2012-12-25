@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:relation) { operand.rename(:id => :other_id)           }
-  let(:object)   { described_class.new(relation)              }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:relation) { operand.rename(:id => :other_id)              }
+  let(:object)   { described_class.new(relation)                 }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

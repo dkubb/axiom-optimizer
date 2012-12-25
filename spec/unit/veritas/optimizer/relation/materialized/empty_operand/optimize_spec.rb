@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Materialized::EmptyOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:relation) { Relation.new(header, [].each)              }
-  let(:object)   { described_class.new(relation)              }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:relation) { Relation.new(header, [].each)                 }
+  let(:object)   { described_class.new(relation)                 }
 
   before do
     object.should be_optimizable

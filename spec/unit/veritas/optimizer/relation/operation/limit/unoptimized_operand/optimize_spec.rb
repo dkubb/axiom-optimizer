@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)   { Relation::Header.new([ [ :id, Integer ] ])                }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ])             }
   let(:order)    { Relation.new(header, [ [ 1 ] ].each).sort_by { |r| r.id } }
   let(:relation) { order.rename({}).take(1)                                  }
   let(:object)   { described_class.new(relation)                             }

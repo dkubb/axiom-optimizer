@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::ProjectionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header) { Relation::Header.new([ [ :one, Integer ], [ :two, Integer ] ]) }
-  let(:base)   { Relation.new(header, [ [ 1, 2 ] ].each)                        }
-  let(:object) { described_class.new(relation)                                  }
+  let(:header) { Relation::Header.coerce([ [ :one, Integer ], [ :two, Integer ] ]) }
+  let(:base)   { Relation.new(header, [ [ 1, 2 ] ].each)                           }
+  let(:object) { described_class.new(relation)                                     }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

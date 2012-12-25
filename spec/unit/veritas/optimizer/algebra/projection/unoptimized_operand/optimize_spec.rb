@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Algebra::Projection::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])                }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ])             }
   let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)                             }
   let(:relation) { base.restrict { Function::Proposition::Tautology.instance }.project([ :id ]) }
   let(:object)   { described_class.new(relation)                                                }

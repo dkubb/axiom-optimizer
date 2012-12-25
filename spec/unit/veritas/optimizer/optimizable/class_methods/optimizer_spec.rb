@@ -25,7 +25,7 @@ end
 describe Optimizer::Optimizable::ClassMethods, '#optimizer=' do
   subject { object.optimizer = optimizer }
 
-  let(:optimizer) { mock('Optimizer')                                       }
+  let(:optimizer) { mock('Optimizer')                                        }
   let(:object)    { Class.new { include Optimizer::Optimizable, Adamantium } }
 
   it 'sets the optimizer' do
