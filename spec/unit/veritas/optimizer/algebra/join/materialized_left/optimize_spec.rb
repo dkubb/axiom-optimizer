@@ -13,8 +13,8 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
   end
 
   context 'with no joined tuples' do
-    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [])      }
-    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], [].each) }
+    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [])                 }
+    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], LazyEnumerable.new) }
 
     it { should be_kind_of(Algebra::Join) }
 
@@ -24,8 +24,8 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
   end
 
   context 'with one joined tuple' do
-    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [ [ 1,    ] ])      }
-    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], [ [ 1, 35 ] ].each) }
+    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [ [ 1 ] ])                         }
+    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], LazyEnumerable.new([ [ 1, 35 ] ])) }
 
     it { should be_kind_of(Algebra::Join) }
 
@@ -39,8 +39,8 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
   end
 
   context 'with two or more joined tuples' do
-    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [ [ 1,    ], [ 2,    ] ])      }
-    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], [ [ 1, 35 ], [ 2, 25 ] ].each) }
+    let(:left)  { Relation.new([ [ :id, Integer ],                    ], [ [ 1 ], [ 2 ] ])                             }
+    let(:right) { Relation.new([ [ :id, Integer ], [ :age,  Integer ] ], LazyEnumerable.new([ [ 1, 35 ], [ 2, 25 ] ])) }
 
     it { should be_kind_of(Algebra::Join) }
 

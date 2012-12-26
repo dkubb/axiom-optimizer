@@ -6,8 +6,8 @@ describe Algebra::Union, '#optimize' do
   subject { object.optimize }
 
   let(:header)         { [ [ :id, Integer ] ]             }
-  let(:left_body)      { [ [ 1 ] ].each                   }
-  let(:right_body)     { [ [ 2 ] ].each                   }
+  let(:left_body)      { LazyEnumerable.new([ [ 1 ] ])    }
+  let(:right_body)     { LazyEnumerable.new([ [ 2 ] ])    }
   let(:original_left)  { Relation.new(header, left_body)  }
   let(:original_right) { Relation.new(header, right_body) }
   let(:object)         { described_class.new(left, right) }
@@ -111,10 +111,10 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'left and right are equivalent relations' do
-    let(:left_body)  { [ [ 1 ] ].each }
-    let(:right_body) { [ [ 1 ] ].each }
-    let(:left)       { original_left  }
-    let(:right)      { original_right }
+    let(:left_body)  { LazyEnumerable.new([ [ 1 ] ]) }
+    let(:right_body) { LazyEnumerable.new([ [ 1 ] ]) }
+    let(:left)       { original_left                 }
+    let(:right)      { original_right                }
 
     it { should equal(left) }
 

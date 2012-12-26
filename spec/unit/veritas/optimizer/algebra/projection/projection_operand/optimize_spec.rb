@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Projection::ProjectionOperand, '#optimize' do
   subject { object.optimize }
 
   let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ]) }
-  let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb', 35 ] ].each)                                }
+  let(:base)     { Relation.new(header, LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ]))                 }
   let(:relation) { base.project([ :id, :name ]).project([ :id ])                                       }
   let(:object)   { described_class.new(relation)                                                       }
 

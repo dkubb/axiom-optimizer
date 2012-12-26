@@ -6,8 +6,8 @@ describe Optimizer::Algebra::Projection::UnionOperand, '#optimize' do
   subject { object.optimize }
 
   let(:header)     { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ]) }
-  let(:base_left)  { Relation.new(header, [ [ 1, 'Dan Kubb', 35 ] ].each)                                }
-  let(:base_right) { Relation.new(header, [ [ 2, 'Dan Kubb', 35 ] ].each)                                }
+  let(:base_left)  { Relation.new(header, LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ]))                 }
+  let(:base_right) { Relation.new(header, LazyEnumerable.new([ [ 2, 'Dan Kubb', 35 ] ]))                 }
   let(:left)       { base_left.rename({})                                                                }
   let(:right)      { base_right.rename({})                                                               }
   let(:relation)   { left.union(right).project([ :id ])                                                  }

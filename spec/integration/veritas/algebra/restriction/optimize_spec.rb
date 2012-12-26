@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Algebra::Restriction, '#optimize' do
   subject { object.optimize }
 
-  let(:body)     { [ [ 1 ] ].each                           }
+  let(:body)     { LazyEnumerable.new([ [ 1 ] ])            }
   let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
   let(:operand)  { relation                                 }
   let(:object)   { described_class.new(operand, predicate)  }
@@ -162,10 +162,10 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with a set operation' do
-    let(:left)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-    let(:right)     { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each) }
-    let(:operand)   { left.union(right)                                  }
-    let(:predicate) { operand[:id].gte(1)                                }
+    let(:left)      { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+    let(:right)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 2 ] ])) }
+    let(:operand)   { left.union(right)                                                 }
+    let(:predicate) { operand[:id].gte(1)                                               }
 
     it 'pushes the object to each relation' do
       should eql(left.restrict { |r| r.id.gte(1) }.union(right.restrict { |r| r.id.gte(1) }))

@@ -6,7 +6,7 @@ describe Algebra::Summarization, '#optimize' do
   subject { object.optimize }
 
   let(:header)        { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ]           }
-  let(:body)          { [ [ 1, 'Dan Kubb', 35 ], [ 2, 'Jane Doe', 24 ] ].each                }
+  let(:body)          { LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ], [ 2, 'Jane Doe', 24 ] ]) }
   let(:relation)      { Relation.new(header, body)                                           }
   let(:operand)       { relation                                                             }
   let(:summarize_per) { relation.project([ :id ])                                            }

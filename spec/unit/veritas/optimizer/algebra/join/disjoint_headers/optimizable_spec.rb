@@ -13,16 +13,16 @@ describe Optimizer::Algebra::Join::DisjointHeaders, '#optimizable?' do
   end
 
   context 'when left and right headers are disjoint' do
-    let(:left)  { Relation.new([ [ :id,       Integer ] ], [ [ 1 ] ].each) }
-    let(:right) { Relation.new([ [ :other_id, Integer ] ], [ [ 1 ] ].each) }
+    let(:left)  { Relation.new([ [ :id,       Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+    let(:right) { Relation.new([ [ :other_id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
 
     it { should be(true) }
   end
 
   context 'when left and right headers are not disjoint' do
-    let(:header) { [ [ :id, Integer ] ]                 }
-    let(:left)   { Relation.new(header, [ [ 1 ] ].each) }
-    let(:right)  { Relation.new(header, [ [ 1 ] ].each) }
+    let(:header) { [ [ :id, Integer ] ]                                }
+    let(:left)   { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
+    let(:right)  { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
 
     it { should be(false) }
   end

@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#optimize' do
   subject { object.optimize }
 
-  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
-  let(:operand)    { relation                                 }
-  let(:directions) { [ relation[:id] ]                        }
-  let(:object)     { described_class.new(operand, directions) }
+  let(:body)       { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)    }
+  let(:operand)    { relation                                    }
+  let(:directions) { [ relation[:id] ]                           }
+  let(:object)     { described_class.new(operand, directions)    }
 
   context 'containing a relation' do
     it { should equal(object) }

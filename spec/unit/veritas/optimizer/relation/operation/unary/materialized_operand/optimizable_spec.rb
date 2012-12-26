@@ -16,7 +16,7 @@ describe Optimizer::Relation::Operation::Unary::MaterializedOperand, '#optimizab
   end
 
   context 'when the operand is not materialized' do
-    let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+    let(:operand) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
 
     it { should be(false) }
   end

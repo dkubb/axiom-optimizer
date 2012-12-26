@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Order::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:relation) { base.rename({}).sort_by { |r| r.id }               }
-  let(:object)   { described_class.new(relation)                      }
+  let(:base)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:relation) { base.rename({}).sort_by { |r| r.id }                              }
+  let(:object)   { described_class.new(relation)                                     }
 
   before do
     object.should be_optimizable

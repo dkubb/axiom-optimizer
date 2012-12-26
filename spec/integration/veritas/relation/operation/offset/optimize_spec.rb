@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Relation::Operation::Offset, '#optimize' do
   subject { object.optimize }
 
-  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
-  let(:directions) { [ relation[:id] ]                        }
-  let(:order)      { relation.sort_by { directions }          }
-  let(:operand)    { order                                    }
-  let(:offset)     { 1                                        }
-  let(:object)     { described_class.new(operand, offset)     }
+  let(:body)       { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)    }
+  let(:directions) { [ relation[:id] ]                           }
+  let(:order)      { relation.sort_by { directions }             }
+  let(:operand)    { order                                       }
+  let(:offset)     { 1                                           }
+  let(:object)     { described_class.new(operand, offset)        }
 
   context 'with an object of 0' do
     let(:offset) { 0 }

@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ])             }
-  let(:base)     { Relation.new(header, [ [ 1 ] ].each).sort_by { |r| r.id } }
-  let(:relation) { operand.take(1)                                           }
-  let(:object)   { described_class.new(relation)                             }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ])                            }
+  let(:base)     { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])).sort_by { |r| r.id } }
+  let(:relation) { operand.take(1)                                                          }
+  let(:object)   { described_class.new(relation)                                            }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Limit)

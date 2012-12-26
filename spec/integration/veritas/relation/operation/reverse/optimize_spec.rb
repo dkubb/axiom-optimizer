@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Operation::Reverse, '#optimize' do
   subject { object.optimize }
 
-  let(:body)     { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
-  let(:order)    { relation.sort_by { |r| r.id }            }
-  let(:operand)  { order                                    }
-  let(:object)   { described_class.new(operand)             }
+  let(:body)     { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], body)    }
+  let(:order)    { relation.sort_by { |r| r.id }               }
+  let(:operand)  { order                                       }
+  let(:object)   { described_class.new(operand)                }
 
   context 'with a object operation' do
     let(:limit)   { order.take(2) }

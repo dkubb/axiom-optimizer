@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::LimitOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:base)     { Relation.new(header, [ [ 1 ] ].each)          }
-  let(:order)    { base.sort_by { |r| r.id }                     }
-  let(:relation) { order.take(2).rename(:id => :other_id)        }
-  let(:object)   { described_class.new(relation)                 }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ])       }
+  let(:base)     { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
+  let(:order)    { base.sort_by { |r| r.id }                           }
+  let(:relation) { order.take(2).rename(:id => :other_id)              }
+  let(:object)   { described_class.new(relation)                       }
 
   before do
     object.should be_optimizable

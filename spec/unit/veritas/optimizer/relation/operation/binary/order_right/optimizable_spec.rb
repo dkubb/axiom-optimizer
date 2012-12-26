@@ -10,13 +10,13 @@ describe Optimizer::Relation::Operation::Binary::OrderRight, '#optimizable?' do
   let(:object)   { described_class.new(relation)                    }
 
   context 'when right is an order' do
-    let(:right) { Relation.new([ [ :id, Integer ] ], [].each).sort_by { |r| r.id } }
+    let(:right) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new).sort_by { |r| r.id } }
 
     it { should be(true) }
   end
 
   context 'when right is not an order' do
-    let(:right) { Relation.new([ [ :id, Integer ] ], [].each) }
+    let(:right) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new) }
 
     it { should be(false) }
   end

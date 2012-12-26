@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Restriction::RestrictionOperand, '#optimize' do
   subject { object.optimize }
 
   let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ])            }
-  let(:base)            { Relation.new(header, [ [ 1 ] ].each)                     }
+  let(:base)            { Relation.new(header, LazyEnumerable.new([ [ 1 ] ]))      }
   let(:predicate)       { header[:id].eq(1)                                        }
   let(:other_predicate) { header[:id].include([ 1 ])                               }
   let(:relation)        { base.restrict { predicate }.restrict { other_predicate } }

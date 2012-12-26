@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::OrderOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:operand)  { base.sort_by { |r| r.id }                          }
-  let(:relation) { operand.rename(:id => :other_id)                   }
-  let(:object)   { described_class.new(relation)                      }
+  let(:base)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:operand)  { base.sort_by { |r| r.id }                                         }
+  let(:relation) { operand.rename(:id => :other_id)                                  }
+  let(:object)   { described_class.new(relation)                                     }
 
   before do
     object.should be_optimizable

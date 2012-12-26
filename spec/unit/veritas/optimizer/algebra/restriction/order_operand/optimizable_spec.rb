@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Restriction::OrderOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:base)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:predicate) { base[:id].eq(1)                                    }
-  let(:relation)  { operand.restrict { predicate }                     }
-  let(:object)    { described_class.new(relation)                      }
+  let(:base)      { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:predicate) { base[:id].eq(1)                                                   }
+  let(:relation)  { operand.restrict { predicate }                                    }
+  let(:object)    { described_class.new(relation)                                     }
 
   before do
     object.operation.should be_kind_of(Algebra::Restriction)

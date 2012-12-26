@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::UnoptimizedOperands, '#optimize' do
   subject { object.optimize }
 
-  let(:left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:right)    { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each) }
-  let(:relation) { left.rename({}).union(right.rename({}))            }
-  let(:object)   { described_class.new(relation)                      }
+  let(:left)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:right)    { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 2 ] ])) }
+  let(:relation) { left.rename({}).union(right.rename({}))                           }
+  let(:object)   { described_class.new(relation)                                     }
 
   before do
     object.should be_optimizable

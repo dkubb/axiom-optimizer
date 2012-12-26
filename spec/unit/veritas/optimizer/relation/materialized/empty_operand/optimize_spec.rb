@@ -6,7 +6,7 @@ describe Optimizer::Relation::Materialized::EmptyOperand, '#optimize' do
   subject { object.optimize }
 
   let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:relation) { Relation.new(header, [].each)                 }
+  let(:relation) { Relation.new(header, LazyEnumerable.new)      }
   let(:object)   { described_class.new(relation)                 }
 
   before do

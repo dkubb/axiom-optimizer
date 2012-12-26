@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Algebra::Product, '#optimize' do
   subject { object.optimize }
 
-  let(:left_body)  { [ [ 1 ] ].each                                   }
-  let(:right_body) { [ [ 'Dan Kubb' ] ].each                          }
+  let(:left_body)  { LazyEnumerable.new([ [ 1 ] ])                    }
+  let(:right_body) { LazyEnumerable.new([ [ 'Dan Kubb' ] ])           }
   let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
   let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
   let(:object)     { described_class.new(left, right)                 }

@@ -6,7 +6,7 @@ describe Algebra::Projection, '#optimize' do
   subject { object.optimize }
 
   let(:header)   { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
-  let(:body)     { [ [ 1, 'Dan Kubb', 35 ] ].each                             }
+  let(:body)     { LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ])              }
   let(:relation) { Relation.new(header, body)                                 }
   let(:operand)  { relation                                                   }
   let(:object)   { described_class.new(operand, attributes)                   }
@@ -141,10 +141,10 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing a set operation' do
-    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
-    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
-    let(:operand)    { left.union(right)                                                                 }
-    let(:attributes) { [ :name ]                                                                         }
+    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
+    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 2, 'Dan Kubb' ] ])) }
+    let(:operand)    { left.union(right)                                                                                }
+    let(:attributes) { [ :name ]                                                                                        }
 
     it 'pushes the object to each relation' do
       should eql(Algebra::Union.new(
@@ -166,8 +166,8 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing a set operation containing a projection of relations' do
-    let(:left_body)  { [ [ 1, 'Dan Kubb', 35 ] ].each                                    }
-    let(:right_body) { [ [ 2, 'Dan Kubb', 35 ] ].each                                    }
+    let(:left_body)  { LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ])                     }
+    let(:right_body) { LazyEnumerable.new([ [ 2, 'Dan Kubb', 35 ] ])                     }
     let(:left)       { Relation.new(header, left_body)                                   }
     let(:right)      { Relation.new(header, right_body)                                  }
     let(:operand)    { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }

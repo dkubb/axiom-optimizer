@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:order)    { base.sort_by { |r| r.id }                          }
-  let(:relation) { order.sort_by { order.directions.reverse }         }
-  let(:object)   { described_class.new(relation)                      }
+  let(:base)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:order)    { base.sort_by { |r| r.id }                                         }
+  let(:relation) { order.sort_by { order.directions.reverse }                        }
+  let(:object)   { described_class.new(relation)                                     }
 
   before do
     object.should be_optimizable

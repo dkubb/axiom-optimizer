@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Algebra::Rename, '#optimize' do
   subject { object.optimize }
 
-  let(:body)     { [ [ 1, 'Dan Kubb' ] ].each                                  }
+  let(:body)     { LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])                   }
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
   let(:operand)  { relation                                                    }
   let(:aliases)  { { :id => :other_id }                                        }
@@ -224,9 +224,9 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a set operation' do
-    let(:left)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
-    let(:right)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
-    let(:operand) { left.union(right)                                                                 }
+    let(:left)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
+    let(:right)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 2, 'Dan Kubb' ] ])) }
+    let(:operand) { left.union(right)                                                                                }
 
     it 'pushes the object to each relation' do
       should eql(left.rename(aliases).union(right.rename(aliases)))
@@ -245,10 +245,10 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a set operation, containing a object that cancels out' do
-    let(:left)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
-    let(:right)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
-    let(:operand) { left.rename(:id => :other_id).union(right.rename(:id => :other_id))               }
-    let(:aliases) { { :other_id => :id }                                                              }
+    let(:left)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
+    let(:right)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 2, 'Dan Kubb' ] ])) }
+    let(:operand) { left.rename(:id => :other_id).union(right.rename(:id => :other_id))                              }
+    let(:aliases) { { :other_id => :id }                                                                             }
 
     it 'pushes the object to each relation, then cancel it out' do
       should eql(left.union(right))

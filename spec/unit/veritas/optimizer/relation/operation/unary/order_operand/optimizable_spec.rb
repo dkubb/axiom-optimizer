@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Unary::OrderOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:described_class) { Class.new(Optimizer::Relation::Operation::Unary) }
-  let(:base)            { Relation.new([ [ :id, Integer ] ], [].each)      }
-  let(:relation)        { operand.project([])                              }
-  let(:object)          { described_class.new(relation)                    }
+  let(:described_class) { Class.new(Optimizer::Relation::Operation::Unary)       }
+  let(:base)            { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new) }
+  let(:relation)        { operand.project([])                                    }
+  let(:object)          { described_class.new(relation)                          }
 
   before do
     described_class.class_eval { include Optimizer::Relation::Operation::Unary::OrderOperand }

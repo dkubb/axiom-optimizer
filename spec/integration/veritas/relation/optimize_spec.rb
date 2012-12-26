@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation, '#optimize' do
   subject { object.optimize(*args) }
 
-  let(:object) { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+  let(:object) { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
 
   before do
     object.should be_instance_of(described_class)
@@ -25,8 +25,8 @@ describe Relation, '#optimize' do
   end
 
   context 'with an optimizer' do
-    let(:optimized) { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-    let(:args)      { [ lambda { |relation| optimized } ]                       }
+    let(:optimized) { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+    let(:args)      { [ lambda { |relation| optimized } ]                                      }
 
     it { should equal(optimized) }
 

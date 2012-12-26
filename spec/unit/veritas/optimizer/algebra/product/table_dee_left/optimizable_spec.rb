@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Algebra::Product::TableDeeLeft, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:right)    { Relation.new([ [ :id, Integer  ] ], [ [ 1 ] ].each) }
-  let(:relation) { left.product(right)                                 }
-  let(:object)   { described_class.new(relation)                       }
+  let(:right)    { Relation.new([ [ :id, Integer  ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:relation) { left.product(right)                                                }
+  let(:object)   { described_class.new(relation)                                      }
 
   before do
     object.operation.should be_kind_of(Algebra::Product)

@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::LimitOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:aliases)  { { :id => :other_id }                               }
-  let(:relation) { operand.rename(aliases)                            }
-  let(:object)   { described_class.new(relation)                      }
+  let(:base)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:aliases)  { { :id => :other_id }                                              }
+  let(:relation) { operand.rename(aliases)                                           }
+  let(:object)   { described_class.new(relation)                                     }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Projection::UnionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:left)     { Relation.new(header, [ [ 1, 'Dan Kubb', 35 ] ].each)             }
-  let(:right)    { Relation.new(header, [ [ 2, 'Dan Kubb', 35 ] ].each)             }
-  let(:relation) { operand.project([ :id ])                                         }
-  let(:object)   { described_class.new(relation)                                    }
+  let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ])    }
+  let(:left)     { Relation.new(header, LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ])) }
+  let(:right)    { Relation.new(header, LazyEnumerable.new([ [ 2, 'Dan Kubb', 35 ] ])) }
+  let(:relation) { operand.project([ :id ])                                            }
+  let(:object)   { described_class.new(relation)                                       }
 
   before do
     object.operation.should be_kind_of(Algebra::Projection)
