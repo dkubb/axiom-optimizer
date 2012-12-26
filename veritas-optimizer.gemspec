@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-11-25"
+  s.date = "2012-12-26"
   s.description = "Optimizes veritas relations"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -134,6 +134,7 @@ Gem::Specification.new do |s|
     "spec/support/add_method_missing.rb",
     "spec/support/config_alias.rb",
     "spec/support/ice_nine_config.rb",
+    "spec/support/lazy_enumerable.rb",
     "spec/unit/veritas/optimizer/algebra/difference/empty_left/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/difference/empty_right/optimize_spec.rb",
     "spec/unit/veritas/optimizer/algebra/difference/equal_operands/optimize_spec.rb",
