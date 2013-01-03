@@ -2,14 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'veritas', '~> 0.0.7', :github => 'dkubb/veritas'
+gemspec
 
-group :development do
-  gem 'jeweler', '~> 1.8.3'
-  gem 'rake',    '~> 0.9.2'
-  gem 'rspec',   '~> 1.3.2'
-  gem 'yard',    '~> 0.8.3'
-end
+gem 'veritas', '~> 0.0.7', :github => 'dkubb/veritas'
 
 group :guard do
   gem 'guard',         '~> 0.7.0'
