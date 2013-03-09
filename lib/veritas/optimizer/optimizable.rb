@@ -25,16 +25,14 @@ module Veritas
       # @example
       #   optimized = operation.optimize
       #
-      # @param [Optimizer] optimizer
-      #   optional optimizer
-      #
       # @return [Optimizable]
       #   the optimized operation
       #
       # @api public
       #
       # @todo simplify by setting a default Identity optimizer for all relations
-      def optimize(optimizer = self.class.optimizer || Optimizer::Identity)
+      def optimize
+        optimizer = self.class.optimizer || Optimizer::Identity
         optimized = optimizer.call(self)
         equal?(optimized)                ? self               :
         optimized.respond_to?(:optimize) ? optimized.optimize :

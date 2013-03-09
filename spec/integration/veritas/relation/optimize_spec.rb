@@ -6,30 +6,18 @@ describe Relation, '#optimize' do
   subject { object.optimize(*args) }
 
   let(:object) { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:args)   { []                                                                       }
 
   before do
     object.should be_instance_of(described_class)
   end
 
-  context 'with no optimizer' do
-    let(:args) { [] }
-
-    it 'calls self.class.optimizer' do
-      described_class.should_receive(:optimizer).and_return(nil)
-      subject
-    end
-
-    it { should equal(object) }
-
-    it_should_behave_like 'an optimize method'
+  it 'calls self.class.optimizer' do
+    described_class.should_receive(:optimizer).and_return(nil)
+    subject
   end
 
-  context 'with an optimizer' do
-    let(:optimized) { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-    let(:args)      { [ lambda { |relation| optimized } ]                                      }
+  it { should equal(object) }
 
-    it { should equal(optimized) }
-
-    it_should_behave_like 'an optimize method'
-  end
+  it_should_behave_like 'an optimize method'
 end

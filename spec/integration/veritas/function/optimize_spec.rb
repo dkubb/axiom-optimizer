@@ -7,6 +7,7 @@ describe Function, '#optimize' do
 
   let(:described_class) { Class.new(Function) }
   let(:object)          { described_class.new }
+  let(:args)            { []                  }
 
   before do
     described_class.class_eval do
@@ -16,29 +17,14 @@ describe Function, '#optimize' do
     end
   end
 
-  context 'with no optimizer' do
-    let(:args) { [] }
-
-    it 'calls self.class.optimizer' do
-      described_class.should_receive(:optimizer).and_return(nil)
-      subject
-    end
-
-    it 'returns self' do
-      should equal(object)
-    end
-
-    it_should_behave_like 'an optimize method'
+  it 'calls self.class.optimizer' do
+    described_class.should_receive(:optimizer).and_return(nil)
+    subject
   end
 
-  context 'with an optimizer' do
-    let(:optimized) { described_class.new                 }
-    let(:args)      { [ lambda { |relation| optimized } ] }
-
-    it 'returns an optimized expression' do
-      should equal(optimized)
-    end
-
-    it_should_behave_like 'an optimize method'
+  it 'returns self' do
+    should equal(object)
   end
+
+  it_should_behave_like 'an optimize method'
 end
