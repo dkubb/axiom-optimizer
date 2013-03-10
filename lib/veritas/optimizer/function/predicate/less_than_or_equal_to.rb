@@ -34,7 +34,6 @@ module Veritas
             #
             # @api private
             def optimizable?
-              operation = self.operation
               LessThan::Tautology.new(operation).optimizable? ||
               Equality::Tautology.new(operation).optimizable?
             end

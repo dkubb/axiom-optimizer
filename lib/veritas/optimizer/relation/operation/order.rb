@@ -40,7 +40,6 @@ module Veritas
             #
             # @api private
             def optimizable?
-              operand = self.operand
               operand.kind_of?(Veritas::Relation::Operation::Limit) &&
               operand.limit == 1
             end

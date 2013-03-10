@@ -98,7 +98,6 @@ module Veritas
           #
           # @api private
           def optimize
-            operation = self.operation
             Veritas::Relation::Empty.new(operation.header, operation)
           end
 
@@ -167,7 +166,6 @@ module Veritas
           #
           # @api private
           def partition
-            operand = self.operand
             PredicatePartition.new(predicate, operand.left.header, operand.right.header)
           end
 

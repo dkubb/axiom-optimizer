@@ -61,7 +61,6 @@ module Veritas
           # @api private
           def left_equality?
             util = Veritas::Function::Predicate
-            left = self.left
             left.kind_of?(util::Equality) || left.kind_of?(util::Inclusion)
           end
 
@@ -72,7 +71,6 @@ module Veritas
           # @api private
           def right_equality?
             util  = Veritas::Function::Predicate
-            right = self.right
             right.kind_of?(util::Equality) || right.kind_of?(util::Inclusion)
           end
 
@@ -83,7 +81,6 @@ module Veritas
           # @api private
           def left_inequality?
             util = Veritas::Function::Predicate
-            left = self.left
             left.kind_of?(util::Inequality) || left.kind_of?(util::Exclusion)
           end
 
@@ -94,7 +91,6 @@ module Veritas
           # @api private
           def right_inequality?
             util  = Veritas::Function::Predicate
-            right = self.right
             right.kind_of?(util::Inequality) || right.kind_of?(util::Exclusion)
           end
 
@@ -140,8 +136,6 @@ module Veritas
           #
           # @api private
           def contradiction?
-            left  = self.left
-            right = self.right
             left.respond_to?(:inverse)  &&
             right.respond_to?(:inverse) &&
             left.inverse.eql?(right)
@@ -203,7 +197,6 @@ module Veritas
             #
             # @api private
             def optimizable?
-              left = self.left
               operation.kind_of?(left.class) && right.eql?(left.right)
             end
 
@@ -227,7 +220,6 @@ module Veritas
             #
             # @api private
             def optimizable?
-              right = self.right
               operation.kind_of?(right.class) && left.eql?(right.left)
             end
 

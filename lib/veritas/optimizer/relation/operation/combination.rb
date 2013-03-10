@@ -14,7 +14,6 @@ module Veritas
           #
           # @api private
           def optimize
-            operation = self.operation
             Veritas::Relation::Empty.new(operation.header, operation)
           end
 
