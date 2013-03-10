@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Function, '.optimize_functions' do
   subject { object.optimize_functions(functions) }
 
-  let(:object)    { self.class.described_type }
+  let(:object)    { described_class           }
   let(:attribute) { mock('Attribute')         }
   let(:functions) { { attribute => function } }
 

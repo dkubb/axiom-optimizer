@@ -95,3 +95,6 @@ LongYieldList:
   max_params: 1
   exclude: []
   enabled: true
+NilCheck:
+  enabled: false
+  exclude: []

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Function::Predicate::Enumerable, '.sort_by_value' do
   subject { object.sort_by_value(value) }
 
-  let(:object) { self.class.described_type }
+  let(:object) { described_class }
 
   context 'when the value is true' do
     let(:value) { true }
