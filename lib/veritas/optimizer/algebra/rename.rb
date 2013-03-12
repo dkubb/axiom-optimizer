@@ -144,7 +144,6 @@ module Veritas
           #
           # @api private
           def removed_attributes
-            operand = self.operand
             operand.operand.header - operand.header
           end
 

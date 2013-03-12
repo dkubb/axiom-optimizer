@@ -49,7 +49,6 @@ module Veritas
           #
           # @api private
           def optimize_right_range
-            left  = self.left
             right = operation.right
             return unless left.respond_to?(:range)
             right.to_inclusive if right.overlaps?(left.range)

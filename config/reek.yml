@@ -1,0 +1,125 @@
+---
+UncommunicativeParameterName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+LargeClass:
+  max_methods: 14  # TODO: decrease max_methods to 10-15 or less
+  exclude: []
+  enabled: true
+  max_instance_variables: 5
+UncommunicativeMethodName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+LongParameterList:
+  max_params: 3
+  exclude: []
+  enabled: true
+  overrides: {}
+FeatureEnvy:
+  exclude: []
+  enabled: true
+ClassVariable:
+  exclude: []
+  enabled: true
+BooleanParameter:
+  exclude: []
+  enabled: true
+IrresponsibleModule:
+  exclude: []
+  enabled: true
+UncommunicativeModuleName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+NestedIterators:
+  ignore_iterators: []
+  exclude:
+    # none of these use nested iterators, they use nested blocks only
+    - Veritas::Optimizer::Algebra::Extension#wrap_operand
+    - Veritas::Optimizer::Algebra::Projection::ExtensionOperand#extend_operand
+    - Veritas::Optimizer::Algebra::Summarization#wrap_operand
+    - Veritas::Optimizer::Algebra::Summarization::EmptyOperand#optimize
+  enabled: true
+  max_allowed_nesting: 1
+LongMethod:
+  max_statements: 7
+  exclude: []
+  enabled: true
+Duplication:
+  allow_calls: []
+  exclude:
+    - Veritas::Optimizer::Algebra::Difference::EqualOperands#optimize
+    - Veritas::Optimizer::Algebra::Join::MaterializedLeft#right_matching_left?
+    - Veritas::Optimizer::Algebra::Join::MaterializedRight#left_matching_right?
+    - Veritas::Optimizer::Algebra::Product::TableDeeLeft#optimizable?
+    - Veritas::Optimizer::Algebra::Product::TableDeeRight#optimizable?
+    - Veritas::Optimizer::Algebra::Projection::ExtensionOperand#optimizable?
+    - Veritas::Optimizer::Algebra::Rename::ProjectionOperand#removed_attributes
+    - Veritas::Optimizer::Algebra::Restriction::CombinationOperand#partition
+    - Veritas::Optimizer::Algebra::Restriction::Contradiction#optimize
+    - Veritas::Optimizer::Algebra::Summarization::EmptySummarizePer#optimize
+    - Veritas::Optimizer::Function::Connective::Binary#contradiction?
+    - Veritas::Optimizer::Function::Connective::Binary#contradiction?
+    - Veritas::Optimizer::Function::Connective::Binary#left_equality?
+    - Veritas::Optimizer::Function::Connective::Binary#left_inequality?
+    - Veritas::Optimizer::Function::Connective::Binary#right_equality?
+    - Veritas::Optimizer::Function::Connective::Binary#right_inequality?
+    - Veritas::Optimizer::Function::Connective::Binary::RedundantLeft#optimizable?
+    - Veritas::Optimizer::Function::Connective::Binary::RedundantRight#optimizable?
+    - Veritas::Optimizer::Function::Predicate::Comparable::NeverEquivalent#joinable?
+    - Veritas::Optimizer::Function::Predicate::Enumerable#optimize_right_range
+    - Veritas::Optimizer::Function::Predicate::GreaterThanOrEqualTo::Tautology#optimizable?
+    - Veritas::Optimizer::Function::Predicate::LessThanOrEqualTo::Tautology#optimizable?
+    - Veritas::Optimizer::Relation::Materialized::EmptyOperand#optimize
+    - Veritas::Optimizer::Relation::Operation::Combination#optimize
+    - Veritas::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize
+    - Veritas::Optimizer::Relation::Operation::Order::OneLimitOperand#optimizable?
+  enabled: true
+  max_calls: 1
+UtilityFunction:
+  max_helper_calls: 1
+  exclude: []
+  enabled: true
+Attribute:
+  exclude: []
+  enabled: false
+UncommunicativeVariableName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+SimulatedPolymorphism:
+  exclude: []
+  enabled: true
+  max_ifs: 1
+DataClump:
+  exclude: []
+  enabled: true
+  max_copies: 1
+  min_clump_size: 2
+ControlCouple:
+  exclude: []
+  enabled: true
+LongYieldList:
+  max_params: 1
+  exclude: []
+  enabled: true
+NilCheck:
+  enabled: false
+  exclude: []

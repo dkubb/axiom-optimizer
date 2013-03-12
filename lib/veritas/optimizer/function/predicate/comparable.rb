@@ -85,7 +85,6 @@ module Veritas
             #
             # @api private
             def joinable?
-              left = self.left
               left.eql?(right.rename(left.name))
             end
 

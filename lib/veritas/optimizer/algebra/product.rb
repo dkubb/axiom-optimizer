@@ -16,7 +16,6 @@ module Veritas
           #
           # @api private
           def optimizable?
-            left = self.left
             left.header.empty? && ! left.kind_of?(Veritas::Relation::Empty)
           end
 
@@ -40,7 +39,6 @@ module Veritas
           #
           # @api private
           def optimizable?
-            right = self.right
             right.header.empty? && ! right.kind_of?(Veritas::Relation::Empty)
           end
 

@@ -50,7 +50,6 @@ module Veritas
           #
           # @api private
           def optimizable?
-            operand = self.operand
             operand.kind_of?(Veritas::Algebra::Extension) &&
             operand.extensions != new_extensions
           end

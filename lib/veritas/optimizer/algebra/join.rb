@@ -106,7 +106,6 @@ module Veritas
           #
           # @api private
           def right_matching_left?
-            right = self.right
             right.kind_of?(Veritas::Algebra::Restriction) && right.predicate.eql?(materialized_predicate)
           end
 
@@ -150,7 +149,6 @@ module Veritas
           #
           # @api private
           def left_matching_right?
-            left = self.left
             left.kind_of?(Veritas::Algebra::Restriction) && left.predicate.eql?(materialized_predicate)
           end
 

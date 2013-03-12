@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Function, '.optimize_operand' do
   subject { object.optimize_operand(function) }
 
-  let(:object) { self.class.described_type }
+  let(:object) { described_class }
 
   context 'when optimizable' do
     let(:optimized) { mock('Optimized')                           }
