@@ -121,5 +121,8 @@ LongYieldList:
   exclude: []
   enabled: true
 NilCheck:
-  enabled: false
-  exclude: []
+  enabled: true
+  exclude:
+    - Veritas::Optimizer::Function::Util#self.constant?
+    - Veritas::Optimizer::Function::Predicate::Comparable::NeverEquivalent#nil_operand?
+    - Veritas::Optimizer::Function::Predicate::Enumerable::EmptyRight#right_nil?
