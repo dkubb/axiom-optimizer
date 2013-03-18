@@ -3,7 +3,17 @@ veritas-optimizer
 
 Relational algebra optimizer
 
-[![Build Status](https://secure.travis-ci.org/dkubb/veritas-optimizer.png)](http://travis-ci.org/dkubb/veritas-optimizer)
+[![Gem Version](https://badge.fury.io/rb/veritas-optimizer.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/veritas-optimizer.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/veritas-optimizer.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/veritas-optimizer.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/veritas-optimizer/badge.png?branch=master)][coveralls]
+
+[gem]: https://rubygems.org/gems/veritas-optimizer
+[travis]: https://travis-ci.org/dkubb/veritas-optimizer
+[gemnasium]: https://gemnasium.com/dkubb/veritas-optimizer
+[codeclimate]: https://codeclimate.com/github/dkubb/veritas-optimizer
+[coveralls]: https://coveralls.io/r/dkubb/veritas-optimizer
 
 Installation
 ------------
