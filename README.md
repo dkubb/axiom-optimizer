@@ -1,19 +1,19 @@
-veritas-optimizer
-=================
+axiom-optimizer
+===============
 
 Relational algebra optimizer
 
-[![Gem Version](https://badge.fury.io/rb/veritas-optimizer.png)][gem]
-[![Build Status](https://secure.travis-ci.org/dkubb/veritas-optimizer.png?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/dkubb/veritas-optimizer.png)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/dkubb/veritas-optimizer.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/dkubb/veritas-optimizer/badge.png?branch=master)][coveralls]
+[![Gem Version](https://badge.fury.io/rb/axiom-optimizer.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/axiom-optimizer.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/axiom-optimizer.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/axiom-optimizer.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/axiom-optimizer/badge.png?branch=master)][coveralls]
 
-[gem]: https://rubygems.org/gems/veritas-optimizer
-[travis]: https://travis-ci.org/dkubb/veritas-optimizer
-[gemnasium]: https://gemnasium.com/dkubb/veritas-optimizer
-[codeclimate]: https://codeclimate.com/github/dkubb/veritas-optimizer
-[coveralls]: https://coveralls.io/r/dkubb/veritas-optimizer
+[gem]: https://rubygems.org/gems/axiom-optimizer
+[travis]: https://travis-ci.org/dkubb/axiom-optimizer
+[gemnasium]: https://gemnasium.com/dkubb/axiom-optimizer
+[codeclimate]: https://codeclimate.com/github/dkubb/axiom-optimizer
+[coveralls]: https://coveralls.io/r/dkubb/axiom-optimizer
 
 Installation
 ------------
@@ -21,20 +21,20 @@ Installation
 With Rubygems:
 
 ```bash
-$ gem install veritas-optimizer
+$ gem install axiom-optimizer
 $ irb -rubygems
->> require 'veritas-optimizer'
+>> require 'axiom-optimizer'
 => true
 ```
 
 With git and local working copy:
 
 ```bash
-$ git clone git://github.com/dkubb/veritas-optimizer.git
-$ cd veritas-optimizer
+$ git clone git://github.com/dkubb/axiom-optimizer.git
+$ cd axiom-optimizer
 $ rake install
 $ irb -rubygems
->> require 'veritas-optimizer'
+>> require 'axiom-optimizer'
 => true
 ```
 
@@ -58,7 +58,7 @@ new_aggregate = function.aggregate(optimizer)
 Description
 -----------
 
-The purpose of this gem is to provide a simple API that can be used to optimize a [veritas](https://github.com/dkubb/veritas) relation, scalar or aggregate function. An optional optimizer can be passed in to the #optimize method and return an equivalent but simplified version of the object.
+The purpose of this gem is to provide a simple API that can be used to optimize a [axiom](https://github.com/dkubb/axiom) relation, scalar or aggregate function. An optional optimizer can be passed in to the #optimize method and return an equivalent but simplified version of the object.
 
 One of the primary benefits of Relational Algebra is that it's based on logic, and the rules for simplifying logic are well known and studied. An optimizer can pass through user-generated objects and typically find ways to simplify or organize them in a way that will be more efficient when the operation is executed.
 
@@ -82,7 +82,7 @@ Inside this gem we have the concept of an optimizer chain. It's a chain of respo
 Here is an example of an optimizer chain for the restriction operator (think WHERE clause in SQL):
 
 ```ruby
-Veritas::Algebra::Restriction.optimizer = chain(
+Axiom::Algebra::Restriction.optimizer = chain(
   Tautology,            # does the predicate match everything?
   Contradiction,        # does the predicate match nothing?
   RestrictionOperand,   # does the restriction contain another restriction?
