@@ -2,16 +2,16 @@
 Attribute:
   enabled: true
   exclude:
-  - Veritas::Optimizer
-  - Veritas::Optimizer::Algebra::Extension
-  - Veritas::Optimizer::Algebra::Rename
-  - Veritas::Optimizer::Algebra::Restriction
-  - Veritas::Optimizer::Algebra::Summarization
-  - Veritas::Optimizer::Function::Binary
-  - Veritas::Optimizer::Function::Unary
-  - Veritas::Optimizer::Optimizable::ClassMethods
-  - Veritas::Optimizer::PredicatePartition
-  - Veritas::Optimizer::Relation::Operation::Unary
+  - Axiom::Optimizer
+  - Axiom::Optimizer::Algebra::Extension
+  - Axiom::Optimizer::Algebra::Rename
+  - Axiom::Optimizer::Algebra::Restriction
+  - Axiom::Optimizer::Algebra::Summarization
+  - Axiom::Optimizer::Function::Binary
+  - Axiom::Optimizer::Function::Unary
+  - Axiom::Optimizer::Optimizable::ClassMethods
+  - Axiom::Optimizer::PredicatePartition
+  - Axiom::Optimizer::Relation::Operation::Unary
 BooleanParameter:
   enabled: true
   exclude: []
@@ -29,32 +29,32 @@ DataClump:
 DuplicateMethodCall:
   enabled: true
   exclude:
-  - Veritas::Optimizer::Algebra::Difference::EqualOperands#optimize
-  - Veritas::Optimizer::Algebra::Join::MaterializedLeft#right_matching_left?
-  - Veritas::Optimizer::Algebra::Join::MaterializedRight#left_matching_right?
-  - Veritas::Optimizer::Algebra::Product::TableDeeLeft#optimizable?
-  - Veritas::Optimizer::Algebra::Product::TableDeeRight#optimizable?
-  - Veritas::Optimizer::Algebra::Projection::ExtensionOperand#optimizable?
-  - Veritas::Optimizer::Algebra::Rename::ProjectionOperand#removed_attributes
-  - Veritas::Optimizer::Algebra::Restriction::CombinationOperand#partition
-  - Veritas::Optimizer::Algebra::Restriction::Contradiction#optimize
-  - Veritas::Optimizer::Algebra::Summarization::EmptySummarizePer#optimize
-  - Veritas::Optimizer::Function::Connective::Binary#contradiction?
-  - Veritas::Optimizer::Function::Connective::Binary#contradiction?
-  - Veritas::Optimizer::Function::Connective::Binary#left_equality?
-  - Veritas::Optimizer::Function::Connective::Binary#left_inequality?
-  - Veritas::Optimizer::Function::Connective::Binary#right_equality?
-  - Veritas::Optimizer::Function::Connective::Binary#right_inequality?
-  - Veritas::Optimizer::Function::Connective::Binary::RedundantLeft#optimizable?
-  - Veritas::Optimizer::Function::Connective::Binary::RedundantRight#optimizable?
-  - Veritas::Optimizer::Function::Predicate::Comparable::NeverEquivalent#joinable?
-  - Veritas::Optimizer::Function::Predicate::Enumerable#optimize_right_range
-  - Veritas::Optimizer::Function::Predicate::GreaterThanOrEqualTo::Tautology#optimizable?
-  - Veritas::Optimizer::Function::Predicate::LessThanOrEqualTo::Tautology#optimizable?
-  - Veritas::Optimizer::Relation::Materialized::EmptyOperand#optimize
-  - Veritas::Optimizer::Relation::Operation::Combination#optimize
-  - Veritas::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize
-  - Veritas::Optimizer::Relation::Operation::Order::OneLimitOperand#optimizable?
+  - Axiom::Optimizer::Algebra::Difference::EqualOperands#optimize
+  - Axiom::Optimizer::Algebra::Join::MaterializedLeft#right_matching_left?
+  - Axiom::Optimizer::Algebra::Join::MaterializedRight#left_matching_right?
+  - Axiom::Optimizer::Algebra::Product::TableDeeLeft#optimizable?
+  - Axiom::Optimizer::Algebra::Product::TableDeeRight#optimizable?
+  - Axiom::Optimizer::Algebra::Projection::ExtensionOperand#optimizable?
+  - Axiom::Optimizer::Algebra::Rename::ProjectionOperand#removed_attributes
+  - Axiom::Optimizer::Algebra::Restriction::CombinationOperand#partition
+  - Axiom::Optimizer::Algebra::Restriction::Contradiction#optimize
+  - Axiom::Optimizer::Algebra::Summarization::EmptySummarizePer#optimize
+  - Axiom::Optimizer::Function::Connective::Binary#contradiction?
+  - Axiom::Optimizer::Function::Connective::Binary#contradiction?
+  - Axiom::Optimizer::Function::Connective::Binary#left_equality?
+  - Axiom::Optimizer::Function::Connective::Binary#left_inequality?
+  - Axiom::Optimizer::Function::Connective::Binary#right_equality?
+  - Axiom::Optimizer::Function::Connective::Binary#right_inequality?
+  - Axiom::Optimizer::Function::Connective::Binary::RedundantLeft#optimizable?
+  - Axiom::Optimizer::Function::Connective::Binary::RedundantRight#optimizable?
+  - Axiom::Optimizer::Function::Predicate::Comparable::NeverEquivalent#joinable?
+  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_range
+  - Axiom::Optimizer::Function::Predicate::GreaterThanOrEqualTo::Tautology#optimizable?
+  - Axiom::Optimizer::Function::Predicate::LessThanOrEqualTo::Tautology#optimizable?
+  - Axiom::Optimizer::Relation::Materialized::EmptyOperand#optimize
+  - Axiom::Optimizer::Relation::Operation::Combination#optimize
+  - Axiom::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize
+  - Axiom::Optimizer::Relation::Operation::Order::OneLimitOperand#optimizable?
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
@@ -82,9 +82,9 @@ NestedIterators:
 NilCheck:
   enabled: true
   exclude:
-  - Veritas::Optimizer::Function::Predicate::Comparable::NeverEquivalent#nil_operand?
-  - Veritas::Optimizer::Function::Predicate::Enumerable::EmptyRight#right_nil?
-  - Veritas::Optimizer::Function::Util#self.constant?
+  - Axiom::Optimizer::Function::Predicate::Comparable::NeverEquivalent#nil_operand?
+  - Axiom::Optimizer::Function::Predicate::Enumerable::EmptyRight#right_nil?
+  - Axiom::Optimizer::Function::Util#self.constant?
 RepeatedConditional:
   enabled: true
   exclude: []
@@ -92,31 +92,31 @@ RepeatedConditional:
 TooManyInstanceVariables:
   enabled: true
   exclude:
-  - Veritas::Optimizer::PredicatePartition
+  - Axiom::Optimizer::PredicatePartition
   max_instance_variables: 3
 TooManyMethods:
   enabled: true
   exclude:
-  - Veritas::Optimizer::Function::Connective::Binary
+  - Axiom::Optimizer::Function::Connective::Binary
   max_methods: 10
 TooManyStatements:
   enabled: true
   exclude:
-  - Veritas::Optimizer#self.link_optimizers
-  - Veritas::Optimizer::Algebra::Projection::ExtensionOperand#new_extensions
-  - Veritas::Optimizer::Algebra::Summarization::EmptyOperand#extensions
-  - Veritas::Optimizer::Function#self.optimize_functions
-  - Veritas::Optimizer::Function::Predicate::Comparable::NeverComparable#optimizable?
-  - Veritas::Optimizer::Function::Predicate::Comparable::NeverEquivalent#optimizable?
-  - Veritas::Optimizer::Function::Predicate::Enumerable#normalized_right_enumerable
-  - Veritas::Optimizer::Function::Predicate::Enumerable#optimize_right
-  - Veritas::Optimizer::Function::Predicate::Enumerable#optimize_right_enumerable
-  - Veritas::Optimizer::Function::Predicate::Enumerable#optimize_right_range
-  - Veritas::Optimizer::Optimizable#optimize
-  - Veritas::Optimizer::PredicatePartition#partition!
-  - Veritas::Optimizer::PredicatePartition#partition_binary!
-  - Veritas::Optimizer::PredicatePartition#partition_proposition!
-  - Veritas::Optimizer::PredicatePartition#partition_unary!
+  - Axiom::Optimizer#self.link_optimizers
+  - Axiom::Optimizer::Algebra::Projection::ExtensionOperand#new_extensions
+  - Axiom::Optimizer::Algebra::Summarization::EmptyOperand#extensions
+  - Axiom::Optimizer::Function#self.optimize_functions
+  - Axiom::Optimizer::Function::Predicate::Comparable::NeverComparable#optimizable?
+  - Axiom::Optimizer::Function::Predicate::Comparable::NeverEquivalent#optimizable?
+  - Axiom::Optimizer::Function::Predicate::Enumerable#normalized_right_enumerable
+  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right
+  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_enumerable
+  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_range
+  - Axiom::Optimizer::Optimizable#optimize
+  - Axiom::Optimizer::PredicatePartition#partition!
+  - Axiom::Optimizer::PredicatePartition#partition_binary!
+  - Axiom::Optimizer::PredicatePartition#partition_proposition!
+  - Axiom::Optimizer::PredicatePartition#partition_unary!
   max_statements: 2
 UncommunicativeMethodName:
   enabled: true
@@ -155,8 +155,8 @@ UnusedParameters:
 UtilityFunction:
   enabled: true
   exclude:
-  - Veritas::Optimizer::Function::Connective::Conjunction::Contradiction#optimize
-  - Veritas::Optimizer::Function::Connective::Disjunction::Tautology#optimize
-  - Veritas::Optimizer::Function::Predicate::Contradiction#optimize
-  - Veritas::Optimizer::Function::Predicate::Tautology#optimize
+  - Axiom::Optimizer::Function::Connective::Conjunction::Contradiction#optimize
+  - Axiom::Optimizer::Function::Connective::Disjunction::Tautology#optimize
+  - Axiom::Optimizer::Function::Predicate::Contradiction#optimize
+  - Axiom::Optimizer::Function::Predicate::Tautology#optimize
   max_helper_calls: 0
