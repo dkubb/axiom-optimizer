@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'axiom', '~> 0.1.0', :git => 'https://github.com/dkubb/axiom.git'
+gem 'axiom', '~> 0.1.1', :git => 'https://github.com/dkubb/axiom.git'
 
 gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
 eval File.read('Gemfile.devtools')
