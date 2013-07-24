@@ -34,9 +34,11 @@ module Axiom
       def optimize
         optimizer = self.class.optimizer || Optimizer::Identity
         optimized = optimizer.call(self)
-        equal?(optimized)                ? self               :
-        optimized.respond_to?(:optimize) ? optimized.optimize :
-                                           optimized
+        if equal?(optimized)                   then self
+        elsif optimized.respond_to?(:optimize) then optimized.optimize
+        else
+          optimized
+        end
       end
 
       memoize :optimize

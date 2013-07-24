@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)        { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:base)          { Relation.new(header, LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ]))  }
-  let(:relation)      { operand.summarize(summarize_per) {}                              }
-  let(:summarize_per) { TABLE_DEE                                                        }
-  let(:object)        { described_class.new(relation)                                    }
+  let(:header)        { Relation::Header.coerce([[:id, Integer], [:name, String]])  }
+  let(:base)          { Relation.new(header, LazyEnumerable.new([[1, 'Dan Kubb']])) }
+  let(:relation)      { operand.summarize(summarize_per) {}                         }
+  let(:summarize_per) { TABLE_DEE                                                   }
+  let(:object)        { described_class.new(relation)                               }
 
   before do
     expect(object.operation).to be_kind_of(Algebra::Summarization)

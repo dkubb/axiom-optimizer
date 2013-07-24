@@ -84,10 +84,7 @@ module Axiom
       #
       # @api private
       def partition_binary!(function)
-        operands = [ function.left, function.right ].select do |operand|
-          operand.kind_of?(Axiom::Attribute)
-        end
-
+        operands       = [function.left, function.right].grep(Axiom::Attribute)
         left_operands  = @left_header  & operands
         right_operands = @right_header & operands
 

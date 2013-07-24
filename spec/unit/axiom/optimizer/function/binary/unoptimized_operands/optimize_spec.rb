@@ -7,8 +7,8 @@ describe Optimizer::Function::Binary::UnoptimizedOperands, '#optimize' do
 
   let(:described_class) { Class.new(Optimizer) { include Optimizer::Function::Binary }      }
   let(:attribute)       { Attribute::Integer.new(:id)                                       }
-  let(:left)            { attribute.include([ 1 ])                                          }
-  let(:right)           { attribute.exclude([ 2 ])                                          }
+  let(:left)            { attribute.include([1])                                            }
+  let(:right)           { attribute.exclude([2])                                            }
   let(:function)        { Class.new(Function) { include Function::Binary }.new(left, right) }
   let(:object)          { described_class.new(function)                                     }
 

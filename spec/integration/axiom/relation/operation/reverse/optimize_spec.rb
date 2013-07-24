@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Operation::Reverse, '#optimize' do
   subject { object.optimize }
 
-  let(:body)     { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], body)    }
-  let(:order)    { relation.sort_by { |r| r.id }               }
-  let(:operand)  { order                                       }
-  let(:object)   { described_class.new(operand)                }
+  let(:body)     { LazyEnumerable.new([[1], [2], [3]])  }
+  let(:relation) { Relation.new([[:id, Integer]], body) }
+  let(:order)    { relation.sort_by { |r| r.id }        }
+  let(:operand)  { order                                }
+  let(:object)   { described_class.new(operand)         }
 
   context 'with a object operation' do
     let(:limit)   { order.take(2) }
@@ -102,9 +102,9 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'containing a materialized relation' do
-    let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+    let(:relation) { Relation.new([[:id, Integer]], [[1], [2], [3]]) }
 
-    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 3 ], [ 2 ], [ 1 ] ])) }
+    it { should eql(Relation::Materialized.new([[:id, Integer]], [[3], [2], [1]])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

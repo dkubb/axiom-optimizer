@@ -5,12 +5,12 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::MaterializedOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:materialized)     { Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])       }
-  let(:not_materialized) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-  let(:left)             { not_materialized                                                  }
-  let(:right)            { not_materialized                                                  }
-  let(:relation)         { left.union(right)                                                 }
-  let(:object)           { described_class.new(relation)                                     }
+  let(:materialized)     { Relation::Materialized.new([[:id, Integer]], [[1]])       }
+  let(:not_materialized) { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]])) }
+  let(:left)             { not_materialized                                          }
+  let(:right)            { not_materialized                                          }
+  let(:relation)         { left.union(right)                                         }
+  let(:object)           { described_class.new(relation)                             }
 
   context 'when the right and right are materialized' do
     let(:left)  { materialized }

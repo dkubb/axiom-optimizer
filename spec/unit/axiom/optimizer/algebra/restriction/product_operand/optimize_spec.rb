@@ -5,15 +5,15 @@ require 'spec_helper'
 describe Optimizer::Algebra::Restriction::ProductOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:left)                { Relation.new([ [ :user_id,     Integer ], [ :user_name,     String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
-  let(:right)               { Relation.new([ [ :employee_id, Integer ], [ :employee_name, String ] ], LazyEnumerable.new([ [ 2, 'Dan Kubb' ] ])) }
-  let(:operand)             { left.product(right)                                                                                                }
-  let(:left_predicate)      { left[:user_name].eq('Dan Kubb')                                                                                    }
-  let(:right_predicate)     { right[:employee_name].eq('Dan Kubb')                                                                               }
-  let(:remainder_predicate) { left[:user_name].eq(right[:employee_name])                                                                         }
-  let(:predicate)           { left_predicate.and(right_predicate).and(remainder_predicate)                                                       }
-  let(:relation)            { operand.restrict { predicate }                                                                                     }
-  let(:object)              { described_class.new(relation)                                                                                      }
+  let(:left)                { Relation.new([[:user_id, Integer], [:user_name, String]], LazyEnumerable.new([[1, 'Dan Kubb']]))         }
+  let(:right)               { Relation.new([[:employee_id, Integer], [:employee_name, String]], LazyEnumerable.new([[2, 'Dan Kubb']])) }
+  let(:operand)             { left.product(right)                                                                                      }
+  let(:left_predicate)      { left[:user_name].eq('Dan Kubb')                                                                          }
+  let(:right_predicate)     { right[:employee_name].eq('Dan Kubb')                                                                     }
+  let(:remainder_predicate) { left[:user_name].eq(right[:employee_name])                                                               }
+  let(:predicate)           { left_predicate.and(right_predicate).and(remainder_predicate)                                             }
+  let(:relation)            { operand.restrict { predicate }                                                                           }
+  let(:object)              { described_class.new(relation)                                                                            }
 
   before do
     expect(object).to be_optimizable

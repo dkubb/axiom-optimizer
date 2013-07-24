@@ -23,43 +23,43 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
       its(:left) { should be(attribute) }
 
       # enumerable order is normalized
-      its(:right) { should == [ 1, 2 ] }
+      its(:right) { should == [1, 2] }
     end
 
     context 'when the left is an equality predicate and the right is an inclusion predicate' do
-      let(:left)  { attribute.eq(2)          }
-      let(:right) { attribute.include([ 1 ]) }
+      let(:left)  { attribute.eq(2)        }
+      let(:right) { attribute.include([1]) }
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
       its(:left) { should be(attribute) }
 
       # enumerable order is normalized
-      its(:right) { should == [ 1, 2 ] }
+      its(:right) { should == [1, 2] }
     end
 
     context 'when the left is an inclusion predicate and the right is an equality predicate' do
-      let(:left)  { attribute.include([ 2 ]) }
-      let(:right) { attribute.eq(1)          }
+      let(:left)  { attribute.include([2]) }
+      let(:right) { attribute.eq(1)        }
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
       its(:left) { should be(attribute) }
 
       # enumerable order is normalized
-      its(:right) { should == [ 1, 2 ] }
+      its(:right) { should == [1, 2] }
     end
 
     context 'when the left and right are inclusion predicatess' do
-      let(:left)  { attribute.include([ 2 ]) }
-      let(:right) { attribute.include([ 1 ]) }
+      let(:left)  { attribute.include([2]) }
+      let(:right) { attribute.include([1]) }
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
       its(:left) { should be(attribute) }
 
       # enumerable order is normalized
-      its(:right) { should == [ 1, 2 ] }
+      its(:right) { should == [1, 2] }
     end
   end
 
@@ -71,6 +71,6 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
     its(:left) { should be(attribute) }
 
-    its(:right) { should == [ 1, 2 ] }
+    its(:right) { should == [1, 2] }
   end
 end

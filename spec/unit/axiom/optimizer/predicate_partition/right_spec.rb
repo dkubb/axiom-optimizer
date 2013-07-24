@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::PredicatePartition, '#right' do
   subject { object.right }
 
-  let(:left_header)  { Relation::Header.coerce([ [ :id, Integer ], [ :user_name,     String ], Attribute::Boolean.new(:active_user),     Attribute::Boolean.new(:active) ]) }
-  let(:right_header) { Relation::Header.coerce([ [ :id, Integer ], [ :employee_name, String ], Attribute::Boolean.new(:active_employee), Attribute::Boolean.new(:active) ]) }
-  let(:object)       { described_class.new(predicate, left_header, right_header)                                                                                            }
+  let(:left_header)  { Relation::Header.coerce([[:id, Integer], [:user_name, String], Attribute::Boolean.new(:active_user), Attribute::Boolean.new(:active)])         }
+  let(:right_header) { Relation::Header.coerce([[:id, Integer], [:employee_name, String], Attribute::Boolean.new(:active_employee), Attribute::Boolean.new(:active)]) }
+  let(:object)       { described_class.new(predicate, left_header, right_header)                                                                                      }
 
   context 'when the predicate is a tautology' do
     let(:predicate) { Function::Proposition::Tautology.instance }

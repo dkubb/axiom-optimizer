@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Materialized, '#optimize' do
   subject { object.optimize }
 
-  let(:object) { described_class.new([ [ :id, Integer ] ], body) }
+  let(:object) { described_class.new([[:id, Integer]], body) }
 
   context 'with an empty Array' do
     let(:body) { [] }
@@ -20,7 +20,7 @@ describe Relation::Materialized, '#optimize' do
   end
 
   context 'with an nonempty Array' do
-    let(:body) { [ [ 1 ] ] }
+    let(:body) { [[1]] }
 
     it { should be(object) }
 

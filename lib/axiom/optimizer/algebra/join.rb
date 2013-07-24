@@ -28,7 +28,9 @@ module Axiom
         #
         # @api private
         def materialized_predicate
-          matching_projection.reduce(CONTRADICTION) { |predicate, tuple| predicate.or(tuple.predicate) }.optimize
+          matching_projection.reduce(CONTRADICTION) do |accumulator, element|
+            accumulator.or(element.predicate)
+          end.optimize
         end
 
         # Optimize when operands' headers are equal

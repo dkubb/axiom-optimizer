@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
   subject { object.optimize }
 
-  let(:attribute) { Attribute::Integer.new(:id, :required => false, :size => 1..2**31-1) }
-  let(:left)      { attribute                                                            }
-  let(:right)     { attribute                                                            }
-  let(:object)    { described_class.new(left, right)                                     }
+  let(:attribute) { Attribute::Integer.new(:id, required: false, size: 1..2**31 - 1) }
+  let(:left)      { attribute                                                        }
+  let(:right)     { attribute                                                        }
+  let(:object)    { described_class.new(left, right)                                 }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
@@ -26,8 +26,8 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     end
 
     context 'and left is always less than right' do
-      let(:left)  { attribute                                             }
-      let(:right) { Attribute::Integer.new(:right, :size => 2**31..2**31) }
+      let(:left)  { attribute                                          }
+      let(:right) { Attribute::Integer.new(:right, size: 2**31..2**31) }
 
       it { should be(Function::Proposition::Tautology.instance) }
 
@@ -35,8 +35,8 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     end
 
     context 'and left is always greater than right' do
-      let(:left)  { attribute                                       }
-      let(:right) { Attribute::Integer.new(:right, :size => -1..-1) }
+      let(:left)  { attribute                                    }
+      let(:right) { Attribute::Integer.new(:right, size: -1..-1) }
 
       it { should be(Function::Proposition::Contradiction.instance) }
 

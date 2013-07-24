@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Function::Predicate::Enumerable::EmptyRight, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:described_class) { Class.new(Optimizer::Function::Predicate)  }
-  let(:attribute)       { Attribute::Integer.new(:id, :size => 1..9) }
-  let(:predicate)       { attribute.include(operand)                 }
-  let(:object)          { described_class.new(predicate)             }
+  let(:described_class) { Class.new(Optimizer::Function::Predicate) }
+  let(:attribute)       { Attribute::Integer.new(:id, size: 1..9)   }
+  let(:predicate)       { attribute.include(operand)                }
+  let(:object)          { described_class.new(predicate)            }
 
   before do
     described_class.class_eval { include Optimizer::Function::Predicate::Enumerable::EmptyRight }
@@ -41,13 +41,13 @@ describe Optimizer::Function::Predicate::Enumerable::EmptyRight, '#optimizable?'
   end
 
   context 'when the operand is empty after filtering invalid entries' do
-    let(:operand) { [ 'a' ] }
+    let(:operand) { ['a'] }
 
     it { should be(true) }
   end
 
   context 'when the operand contains an not empty Enumerable' do
-    let(:operand) { [ 1 ] }
+    let(:operand) { [1] }
 
     it { should be(false) }
   end
@@ -65,7 +65,7 @@ describe Optimizer::Function::Predicate::Enumerable::EmptyRight, '#optimizable?'
   end
 
   context 'when the operand is not empty after filtering invalid entries' do
-    let(:operand) { [ 'a', 1 ] }
+    let(:operand) { ['a', 1] }
 
     it { should be(false) }
   end

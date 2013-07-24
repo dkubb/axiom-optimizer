@@ -6,7 +6,7 @@ describe Optimizer::Function::Predicate::Comparable::NeverEquivalent, '#optimiza
   subject { object.optimizable? }
 
   let(:described_class) { Class.new(Optimizer::Function::Predicate)      }
-  let(:attribute)       { Attribute::Integer.new(:id, :size => 1..10)    }
+  let(:attribute)       { Attribute::Integer.new(:id, size: 1..10)       }
   let(:predicate)       { Function::Predicate::Equality.new(left, right) }
   let(:object)          { described_class.new(predicate)                 }
 
@@ -52,8 +52,8 @@ describe Optimizer::Function::Predicate::Comparable::NeverEquivalent, '#optimiza
   end
 
   context 'when left and right are not joinable' do
-    let(:left)  { attribute                                    }
-    let(:right) { Attribute::Integer.new(:id, :size => -10..0) }
+    let(:left)  { attribute                                 }
+    let(:right) { Attribute::Integer.new(:id, size: -10..0) }
 
     it { should be(true) }
   end

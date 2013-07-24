@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Join::DisjointHeaders, '#optimize' do
   subject { object.optimize }
 
-  let(:left)     { Relation.new([ [ :id,       Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-  let(:right)    { Relation.new([ [ :other_id, Integer ] ], LazyEnumerable.new([ [ 2 ] ])) }
-  let(:relation) { left.join(right)                                                        }
-  let(:object)   { described_class.new(relation)                                           }
+  let(:left)     { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]]))       }
+  let(:right)    { Relation.new([[:other_id, Integer]], LazyEnumerable.new([[2]])) }
+  let(:relation) { left.join(right)                                                }
+  let(:object)   { described_class.new(relation)                                   }
 
   before do
     expect(object).to be_optimizable

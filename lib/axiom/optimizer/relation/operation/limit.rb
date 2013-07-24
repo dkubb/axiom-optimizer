@@ -105,7 +105,7 @@ module Axiom
             #
             # @api private
             def min_limit
-              [ limit, operand.limit ].min
+              [limit, operand.limit].min
             end
 
           end # class LimitOperand

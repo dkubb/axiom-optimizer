@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Projection::ExtensionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ]) }
-  let(:base)     { Relation.new(header, LazyEnumerable.new([ [ 1, 'Dan Kubb', 35 ] ]))                 }
-  let(:relation) { operand.project([ :id, :name ])                                                     }
-  let(:object)   { described_class.new(relation)                                                       }
+  let(:header)   { Relation::Header.coerce([[:id, Integer], [:name, String], [:age, Integer]]) }
+  let(:base)     { Relation.new(header, LazyEnumerable.new([[1, 'Dan Kubb', 35]]))             }
+  let(:relation) { operand.project([:id, :name])                                               }
+  let(:object)   { described_class.new(relation)                                               }
 
   before do
     expect(object.operation).to be_kind_of(Algebra::Projection)
@@ -22,7 +22,7 @@ describe Optimizer::Algebra::Projection::ExtensionOperand, '#optimizable?' do
 
   context 'when the operand is an extension, and the extended attribtue is not removed ' do
     let(:operand)  { base.extend { |r| r.add(:active, true) } }
-    let(:relation) { operand.project([ :id, :name, :active ]) }
+    let(:relation) { operand.project([:id, :name, :active])   }
 
     it { should be(false) }
   end

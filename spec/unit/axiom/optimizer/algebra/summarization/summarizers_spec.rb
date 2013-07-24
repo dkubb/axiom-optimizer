@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Optimizer::Algebra::Summarization, '#summarizers' do
   subject { object.summarizers }
 
-  let(:base)          { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])                    }
+  let(:base)          { Relation.new([[:id, Integer]], [[1]])                            }
   let(:attribute)     { Attribute::Object.new(:test)                                     }
   let(:summarize_per) { TABLE_DEE                                                        }
   let(:relation)      { base.summarize(summarize_per) { |r| r.add(attribute, function) } }

@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Offset::ZeroOffset, '#optimize' do
   subject { object.optimize }
 
-  let(:order)    { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])).sort_by { |r| r.id } }
-  let(:relation) { order.drop(0)                                                                          }
-  let(:object)   { described_class.new(relation)                                                          }
+  let(:order)    { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
+  let(:relation) { order.drop(0)                                                                  }
+  let(:object)   { described_class.new(relation)                                                  }
 
   before do
     expect(object).to be_optimizable

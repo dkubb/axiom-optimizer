@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Union, '#optimize' do
   subject { object.optimize }
 
-  let(:header)         { [ [ :id, Integer ] ]             }
-  let(:left_body)      { LazyEnumerable.new([ [ 1 ] ])    }
-  let(:right_body)     { LazyEnumerable.new([ [ 2 ] ])    }
+  let(:header)         { [[:id, Integer]]                 }
+  let(:left_body)      { LazyEnumerable.new([[1]])        }
+  let(:right_body)     { LazyEnumerable.new([[2]])        }
   let(:original_left)  { Relation.new(header, left_body)  }
   let(:original_right) { Relation.new(header, right_body) }
   let(:object)         { described_class.new(left, right) }
@@ -111,10 +111,10 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'left and right are equivalent relations' do
-    let(:left_body)  { LazyEnumerable.new([ [ 1 ] ]) }
-    let(:right_body) { LazyEnumerable.new([ [ 1 ] ]) }
-    let(:left)       { original_left                 }
-    let(:right)      { original_right                }
+    let(:left_body)  { LazyEnumerable.new([[1]]) }
+    let(:right_body) { LazyEnumerable.new([[1]]) }
+    let(:left)       { original_left             }
+    let(:right)      { original_right            }
 
     it { should be(left) }
 
@@ -140,8 +140,8 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'left and right are equivalent materialized relations' do
-    let(:left_body)  { [ [ 1 ] ]      }
-    let(:right_body) { [ [ 1 ] ]      }
+    let(:left_body)  { [[1]]          }
+    let(:right_body) { [[1]]          }
     let(:left)       { original_left  }
     let(:right)      { original_right }
 
@@ -186,10 +186,10 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'left and right are materialized relations' do
-    let(:left)  { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
-    let(:right) { Relation.new(header, [ [ 1 ] ])        }
+    let(:left)  { Relation.new(header, [[1], [2]]) }
+    let(:right) { Relation.new(header, [[1]])      }
 
-    it { should eql(Relation::Materialized.new(header, [ [ 1 ], [ 2 ] ])) }
+    it { should eql(Relation::Materialized.new(header, [[1], [2]])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

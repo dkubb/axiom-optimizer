@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Algebra::Join, '#optimize' do
   subject { object.optimize }
 
-  let(:left_body)      { LazyEnumerable.new([ [ 1 ], [ 2 ] ])                              }
-  let(:right_body)     { LazyEnumerable.new([ [ 2, 'Dan Kubb' ] ])                         }
-  let(:original_left)  { Relation.new([ [ :id, Integer ] ],                    left_body)  }
-  let(:original_right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
-  let(:left)           { original_left                                                     }
-  let(:right)          { original_right                                                    }
-  let(:object)         { described_class.new(left, right)                                  }
+  let(:left_body)      { LazyEnumerable.new([[1], [2]])                              }
+  let(:right_body)     { LazyEnumerable.new([[2, 'Dan Kubb']])                       }
+  let(:original_left)  { Relation.new([[:id, Integer]], left_body)                   }
+  let(:original_right) { Relation.new([[:id, Integer], [:name, String]], right_body) }
+  let(:left)           { original_left                                               }
+  let(:right)          { original_right                                              }
+  let(:object)         { described_class.new(left, right)                            }
 
   context 'left is an empty relation' do
     let(:left) { Relation::Empty.new(original_left.header) }
@@ -98,10 +98,10 @@ describe Algebra::Join, '#optimize' do
   end
 
   context 'left and right are materialized relations' do
-    let(:left)  { Relation.new([ [ :id, Integer ] ],                    [ [ 1 ], [ 2 ] ])      }
-    let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
+    let(:left)  { Relation.new([[:id, Integer]], [[1], [2]])                         }
+    let(:right) { Relation.new([[:id, Integer], [:name, String]], [[2, 'Dan Kubb']]) }
 
-    it { should eql(Relation::Materialized.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])) }
+    it { should eql(Relation::Materialized.new([[:id, Integer], [:name, String]], [[2, 'Dan Kubb']])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

@@ -147,7 +147,7 @@ module Axiom
           #
           # @api private
           def merged_right_enumerables
-            [ left.right, right.right ].flatten
+            [left.right, right.right].flatten
           end
 
           # Optimize when the operands are constants

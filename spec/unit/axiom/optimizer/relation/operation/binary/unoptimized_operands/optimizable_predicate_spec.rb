@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::UnoptimizedOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:optimized)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:unoptimized) { optimized.project(optimized.header)           }
-  let(:relation)    { left.union(right)                             }
-  let(:object)      { described_class.new(relation)                 }
+  let(:optimized)   { Relation.new([[:id, Integer]], [[1]]) }
+  let(:unoptimized) { optimized.project(optimized.header)   }
+  let(:relation)    { left.union(right)                     }
+  let(:object)      { described_class.new(relation)         }
 
   context 'when the left and right operands are optimized' do
     let(:left)  { optimized }

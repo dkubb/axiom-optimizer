@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#optimize' do
   subject { object.optimize }
 
-  let(:body)       { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)    }
-  let(:operand)    { relation                                    }
-  let(:directions) { [ relation[:id] ]                           }
-  let(:object)     { described_class.new(operand, directions)    }
+  let(:body)       { LazyEnumerable.new([[1], [2], [3]])      }
+  let(:relation)   { Relation.new([[:id, Integer]], body)     }
+  let(:operand)    { relation                                 }
+  let(:directions) { [relation[:id]]                          }
+  let(:object)     { described_class.new(operand, directions) }
 
   context 'containing a relation' do
     it { should be(object) }
@@ -40,7 +40,7 @@ describe Relation::Operation::Order, '#optimize' do
   end
 
   context 'containing an object operation' do
-    let(:operand) { relation.sort_by { |r| [ r.id.desc ] } }
+    let(:operand) { relation.sort_by { |r| [r.id.desc] } }
 
     it { should eql(relation.sort_by { directions }) }
 
@@ -91,10 +91,10 @@ describe Relation::Operation::Order, '#optimize' do
   end
 
   context 'containing a materialized relation' do
-    let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-    let(:object)   { described_class.new(relation, directions)                   }
+    let(:relation) { Relation.new([[:id, Integer]], [[1], [2], [3]]) }
+    let(:object)   { described_class.new(relation, directions)       }
 
-    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])) }
+    it { should eql(Relation::Materialized.new([[:id, Integer]], [[1], [2], [3]])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

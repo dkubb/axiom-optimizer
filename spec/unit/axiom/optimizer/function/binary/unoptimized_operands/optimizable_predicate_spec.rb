@@ -15,15 +15,15 @@ describe Optimizer::Function::Binary::UnoptimizedOperands, '#optimizable?' do
   end
 
   context 'when left is optimizable' do
-    let(:left)  { attribute.include([ 1 ]) }
-    let(:right) { attribute.ne(2)          }
+    let(:left)  { attribute.include([1]) }
+    let(:right) { attribute.ne(2)        }
 
     it { should be(true) }
   end
 
   context 'when right is optimizable' do
-    let(:left)  { attribute.eq(1)          }
-    let(:right) { attribute.exclude([ 2 ]) }
+    let(:left)  { attribute.eq(1)        }
+    let(:right) { attribute.exclude([2]) }
 
     it { should be(true) }
   end

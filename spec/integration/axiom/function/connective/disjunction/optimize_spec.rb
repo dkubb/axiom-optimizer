@@ -54,7 +54,6 @@ describe Function::Connective::Disjunction, '#optimize' do
     let(:left)  { Function::Proposition::Contradiction.instance }
     let(:right) { Function::Proposition::Contradiction.instance }
 
-
     it { should be(left) }
 
     it_should_behave_like 'an optimize method'
@@ -100,7 +99,7 @@ describe Function::Connective::Disjunction, '#optimize' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(3) }
 
-    it { should eql(attribute.include([ 1, 3 ])) }
+    it { should eql(attribute.include([1, 3])) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -133,8 +132,8 @@ describe Function::Connective::Disjunction, '#optimize' do
   end
 
   context 'left is an Inclusion and right is an Exclusion predicate for the same attribute and value' do
-    let(:left)  { attribute.include([ 1, 2 ]) }
-    let(:right) { attribute.exclude([ 1, 2 ]) }
+    let(:left)  { attribute.include([1, 2]) }
+    let(:right) { attribute.exclude([1, 2]) }
 
     it { should be(Function::Proposition::Tautology.instance) }
 
@@ -142,8 +141,8 @@ describe Function::Connective::Disjunction, '#optimize' do
   end
 
   context 'left is an Exclusion and right is an Inclusion predicate for the same attribute and value' do
-    let(:left)  { attribute.exclude([ 1, 2 ]) }
-    let(:right) { attribute.include([ 1, 2 ]) }
+    let(:left)  { attribute.exclude([1, 2]) }
+    let(:right) { attribute.include([1, 2]) }
 
     it { should be(Function::Proposition::Tautology.instance) }
 

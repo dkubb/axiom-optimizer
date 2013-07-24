@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Function::Predicate::Inclusion, '#optimize' do
   subject { object.optimize }
 
-  let(:left)   { Attribute::Integer.new(:id, :size => 1..2**31-1) }
-  let(:object) { described_class.new(left, right)                 }
+  let(:left)   { Attribute::Integer.new(:id, size: 1..2**31 - 1) }
+  let(:object) { described_class.new(left, right)                }
 
   context 'right is a Range' do
     context 'that is inclusive' do
@@ -83,7 +83,7 @@ describe Function::Predicate::Inclusion, '#optimize' do
     end
 
     context 'that is empty after filtering invalid entries' do
-      let(:right) { [ 'a' ] }
+      let(:right) { ['a'] }
 
       it { should be(Function::Proposition::Contradiction.instance) }
 
@@ -91,23 +91,23 @@ describe Function::Predicate::Inclusion, '#optimize' do
     end
 
     context 'that is not empty after filtering invalid entries' do
-      let(:right) { [ 'a', 1, 2 ] }
+      let(:right) { ['a', 1, 2] }
 
-      it { should eql(left.include([ 1, 2 ])) }
+      it { should eql(left.include([1, 2])) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'that has duplicate entries' do
-      let(:right) { [ 1, 2, 2 ] }
+      let(:right) { [1, 2, 2] }
 
-      it { should eql(left.include([ 1, 2 ])) }
+      it { should eql(left.include([1, 2])) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'that has one entry' do
-      let(:right) { [ 1 ] }
+      let(:right) { [1] }
 
       it { should eql(left.eq(1)) }
 
@@ -115,9 +115,9 @@ describe Function::Predicate::Inclusion, '#optimize' do
     end
 
     context 'that has unsorted entries' do
-      let(:right) { [ 2, 1 ] }
+      let(:right) { [2, 1] }
 
-      it { should eql(left.include([ 1, 2 ])) }
+      it { should eql(left.include([1, 2])) }
 
       it_should_behave_like 'an optimize method'
     end

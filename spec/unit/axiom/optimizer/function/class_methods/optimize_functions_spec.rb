@@ -10,8 +10,8 @@ describe Optimizer::Function, '.optimize_functions' do
   let(:functions) { { attribute => function } }
 
   context 'when optimizable' do
-    let(:optimized) { double('Optimized')                           }
-    let(:function)  { double('Optimizable', :optimize => optimized) }
+    let(:optimized) { double('Optimized')                        }
+    let(:function)  { double('Optimizable', optimize: optimized) }
 
     it { should be_frozen }
 

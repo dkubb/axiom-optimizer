@@ -14,7 +14,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
   end
 
   context 'when the operand contains a one entry Enumerable' do
-    let(:operand) { [ 1 ] }
+    let(:operand) { [1] }
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
@@ -45,7 +45,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
   end
 
   context 'when the operand contains one entry after filtering invalid entries' do
-    let(:operand) { [ 'a', 1 ] }
+    let(:operand) { ['a', 1] }
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
@@ -55,7 +55,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
   end
 
   context 'when the operand contains one entry after filtering duplicate entries' do
-    let(:operand) { [ 1, 1 ] }
+    let(:operand) { [1, 1] }
 
     it { should be_kind_of(Function::Predicate::Equality) }
 

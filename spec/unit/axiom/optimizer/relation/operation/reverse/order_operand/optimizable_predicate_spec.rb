@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Reverse::OrderOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:base)     { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-  let(:relation) { operand.reverse                                                   }
-  let(:object)   { described_class.new(relation)                                     }
+  let(:base)     { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]])) }
+  let(:relation) { operand.reverse                                           }
+  let(:object)   { described_class.new(relation)                             }
 
   before do
     expect(object.operation).to be_kind_of(Relation::Operation::Reverse)

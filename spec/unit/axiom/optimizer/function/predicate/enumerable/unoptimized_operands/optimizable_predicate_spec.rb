@@ -14,7 +14,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
   end
 
   context 'when the operand contains an unsorted Enumerable' do
-    let(:operand) { [ 2, 1 ] }
+    let(:operand) { [2, 1] }
 
     it { should be(true) }
   end
@@ -26,19 +26,19 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
   end
 
   context 'when the operand contains an Enumerable after filtering invalid entries' do
-    let(:operand) { [ 'a', 1, 2 ] }
+    let(:operand) { ['a', 1, 2] }
 
     it { should be(true) }
   end
 
   context 'when the operand contains an Enumerable after filtering duplicate entries' do
-    let(:operand) { [ 1, 1, 2, 2 ] }
+    let(:operand) { [1, 1, 2, 2] }
 
     it { should be(true) }
   end
 
   context 'when the operand contains a sorted Enumerable' do
-    let(:operand) { [ 1, 2 ] }
+    let(:operand) { [1, 2] }
 
     it { should be(false) }
   end

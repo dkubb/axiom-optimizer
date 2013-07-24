@@ -17,7 +17,7 @@ describe Optimizer::Function::Predicate::Enumerable::OneRight, '#optimizable?' d
   end
 
   context 'when the operand contains a one entry Enumerable' do
-    let(:operand) { [ 1 ] }
+    let(:operand) { [1] }
 
     it { should be(true) }
   end
@@ -35,19 +35,19 @@ describe Optimizer::Function::Predicate::Enumerable::OneRight, '#optimizable?' d
   end
 
   context 'when the operand contains one entry after filtering invalid entries' do
-    let(:operand) { [ 'a', 1 ] }
+    let(:operand) { ['a', 1] }
 
     it { should be(true) }
   end
 
   context 'when the operand contains one entry after filtering duplicate entries' do
-    let(:operand) { [ 1, 1 ] }
+    let(:operand) { [1, 1] }
 
     it { should be(true) }
   end
 
   context 'when the operand contains a more than one entry Enumerable' do
-    let(:operand) { [ 2, 1 ] }
+    let(:operand) { [2, 1] }
 
     it { should be(false) }
   end
@@ -65,13 +65,13 @@ describe Optimizer::Function::Predicate::Enumerable::OneRight, '#optimizable?' d
   end
 
   context 'when the operand contains more than one entry after filtering invalid entries' do
-    let(:operand) { [ 'a', 1, 2 ] }
+    let(:operand) { ['a', 1, 2] }
 
     it { should be(false) }
   end
 
   context 'when the operand contains more than one entry after filtering duplicate entries' do
-    let(:operand) { [ 2, 1, 2, 1 ] }
+    let(:operand) { [2, 1, 2, 1] }
 
     it { should be(false) }
   end

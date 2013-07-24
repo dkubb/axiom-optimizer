@@ -108,7 +108,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.ne(1) }
     let(:right) { attribute.ne(3) }
 
-    it { should eql(attribute.exclude([ 1, 3 ])) }
+    it { should eql(attribute.exclude([1, 3])) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -132,8 +132,8 @@ describe Function::Connective::Conjunction, '#optimize' do
   end
 
   context 'left is an Inclusion and right is an Exclusion predicate for the same attribute and value' do
-    let(:left)  { attribute.include([ 1, 2 ]) }
-    let(:right) { attribute.exclude([ 1, 2 ]) }
+    let(:left)  { attribute.include([1, 2]) }
+    let(:right) { attribute.exclude([1, 2]) }
 
     it { should be(Function::Proposition::Contradiction.instance) }
 
@@ -141,8 +141,8 @@ describe Function::Connective::Conjunction, '#optimize' do
   end
 
   context 'left is an Exclusion and right is an Inclusion predicate for the same attribute and value' do
-    let(:left)  { attribute.exclude([ 1, 2 ]) }
-    let(:right) { attribute.include([ 1, 2 ]) }
+    let(:left)  { attribute.exclude([1, 2]) }
+    let(:right) { attribute.include([1, 2]) }
 
     it { should be(Function::Proposition::Contradiction.instance) }
 

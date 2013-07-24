@@ -6,8 +6,8 @@ describe Optimizer::Function::Connective::Binary::RedundantLeft, '#optimize' do
   subject { object.optimize }
 
   let(:attribute)  { Attribute::Integer.new(:id)     }
-  let(:left)       { attribute.include([ 1 ])        }
-  let(:right)      { attribute.exclude([ 2 ])        }
+  let(:left)       { attribute.include([1])          }
+  let(:right)      { attribute.exclude([2])          }
   let(:connective) { left.and(right).and(right)      }
   let(:object)     { described_class.new(connective) }
 

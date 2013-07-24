@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Product, '#optimize' do
   subject { object.optimize }
 
-  let(:left_body)  { LazyEnumerable.new([ [ 1 ] ])                    }
-  let(:right_body) { LazyEnumerable.new([ [ 'Dan Kubb' ] ])           }
-  let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
-  let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
-  let(:object)     { described_class.new(left, right)                 }
+  let(:left_body)  { LazyEnumerable.new([[1]])                   }
+  let(:right_body) { LazyEnumerable.new([['Dan Kubb']])          }
+  let(:left)       { Relation.new([[:id, Integer]], left_body)   }
+  let(:right)      { Relation.new([[:name, String]], right_body) }
+  let(:object)     { described_class.new(left, right)            }
 
   context 'left is a TABLE_DUM' do
     let(:left) { TABLE_DUM }
@@ -164,10 +164,10 @@ describe Algebra::Product, '#optimize' do
   end
 
   context 'left and right are materialized relations' do
-    let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
-    let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+    let(:left)  { Relation.new([[:id, Integer]], [[1]])           }
+    let(:right) { Relation.new([[:name, String]], [['Dan Kubb']]) }
 
-    it { should eql(Relation::Materialized.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])) }
+    it { should eql(Relation::Materialized.new([[:id, Integer], [:name, String]], [[1, 'Dan Kubb']])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

@@ -22,22 +22,22 @@ describe Optimizer::Function::Connective::Conjunction::OptimizableToExclusion, '
     end
 
     context 'when the left is an equality predicate and the right is an inclusion predicate' do
-      let(:left)  { attribute.ne(2)             }
-      let(:right) { attribute.exclude([ 1, 3 ]) }
+      let(:left)  { attribute.ne(2)           }
+      let(:right) { attribute.exclude([1, 3]) }
 
       it { should be(true) }
     end
 
     context 'when the left is an inclusion predicate and the right is an equality predicate' do
-      let(:left)  { attribute.exclude([ 2, 3 ]) }
-      let(:right) { attribute.ne(1)             }
+      let(:left)  { attribute.exclude([2, 3]) }
+      let(:right) { attribute.ne(1)           }
 
       it { should be(true) }
     end
 
     context 'when the left and right are inclusion predicatess' do
-      let(:left)  { attribute.exclude([ 2, 3 ]) }
-      let(:right) { attribute.exclude([ 1, 3 ]) }
+      let(:left)  { attribute.exclude([2, 3]) }
+      let(:right) { attribute.exclude([1, 3]) }
 
       it { should be(true) }
     end
@@ -52,8 +52,8 @@ describe Optimizer::Function::Connective::Conjunction::OptimizableToExclusion, '
     end
 
     context 'when the left is an exclusion predicate and the right is an equality predicate' do
-      let(:left)  { attribute.exclude([ 1, 3 ]) }
-      let(:right) { attribute.eq(2)             }
+      let(:left)  { attribute.exclude([1, 3]) }
+      let(:right) { attribute.eq(2)           }
 
       it { should be(false) }
     end

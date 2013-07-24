@@ -75,11 +75,11 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
   end
 
   context 'self and right are the same, and left and right.left are the same' do
-    let(:left)  { attribute.eq(1)                                                                 }
-    let(:right) { double('Binary', :class => described_class, :left => left, :optimized? => true) }
+    let(:left)  { attribute.eq(1)                                                           }
+    let(:right) { double('Binary', class: described_class, left: left, :optimized? => true) }
 
     before do
-      right.stub(:optimize => right, :frozen? => true, :memoize => right, :memoized => right)
+      right.stub(optimize: right, :frozen? => true, memoize: right, memoized: right)
     end
 
     it { should be(right) }
@@ -88,11 +88,11 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
   end
 
   context 'self and left are the same, and right and left.right are the same' do
-    let(:left)  { double('Binary', :class => described_class, :right => right, :optimized? => true) }
-    let(:right) { attribute.eq(1)                                                                   }
+    let(:left)  { double('Binary', class: described_class, right: right, :optimized? => true) }
+    let(:right) { attribute.eq(1)                                                             }
 
     before do
-      left.stub(:optimize => left, :frozen? => true, :memoize => left, :memoized => left)
+      left.stub(optimize: left, :frozen? => true, memoize: left, memoized: left)
     end
 
     it { should be(left) }

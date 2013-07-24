@@ -9,7 +9,7 @@ module Axiom
     include AbstractType, Adamantium
 
     # An optimizer that returns the operation
-    Identity = lambda { |operation| operation }.freeze
+    Identity = ->(operation) { operation }.freeze
 
     # The operation to optimize
     #

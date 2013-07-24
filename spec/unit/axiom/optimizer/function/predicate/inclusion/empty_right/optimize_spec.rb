@@ -38,7 +38,7 @@ describe Optimizer::Function::Predicate::Inclusion::EmptyRight, '#optimize' do
   end
 
   context 'when the operand is empty after filtering invalid entries' do
-    let(:operand) { [ 'a' ] }
+    let(:operand) { ['a'] }
 
     it { should be(Function::Proposition::Contradiction.instance) }
   end

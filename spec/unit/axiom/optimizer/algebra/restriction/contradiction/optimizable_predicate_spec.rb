@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Restriction::Contradiction, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)   { Relation::Header.coerce([ [ :id, Integer ] ])       }
-  let(:base)     { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
-  let(:relation) { base.restrict { predicate }                         }
-  let(:object)   { described_class.new(relation)                       }
+  let(:header)   { Relation::Header.coerce([[:id, Integer]])       }
+  let(:base)     { Relation.new(header, LazyEnumerable.new([[1]])) }
+  let(:relation) { base.restrict { predicate }                     }
+  let(:object)   { described_class.new(relation)                   }
 
   before do
     expect(object.operation).to be_kind_of(Algebra::Restriction)

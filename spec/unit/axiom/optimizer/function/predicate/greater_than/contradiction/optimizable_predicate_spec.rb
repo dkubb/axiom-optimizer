@@ -28,8 +28,8 @@ describe Optimizer::Function::Predicate::GreaterThan::Contradiction, '#optimizab
   end
 
   context 'when left is always less than right' do
-    let(:left)  { Attribute::Integer.new(:id, :size => 1..9)   }
-    let(:right) { Attribute::Integer.new(:id, :size => 10..20) }
+    let(:left)  { Attribute::Integer.new(:id, size: 1..9)   }
+    let(:right) { Attribute::Integer.new(:id, size: 10..20) }
 
     it { should be(true) }
   end

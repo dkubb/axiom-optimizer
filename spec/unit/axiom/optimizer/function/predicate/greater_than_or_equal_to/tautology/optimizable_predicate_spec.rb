@@ -28,8 +28,8 @@ describe Optimizer::Function::Predicate::GreaterThanOrEqualTo::Tautology, '#opti
   end
 
   context 'when left is always greater than right' do
-    let(:left)  { Attribute::Integer.new(:id, :size => 10..20) }
-    let(:right) { Attribute::Integer.new(:id, :size => 1..9)   }
+    let(:left)  { Attribute::Integer.new(:id, size: 10..20) }
+    let(:right) { Attribute::Integer.new(:id, size: 1..9)   }
 
     it { should be(true) }
   end

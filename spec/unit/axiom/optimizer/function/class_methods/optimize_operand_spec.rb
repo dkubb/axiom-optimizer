@@ -8,8 +8,8 @@ describe Optimizer::Function, '.optimize_operand' do
   let(:object) { described_class }
 
   context 'when optimizable' do
-    let(:optimized) { double('Optimized')                           }
-    let(:function)  { double('Optimizable', :optimize => optimized) }
+    let(:optimized) { double('Optimized')                        }
+    let(:function)  { double('Optimizable', optimize: optimized) }
 
     it { should be(optimized) }
   end

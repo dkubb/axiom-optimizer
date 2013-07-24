@@ -15,8 +15,8 @@ describe Optimizer::Optimizable, '#optimize' do
   end
 
   context 'when there is an optimizer for the class' do
-    let(:optimized) { double('Optimized', :frozen? => true)   }
-    let(:optimizer) { double('Optimizer', :call => optimized) }
+    let(:optimized) { double('Optimized', :frozen? => true) }
+    let(:optimizer) { double('Optimizer', call: optimized)  }
 
     before do
       described_class.optimizer = optimizer

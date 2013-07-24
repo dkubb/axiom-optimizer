@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::RestrictionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:header)    { Relation::Header.coerce([ [ :id, Integer ] ])       }
-  let(:base)      { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
-  let(:predicate) { base[:id].eq(1)                                     }
-  let(:relation)  { operand.rename(:id => :other_id)                    }
-  let(:object)    { described_class.new(relation)                       }
+  let(:header)    { Relation::Header.coerce([[:id, Integer]])       }
+  let(:base)      { Relation.new(header, LazyEnumerable.new([[1]])) }
+  let(:predicate) { base[:id].eq(1)                                 }
+  let(:relation)  { operand.rename(id: :other_id)                   }
+  let(:object)    { described_class.new(relation)                   }
 
   before do
     expect(object.operation).to be_kind_of(Algebra::Rename)
