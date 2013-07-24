@@ -6,6 +6,7 @@ module AddMethodMissing
       # when #optimize delegates to super, it would normally
       # explode, so define method_missing to return self
       send(name).class_eval do
+        undef_method :method_missing
         def method_missing(*)
           self
         end
