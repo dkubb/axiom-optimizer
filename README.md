@@ -15,31 +15,8 @@ Relational algebra optimizer
 [codeclimate]: https://codeclimate.com/github/dkubb/axiom-optimizer
 [coveralls]: https://coveralls.io/r/dkubb/axiom-optimizer
 
-Installation
-------------
-
-With Rubygems:
-
-```bash
-$ gem install axiom-optimizer
-$ irb -rubygems
->> require 'axiom-optimizer'
-=> true
-```
-
-With git and local working copy:
-
-```bash
-$ git clone git://github.com/dkubb/axiom-optimizer.git
-$ cd axiom-optimizer
-$ rake install
-$ irb -rubygems
->> require 'axiom-optimizer'
-=> true
-```
-
-Usage
------
+Examples
+--------
 
 ```ruby
 # optimize a relation
