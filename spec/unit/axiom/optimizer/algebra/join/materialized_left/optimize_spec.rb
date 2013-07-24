@@ -9,7 +9,7 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
   let(:object)   { described_class.new(relation) }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   context 'with no joined tuples' do
@@ -29,12 +29,12 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
 
     it { should be_kind_of(Algebra::Join) }
 
-    its(:left) { should equal(left) }
+    its(:left) { should be(left) }
 
     its(:right) { should eql(right.restrict { |r| r.id.eq(1) }) }
 
     it 'is not further optimizable' do
-      described_class.new(subject).should_not be_optimizable
+      expect(described_class.new(subject)).to_not be_optimizable
     end
   end
 
@@ -44,12 +44,12 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
 
     it { should be_kind_of(Algebra::Join) }
 
-    its(:left) { should equal(left) }
+    its(:left) { should be(left) }
 
     its(:right) { should eql(right.restrict { |r| r.id.include([ 1, 2 ]) }) }
 
     it 'is not further optimizable' do
-      described_class.new(subject).should_not be_optimizable
+      expect(described_class.new(subject)).to_not be_optimizable
     end
   end
 end

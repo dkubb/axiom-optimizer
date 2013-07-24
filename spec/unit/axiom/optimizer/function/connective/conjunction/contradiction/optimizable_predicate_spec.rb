@@ -10,7 +10,7 @@ describe Optimizer::Function::Connective::Conjunction::Contradiction, '#optimiza
   let(:object)     { described_class.new(connective)                    }
 
   before do
-    object.operation.should be_kind_of(Function::Connective::Conjunction)
+    expect(object.operation).to be_kind_of(Function::Connective::Conjunction)
   end
 
   context 'when left is a contradiction' do

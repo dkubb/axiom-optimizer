@@ -1,11 +1,6 @@
 # encoding: utf-8
 
-require 'backports'
-require 'backports/basic_object' unless defined?(::BasicObject)
-require 'devtools'
-require 'ice_nine'
-
-Devtools.init_spec_helper
+require 'devtools/spec_helper'
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
@@ -28,11 +23,15 @@ require 'axiom-optimizer'
 
 include Axiom
 
-# require spec support files and shared behavior
+# Require spec support files and shared behavior
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
-  require file
+  require file.chomp('.rb')
 end
 
 RSpec.configure do |config|
+  config.expect_with :rspec do |expect_with|
+    expect_with.syntax = :expect
+  end
+
   config.extend AddMethodMissing
 end

@@ -11,7 +11,7 @@ describe Optimizer::Algebra::Rename::RenameOperandAndEmptyAliases, '#optimizable
   let(:object)   { described_class.new(relation)                                    }
 
   before do
-    object.operation.should be_kind_of(Algebra::Rename)
+    expect(object.operation).to be_kind_of(Algebra::Rename)
   end
 
   context 'when the operand is a rename and there are aliases' do

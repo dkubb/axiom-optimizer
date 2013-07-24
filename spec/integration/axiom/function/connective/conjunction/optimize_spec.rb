@@ -14,7 +14,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(3) }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -23,7 +23,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { Function::Connective::Negation.new(attribute.gt(1)) }
     let(:right) { Function::Connective::Negation.new(attribute.lt(3)) }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it 'reverses the operands' do
       should eql(described_class.new(attribute.lte(1), attribute.gte(3)))
@@ -45,7 +45,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { Function::Proposition::Tautology.instance }
     let(:right) { Function::Proposition::Tautology.instance }
 
-    it { should equal(Function::Proposition::Tautology.instance) }
+    it { should be(Function::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -54,7 +54,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { Function::Proposition::Contradiction.instance }
     let(:right) { Function::Proposition::Contradiction.instance }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -63,7 +63,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.gt(1)                           }
     let(:right) { Function::Proposition::Tautology.instance }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -72,7 +72,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { Function::Proposition::Tautology.instance }
     let(:right) { attribute.lt(3)                           }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -81,7 +81,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.gt(1)                               }
     let(:right) { Function::Proposition::Contradiction.instance }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -90,7 +90,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { Function::Proposition::Contradiction.instance }
     let(:right) { attribute.lt(3)                               }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -99,7 +99,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(3) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -117,7 +117,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.ne(1) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -126,7 +126,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.ne(1) }
     let(:right) { attribute.eq(1) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -135,7 +135,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.include([ 1, 2 ]) }
     let(:right) { attribute.exclude([ 1, 2 ]) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -144,7 +144,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.exclude([ 1, 2 ]) }
     let(:right) { attribute.include([ 1, 2 ]) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -153,7 +153,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.gt(1)  }
     let(:right) { attribute.lte(1) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -162,7 +162,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.lte(1) }
     let(:right) { attribute.gt(1)  }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -171,7 +171,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.gte(1) }
     let(:right) { attribute.lt(1)  }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -180,7 +180,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.lt(1)  }
     let(:right) { attribute.gte(1) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -190,7 +190,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)      { attribute.match(/Dan Kubb/)    }
     let(:right)     { attribute.no_match(/Dan Kubb/) }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -200,7 +200,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)      { attribute.no_match(/Dan Kubb/) }
     let(:right)     { attribute.match(/Dan Kubb/)    }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -219,7 +219,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.eq(other)               }
     let(:right) { attribute.eq(1)                   }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -229,7 +229,7 @@ describe Function::Connective::Conjunction, '#optimize' do
     let(:left)  { attribute.eq(1)                   }
     let(:right) { attribute.eq(other)               }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end

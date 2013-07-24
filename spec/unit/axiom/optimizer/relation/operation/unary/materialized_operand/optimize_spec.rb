@@ -9,12 +9,12 @@ describe Optimizer::Relation::Operation::Unary::MaterializedOperand, '#optimize'
   let(:object)   { described_class.new(relation)                                  }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Materialized) }
 
-  its(:header) { should equal(relation.header) }
+  its(:header) { should be(relation.header) }
 
   it { should == [ [ 1 ] ] }
 end

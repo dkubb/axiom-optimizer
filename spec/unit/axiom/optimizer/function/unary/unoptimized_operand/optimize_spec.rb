@@ -11,7 +11,7 @@ describe Optimizer::Function::Unary::UnoptimizedOperand, '#optimize' do
 
   before do
     described_class.class_eval { include Optimizer::Function::Unary::UnoptimizedOperand }
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should eql(Function::Numeric::Absolute.new(1)) }

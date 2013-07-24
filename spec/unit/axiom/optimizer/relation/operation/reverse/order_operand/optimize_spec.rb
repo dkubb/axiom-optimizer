@@ -11,12 +11,12 @@ describe Optimizer::Relation::Operation::Reverse::OrderOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Order) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
-  its(:directions) { should equal(relation.directions) }
+  its(:directions) { should be(relation.directions) }
 end

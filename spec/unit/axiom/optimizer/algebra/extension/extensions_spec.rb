@@ -12,7 +12,7 @@ describe Optimizer::Algebra::Extension, '#extensions' do
   let(:object)        { described_class.new(relation)                  }
 
   before do
-    object.operation.should be_kind_of(Algebra::Extension)
+    expect(object.operation).to be_kind_of(Algebra::Extension)
   end
 
   context 'when extensions are optimized' do
@@ -24,7 +24,7 @@ describe Optimizer::Algebra::Extension, '#extensions' do
   context 'when extensions are not optimized' do
     let(:function) { Function::Numeric::Absolute.new(1) }
 
-    it { should_not equal(relation.extensions) }
+    it { should_not be(relation.extensions) }
 
     it { should eql(attribute => 1) }
   end

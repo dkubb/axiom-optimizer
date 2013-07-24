@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Order::OneLimitOperand, '#optimizable?'
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Order)
+    expect(object.operation).to be_kind_of(Relation::Operation::Order)
   end
 
   context 'when the operand is limited to 1' do

@@ -12,7 +12,7 @@ describe Optimizer::Algebra::Restriction::CombinationOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                                                             }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   specify { expect { subject }.to raise_error(NotImplementedError, 'Axiom::Optimizer::Algebra::Restriction::CombinationOperand#relation_method must be implemented') }

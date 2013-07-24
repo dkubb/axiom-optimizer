@@ -10,7 +10,7 @@ describe Optimizer::Function::Connective::Binary::EqualOperands, '#optimizable?'
   let(:object)     { described_class.new(connective) }
 
   before do
-    object.operation.should be_kind_of(Function::Connective::Binary)
+    expect(object.operation).to be_kind_of(Function::Connective::Binary)
   end
 
   context 'when left and right are equivalent' do

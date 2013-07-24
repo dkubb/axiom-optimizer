@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Offset::OffsetOperand, '#optimizable?' 
   let(:object)   { described_class.new(relation)                                                          }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Offset)
+    expect(object.operation).to be_kind_of(Relation::Operation::Offset)
   end
 
   context 'when the operand is an offset' do

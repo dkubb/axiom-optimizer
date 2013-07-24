@@ -9,7 +9,7 @@ describe Optimizer::Optimizable, '#optimize' do
   let(:object)          { described_class.new                                      }
 
   context 'when there is no optimizer for the class' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -23,16 +23,16 @@ describe Optimizer::Optimizable, '#optimize' do
       optimized.stub(:optimize).and_return(optimized)
     end
 
-    it { should equal(optimized) }
+    it { should be(optimized) }
 
     it 'calls the optimizer with the object' do
       optimizer.should_receive(:call).with(object).and_return(optimized)
-      should equal(optimized)
+      should be(optimized)
     end
 
     it '#optimize the optimized object' do
       optimized.should_receive(:optimize).with(no_args).and_return(optimized)
-      should equal(optimized)
+      should be(optimized)
     end
   end
 end

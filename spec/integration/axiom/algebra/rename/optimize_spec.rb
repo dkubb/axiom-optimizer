@@ -12,7 +12,7 @@ describe Algebra::Rename, '#optimize' do
   let(:object)   { described_class.new(operand, aliases)                       }
 
   context 'containing a relation' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -42,15 +42,15 @@ describe Algebra::Rename, '#optimize' do
   context 'containing an optimizable relation' do
     let(:operand) { relation.project(relation.header) }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
     it 'sets aliases the same as the original object' do
-      subject.aliases.should == object.aliases
+      expect(subject.aliases).to eql(object.aliases)
     end
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -68,19 +68,19 @@ describe Algebra::Rename, '#optimize' do
     let(:operand) { described_class.new(relation, :id => :other_id) }
     let(:aliases) { { :name => :other_name }                        }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == described_class::Aliases.coerce(
+      expect(subject.aliases).to eql(described_class::Aliases.coerce(
         relation.header,
         :id   => :other_id,
         :name => :other_name
-      )
+      ))
     end
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -98,18 +98,18 @@ describe Algebra::Rename, '#optimize' do
     let(:operand) { described_class.new(relation, :id => :other_id) }
     let(:aliases) { { :other_id => :another_id }                    }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == described_class::Aliases.coerce(
+      expect(subject.aliases).to eql(described_class::Aliases.coerce(
         relation.header,
         :id => :another_id
-      )
+      ))
     end
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -127,7 +127,7 @@ describe Algebra::Rename, '#optimize' do
     let(:operand) { described_class.new(relation, :id => :other_id) }
     let(:aliases) { { :other_id => :id }                            }
 
-    it { should equal(relation) }
+    it { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

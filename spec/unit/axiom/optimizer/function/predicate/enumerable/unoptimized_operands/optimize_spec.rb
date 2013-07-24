@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
   let(:object)    { described_class.new(predicate) }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   context 'when the operand contains an unsorted Enumerable' do
@@ -18,7 +18,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == [ 1, 2 ] }
   end
@@ -29,7 +29,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == [ false, true ] }
   end
@@ -39,7 +39,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == (1..2) }
   end
@@ -49,7 +49,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == [ 1, 2 ] }
   end
@@ -59,7 +59,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == [ 1, 2 ] }
   end

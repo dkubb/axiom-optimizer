@@ -22,7 +22,7 @@ describe Relation::Materialized, '#optimize' do
   context 'with an nonempty Array' do
     let(:body) { [ [ 1 ] ] }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end

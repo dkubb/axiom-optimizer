@@ -12,13 +12,13 @@ describe Optimizer::Function::Unary, '#operand' do
   context 'when the operand is frozen' do
     let(:operand) { 'Operand'.freeze }
 
-    it { should equal(operand) }
+    it { should be(operand) }
   end
 
   context 'when the operand is not frozen' do
     let(:operand) { 'Operand' }
 
-    it { should_not equal(operand) }
+    it { should_not be(operand) }
 
     it { should be_frozen }
 

@@ -10,14 +10,14 @@ describe Optimizer::Relation::Operation::Order::UnoptimizedOperand, '#optimize' 
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Order) }
 
-  it { should_not equal(relation) }
+  it { should_not be(relation) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
-  its(:directions) { should equal(relation.directions) }
+  its(:directions) { should be(relation.directions) }
 end

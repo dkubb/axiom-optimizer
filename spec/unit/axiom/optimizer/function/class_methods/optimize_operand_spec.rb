@@ -11,12 +11,12 @@ describe Optimizer::Function, '.optimize_operand' do
     let(:optimized) { double('Optimized')                           }
     let(:function)  { double('Optimizable', :optimize => optimized) }
 
-    it { should equal(optimized) }
+    it { should be(optimized) }
   end
 
   context 'when not optimizable' do
     let(:function) { double('Not Optimizable') }
 
-    it { should equal(function) }
+    it { should be(function) }
   end
 end

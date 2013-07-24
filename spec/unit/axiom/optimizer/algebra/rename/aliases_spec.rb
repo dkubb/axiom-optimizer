@@ -12,12 +12,12 @@ describe Optimizer::Algebra::Rename, '#aliases' do
   let(:object)    { described_class.new(relation)                       }
 
   before do
-    object.operation.should be_kind_of(Algebra::Rename)
+    expect(object.operation).to be_kind_of(Algebra::Rename)
   end
 
   let(:relation) { base.rename(aliases) }
 
   it { should be_kind_of(Algebra::Rename::Aliases) }
 
-  it { should equal(relation.aliases) }
+  it { should be(relation.aliases) }
 end

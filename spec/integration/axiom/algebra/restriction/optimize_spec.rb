@@ -13,7 +13,7 @@ describe Algebra::Restriction, '#optimize' do
   context 'with a tautology' do
     let(:predicate) { Function::Proposition::Tautology.instance }
 
-    it { should equal(relation) }
+    it { should be(relation) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -43,7 +43,7 @@ describe Algebra::Restriction, '#optimize' do
   context 'with a predicate' do
     let(:predicate) { relation[:id].eq(1) }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -56,13 +56,13 @@ describe Algebra::Restriction, '#optimize' do
   context 'with an optimizable predicate' do
     let(:predicate) { relation[:id].eq(1).and(Function::Proposition::Tautology.instance) }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
     its(:predicate) { should eql(relation[:id].eq(1)) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -80,13 +80,13 @@ describe Algebra::Restriction, '#optimize' do
     let(:operand)    { relation.project(relation.header) }
     let(:predicate)  { relation[:id].eq(1)               }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
-    its(:predicate) { should equal(predicate) }
+    its(:predicate) { should be(predicate) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -104,7 +104,7 @@ describe Algebra::Restriction, '#optimize' do
     let(:operand)   { Relation::Empty.new([ [ :id, Integer ] ]) }
     let(:predicate) { operand[:id].gte(1)                       }
 
-    it { should equal(operand) }
+    it { should be(operand) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -141,13 +141,13 @@ describe Algebra::Restriction, '#optimize' do
     let(:operand)         { described_class.new(relation, other_predicate) }
     let(:predicate)       { operand[:id].gte(1)                            }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
     its(:predicate) { should eql(other_predicate & predicate) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

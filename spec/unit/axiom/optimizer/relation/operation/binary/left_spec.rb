@@ -11,5 +11,5 @@ describe Optimizer::Relation::Operation::Binary, '#left' do
   let(:relation)  { double('Relation', :left => left, :right => right) }
   let(:object)    { described_class.new(relation)                      }
 
-  it { should equal(optimized) }
+  it { should be(optimized) }
 end

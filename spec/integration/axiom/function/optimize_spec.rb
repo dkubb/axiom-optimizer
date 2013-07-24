@@ -23,7 +23,7 @@ describe Function, '#optimize' do
   end
 
   it 'returns self' do
-    should equal(object)
+    should be(object)
   end
 
   it_should_behave_like 'an optimize method'

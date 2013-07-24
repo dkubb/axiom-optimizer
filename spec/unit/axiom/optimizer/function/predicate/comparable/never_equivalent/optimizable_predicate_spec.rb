@@ -13,7 +13,7 @@ describe Optimizer::Function::Predicate::Comparable::NeverEquivalent, '#optimiza
   before do
     described_class.class_eval { include Optimizer::Function::Predicate::Comparable::NeverEquivalent }
 
-    predicate.should be_kind_of(Function::Predicate::Comparable)
+    expect(predicate).to be_kind_of(Function::Predicate::Comparable)
   end
 
   context 'when left is a constant and is valid' do

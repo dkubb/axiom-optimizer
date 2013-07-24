@@ -11,12 +11,12 @@ describe Optimizer::Relation::Operation::Limit::ZeroLimit, '#optimize' do
   let(:object)   { described_class.new(relation)                                            }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Empty) }
 
-  its(:header) { should equal(header) }
+  its(:header) { should be(header) }
 
-  its(:tuples) { should equal(relation) }
+  its(:tuples) { should be(relation) }
 end

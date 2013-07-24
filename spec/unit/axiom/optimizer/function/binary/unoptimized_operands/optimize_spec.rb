@@ -14,7 +14,7 @@ describe Optimizer::Function::Binary::UnoptimizedOperands, '#optimize' do
 
   before do
     described_class.class_eval { include Optimizer::Function::Binary::UnoptimizedOperands }
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   its(:left) { should eql(attribute.eq(1)) }

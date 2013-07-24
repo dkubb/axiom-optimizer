@@ -31,7 +31,7 @@ describe Relation::Operation::Limit, '#optimize' do
   end
 
   context 'containing an order operation' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -46,7 +46,7 @@ describe Relation::Operation::Limit, '#optimize' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     its(:limit) { should == 1 }
 
@@ -68,10 +68,10 @@ describe Relation::Operation::Limit, '#optimize' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     it 'uses the more restrictive object' do
-      subject.limit.should == 5
+      expect(subject.limit).to be(5)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -92,10 +92,10 @@ describe Relation::Operation::Limit, '#optimize' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     it 'uses the more restrictive object' do
-      subject.limit.should == 5
+      expect(subject.limit).to be(5)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -114,7 +114,7 @@ describe Relation::Operation::Limit, '#optimize' do
     let(:operand) { order.take(10) }
     let(:limit)   { 10             }
 
-    it { should equal(operand) }
+    it { should be(operand) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

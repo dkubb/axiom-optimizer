@@ -12,7 +12,7 @@ describe Optimizer::Function::Connective::Binary::RedundantRight, '#optimize' do
   let(:object)     { described_class.new(connective) }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Function::Connective::Conjunction) }

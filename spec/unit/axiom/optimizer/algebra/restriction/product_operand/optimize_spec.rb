@@ -16,7 +16,7 @@ describe Optimizer::Algebra::Restriction::ProductOperand, '#optimize' do
   let(:object)              { described_class.new(relation)                                                                                      }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Restriction) }
@@ -25,24 +25,24 @@ describe Optimizer::Algebra::Restriction::ProductOperand, '#optimize' do
 
   it 'wraps the left operand of the product in a restriction' do
     left_operand = subject.operand.left
-    left_operand.operand.should equal(left)
-    left_operand.should be_kind_of(Algebra::Restriction)
+    expect(left_operand.operand).to be(left)
+    expect(left_operand).to be_kind_of(Algebra::Restriction)
   end
 
   it 'wraps the right operand of the product in a restriction' do
     right_operand = subject.operand.right
-    right_operand.operand.should equal(right)
-    right_operand.should be_kind_of(Algebra::Restriction)
+    expect(right_operand.operand).to be(right)
+    expect(right_operand).to be_kind_of(Algebra::Restriction)
   end
 
   it 'distributes the applicable part of the predicate to the left' do
-    subject.operand.left.predicate.should equal(left_predicate)
+    expect(subject.operand.left.predicate).to be(left_predicate)
   end
 
   it 'distributes the applicable part of the predicate to the right' do
-    subject.operand.right.predicate.should equal(right_predicate)
+    expect(subject.operand.right.predicate).to be(right_predicate)
   end
 
   # keeps the remainder that applies to the left and right
-  its(:predicate) { should equal(remainder_predicate) }
+  its(:predicate) { should be(remainder_predicate) }
 end

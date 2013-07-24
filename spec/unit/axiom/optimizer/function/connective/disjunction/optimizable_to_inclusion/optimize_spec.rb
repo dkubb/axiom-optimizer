@@ -10,7 +10,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
   let(:object)     { described_class.new(connective) }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   context 'when the right operands are optimizable' do
@@ -20,7 +20,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
-      its(:left) { should equal(attribute) }
+      its(:left) { should be(attribute) }
 
       # enumerable order is normalized
       its(:right) { should == [ 1, 2 ] }
@@ -32,7 +32,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
-      its(:left) { should equal(attribute) }
+      its(:left) { should be(attribute) }
 
       # enumerable order is normalized
       its(:right) { should == [ 1, 2 ] }
@@ -44,7 +44,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
-      its(:left) { should equal(attribute) }
+      its(:left) { should be(attribute) }
 
       # enumerable order is normalized
       its(:right) { should == [ 1, 2 ] }
@@ -56,7 +56,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
       it { should be_kind_of(Function::Predicate::Inclusion) }
 
-      its(:left) { should equal(attribute) }
+      its(:left) { should be(attribute) }
 
       # enumerable order is normalized
       its(:right) { should == [ 1, 2 ] }
@@ -69,7 +69,7 @@ describe Optimizer::Function::Connective::Disjunction::OptimizableToInclusion, '
 
     it { should be_kind_of(Function::Predicate::Inclusion) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == [ 1, 2 ] }
   end

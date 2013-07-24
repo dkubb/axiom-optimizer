@@ -12,8 +12,8 @@ describe Optimizer::Algebra::Intersection::EmptyRight, '#optimize' do
   let(:object)   { described_class.new(relation)                       }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(right) }
+  it { should be(right) }
 end

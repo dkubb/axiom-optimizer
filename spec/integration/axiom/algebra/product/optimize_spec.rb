@@ -82,7 +82,7 @@ describe Algebra::Product, '#optimize' do
   context 'left is a TABLE_DEE' do
     let(:left) { TABLE_DEE }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -99,7 +99,7 @@ describe Algebra::Product, '#optimize' do
   context 'right is a TABLE_DEE' do
     let(:right) { TABLE_DEE }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -116,7 +116,7 @@ describe Algebra::Product, '#optimize' do
   context 'left is a TABLE_DEE when optimized' do
     let(:left) { TABLE_DEE.project([]) }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -133,7 +133,7 @@ describe Algebra::Product, '#optimize' do
   context 'right is a TABLE_DEE when optimized' do
     let(:right) { TABLE_DEE.project([]) }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -148,7 +148,7 @@ describe Algebra::Product, '#optimize' do
   end
 
   context 'left and right are normal relations' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute left_body#each' do
       left_body.should_not_receive(:each)

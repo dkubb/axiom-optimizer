@@ -9,7 +9,7 @@ describe Relation, '#optimize' do
   let(:args)   { []                                                                       }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it 'calls self.class.optimizer' do
@@ -17,7 +17,7 @@ describe Relation, '#optimize' do
     subject
   end
 
-  it { should equal(object) }
+  it { should be(object) }
 
   it_should_behave_like 'an optimize method'
 end

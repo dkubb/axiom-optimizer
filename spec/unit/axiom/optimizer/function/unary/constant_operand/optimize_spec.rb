@@ -11,7 +11,7 @@ describe Optimizer::Function::Unary::ConstantOperand, '#optimize' do
 
   before do
     described_class.class_eval { include Optimizer::Function::Unary::ConstantOperand }
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be(1) }

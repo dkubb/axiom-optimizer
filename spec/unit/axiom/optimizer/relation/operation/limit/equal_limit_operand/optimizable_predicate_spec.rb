@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Limit::EqualLimitOperand, '#optimizable
   let(:object)   { described_class.new(relation)                                                          }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Limit)
+    expect(object.operation).to be_kind_of(Relation::Operation::Limit)
   end
 
   context 'when the operand is limited and not equal to the operation' do

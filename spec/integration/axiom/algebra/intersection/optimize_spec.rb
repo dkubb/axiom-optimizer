@@ -22,7 +22,7 @@ describe Algebra::Intersection, '#optimize' do
     let(:left)  { Relation::Empty.new(header) }
     let(:right) { original_right              }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -40,7 +40,7 @@ describe Algebra::Intersection, '#optimize' do
     let(:left)  { original_left               }
     let(:right) { Relation::Empty.new(header) }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -106,7 +106,7 @@ describe Algebra::Intersection, '#optimize' do
       let(:left)       { original_left                 }
       let(:right)      { original_right                }
 
-      it { should equal(left) }
+      it { should be(left) }
 
       it 'returns an equivalent relation to the unoptimized operation' do
         should == object
@@ -130,7 +130,7 @@ describe Algebra::Intersection, '#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'executed left_body#each' do
       left_body.should_receive(:each)

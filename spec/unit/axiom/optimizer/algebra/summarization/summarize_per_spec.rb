@@ -10,20 +10,20 @@ describe Optimizer::Algebra::Summarization, '#summarize_per' do
   let(:object)   { described_class.new(relation)                 }
 
   before do
-    object.operation.should be_kind_of(Algebra::Summarization)
+    expect(object.operation).to be_kind_of(Algebra::Summarization)
   end
 
   context 'when summarize_per is optimized' do
     let(:summarize_per) { TABLE_DEE }
 
-    it { should equal(summarize_per) }
+    it { should be(summarize_per) }
   end
 
   context 'when summarize_per is not not optimized' do
    let(:summarize_per) { TABLE_DEE.rename({}) }
 
-    it { should_not equal(summarize_per) }
+    it { should_not be(summarize_per) }
 
-    it { should equal(TABLE_DEE) }
+    it { should be(TABLE_DEE) }
   end
 end

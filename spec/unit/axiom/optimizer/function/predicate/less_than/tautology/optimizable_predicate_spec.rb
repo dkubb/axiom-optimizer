@@ -9,7 +9,7 @@ describe Optimizer::Function::Predicate::LessThan::Tautology, '#optimizable?' do
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Function::Predicate::LessThan)
+    expect(predicate).to be_kind_of(Function::Predicate::LessThan)
   end
 
   context 'when left is always less than right' do

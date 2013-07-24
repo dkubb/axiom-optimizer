@@ -13,7 +13,7 @@ describe Optimizer::Function::Predicate::Enumerable::EmptyRight, '#optimizable?'
   before do
     described_class.class_eval { include Optimizer::Function::Predicate::Enumerable::EmptyRight }
 
-    predicate.should be_kind_of(Function::Predicate::Enumerable)
+    expect(predicate).to be_kind_of(Function::Predicate::Enumerable)
   end
 
   context 'when the operand contains a nil' do

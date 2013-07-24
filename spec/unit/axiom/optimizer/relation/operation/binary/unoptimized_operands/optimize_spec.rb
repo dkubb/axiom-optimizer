@@ -11,14 +11,14 @@ describe Optimizer::Relation::Operation::Binary::UnoptimizedOperands, '#optimize
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Union) }
 
-  it { should_not equal(relation) }
+  it { should_not be(relation) }
 
-  its(:left) { should equal(left) }
+  its(:left) { should be(left) }
 
-  its(:right) { should equal(right) }
+  its(:right) { should be(right) }
 end

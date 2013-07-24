@@ -10,8 +10,8 @@ describe Optimizer::Relation::Operation::Unary::EmptyOperand, '#optimize' do
   let(:object)   { described_class.new(relation)             }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(operand) }
+  it { should be(operand) }
 end

@@ -10,7 +10,7 @@ describe Optimizer::Algebra::Rename::EmptyOperand, '#optimizable?' do
   let(:object)   { described_class.new(relation)                 }
 
   before do
-    object.operation.should be_kind_of(Algebra::Rename)
+    expect(object.operation).to be_kind_of(Algebra::Rename)
   end
 
   context 'when the operand is an empty relation' do

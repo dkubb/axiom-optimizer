@@ -9,7 +9,7 @@ describe Optimizer::Algebra::Join::EqualHeaders, '#optimizable?' do
   let(:object)   { described_class.new(relation) }
 
   before do
-    object.operation.should be_kind_of(Algebra::Join)
+    expect(object.operation).to be_kind_of(Algebra::Join)
   end
 
   context 'when left and right headers are equal' do

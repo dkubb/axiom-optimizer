@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::Enumerable::UnoptimizedOperands, '#opti
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Function::Predicate::Enumerable)
+    expect(predicate).to be_kind_of(Function::Predicate::Enumerable)
   end
 
   context 'when the operand contains an unsorted Enumerable' do

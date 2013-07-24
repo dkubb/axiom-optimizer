@@ -11,7 +11,7 @@ describe Optimizer::Algebra::Extension::UnoptimizedOperand, '#optimizable?' do
   let(:object)   { described_class.new(relation)                       }
 
   before do
-    object.operation.should be_kind_of(Algebra::Extension)
+    expect(object.operation).to be_kind_of(Algebra::Extension)
   end
 
   context 'when the operand is optimizable' do

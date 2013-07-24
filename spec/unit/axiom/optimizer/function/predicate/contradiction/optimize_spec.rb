@@ -14,5 +14,5 @@ describe Optimizer::Function::Predicate::Contradiction, '#optimize' do
     described_class.class_eval { include Optimizer::Function::Predicate::Contradiction }
   end
 
-  it { should equal(Function::Proposition::Contradiction.instance) }
+  it { should be(Function::Proposition::Contradiction.instance) }
 end

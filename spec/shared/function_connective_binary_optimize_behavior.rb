@@ -5,7 +5,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.gt(1) }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -15,7 +15,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:left)          { original_left.and(Function::Proposition::Tautology.instance) }
     let(:right)         { attribute.gt(1)                                              }
 
-    it { should equal(original_left) }
+    it { should be(original_left) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -24,7 +24,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:left)  { attribute.gt(1)                                                }
     let(:right) { attribute.gt(1).and(Function::Proposition::Tautology.instance) }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -33,7 +33,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(1) }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -45,13 +45,13 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
 
     add_method_missing
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
-    its(:left) { should equal(original_left) }
+    its(:left) { should be(original_left) }
 
-    its(:right) { should equal(right) }
+    its(:right) { should be(right) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -63,13 +63,13 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
 
     add_method_missing
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
-    its(:left) { should equal(left) }
+    its(:left) { should be(left) }
 
-    its(:right) { should equal(original_right) }
+    its(:right) { should be(original_right) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -82,7 +82,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
       right.stub(:optimize => right, :frozen? => true, :memoize => right, :memoized => right)
     end
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -95,7 +95,7 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
       left.stub(:optimize => left, :frozen? => true, :memoize => left, :memoized => left)
     end
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it_should_behave_like 'an optimize method'
   end

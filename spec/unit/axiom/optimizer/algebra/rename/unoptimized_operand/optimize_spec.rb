@@ -10,14 +10,14 @@ describe Optimizer::Algebra::Rename::UnoptimizedOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Rename) }
 
-  it { should_not equal(relation) }
+  it { should_not be(relation) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
-  its(:aliases) { should equal(relation.aliases) }
+  its(:aliases) { should be(relation.aliases) }
 end

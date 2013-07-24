@@ -22,6 +22,6 @@ describe Optimizer::Function::Predicate::Enumerable, '.sort_by_value' do
   context 'when the value is an object' do
     let(:value) { Object.new }
 
-    it { should equal(value) }
+    it { should be(value) }
   end
 end

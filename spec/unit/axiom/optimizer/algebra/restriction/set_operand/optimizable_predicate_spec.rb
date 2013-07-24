@@ -13,7 +13,7 @@ describe Optimizer::Algebra::Restriction::SetOperand, '#optimizable?' do
   let(:object)    { described_class.new(relation)                       }
 
   before do
-    object.operation.should be_kind_of(Algebra::Restriction)
+    expect(object.operation).to be_kind_of(Algebra::Restriction)
   end
 
   context 'when the operand is a set operation' do

@@ -12,7 +12,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
 
   context 'left and right are attributes' do
     context 'and equivalent' do
-      it { should equal(Function::Proposition::Tautology.instance) }
+      it { should be(Function::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -20,7 +20,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     context 'and are not comparable' do
       let(:right) { Attribute::Float.new(:float) }
 
-      it { should equal(Function::Proposition::Contradiction.instance) }
+      it { should be(Function::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -29,7 +29,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
       let(:left)  { attribute                                             }
       let(:right) { Attribute::Integer.new(:right, :size => 2**31..2**31) }
 
-      it { should equal(Function::Proposition::Tautology.instance) }
+      it { should be(Function::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -38,7 +38,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
       let(:left)  { attribute                                       }
       let(:right) { Attribute::Integer.new(:right, :size => -1..-1) }
 
-      it { should equal(Function::Proposition::Contradiction.instance) }
+      it { should be(Function::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -48,7 +48,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     context 'right is a valid value' do
       let(:right) { 1 }
 
-      it { should equal(object) }
+      it { should be(object) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -56,7 +56,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     context 'right is an invalid primitive' do
       let(:right) { nil }
 
-      it { should equal(Function::Proposition::Contradiction.instance) }
+      it { should be(Function::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -74,7 +74,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
     context 'left is an invalid primitive' do
       let(:left) { nil }
 
-      it { should equal(Function::Proposition::Contradiction.instance) }
+      it { should be(Function::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -85,7 +85,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
       let(:left)  { 1 }
       let(:right) { 1 }
 
-      it { should equal(Function::Proposition::Tautology.instance) }
+      it { should be(Function::Proposition::Tautology.instance) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -94,7 +94,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#optimize' do
       let(:left)  { 2 }
       let(:right) { 1 }
 
-      it { should equal(Function::Proposition::Contradiction.instance) }
+      it { should be(Function::Proposition::Contradiction.instance) }
 
       it_should_behave_like 'an optimize method'
     end

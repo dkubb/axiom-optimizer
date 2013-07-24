@@ -10,5 +10,5 @@ describe Optimizer::Relation::Operation::Unary::UnchangedHeader, '#optimize' do
   let(:relation) { double('Relation', :operand => operand, :header => header) }
   let(:object)   { described_class.new(relation)                              }
 
-  it { should equal(operand) }
+  it { should be(operand) }
 end

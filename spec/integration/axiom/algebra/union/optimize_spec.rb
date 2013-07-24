@@ -22,7 +22,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)  { Relation::Empty.new(header) }
     let(:right) { original_right              }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -45,7 +45,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)  { original_left               }
     let(:right) { Relation::Empty.new(header) }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -68,7 +68,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)  { Algebra::Restriction.new(original_left, Function::Proposition::Contradiction.instance) }
     let(:right) { original_right                                                                         }
 
-    it { should equal(right) }
+    it { should be(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -91,7 +91,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)  { original_left                                                                           }
     let(:right) { Algebra::Restriction.new(original_right, Function::Proposition::Contradiction.instance) }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -116,7 +116,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)       { original_left                 }
     let(:right)      { original_right                }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -145,7 +145,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)       { original_left  }
     let(:right)      { original_right }
 
-    it { should equal(left) }
+    it { should be(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -170,7 +170,7 @@ describe Algebra::Union, '#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'executes left_body#each' do
       left_body.should_receive(:each)

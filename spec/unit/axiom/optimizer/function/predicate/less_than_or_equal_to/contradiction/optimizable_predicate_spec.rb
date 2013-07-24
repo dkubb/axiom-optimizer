@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::LessThanOrEqualTo::Contradiction, '#opt
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Function::Predicate::LessThanOrEqualTo)
+    expect(predicate).to be_kind_of(Function::Predicate::LessThanOrEqualTo)
   end
 
   context 'when left and right are equal' do

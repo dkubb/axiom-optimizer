@@ -5,12 +5,12 @@ shared_examples_for 'an optimize method' do
 
   it 'it memoizes itself for #optimize' do
     optimized = subject
-    optimized.memoized(:optimize).should equal(optimized)
+    expect(optimized.memoized(:optimize)).to be(optimized)
   end
 
   it 'does not optimize further' do
     optimized = subject
     optimized.memoize(:optimize, nil)  # clear memoized value
-    optimized.optimize.should eql(optimized)
+    expect(optimized.optimize).to eql(optimized)
   end
 end

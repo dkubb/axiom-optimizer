@@ -28,7 +28,7 @@ describe Function::Connective::Negation, '#optimize' do
   context 'operand is a tautology' do
     let(:operand) { Function::Proposition::Tautology.instance }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -36,7 +36,7 @@ describe Function::Connective::Negation, '#optimize' do
   context 'operand is a contradiction' do
     let(:operand) { Function::Proposition::Contradiction.instance }
 
-    it { should equal(Function::Proposition::Tautology.instance) }
+    it { should be(Function::Proposition::Tautology.instance) }
 
     it_should_behave_like 'an optimize method'
   end

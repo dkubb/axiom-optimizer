@@ -20,7 +20,7 @@ describe Optimizer::Relation::Operation::Unary::OrderOperand, '#optimize' do
       end
     end
 
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should eql('Optimized') }

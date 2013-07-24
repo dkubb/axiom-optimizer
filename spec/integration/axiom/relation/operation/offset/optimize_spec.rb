@@ -16,7 +16,7 @@ describe Relation::Operation::Offset, '#optimize' do
   context 'with an object of 0' do
     let(:offset) { 0 }
 
-    it { should equal(order) }
+    it { should be(order) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -31,7 +31,7 @@ describe Relation::Operation::Offset, '#optimize' do
   end
 
   context 'containing an order operation' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -46,7 +46,7 @@ describe Relation::Operation::Offset, '#optimize' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     its(:offset) { should == 1 }
 
@@ -68,10 +68,10 @@ describe Relation::Operation::Offset, '#optimize' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     it 'adds the object of the operations' do
-      subject.offset.should == 15
+      expect(subject.offset).to be(15)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

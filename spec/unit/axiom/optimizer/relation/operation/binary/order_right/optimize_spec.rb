@@ -12,12 +12,12 @@ describe Optimizer::Relation::Operation::Binary::OrderRight, '#optimize' do
   let(:object)   { described_class.new(relation)                          }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(relation.class) }
 
-  its(:left) { should equal(left) }
+  its(:left) { should be(left) }
 
-  its(:right) { should equal(base) }
+  its(:right) { should be(base) }
 end

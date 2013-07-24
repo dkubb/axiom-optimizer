@@ -9,5 +9,5 @@ describe Optimizer, '#operation' do
   let(:operation)       { double('Operation')            }
   let(:object)          { described_class.new(operation) }
 
-  it { should equal(operation) }
+  it { should be(operation) }
 end

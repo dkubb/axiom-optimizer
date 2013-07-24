@@ -11,12 +11,12 @@ describe Optimizer::Function::Connective::Negation::InvertibleOperand, '#optimiz
   let(:object)    { described_class.new(negation)               }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Function::Predicate::Inequality) }
 
-  its(:left) { should equal(attribute) }
+  its(:left) { should be(attribute) }
 
   its(:right) { should == 1 }
 end

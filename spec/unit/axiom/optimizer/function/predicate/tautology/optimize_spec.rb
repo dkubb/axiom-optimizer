@@ -14,5 +14,5 @@ describe Optimizer::Function::Predicate::Tautology, '#optimize' do
     described_class.class_eval { include Optimizer::Function::Predicate::Tautology }
   end
 
-  it { should equal(Function::Proposition::Tautology.instance) }
+  it { should be(Function::Proposition::Tautology.instance) }
 end

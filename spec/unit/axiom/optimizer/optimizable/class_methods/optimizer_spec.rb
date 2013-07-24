@@ -18,7 +18,7 @@ describe Optimizer::Optimizable::ClassMethods, '#optimizer' do
       object.optimizer = optimizer
     end
 
-    it { should equal(optimizer) }
+    it { should be(optimizer) }
   end
 end
 

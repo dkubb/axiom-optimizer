@@ -12,7 +12,7 @@ describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimizable?' 
   let(:object)    { described_class.new(relation)                                       }
 
   before do
-    object.operation.should be_kind_of(Algebra::Summarization)
+    expect(object.operation).to be_kind_of(Algebra::Summarization)
   end
 
   context 'when the operand is optimizable' do

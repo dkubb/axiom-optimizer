@@ -19,7 +19,7 @@ describe Algebra::Projection, '#optimize' do
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
     let(:attributes) { header }
 
-    it { should equal(operand) }
+    it { should be(operand) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -37,7 +37,7 @@ describe Algebra::Projection, '#optimize' do
     let(:attributes) { [ :name, :id ] }
 
     it 'does not factor out the object, because tuple order is currently significant' do
-      should equal(object)
+      should be(object)
     end
 
     it 'does not execute body#each' do
@@ -51,7 +51,7 @@ describe Algebra::Projection, '#optimize' do
   context 'when the attributes are different from the relation headers' do
     let(:attributes) { [ :id ] }
 
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -96,11 +96,11 @@ describe Algebra::Projection, '#optimize' do
     let(:operand)    { Algebra::Restriction.new(relation, Function::Proposition::Tautology.instance) }
     let(:attributes) { [ :id ]                                                                       }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     its(:header) { should == object.header }
 
@@ -120,11 +120,11 @@ describe Algebra::Projection, '#optimize' do
     let(:operand)    { relation.project([ :id, :name ]) }
     let(:attributes) { [ :id ]                          }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     its(:header) { should == object.header }
 

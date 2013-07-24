@@ -10,7 +10,7 @@ describe Optimizer::Function::Connective::Negation::InvertibleOperand, '#optimiz
   let(:object)    { described_class.new(negation)               }
 
   before do
-    object.operation.should be_kind_of(Function::Connective::Negation)
+    expect(object.operation).to be_kind_of(Function::Connective::Negation)
   end
 
   context 'when operand is invertible' do

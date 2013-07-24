@@ -12,7 +12,7 @@ describe Relation::Operation::Order, '#optimize' do
   let(:object)     { described_class.new(operand, directions)    }
 
   context 'containing a relation' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -76,7 +76,7 @@ describe Relation::Operation::Order, '#optimize' do
   context 'containing a limit(1) operation' do
     let(:operand) { relation.sort_by { |r| r.id }.take(1) }
 
-    it { should equal(operand) }
+    it { should be(operand) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

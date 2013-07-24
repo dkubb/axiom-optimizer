@@ -11,12 +11,12 @@ describe Optimizer::Relation::Operation::Limit::UnoptimizedOperand, '#optimize' 
   let(:object)   { described_class.new(relation)                                            }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Limit) }
 
-  its(:operand) { should equal(order) }
+  its(:operand) { should be(order) }
 
   its(:limit) { should == 1 }
 end

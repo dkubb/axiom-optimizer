@@ -11,12 +11,12 @@ describe Optimizer::Relation::Operation::Offset::UnoptimizedOperand, '#optimize'
   let(:object)   { described_class.new(relation)                                            }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Offset) }
 
-  its(:operand) { should equal(order) }
+  its(:operand) { should be(order) }
 
   its(:offset) { should == 1 }
 end

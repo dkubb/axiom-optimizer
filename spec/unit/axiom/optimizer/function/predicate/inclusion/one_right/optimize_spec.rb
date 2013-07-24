@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
   let(:object)    { described_class.new(predicate) }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   context 'when the operand contains a one entry Enumerable' do
@@ -18,7 +18,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == 1 }
 
@@ -29,7 +29,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == 1 }
   end
@@ -39,7 +39,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == 1 }
   end
@@ -49,7 +49,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == 1 }
   end
@@ -59,7 +59,7 @@ describe Optimizer::Function::Predicate::Inclusion::OneRight, '#optimize' do
 
     it { should be_kind_of(Function::Predicate::Equality) }
 
-    its(:left) { should equal(attribute) }
+    its(:left) { should be(attribute) }
 
     its(:right) { should == 1 }
   end

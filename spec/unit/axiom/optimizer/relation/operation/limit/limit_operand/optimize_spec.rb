@@ -10,7 +10,7 @@ describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
   let(:object) { described_class.new(relation)                                                          }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   context 'when the operand has a larger limit than the operation' do
@@ -18,7 +18,7 @@ describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     its(:limit) { should == 1 }
   end
@@ -28,7 +28,7 @@ describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:operand) { should equal(order) }
+    its(:operand) { should be(order) }
 
     its(:limit) { should == 2 }
   end

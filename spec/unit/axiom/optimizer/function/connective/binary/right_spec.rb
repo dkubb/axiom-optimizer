@@ -12,5 +12,5 @@ describe Optimizer::Function::Connective::Binary, '#right' do
   let(:connective)      { double('Connective', :left => left, :right => right) }
   let(:object)          { described_class.new(connective)                      }
 
-  it { should equal(optimized_right) }
+  it { should be(optimized_right) }
 end

@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::Inequality::Contradiction, '#optimizabl
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Function::Predicate::Inequality)
+    expect(predicate).to be_kind_of(Function::Predicate::Inequality)
   end
 
   context 'when left and right are equal' do

@@ -11,8 +11,8 @@ describe Optimizer::Algebra::Product::TableDeeRight, '#optimize' do
   let(:object)   { described_class.new(relation)                                      }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(left) }
+  it { should be(left) }
 end

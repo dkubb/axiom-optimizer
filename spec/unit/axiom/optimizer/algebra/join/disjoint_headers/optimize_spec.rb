@@ -11,12 +11,12 @@ describe Optimizer::Algebra::Join::DisjointHeaders, '#optimize' do
   let(:object)   { described_class.new(relation)                                           }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Product) }
 
-  its(:left) { should equal(left) }
+  its(:left) { should be(left) }
 
-  its(:right) { should equal(right) }
+  its(:right) { should be(right) }
 end

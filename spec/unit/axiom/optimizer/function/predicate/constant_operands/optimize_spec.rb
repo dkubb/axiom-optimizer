@@ -9,8 +9,8 @@ describe Optimizer::Function::Predicate::ConstantOperands, '#optimize' do
   let(:object)    { described_class.new(predicate)          }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(Function::Proposition::Tautology.instance) }
+  it { should be(Function::Proposition::Tautology.instance) }
 end

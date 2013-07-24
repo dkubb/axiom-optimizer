@@ -12,7 +12,7 @@ describe Optimizer::Algebra::Rename::ReverseOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Reverse) }

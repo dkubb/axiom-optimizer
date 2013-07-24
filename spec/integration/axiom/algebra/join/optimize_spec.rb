@@ -82,7 +82,7 @@ describe Algebra::Join, '#optimize' do
   end
 
   context 'left and right are not empty relations' do
-    it { should equal(object) }
+    it { should be(object) }
 
     it 'does not execute left_body#each' do
       left_body.should_not_receive(:each)

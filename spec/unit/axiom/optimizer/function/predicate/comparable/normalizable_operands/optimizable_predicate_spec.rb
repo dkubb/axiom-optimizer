@@ -10,7 +10,7 @@ describe Optimizer::Function::Predicate::Comparable::NormalizableOperands, '#opt
   let(:object)    { described_class.new(predicate)                 }
 
   before do
-    predicate.should be_kind_of(Function::Predicate::Comparable)
+    expect(predicate).to be_kind_of(Function::Predicate::Comparable)
   end
 
   context 'when left and right is a constant' do

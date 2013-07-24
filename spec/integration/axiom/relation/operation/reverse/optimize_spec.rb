@@ -16,7 +16,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     let(:operand) { limit.reverse }
 
     it 'cancels out the operations and return the contained operation' do
-      should equal(limit)
+      should be(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -36,7 +36,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     let(:operand) { limit.reverse.rename({}) }
 
     it 'cancels out the operations and return the contained operation' do
-      should equal(limit)
+      should be(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

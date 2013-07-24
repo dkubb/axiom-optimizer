@@ -13,12 +13,12 @@ describe Optimizer::Algebra::Restriction::RestrictionOperand, '#optimize' do
   let(:object)          { described_class.new(relation)                            }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Restriction) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
-  its(:predicate) { should equal(predicate) }
+  its(:predicate) { should be(predicate) }
 end

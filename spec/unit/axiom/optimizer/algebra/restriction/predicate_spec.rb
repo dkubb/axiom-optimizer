@@ -11,8 +11,8 @@ describe Optimizer::Algebra::Restriction, '#predicate' do
   let(:object)    { described_class.new(relation)                 }
 
   before do
-    object.operation.should be_kind_of(Algebra::Restriction)
+    expect(object.operation).to be_kind_of(Algebra::Restriction)
   end
 
-  it { should equal(predicate) }
+  it { should be(predicate) }
 end

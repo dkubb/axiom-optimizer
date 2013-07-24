@@ -13,7 +13,7 @@ describe Optimizer::PredicatePartition, '#right' do
     let(:predicate) { Function::Proposition::Tautology.instance }
 
     it 'partitions the predicate to the right' do
-      should equal(Function::Proposition::Tautology.instance)
+      should be(Function::Proposition::Tautology.instance)
     end
   end
 
@@ -21,7 +21,7 @@ describe Optimizer::PredicatePartition, '#right' do
     let(:predicate) { Function::Proposition::Contradiction.instance }
 
     it 'partitions the predicate to the right' do
-      should equal(Function::Proposition::Contradiction.instance)
+      should be(Function::Proposition::Contradiction.instance)
     end
   end
 
@@ -30,7 +30,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { left_header[:active_user] }
 
       it 'does not partition the predicate to the left' do
-        should equal(Function::Proposition::Tautology.instance)
+        should be(Function::Proposition::Tautology.instance)
       end
     end
 
@@ -38,7 +38,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { right_header[:active_employee] }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -46,7 +46,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { right_header[:active] }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
   end
@@ -56,7 +56,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { left_header[:user_name].eq('Dan Kubb') }
 
       it 'does not partition the predicate to the right' do
-        should equal(Function::Proposition::Tautology.instance)
+        should be(Function::Proposition::Tautology.instance)
       end
     end
 
@@ -64,7 +64,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { right_header[:employee_name].eq('Dan Kubb') }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -72,7 +72,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { right_header[:id].eq(1) }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -80,7 +80,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { left_header[:active_user].eq(right_header[:active]) }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -88,7 +88,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { right_header[:active_employee].eq(right_header[:active]) }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -96,7 +96,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { left_header[:user_name].eq(right_header[:employee_name]) }
 
       it 'does not partition the predicate to the right' do
-        should equal(Function::Proposition::Tautology.instance)
+        should be(Function::Proposition::Tautology.instance)
       end
     end
   end
@@ -106,7 +106,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { Function::Connective::Negation.new(left_header[:active_user]) }
 
       it 'does not partition the predicate to the left' do
-        should equal(Function::Proposition::Tautology.instance)
+        should be(Function::Proposition::Tautology.instance)
       end
     end
 
@@ -114,7 +114,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { Function::Connective::Negation.new(right_header[:active_employee]) }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
 
@@ -122,7 +122,7 @@ describe Optimizer::PredicatePartition, '#right' do
       let(:predicate) { Function::Connective::Negation.new(right_header[:active]) }
 
       it 'partitions the predicate to the right' do
-        should equal(predicate)
+        should be(predicate)
       end
     end
   end
@@ -133,7 +133,7 @@ describe Optimizer::PredicatePartition, '#right' do
     let(:predicate)       { left_predicate.and(right_predicate)         }
 
     it 'partitions the predicate to the right that reference the right header' do
-      should equal(right_predicate)
+      should be(right_predicate)
     end
   end
 

@@ -12,7 +12,7 @@ describe Optimizer::Algebra::Summarization, '#summarizers' do
   let(:object)        { described_class.new(relation)                                    }
 
   before do
-    object.operation.should be_kind_of(Algebra::Summarization)
+    expect(object.operation).to be_kind_of(Algebra::Summarization)
   end
 
   context 'when summarizers are optimized' do
@@ -24,7 +24,7 @@ describe Optimizer::Algebra::Summarization, '#summarizers' do
   context 'when summarizers are not optimized' do
     let(:function) { Aggregate::Sum.new(Function::Numeric::Absolute.new(1)) }
 
-    it { should_not equal(relation.summarizers) }
+    it { should_not be(relation.summarizers) }
 
     it { should eql(attribute => Aggregate::Sum.new(1)) }
   end

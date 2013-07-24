@@ -11,14 +11,14 @@ describe Optimizer::Algebra::Restriction::UnoptimizedOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                       }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Restriction) }
 
-  it { should_not equal(relation) }
+  it { should_not be(relation) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
   its(:predicate) { should == base[:id].eq(1) }
 end

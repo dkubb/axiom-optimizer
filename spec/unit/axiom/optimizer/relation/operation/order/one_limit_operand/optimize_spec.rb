@@ -11,8 +11,8 @@ describe Optimizer::Relation::Operation::Order::OneLimitOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                     }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(limit) }
+  it { should be(limit) }
 end

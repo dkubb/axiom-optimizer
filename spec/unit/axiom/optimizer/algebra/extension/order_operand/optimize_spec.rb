@@ -11,12 +11,12 @@ describe Optimizer::Algebra::Extension::OrderOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                          }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Extension) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
   its(:extensions) { should eql(relation.extensions) }
 end

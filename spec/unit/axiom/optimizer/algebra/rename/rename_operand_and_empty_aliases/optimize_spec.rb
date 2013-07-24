@@ -11,8 +11,8 @@ describe Optimizer::Algebra::Rename::RenameOperandAndEmptyAliases, '#optimize' d
   let(:object)   { described_class.new(relation)                                    }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
-  it { should equal(base) }
+  it { should be(base) }
 end

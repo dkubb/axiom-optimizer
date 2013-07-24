@@ -13,7 +13,7 @@ describe Optimizer::Function::Predicate::Enumerable::OneRight, '#optimizable?' d
   before do
     described_class.class_eval { include Optimizer::Function::Predicate::Enumerable::OneRight }
 
-    predicate.should be_kind_of(Function::Predicate::Enumerable)
+    expect(predicate).to be_kind_of(Function::Predicate::Enumerable)
   end
 
   context 'when the operand contains a one entry Enumerable' do

@@ -15,16 +15,16 @@ describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
   let(:object)        { described_class.new(relation)                                       }
 
   before do
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be_kind_of(Algebra::Summarization) }
 
-  it { should_not equal(operand) }
+  it { should_not be(operand) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should be(base) }
 
-  its(:summarize_per) { should equal(TABLE_DEE) }
+  its(:summarize_per) { should be(TABLE_DEE) }
 
   its(:summarizers) { should == { attribute => Aggregate::Sum.new(1) } }
 end

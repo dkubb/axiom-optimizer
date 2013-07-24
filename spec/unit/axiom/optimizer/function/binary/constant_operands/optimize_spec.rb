@@ -11,7 +11,7 @@ describe Optimizer::Function::Binary::ConstantOperands, '#optimize' do
 
   before do
     described_class.class_eval { include Optimizer::Function::Binary::ConstantOperands }
-    object.should be_optimizable
+    expect(object).to be_optimizable
   end
 
   it { should be(4) }
