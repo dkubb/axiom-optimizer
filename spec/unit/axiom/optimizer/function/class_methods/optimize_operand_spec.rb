@@ -8,14 +8,14 @@ describe Optimizer::Function, '.optimize_operand' do
   let(:object) { described_class }
 
   context 'when optimizable' do
-    let(:optimized) { mock('Optimized')                           }
-    let(:function)  { mock('Optimizable', :optimize => optimized) }
+    let(:optimized) { double('Optimized')                           }
+    let(:function)  { double('Optimizable', :optimize => optimized) }
 
     it { should equal(optimized) }
   end
 
   context 'when not optimizable' do
-    let(:function) { mock('Not Optimizable') }
+    let(:function) { double('Not Optimizable') }
 
     it { should equal(function) }
   end

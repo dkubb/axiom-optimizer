@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::OrderRight, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:relation) { mock('Relation', :left => left, :right => right) }
-  let(:left)     { mock('Left')                                     }
-  let(:object)   { described_class.new(relation)                    }
+  let(:relation) { double('Relation', :left => left, :right => right) }
+  let(:left)     { double('Left')                                     }
+  let(:object)   { described_class.new(relation)                      }
 
   context 'when right is an order' do
     let(:right) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new).sort_by { |r| r.id } }

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Optimizer, '.chain' do
-  let(:operation)       { mock('Operation')    }
+  let(:operation)       { double('Operation')  }
   let(:object)          { Optimizer            }
   let(:identity)        { object::Identity     }
   let(:optimizer_class) { Class.new(Optimizer) }
@@ -21,7 +21,7 @@ describe Optimizer, '.chain' do
   context 'with an optimizer that can optimize the operation' do
     subject { object.chain(optimizer_class) }
 
-    let(:optimized) { mock('Optimized') }
+    let(:optimized) { double('Optimized') }
 
     before do
       optimized = self.optimized

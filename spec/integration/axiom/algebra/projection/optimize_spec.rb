@@ -13,7 +13,7 @@ describe Algebra::Projection, '#optimize' do
 
   before do
     # skip dup of the body to avoid clearing the method stubs
-    body.stub!(:frozen?).and_return(true)
+    body.stub(:frozen?).and_return(true)
   end
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
@@ -175,8 +175,8 @@ describe Algebra::Projection, '#optimize' do
 
     before do
       # skip dup of the left and right body to avoid clearing the method stubs
-      left_body.stub!(:frozen?).and_return(true)
-      right_body.stub!(:frozen?).and_return(true)
+      left_body.stub(:frozen?).and_return(true)
+      right_body.stub(:frozen?).and_return(true)
     end
 
     it 'pushes the object to each relation, and combine the nested objects' do

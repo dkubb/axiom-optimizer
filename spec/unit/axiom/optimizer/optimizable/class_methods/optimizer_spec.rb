@@ -12,7 +12,7 @@ describe Optimizer::Optimizable::ClassMethods, '#optimizer' do
   end
 
   context 'when the optimizer is set' do
-    let(:optimizer) { mock('Optimizer') }
+    let(:optimizer) { double('Optimizer') }
 
     before do
       object.optimizer = optimizer
@@ -25,7 +25,7 @@ end
 describe Optimizer::Optimizable::ClassMethods, '#optimizer=' do
   subject { object.optimizer = optimizer }
 
-  let(:optimizer) { mock('Optimizer')                                        }
+  let(:optimizer) { double('Optimizer')                                      }
   let(:object)    { Class.new { include Optimizer::Optimizable, Adamantium } }
 
   it 'sets the optimizer' do

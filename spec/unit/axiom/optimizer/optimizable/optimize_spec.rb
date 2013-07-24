@@ -15,12 +15,12 @@ describe Optimizer::Optimizable, '#optimize' do
   end
 
   context 'when there is an optimizer for the class' do
-    let(:optimized) { mock('Optimized', :frozen? => true)   }
-    let(:optimizer) { mock('Optimizer', :call => optimized) }
+    let(:optimized) { double('Optimized', :frozen? => true)   }
+    let(:optimizer) { double('Optimizer', :call => optimized) }
 
     before do
       described_class.optimizer = optimizer
-      optimized.stub!(:optimize).and_return(optimized)
+      optimized.stub(:optimize).and_return(optimized)
     end
 
     it { should equal(optimized) }

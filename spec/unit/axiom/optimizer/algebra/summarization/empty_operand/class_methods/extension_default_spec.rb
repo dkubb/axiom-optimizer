@@ -8,7 +8,7 @@ describe Optimizer::Algebra::Summarization::EmptyOperand, '.extension_default' d
   let(:object) { described_class }
 
   context 'when the function has a default' do
-    let(:operand)  { mock('Operand')               }
+    let(:operand)  { double('Operand')             }
     let(:function) { Aggregate::Count.new(operand) }
 
     it { should eql(0) }

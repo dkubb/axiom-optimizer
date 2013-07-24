@@ -14,8 +14,8 @@ describe Algebra::Union, '#optimize' do
 
   before do
     # skip dup of the left and right body to avoid clearing the method stubs
-    left_body.stub!(:frozen?).and_return(true)
-    right_body.stub!(:frozen?).and_return(true)
+    left_body.stub(:frozen?).and_return(true)
+    right_body.stub(:frozen?).and_return(true)
   end
 
   context 'left is an empty relation' do

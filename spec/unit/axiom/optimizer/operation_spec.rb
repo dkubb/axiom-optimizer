@@ -6,7 +6,7 @@ describe Optimizer, '#operation' do
   subject { object.operation }
 
   let(:described_class) { Class.new(Optimizer)           }
-  let(:operation)       { mock('Operation')              }
+  let(:operation)       { double('Operation')            }
   let(:object)          { described_class.new(operation) }
 
   it { should equal(operation) }

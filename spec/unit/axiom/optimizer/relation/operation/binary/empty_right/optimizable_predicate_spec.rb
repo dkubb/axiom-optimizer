@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::EmptyRight, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:described_class) { Class.new(Optimizer::Relation::Operation::Binary) }
-  let(:relation)        { mock('Relation', :left => left, :right => right)  }
-  let(:left)            { mock('Left')                                      }
-  let(:object)          { described_class.new(relation)                     }
+  let(:described_class) { Class.new(Optimizer::Relation::Operation::Binary)  }
+  let(:relation)        { double('Relation', :left => left, :right => right) }
+  let(:left)            { double('Left')                                     }
+  let(:object)          { described_class.new(relation)                      }
 
   before do
     described_class.class_eval { include superclass::EmptyRight }

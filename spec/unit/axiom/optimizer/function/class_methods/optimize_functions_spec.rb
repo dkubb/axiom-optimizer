@@ -6,12 +6,12 @@ describe Optimizer::Function, '.optimize_functions' do
   subject { object.optimize_functions(functions) }
 
   let(:object)    { described_class           }
-  let(:attribute) { mock('Attribute')         }
+  let(:attribute) { double('Attribute')       }
   let(:functions) { { attribute => function } }
 
   context 'when optimizable' do
-    let(:optimized) { mock('Optimized')                           }
-    let(:function)  { mock('Optimizable', :optimize => optimized) }
+    let(:optimized) { double('Optimized')                           }
+    let(:function)  { double('Optimizable', :optimize => optimized) }
 
     it { should be_frozen }
 
@@ -19,7 +19,7 @@ describe Optimizer::Function, '.optimize_functions' do
   end
 
   context 'when not optimizable' do
-    let(:function) { mock('Not Optimizable') }
+    let(:function) { double('Not Optimizable') }
 
     it { should == functions }
   end
