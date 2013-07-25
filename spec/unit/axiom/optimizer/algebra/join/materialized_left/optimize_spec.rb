@@ -18,7 +18,7 @@ describe Optimizer::Algebra::Join::MaterializedLeft, '#optimize' do
 
     it { should be_kind_of(Algebra::Join) }
 
-    its(:left) { should eql(Relation::Empty.new(left.header)) }
+    its(:left) { should eql(Relation.new(left.header)) }
 
     its(:right) { should eql(right.restrict { Function::Proposition::Contradiction.instance }) }
   end

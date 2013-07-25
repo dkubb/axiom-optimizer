@@ -33,7 +33,7 @@ describe Algebra::Summarization, '#optimize' do
   context 'when the summarize_per is empty' do
     let(:summarize_per) { relation.project([:id]).restrict { false } }
 
-    it { should eql(Relation::Empty.new(object.header)) }
+    it { should eql(Relation.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

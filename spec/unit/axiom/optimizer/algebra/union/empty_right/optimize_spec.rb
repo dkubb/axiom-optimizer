@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Union::EmptyRight, '#optimize' do
 
   let(:header)   { Relation::Header.coerce([[:id, Integer]])       }
   let(:left)     { Relation.new(header, LazyEnumerable.new([[1]])) }
-  let(:right)    { Relation::Empty.new(header)                     }
+  let(:right)    { Relation.new(header)                            }
   let(:relation) { left.union(right)                               }
   let(:object)   { described_class.new(relation)                   }
 

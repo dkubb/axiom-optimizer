@@ -19,8 +19,8 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'left is an empty relation' do
-    let(:left)  { Relation::Empty.new(header) }
-    let(:right) { original_right              }
+    let(:left)  { Relation.new(header) }
+    let(:right) { original_right       }
 
     it { should be(right) }
 
@@ -42,8 +42,8 @@ describe Algebra::Union, '#optimize' do
   end
 
   context 'right is an empty relation' do
-    let(:left)  { original_left               }
-    let(:right) { Relation::Empty.new(header) }
+    let(:left)  { original_left        }
+    let(:right) { Relation.new(header) }
 
     it { should be(left) }
 

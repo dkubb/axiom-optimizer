@@ -25,7 +25,7 @@ describe Algebra::Restriction, '#optimize' do
   context 'with a contradiction' do
     let(:predicate) { Function::Proposition::Contradiction.instance }
 
-    it { should eql(Relation::Empty.new(relation.header)) }
+    it { should eql(Relation.new(relation.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -121,7 +121,7 @@ describe Algebra::Restriction, '#optimize' do
     let(:operand)   { described_class.new(relation, Function::Proposition::Contradiction.instance) }
     let(:predicate) { operand[:id].gte(1)                                                          }
 
-    it { should eql(Relation::Empty.new(relation.header)) }
+    it { should eql(Relation.new(relation.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

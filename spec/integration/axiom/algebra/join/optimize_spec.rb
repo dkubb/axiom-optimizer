@@ -14,9 +14,9 @@ describe Algebra::Join, '#optimize' do
   let(:object)         { described_class.new(left, right)                            }
 
   context 'left is an empty relation' do
-    let(:left) { Relation::Empty.new(original_left.header) }
+    let(:left) { Relation.new(original_left.header) }
 
-    it { should eql(Relation::Empty.new(right.header)) }
+    it { should eql(Relation.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -31,9 +31,9 @@ describe Algebra::Join, '#optimize' do
   end
 
   context 'right is an empty relation' do
-    let(:right) { Relation::Empty.new(original_right.header) }
+    let(:right) { Relation.new(original_right.header) }
 
-    it { should eql(Relation::Empty.new(right.header)) }
+    it { should eql(Relation.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -50,7 +50,7 @@ describe Algebra::Join, '#optimize' do
   context 'left is an empty relation when optimized' do
     let(:left) { Algebra::Restriction.new(original_left, Function::Proposition::Contradiction.instance) }
 
-    it { should eql(Relation::Empty.new(right.header)) }
+    it { should eql(Relation.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -67,7 +67,7 @@ describe Algebra::Join, '#optimize' do
   context 'right is an empty relation when optimized' do
     let(:right) { Algebra::Restriction.new(original_right, Function::Proposition::Contradiction.instance) }
 
-    it { should eql(Relation::Empty.new(right.header)) }
+    it { should eql(Relation.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

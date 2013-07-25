@@ -14,7 +14,7 @@ describe Optimizer::Algebra::Rename::EmptyOperand, '#optimizable?' do
   end
 
   context 'when the operand is an empty relation' do
-    let(:operand) { Relation::Empty.new(header) }
+    let(:operand) { Relation.new(header) }
 
     it { should be(true) }
   end

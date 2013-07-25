@@ -10,7 +10,7 @@ describe Relation::Materialized, '#optimize' do
   context 'with an empty Array' do
     let(:body) { [] }
 
-    it { should eql(Relation::Empty.new(object.header)) }
+    it { should eql(Relation.new(object.header)) }
 
     it 'returns an equivalent object to the unoptimized operation' do
       should == object
