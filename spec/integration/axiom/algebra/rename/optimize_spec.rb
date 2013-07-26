@@ -23,9 +23,9 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an empty relation' do
-    let(:operand) { Relation.new(relation.header) }
+    let(:operand) { Relation::Empty.new(relation.header) }
 
-    it { should eql(Relation.new(object.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

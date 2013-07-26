@@ -62,10 +62,10 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing an empty relation' do
-    let(:operand)    { Relation.new(header) }
-    let(:attributes) { [:id]                }
+    let(:operand)    { Relation::Empty.new(header) }
+    let(:attributes) { [:id]                       }
 
-    it { should eql(Relation.new(object.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -78,7 +78,7 @@ describe Algebra::Projection, '#optimize' do
     let(:operand)    { Algebra::Restriction.new(relation, Function::Proposition::Contradiction.instance) }
     let(:attributes) { [:id]                                                                             }
 
-    it { should eql(Relation.new(object.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

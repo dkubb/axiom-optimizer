@@ -14,7 +14,7 @@ describe Algebra::Product, '#optimize' do
   context 'left is a TABLE_DUM' do
     let(:left) { TABLE_DUM }
 
-    it { should eql(Relation.new(right.header)) }
+    it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -31,7 +31,7 @@ describe Algebra::Product, '#optimize' do
   context 'right is a TABLE_DUM' do
     let(:right) { TABLE_DUM }
 
-    it { should eql(Relation.new(left.header)) }
+    it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -48,7 +48,7 @@ describe Algebra::Product, '#optimize' do
   context 'left is a TABLE_DUM when optimized' do
     let(:left) { TABLE_DUM.project([]) }
 
-    it { should eql(Relation.new(right.header)) }
+    it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -65,7 +65,7 @@ describe Algebra::Product, '#optimize' do
   context 'right is a TABLE_DUM when optimized' do
     let(:right) { TABLE_DUM.project([]) }
 
-    it { should eql(Relation.new(left.header)) }
+    it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

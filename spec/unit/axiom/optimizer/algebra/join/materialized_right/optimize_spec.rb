@@ -20,7 +20,7 @@ describe Optimizer::Algebra::Join::MaterializedRight, '#optimize' do
 
     its(:left) { should eql(left.restrict { Function::Proposition::Contradiction.instance }) }
 
-    its(:right) { should eql(Relation.new(right.header)) }
+    its(:right) { should eql(Relation::Empty.new(right.header)) }
   end
 
   context 'with one joined tuple' do

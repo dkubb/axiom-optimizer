@@ -14,7 +14,7 @@ describe Optimizer::Algebra::Projection::EmptyOperand, '#optimizable?' do
   end
 
   context 'when the operand is empty' do
-    let(:operand) { Relation.new(header) }
+    let(:operand) { Relation::Empty.new(header) }
 
     it { should be(true) }
   end

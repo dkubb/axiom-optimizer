@@ -19,8 +19,8 @@ describe Algebra::Intersection, '#optimize' do
   end
 
   context 'left is an empty relation' do
-    let(:left)  { Relation.new(header) }
-    let(:right) { original_right       }
+    let(:left)  { Relation::Empty.new(header) }
+    let(:right) { original_right              }
 
     it { should be(left) }
 
@@ -37,8 +37,8 @@ describe Algebra::Intersection, '#optimize' do
   end
 
   context 'right is an empty relation' do
-    let(:left)  { original_left        }
-    let(:right) { Relation.new(header) }
+    let(:left)  { original_left               }
+    let(:right) { Relation::Empty.new(header) }
 
     it { should be(right) }
 
@@ -58,7 +58,7 @@ describe Algebra::Intersection, '#optimize' do
     let(:left)  { Algebra::Restriction.new(original_left, Function::Proposition::Contradiction.instance) }
     let(:right) { original_right                                                                         }
 
-    it { should eql(Relation.new(left.header | right.header)) }
+    it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -81,7 +81,7 @@ describe Algebra::Intersection, '#optimize' do
     let(:left)  { original_left                                                                           }
     let(:right) { Algebra::Restriction.new(original_right, Function::Proposition::Contradiction.instance) }
 
-    it { should eql(Relation.new(left.header | right.header)) }
+    it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
