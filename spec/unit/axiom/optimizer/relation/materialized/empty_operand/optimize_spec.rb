@@ -16,6 +16,4 @@ describe Optimizer::Relation::Materialized::EmptyOperand, '#optimize' do
   it { should be_kind_of(Relation::Empty) }
 
   its(:header) { should be(header) }
-
-  its(:tuples) { should be(relation) }
 end

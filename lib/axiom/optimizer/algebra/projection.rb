@@ -175,7 +175,7 @@ module Axiom
           #
           # @api private
           def optimize
-            Axiom::Relation::Empty.new(header, operation)
+            Axiom::Relation::Empty.new(header)
           end
 
         end # class EmptyOperand

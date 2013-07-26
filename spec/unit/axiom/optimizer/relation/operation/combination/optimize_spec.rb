@@ -13,6 +13,4 @@ describe Optimizer::Relation::Operation::Combination, '#optimize' do
   it { should be_kind_of(Relation::Empty) }
 
   its(:header) { should be(relation.header) }
-
-  its(:tuples) { should be(relation) }
 end

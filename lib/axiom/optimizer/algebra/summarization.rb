@@ -130,7 +130,7 @@ module Axiom
           #
           # @api private
           def optimize
-            Axiom::Relation::Empty.new(operation.header, operation)
+            Axiom::Relation::Empty.new(operation.header)
           end
 
         end # class EmptySummarizePer

@@ -14,7 +14,7 @@ module Axiom
           #
           # @api private
           def optimize
-            Axiom::Relation::Empty.new(operation.header, operation)
+            Axiom::Relation::Empty.new(operation.header)
           end
 
           # Optimize when the left operand is Empty

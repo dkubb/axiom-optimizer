@@ -20,6 +20,4 @@ describe Optimizer::Algebra::Summarization::EmptySummarizePer, '#optimize' do
   it { should be_kind_of(Relation::Empty) }
 
   its(:header) { should == [[:id, Integer], [:test, Object]] }
-
-  its(:tuples) { should be(relation) }
 end
