@@ -10,14 +10,14 @@ Gem::Specification.new do |gem|
   gem.description = 'Optimizes axiom relations'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/dkubb/axiom-optimizer'
-  gem.licenses    = %w[MIT]
+  gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
   gem.test_files       = `git ls-files -- spec/{unit,integration}`.split($/)
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
 
-  gem.add_runtime_dependency('axiom', '~> 0.1.0')
+  gem.add_runtime_dependency('axiom', '~> 0.1.1')
 
   gem.add_development_dependency('bundler', '~> 1.3', '>= 1.3.5')
 end
