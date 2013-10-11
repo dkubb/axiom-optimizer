@@ -1,5 +1,4 @@
-axiom-optimizer
-===============
+# axiom-optimizer
 
 Relational algebra optimizer
 
@@ -15,8 +14,7 @@ Relational algebra optimizer
 [codeclimate]: https://codeclimate.com/github/dkubb/axiom-optimizer
 [coveralls]: https://coveralls.io/r/dkubb/axiom-optimizer
 
-Examples
---------
+## Examples
 
 ```ruby
 # optimize a relation
@@ -32,8 +30,7 @@ new_aggregate = function.aggregate
 new_aggregate = function.aggregate(optimizer)
 ```
 
-Description
------------
+## Description
 
 The purpose of this gem is to provide a simple API that can be used to optimize a [axiom](https://github.com/dkubb/axiom) relation, scalar or aggregate function. An optional optimizer can be passed in to the #optimize method and return an equivalent but simplified version of the object.
 
@@ -43,8 +40,7 @@ The goal is not to replace the advanced optimizers that are inside most database
 
 With the ability to provide custom optimizers we can even target output to a structure optimized for specific datastores. All operations in relational algebra can be transformed into other equivalent operations, ones that are more efficient for the target datastore to execute. The built-in optimizers included in this gem are only a starting point; the intention is to expand them as well as help others create custom optimizers that are optimized for each datastore.
 
-Design
-------
+## Design
 
 The contract for an optimizer instance is simple:
 
@@ -77,12 +73,10 @@ We always perform at least two optimization passes on each object, because once 
 
 Once the optimization passes are finished, and no further optimization is possible, the result of an #optimize call is memoized. Further calls to #optimize will always return the same object.
 
-Contributing
-------------
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-Copyright
----------
+## Copyright
 
 Copyright &copy; 2011-2013 Dan Kubb. See LICENSE for details.
