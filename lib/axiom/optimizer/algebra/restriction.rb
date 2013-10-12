@@ -339,7 +339,7 @@ module Axiom
           #
           # @api private
           def optimizable?
-            super || ! predicate.equal?(operation.predicate)
+            super || !predicate.equal?(operation.predicate)
           end
 
           # Return a Restriction with an optimized operand

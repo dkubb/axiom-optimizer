@@ -172,7 +172,7 @@ module Axiom
           #
           # @api private
           def summarize_per_optimizable?
-            ! summarize_per.equal?(operation.summarize_per)
+            !summarize_per.equal?(operation.summarize_per)
           end
 
           # Test if the summarizers are optimizable
@@ -181,7 +181,7 @@ module Axiom
           #
           # @api private
           def summarizers_optimizable?
-            ! summarizers.eql?(operation.summarizers)
+            !summarizers.eql?(operation.summarizers)
           end
 
         end # class UnoptimizedOperand

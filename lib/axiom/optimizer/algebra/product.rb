@@ -16,7 +16,7 @@ module Axiom
           #
           # @api private
           def optimizable?
-            left.header.empty? && ! left.kind_of?(Axiom::Relation::Empty)
+            left.header.empty? && !left.kind_of?(Axiom::Relation::Empty)
           end
 
           # A Product with a left TABLE DEE is equivalent to the right operand
@@ -39,7 +39,7 @@ module Axiom
           #
           # @api private
           def optimizable?
-            right.header.empty? && ! right.kind_of?(Axiom::Relation::Empty)
+            right.header.empty? && !right.kind_of?(Axiom::Relation::Empty)
           end
 
           # A Product with a right TABLE DEE is equivalent to the left operand

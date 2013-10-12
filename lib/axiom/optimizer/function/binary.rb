@@ -105,7 +105,7 @@ module Axiom
           #
           # @api private
           def left_optimizable?
-            ! left.equal?(operation.left)
+            !left.equal?(operation.left)
           end
 
           # Test if the right operand is optimizable
@@ -114,7 +114,7 @@ module Axiom
           #
           # @api private
           def right_optimizable?
-            ! right.equal?(operation.right)
+            !right.equal?(operation.right)
           end
 
         end # module UnoptimizedOperands
