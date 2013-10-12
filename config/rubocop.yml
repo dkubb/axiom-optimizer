@@ -51,3 +51,9 @@ ConstantName:
 # Do not check formatting of special comments like "TODO" or "OPTIMIZE"
 CommentAnnotation:
   Enabled: false
+
+# Do not force private to be indented to the same level as the code
+AccessControl:
+  Enabled: false
+IndentationWidth:
+  Enabled: false
