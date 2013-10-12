@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Summarization, '#summarize_per' do
   subject { object.summarize_per }
 
   let(:base)     { Relation.new([[:id, Integer]], [[1]]) }
-  let(:relation) { base.summarize(summarize_per) {}      }
+  let(:relation) { base.summarize(summarize_per) { }     }
   let(:object)   { described_class.new(relation)         }
 
   before do
@@ -20,7 +20,7 @@ describe Optimizer::Algebra::Summarization, '#summarize_per' do
   end
 
   context 'when summarize_per is not not optimized' do
-   let(:summarize_per) { TABLE_DEE.rename({}) }
+    let(:summarize_per) { TABLE_DEE.rename({}) }
 
     it { should_not be(summarize_per) }
 

@@ -135,7 +135,7 @@ module Axiom
           #
           # @api private
           def alias_names
-            aliases.to_hash.values.map { |attribute| attribute.name }
+            aliases.to_hash.values.map(&:name)
           end
 
           # Returns the attributes removed from the projection

@@ -46,7 +46,7 @@ module Axiom
               elsif util.constant?(left)  then left_invalid_constant?
               elsif util.constant?(right) then right_invalid_constant?
               else
-                ! joinable?
+                !joinable?
               end
             end
 

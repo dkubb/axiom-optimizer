@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Summarization::OrderOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:base)     { Relation.new([[:id, Integer]], LazyEnumerable.new) }
-  let(:relation) { operand.summarize([]) {}                           }
+  let(:relation) { operand.summarize([]) { }                          }
   let(:object)   { described_class.new(relation)                      }
 
   context 'when operand is an order' do

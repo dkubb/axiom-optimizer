@@ -42,14 +42,14 @@ describe Optimizer::Function::Connective::Conjunction::Contradiction, '#optimiza
   end
 
   context 'when left and right are procs' do
-    let(:left)  { proc {} }
-    let(:right) { proc {} }
+    let(:left)  { proc { } }
+    let(:right) { proc { } }
 
     it { should be(false) }
   end
 
   context 'when left is a proc' do
-    let(:left)  { proc {}         }
+    let(:left)  { proc { }        }
     let(:right) { attribute.ne(1) }
 
     it { should be(false) }
@@ -57,7 +57,7 @@ describe Optimizer::Function::Connective::Conjunction::Contradiction, '#optimiza
 
   context 'when right is a proc' do
     let(:left)  { attribute.eq(1) }
-    let(:right) { proc {}         }
+    let(:right) { proc { }        }
 
     it { should be(false) }
   end

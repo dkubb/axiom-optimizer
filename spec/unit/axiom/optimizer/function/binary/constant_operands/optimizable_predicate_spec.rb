@@ -21,15 +21,15 @@ describe Optimizer::Function::Binary::ConstantOperands, '#optimizable?' do
   end
 
   context 'when left is a constant, and right is not a constant' do
-    let(:left)  { 1       }
-    let(:right) { proc {} }
+    let(:left)  { 1        }
+    let(:right) { proc { } }
 
     it { should be(false) }
   end
 
   context 'when left is not a constant, and right is a constant' do
-    let(:left)  { proc {} }
-    let(:right) { 1       }
+    let(:left)  { proc { } }
+    let(:right) { 1        }
 
     it { should be(false) }
   end

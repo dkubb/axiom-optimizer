@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Summarization::EmptyOperand, '#optimizable?' do
 
   let(:header)        { Relation::Header.coerce([[:id, Integer], [:name, String]])  }
   let(:base)          { Relation.new(header, LazyEnumerable.new([[1, 'Dan Kubb']])) }
-  let(:relation)      { operand.summarize(summarize_per) {}                         }
+  let(:relation)      { operand.summarize(summarize_per) { }                        }
   let(:summarize_per) { TABLE_DEE                                                   }
   let(:object)        { described_class.new(relation)                               }
 
