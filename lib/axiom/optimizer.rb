@@ -38,9 +38,7 @@ module Axiom
     # @return [Boolean]
     #
     # @api public
-    def optimizable?
-      raise NotImplementedError, "#{self.class}#optimizable? must be implemented"
-    end
+    abstract_method :optimizable?
 
     # Abstract method that executes the optimization for the operation
     #
@@ -50,9 +48,7 @@ module Axiom
     # @return [Optimizable]
     #
     # @api public
-    def optimize
-      raise NotImplementedError, "#{self.class}#optimize must be implemented"
-    end
+    abstract_method :optimize
 
     # Chain together a list of optimizer classes into a callable object
     #

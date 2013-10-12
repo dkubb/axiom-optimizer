@@ -6,6 +6,7 @@ module Axiom
 
       # Abstract base class representing Restriction optimizations
       class Restriction < Relation::Operation::Unary
+        include AbstractType
 
         # The optimized predicate
         #
@@ -206,9 +207,7 @@ module Axiom
           #   raised when the subclass does not implement the method
           #
           # @api private
-          def relation_method
-            raise NotImplementedError, "#{self.class}#relation_method must be implemented"
-          end
+          abstract_method :relation_method
 
           # Restrict the left operand with the left predicate partition
           #

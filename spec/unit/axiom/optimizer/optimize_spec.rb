@@ -13,5 +13,5 @@ describe Optimizer, '#optimize' do
     described_class.stub(:to_s).and_return('Optimizer')
   end
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Optimizer#optimize must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, 'Optimizer#optimize is not implemented') }
 end

@@ -15,7 +15,7 @@ describe Optimizer::Algebra::Restriction::CombinationOperand, '#optimize' do
     expect(object).to be_optimizable
   end
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Axiom::Optimizer::Algebra::Restriction::CombinationOperand#relation_method must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, 'Axiom::Optimizer::Algebra::Restriction::CombinationOperand#relation_method is not implemented') }
 
   context 'with a defined relation_method' do
     let(:described_class) { Class.new(Optimizer::Algebra::Restriction::CombinationOperand) }
