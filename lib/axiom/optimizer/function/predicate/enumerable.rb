@@ -72,9 +72,9 @@ module Axiom
           #
           # @api private
           def normalized_right_enumerable
-            enumerable = operation.right.select { |value| left.valid_value?(value) }
+            enumerable = operation.right.select(&left.method(:include?))
             enumerable.uniq!
-            enumerable.sort_by! { |value| Enumerable.sort_by_value(value) }
+            enumerable.sort_by!(&Enumerable.method(:sort_by_value))
           end
 
           # Optimize when the right operand is empty

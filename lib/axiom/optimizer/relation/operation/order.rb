@@ -26,7 +26,7 @@ module Axiom
             #
             # @api private
             def optimize
-              operand.operand.sort_by { operation.directions }
+              operand.operand.sort_by(operation.directions)
             end
 
           end # class OrderOperand
@@ -65,7 +65,7 @@ module Axiom
             #
             # @api private
             def optimize
-              operand.sort_by { operation.directions }
+              operand.sort_by(operation.directions)
             end
 
           end # class UnoptimizedOperand

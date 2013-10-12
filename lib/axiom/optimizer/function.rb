@@ -60,8 +60,8 @@ module Axiom
         # @api private
         def self.min(operand)
           case operand
-          when Attribute::String  then operand.min_length
-          when Attribute::Numeric then operand.range.first
+          when Attribute::String  then operand.type.minimum_length
+          when Attribute::Numeric then operand.type.minimum
           else
             operand
           end
@@ -74,8 +74,8 @@ module Axiom
         # @api private
         def self.max(operand)
           case operand
-          when Attribute::String  then operand.max_length
-          when Attribute::Numeric then operand.range.last
+          when Attribute::String  then operand.type.maximum_length
+          when Attribute::Numeric then operand.type.maximum
           else
             operand
           end

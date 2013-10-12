@@ -67,7 +67,7 @@ module Axiom
             #
             # @api private
             def left_invalid_constant?
-              ! right.valid_value?(left)
+              !right.include?(left)
             end
 
             # Test if the right operand is an invalid constant
@@ -76,7 +76,7 @@ module Axiom
             #
             # @api private
             def right_invalid_constant?
-              ! left.valid_value?(right)
+              !left.include?(right)
             end
 
             # Test if the left and right operand are joinable
@@ -115,7 +115,8 @@ module Axiom
             #
             # @api private
             def left_invalid_constant?
-              ! right.valid_primitive?(left)
+              type = right.type
+              !type.infer(left.class).equal?(type)
             end
 
             # Test if the right operand is an invalid constant
@@ -124,7 +125,8 @@ module Axiom
             #
             # @api private
             def right_invalid_constant?
-              ! left.valid_primitive?(right)
+              type = left.type
+              !type.infer(right.class).equal?(type)
             end
 
             # Test if the left and right operand are comparable

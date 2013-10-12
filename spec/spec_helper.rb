@@ -20,10 +20,13 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
+require 'ice_nine'
 require 'devtools/spec_helper'
 require 'axiom-optimizer'
 
 include Axiom
+
+Types.finalize
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expect_with|

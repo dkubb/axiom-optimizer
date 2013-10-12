@@ -259,7 +259,7 @@ module Axiom
           #
           # @api private
           def optimize
-            wrap_operand.sort_by { directions }
+            wrap_operand.sort_by(directions)
           end
 
         private

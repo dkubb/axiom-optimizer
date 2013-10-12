@@ -14,7 +14,7 @@ describe Optimizer::Function::Util, '.min' do
   end
 
   context 'with a String attribute' do
-    let(:operand) { Attribute::String.new(:id, min_length: 1, max_length: 10) }
+    let(:operand) { Attribute::String.new(:id, minimum_length: 1, maximum_length: 10) }
 
     it { should == 1 }
   end
