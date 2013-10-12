@@ -9,9 +9,5 @@ describe Optimizer, '#optimizable?' do
   let(:operation)       { double('Operation')            }
   let(:object)          { described_class.new(operation) }
 
-  before do
-    described_class.stub(:to_s).and_return('Optimizer')
-  end
-
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Optimizer#optimizable? is not implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#optimizable? is not implemented") }
 end
