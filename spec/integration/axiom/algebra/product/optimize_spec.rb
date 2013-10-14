@@ -21,7 +21,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -38,7 +38,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
@@ -55,7 +55,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -72,7 +72,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
@@ -89,7 +89,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -106,7 +106,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
@@ -123,7 +123,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -140,7 +140,7 @@ describe Algebra::Product, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
@@ -151,12 +151,12 @@ describe Algebra::Product, '#optimize' do
     it { should be(object) }
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 

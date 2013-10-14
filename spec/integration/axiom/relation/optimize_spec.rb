@@ -13,7 +13,7 @@ describe Relation, '#optimize' do
   end
 
   it 'calls self.class.optimizer' do
-    described_class.should_receive(:optimizer).and_return(nil)
+    expect(described_class).to receive(:optimizer).and_return(nil)
     subject
   end
 

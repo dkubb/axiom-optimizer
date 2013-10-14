@@ -13,7 +13,7 @@ describe Algebra::Projection, '#optimize' do
 
   before do
     # skip dup of the body to avoid clearing the method stubs
-    body.stub(:frozen?).and_return(true)
+    allow(body).to receive(:frozen?).and_return(true)
   end
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
@@ -26,7 +26,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -41,7 +41,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -54,7 +54,7 @@ describe Algebra::Projection, '#optimize' do
     it { should be(object) }
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -85,7 +85,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -109,7 +109,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -133,7 +133,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -158,7 +158,7 @@ describe Algebra::Projection, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -175,8 +175,8 @@ describe Algebra::Projection, '#optimize' do
 
     before do
       # skip dup of the left and right body to avoid clearing the method stubs
-      left_body.stub(:frozen?).and_return(true)
-      right_body.stub(:frozen?).and_return(true)
+      allow(left_body).to receive(:frozen?).and_return(true)
+      allow(right_body).to receive(:frozen?).and_return(true)
     end
 
     it 'pushes the object to each relation, and combine the nested objects' do
@@ -222,13 +222,13 @@ describe Algebra::Projection, '#optimize' do
 
     it 'executes left_body#each' do
       pending 'TODO: make sure this is only received once'
-      left_body.should_receive(:each)
+      expect(left_body).to receive(:each)
       subject
     end
 
     it 'executes right_body#each' do
       pending 'TODO: make sure this is only received once'
-      right_body.should_receive(:each)
+      expect(right_body).to receive(:each)
       subject
     end
 

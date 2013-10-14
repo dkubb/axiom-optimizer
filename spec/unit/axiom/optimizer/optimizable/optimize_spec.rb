@@ -20,18 +20,18 @@ describe Optimizer::Optimizable, '#optimize' do
 
     before do
       described_class.optimizer = optimizer
-      optimized.stub(:optimize).and_return(optimized)
+      allow(optimized).to receive(:optimize).and_return(optimized)
     end
 
     it { should be(optimized) }
 
     it 'calls the optimizer with the object' do
-      optimizer.should_receive(:call).with(object).and_return(optimized)
+      expect(optimizer).to receive(:call).with(object).and_return(optimized)
       should be(optimized)
     end
 
     it '#optimize the optimized object' do
-      optimized.should_receive(:optimize).with(no_args).and_return(optimized)
+      expect(optimized).to receive(:optimize).with(no_args).and_return(optimized)
       should be(optimized)
     end
   end

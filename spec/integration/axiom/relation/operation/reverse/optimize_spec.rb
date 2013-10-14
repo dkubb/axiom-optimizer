@@ -24,7 +24,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -44,7 +44,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -59,7 +59,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -76,7 +76,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -94,7 +94,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 

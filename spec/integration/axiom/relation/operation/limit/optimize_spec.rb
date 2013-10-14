@@ -23,7 +23,7 @@ describe Relation::Operation::Limit, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -34,7 +34,7 @@ describe Relation::Operation::Limit, '#optimize' do
     it { should be(object) }
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -55,7 +55,7 @@ describe Relation::Operation::Limit, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -79,7 +79,7 @@ describe Relation::Operation::Limit, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -103,7 +103,7 @@ describe Relation::Operation::Limit, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 
@@ -121,7 +121,7 @@ describe Relation::Operation::Limit, '#optimize' do
     end
 
     it 'does not execute body#each' do
-      body.should_not_receive(:each)
+      expect(body).not_to receive(:each)
       subject
     end
 

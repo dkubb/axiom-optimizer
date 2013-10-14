@@ -79,7 +79,10 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:right) { double('Binary', class: described_class, left: left, :optimized? => true) }
 
     before do
-      right.stub(optimize: right, :frozen? => true, memoize: right, memoized: right)
+      allow(right).to receive(:optimize).and_return(right)
+      allow(right).to receive(:frozen?).and_return(true)
+      allow(right).to receive(:memoize).and_return(right)
+      allow(right).to receive(:memoized).and_return(right)
     end
 
     it { should be(right) }
@@ -92,7 +95,10 @@ shared_examples_for 'Function::Connective::Binary#optimize' do
     let(:right) { attribute.eq(1)                                                             }
 
     before do
-      left.stub(optimize: left, :frozen? => true, memoize: left, memoized: left)
+      allow(left).to receive(:optimize).and_return(left)
+      allow(left).to receive(:frozen?).and_return(true)
+      allow(left).to receive(:memoize).and_return(left)
+      allow(left).to receive(:memoized).and_return(left)
     end
 
     it { should be(left) }

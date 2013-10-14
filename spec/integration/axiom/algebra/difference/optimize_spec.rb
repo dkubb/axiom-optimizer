@@ -14,8 +14,8 @@ describe Algebra::Difference, '#optimize' do
 
   before do
     # skip dup of the left and right body to avoid clearing the method stubs
-    left_body.stub(:frozen?).and_return(true)
-    right_body.stub(:frozen?).and_return(true)
+    allow(left_body).to receive(:frozen?).and_return(true)
+    allow(right_body).to receive(:frozen?).and_return(true)
   end
 
   context 'left is an empty relation' do
@@ -29,7 +29,7 @@ describe Algebra::Difference, '#optimize' do
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -47,7 +47,7 @@ describe Algebra::Difference, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
@@ -65,12 +65,12 @@ describe Algebra::Difference, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -88,12 +88,12 @@ describe Algebra::Difference, '#optimize' do
     end
 
     it 'does not execute left_body#each' do
-      left_body.should_not_receive(:each)
+      expect(left_body).not_to receive(:each)
       subject
     end
 
     it 'does not execute right_body#each' do
-      right_body.should_not_receive(:each)
+      expect(right_body).not_to receive(:each)
       subject
     end
 
@@ -113,12 +113,12 @@ describe Algebra::Difference, '#optimize' do
       end
 
       it 'executes left_body#each' do
-        left_body.should_receive(:each)
+        expect(left_body).to receive(:each)
         subject
       end
 
       it 'executes right_body#each' do
-        right_body.should_receive(:each)
+        expect(right_body).to receive(:each)
         subject
       end
 
@@ -133,12 +133,12 @@ describe Algebra::Difference, '#optimize' do
     it { should be(object) }
 
     it 'executes left_body#each' do
-      left_body.should_receive(:each)
+      expect(left_body).to receive(:each)
       subject
     end
 
     it 'executes right_body#each' do
-      right_body.should_receive(:each)
+      expect(right_body).to receive(:each)
       subject
     end
 
