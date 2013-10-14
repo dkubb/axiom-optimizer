@@ -189,14 +189,14 @@ describe Algebra::Projection, '#optimize' do
 
     it 'does not execute left_body#each' do
       pending 'TODO: should only compare left and right with #eql? if they are materialized' do
-        left_body.should_not_receive(:each)
+        expect(left_body).to_not receive(:each)
         subject
       end
     end
 
     it 'does not execute right_body#each' do
       pending 'TODO: should only compare left and right with #eql? if they are materialized' do
-        right_body.should_not_receive(:each)
+        expect(right_body).to_not receive(:each)
         subject
       end
     end
