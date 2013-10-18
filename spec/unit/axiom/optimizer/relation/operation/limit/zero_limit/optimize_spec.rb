@@ -6,8 +6,8 @@ describe Optimizer::Relation::Operation::Limit::ZeroLimit, '#optimize' do
   subject { object.optimize }
 
   let(:header)   { Relation::Header.coerce([[:id, Integer]])                            }
-  let(:order)    { Relation.new(header, LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
-  let(:relation) { order.take(0)                                                        }
+  let(:sorted)   { Relation.new(header, LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
+  let(:relation) { sorted.take(0)                                                       }
   let(:object)   { described_class.new(relation)                                        }
 
   before do

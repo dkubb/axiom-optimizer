@@ -54,11 +54,12 @@
       try to combine into a single relation with the restrictions using NOT.
 
   * Summarization
-    * Add OrderSummarizePer for factoring out Order objects inside a Summarization
+    * Add SortedSummarizePer for factoring out Sorted objects inside a
+      Summarization
     * When there are no aggregate functions, drop the Summarization and
       return the summarize_per (?)
       * Use the UnchangedHeader optimizer as a base class
-    * When summarize_per is an Order, the Order can be dropped.
+    * When summarize_per is an Sorted, the Sorted can be dropped.
 
   * Projection
     * When it contains a Restriction, if the removed attributes are *not*
@@ -110,10 +111,10 @@
      equality/conjunction between attributes from the left and right
      operands, then transform into a Join.
 
-  * Order
-    * When the operation is an instance of Order, and the operand is sorted in
+  * Sorted
+    * When the operation is an instance of Sorted, and the operand is sorted in
       reversed order, change to a Reverse operation. This should occur after the
-      Order optimization that collapses two Order objects into one; it would be
+      Sorted optimization that collapses two Sorted objects into one; it would be
       expected that the operand is a Limit or Offset, but it probably isn't
       necessary to test that.
 

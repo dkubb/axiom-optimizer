@@ -7,13 +7,13 @@ describe Relation::Operation::Reverse, '#optimize' do
 
   let(:body)     { LazyEnumerable.new([[1], [2], [3]])  }
   let(:relation) { Relation.new([[:id, Integer]], body) }
-  let(:order)    { relation.sort_by { |r| r.id }        }
-  let(:operand)  { order                                }
+  let(:sorted)   { relation.sort_by { |r| r.id }        }
+  let(:operand)  { sorted                               }
   let(:object)   { described_class.new(operand)         }
 
   context 'with a object operation' do
-    let(:limit)   { order.take(2) }
-    let(:operand) { limit.reverse }
+    let(:limit)   { sorted.take(2) }
+    let(:operand) { limit.reverse  }
 
     it 'cancels out the operations and return the contained operation' do
       should be(limit)
@@ -32,7 +32,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'with a object operation when optimized' do
-    let(:limit)   { order.take(2)            }
+    let(:limit)   { sorted.take(2)           }
     let(:operand) { limit.reverse.rename({}) }
 
     it 'cancels out the operations and return the contained operation' do
@@ -51,7 +51,7 @@ describe Relation::Operation::Reverse, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with an order operation' do
+  context 'with a sorted operation' do
     it { should eql(relation.sort_by { object.directions }) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -66,8 +66,8 @@ describe Relation::Operation::Reverse, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with an order operation when optimized' do
-    let(:operand) { order.rename({}) }
+  context 'with a sorted operation when optimized' do
+    let(:operand) { sorted.rename({}) }
 
     it { should eql(relation.sort_by { object.directions }) }
 
@@ -84,10 +84,10 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'with an optimizable operation' do
-    let(:limit)   { order.take(2)    }
+    let(:limit)   { sorted.take(2)   }
     let(:operand) { limit.rename({}) }
 
-    it { should eql(order.take(2).reverse) }
+    it { should eql(sorted.take(2).reverse) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object

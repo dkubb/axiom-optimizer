@@ -54,7 +54,7 @@ DuplicateMethodCall:
   - Axiom::Optimizer::Relation::Materialized::EmptyOperand#optimize
   - Axiom::Optimizer::Relation::Operation::Combination#optimize
   - Axiom::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize
-  - Axiom::Optimizer::Relation::Operation::Order::OneLimitOperand#optimizable?
+  - Axiom::Optimizer::Relation::Operation::Sorted::OneLimitOperand#optimizable?
   max_calls: 1
   allow_calls: []
 FeatureEnvy:

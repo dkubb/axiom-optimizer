@@ -56,8 +56,8 @@ module Axiom
           EqualOperands,
           EmptyLeft,
           EmptyRight,
-          OrderLeft,
-          OrderRight,
+          SortedLeft,
+          SortedRight,
           MaterializedOperands,
           UnoptimizedOperands
         )

@@ -8,15 +8,15 @@ describe Relation::Operation::Offset, '#optimize' do
   let(:body)       { LazyEnumerable.new([[1], [2], [3]])  }
   let(:relation)   { Relation.new([[:id, Integer]], body) }
   let(:directions) { [relation[:id]]                      }
-  let(:order)      { relation.sort_by { directions }      }
-  let(:operand)    { order                                }
+  let(:sorted)     { relation.sort_by { directions }      }
+  let(:operand)    { sorted                               }
   let(:offset)     { 1                                    }
   let(:object)     { described_class.new(operand, offset) }
 
   context 'with an object of 0' do
     let(:offset) { 0 }
 
-    it { should be(order) }
+    it { should be(sorted) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -30,7 +30,7 @@ describe Relation::Operation::Offset, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing an order operation' do
+  context 'containing a sorted operation' do
     it { should be(object) }
 
     it 'does not execute body#each' do
@@ -41,12 +41,12 @@ describe Relation::Operation::Offset, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing an optimizable order operation' do
-    let(:operand) { order.rename({}) }
+  context 'containing an optimizable sorted operation' do
+    let(:operand) { sorted.rename({}) }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     its(:offset) { should == 1 }
 
@@ -63,12 +63,12 @@ describe Relation::Operation::Offset, '#optimize' do
   end
 
   context 'containing an object operation' do
-    let(:operand) { order.drop(5) }
-    let(:offset)  { 10            }
+    let(:operand) { sorted.drop(5) }
+    let(:offset)  { 10             }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     it 'adds the object of the operations' do
       expect(subject.offset).to be(15)

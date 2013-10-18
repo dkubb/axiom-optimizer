@@ -60,7 +60,7 @@ Axiom::Algebra::Restriction.optimizer = chain(
   Contradiction,        # does the predicate match nothing?
   RestrictionOperand,   # does the restriction contain another restriction?
   SetOperand,           # does the restriction contain a set operation?
-  OrderOperand,         # does the restriction contain an order?
+  SortedOperand,        # does the restriction contain a sorted relation?
   EmptyOperand,         # does the restriction contain an empty relation?
   MaterializedOperand,  # does the restriction contain a materialized relation?
   UnoptimizedOperand    # does the restriction contain an unoptimized relation?

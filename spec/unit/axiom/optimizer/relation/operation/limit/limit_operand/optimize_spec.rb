@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:order)  { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
-  let(:limit)  { order.take(2)                                                                  }
+  let(:sorted) { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
+  let(:limit)  { sorted.take(2)                                                                 }
   let(:object) { described_class.new(relation)                                                  }
 
   before do
@@ -18,7 +18,7 @@ describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     its(:limit) { should == 1 }
   end
@@ -28,7 +28,7 @@ describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimize' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     its(:limit) { should == 2 }
   end
