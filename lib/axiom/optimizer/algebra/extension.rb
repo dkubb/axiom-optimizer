@@ -44,10 +44,10 @@ module Axiom
           operand.extend(extensions)
         end
 
-        # Optimize when the operand is an Order
-        class OrderOperand < self
-          include Relation::Operation::Unary::OrderOperand
-        end # class OrderOperand
+        # Optimize when the operand is an Sorted
+        class SortedOperand < self
+          include Relation::Operation::Unary::SortedOperand
+        end # class SortedOperand
 
         # Optimize when operands are optimizable
         class UnoptimizedOperand < self
@@ -87,7 +87,7 @@ module Axiom
         Axiom::Algebra::Extension.optimizer = chain(
           UnchangedHeader,
           MaterializedOperand,
-          OrderOperand,
+          SortedOperand,
           UnoptimizedOperand
         )
 

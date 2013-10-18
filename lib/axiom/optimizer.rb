@@ -106,7 +106,7 @@ require 'axiom/optimizer/relation/operation/unary'
 require 'axiom/optimizer/relation/operation/combination'
 require 'axiom/optimizer/relation/operation/limit'
 require 'axiom/optimizer/relation/operation/offset'
-require 'axiom/optimizer/relation/operation/order'
+require 'axiom/optimizer/relation/operation/sorted'
 require 'axiom/optimizer/relation/operation/reverse'
 
 require 'axiom/optimizer/algebra/difference'

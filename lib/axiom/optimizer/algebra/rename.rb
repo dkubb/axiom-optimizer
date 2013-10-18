@@ -249,13 +249,13 @@ module Axiom
 
         end # class ReverseOperand
 
-        # Optimize when the operand is an Order
-        class OrderOperand < self
-          include Relation::Operation::Unary::OrderOperand
+        # Optimize when the operand is an Sorted
+        class SortedOperand < self
+          include Relation::Operation::Unary::SortedOperand
 
-          # Wrap the Rename in an Order
+          # Wrap the Rename in an Sorted
           #
-          # @return [Order]
+          # @return [Sorted]
           #
           # @api private
           def optimize
@@ -266,14 +266,14 @@ module Axiom
 
           # Return the renamed directions
           #
-          # @return [Relation::Operation::Order::DirectionSet]
+          # @return [Relation::Operation::Sorted::DirectionSet]
           #
           # @api private
           def directions
             operand.directions.rename(aliases)
           end
 
-        end # class OrderOperand
+        end # class SortedOperand
 
         # Optimize when the operand is a Limit
         class LimitOperand < self
@@ -367,7 +367,7 @@ module Axiom
           RestrictionOperand,
           SetOperand,
           ReverseOperand,
-          OrderOperand,
+          SortedOperand,
           LimitOperand,
           OffsetOperand,
           EmptyOperand,

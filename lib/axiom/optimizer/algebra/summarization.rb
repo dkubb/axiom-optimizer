@@ -135,10 +135,10 @@ module Axiom
 
         end # class EmptySummarizePer
 
-        # Optimize when the operand is an Order
-        class OrderOperand < self
-          include Relation::Operation::Unary::OrderOperand
-        end # class OrderOperand
+        # Optimize when the operand is an Sorted
+        class SortedOperand < self
+          include Relation::Operation::Unary::SortedOperand
+        end # class SortedOperand
 
         # Optimize when operand is optimizable
         class UnoptimizedOperand < self
@@ -189,7 +189,7 @@ module Axiom
         Axiom::Algebra::Summarization.optimizer = chain(
           EmptyOperand,
           EmptySummarizePer,
-          OrderOperand,
+          SortedOperand,
           MaterializedOperand,
           UnoptimizedOperand
         )

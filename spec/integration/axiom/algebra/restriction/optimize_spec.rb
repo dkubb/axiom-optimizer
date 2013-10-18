@@ -182,11 +182,11 @@ describe Algebra::Restriction, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with an order operation' do
+  context 'with a sorted operation' do
     let(:operand)   { relation.sort_by { |r| r.id } }
     let(:predicate) { operand[:id].gte(1)           }
 
-    it 'cancels out the order' do
+    it 'cancels out the sorted' do
       should eql(relation.restrict { predicate })
     end
 

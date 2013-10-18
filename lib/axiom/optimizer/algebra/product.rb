@@ -58,8 +58,8 @@ module Axiom
           TableDeeRight,
           EmptyLeft,
           EmptyRight,
-          OrderLeft,
-          OrderRight,
+          SortedLeft,
+          SortedRight,
           MaterializedOperands,
           UnoptimizedOperands
         )

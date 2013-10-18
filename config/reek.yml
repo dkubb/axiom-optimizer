@@ -54,7 +54,7 @@ DuplicateMethodCall:
   - Axiom::Optimizer::Relation::Materialized::EmptyOperand#optimize
   - Axiom::Optimizer::Relation::Operation::Combination#optimize
   - Axiom::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize
-  - Axiom::Optimizer::Relation::Operation::Order::OneLimitOperand#optimizable?
+  - Axiom::Optimizer::Relation::Operation::Sorted::OneLimitOperand#optimizable?
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
@@ -104,8 +104,10 @@ TooManyStatements:
   exclude:
   - Axiom::Optimizer#self.link_optimizers
   - Axiom::Optimizer::Algebra::Projection::ExtensionOperand#new_extensions
+  - Axiom::Optimizer::Algebra::Summarization#initialize
   - Axiom::Optimizer::Algebra::Summarization::EmptyOperand#extensions
   - Axiom::Optimizer::Function#self.optimize_functions
+  - Axiom::Optimizer::Function::Binary#initialize
   - Axiom::Optimizer::Function::Predicate::Comparable::NeverComparable#optimizable?
   - Axiom::Optimizer::Function::Predicate::Comparable::NeverEquivalent#optimizable?
   - Axiom::Optimizer::Function::Predicate::Enumerable#normalized_right_enumerable
@@ -113,6 +115,7 @@ TooManyStatements:
   - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_enumerable
   - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_range
   - Axiom::Optimizer::Optimizable#optimize
+  - Axiom::Optimizer::PredicatePartition#initialize
   - Axiom::Optimizer::PredicatePartition#partition!
   - Axiom::Optimizer::PredicatePartition#partition_binary!
   - Axiom::Optimizer::PredicatePartition#partition_proposition!

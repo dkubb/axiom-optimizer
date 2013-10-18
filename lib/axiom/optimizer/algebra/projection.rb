@@ -152,10 +152,10 @@ module Axiom
 
         end # class UnionOperand
 
-        # Optimize when the operand is an Order
-        class OrderOperand < self
-          include Relation::Operation::Unary::OrderOperand
-        end # class OrderOperand
+        # Optimize when the operand is an Sorted
+        class SortedOperand < self
+          include Relation::Operation::Unary::SortedOperand
+        end # class SortedOperand
 
         # Optimize when the operand is Empty
         class EmptyOperand < self
@@ -200,7 +200,7 @@ module Axiom
           ProjectionOperand,
           ExtensionOperand,
           UnionOperand,
-          OrderOperand,
+          SortedOperand,
           EmptyOperand,
           MaterializedOperand,
           UnoptimizedOperand

@@ -26,28 +26,28 @@ module Axiom
             @header = operation.header
           end
 
-          # Optimize when the operand is an Order
-          module OrderOperand
+          # Optimize when the operand is an Sorted
+          module SortedOperand
 
-            # Test if the operand is an Order
+            # Test if the operand is an Sorted
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              operand.kind_of?(Axiom::Relation::Operation::Order)
+              operand.kind_of?(Axiom::Relation::Operation::Sorted)
             end
 
-            # Drop the Order and wrap the operand
+            # Drop the Sorted and wrap the operand
             #
-            # @return [Order]
+            # @return [Sorted]
             #
             # @api private
             def optimize
               wrap_operand
             end
 
-          end # module OrderOperand
+          end # module SortedOperand
 
           # Optimize when the header is not changed
           class UnchangedHeader < self

@@ -6,7 +6,7 @@ module Axiom
       module Operation
 
         # Abstract base class representing Reverse optimizations
-        class Reverse < Order
+        class Reverse < Sorted
 
           # Optimize when the operand is a Reverse
           class ReverseOperand < self
@@ -31,28 +31,28 @@ module Axiom
 
           end # class ReverseOperand
 
-          # Optimize when the operand is an Order
-          class OrderOperand < self
+          # Optimize when the operand is an Sorted
+          class SortedOperand < self
 
-            # Test if the operand is an Order
+            # Test if the operand is an Sorted
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              operand.kind_of?(Axiom::Relation::Operation::Order)
+              operand.kind_of?(Axiom::Relation::Operation::Sorted)
             end
 
-            # Flatten Reverse operation and Order operand into an Order
+            # Flatten Reverse operation and Sorted operand into an Sorted
             #
-            # @return [Order]
+            # @return [Sorted]
             #
             # @api private
             def optimize
               operand.operand.sort_by { operation.directions }
             end
 
-          end # class OrderOperand
+          end # class SortedOperand
 
           # Optimize when operand is optimizable
           class UnoptimizedOperand < self
@@ -71,7 +71,7 @@ module Axiom
 
           Axiom::Relation::Operation::Reverse.optimizer = chain(
             ReverseOperand,
-            OrderOperand,
+            SortedOperand,
             OneLimitOperand,
             EmptyOperand,
             MaterializedOperand,

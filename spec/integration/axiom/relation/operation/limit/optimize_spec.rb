@@ -8,8 +8,8 @@ describe Relation::Operation::Limit, '#optimize' do
   let(:body)       { LazyEnumerable.new([[1], [2], [3]])  }
   let(:relation)   { Relation.new([[:id, Integer]], body) }
   let(:directions) { [relation[:id]]                      }
-  let(:order)      { relation.sort_by { directions }      }
-  let(:operand)    { order                                }
+  let(:sorted)     { relation.sort_by { directions }      }
+  let(:operand)    { sorted                               }
   let(:limit)      { 1                                    }
   let(:object)     { described_class.new(operand, limit)  }
 
@@ -30,7 +30,7 @@ describe Relation::Operation::Limit, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing an order operation' do
+  context 'containing a sorted operation' do
     it { should be(object) }
 
     it 'does not execute body#each' do
@@ -41,12 +41,12 @@ describe Relation::Operation::Limit, '#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing an optimizable order operation' do
-    let(:operand) { order.rename({}) }
+  context 'containing an optimizable sorted operation' do
+    let(:operand) { sorted.rename({}) }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     its(:limit) { should == 1 }
 
@@ -63,12 +63,12 @@ describe Relation::Operation::Limit, '#optimize' do
   end
 
   context 'containing a more restrictive object operation' do
-    let(:operand) { order.take(5) }
-    let(:limit)   { 10            }
+    let(:operand) { sorted.take(5) }
+    let(:limit)   { 10             }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     it 'uses the more restrictive object' do
       expect(subject.limit).to be(5)
@@ -87,12 +87,12 @@ describe Relation::Operation::Limit, '#optimize' do
   end
 
   context 'containing a less restrictive object operation' do
-    let(:operand) { order.take(10) }
-    let(:limit)   { 5              }
+    let(:operand) { sorted.take(10) }
+    let(:limit)   { 5               }
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should be(order) }
+    its(:operand) { should be(sorted) }
 
     it 'uses the more restrictive object' do
       expect(subject.limit).to be(5)
@@ -111,8 +111,8 @@ describe Relation::Operation::Limit, '#optimize' do
   end
 
   context 'containing a similar object operation' do
-    let(:operand) { order.take(10) }
-    let(:limit)   { 10             }
+    let(:operand) { sorted.take(10) }
+    let(:limit)   { 10              }
 
     it { should be(operand) }
 

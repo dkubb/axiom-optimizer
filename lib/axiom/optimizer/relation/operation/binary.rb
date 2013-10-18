@@ -53,19 +53,19 @@ module Axiom
 
           end # module EmptyRight
 
-          # Optimize when the left operand is an Order
-          class OrderLeft < self
+          # Optimize when the left operand is an Sorted
+          class SortedLeft < self
 
-            # Test if the left operand is an Order
+            # Test if the left operand is an Sorted
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              left.kind_of?(Axiom::Relation::Operation::Order)
+              left.kind_of?(Axiom::Relation::Operation::Sorted)
             end
 
-            # Drop the Order and wrap the left operand
+            # Drop the Sorted and wrap the left operand
             #
             # @return [Binary]
             #
@@ -74,21 +74,21 @@ module Axiom
               operation.class.new(left.operand, right)
             end
 
-          end # class OrderLeft
+          end # class SortedLeft
 
-          # Optimize when the right operand is an Order
-          class OrderRight < self
+          # Optimize when the right operand is an Sorted
+          class SortedRight < self
 
-            # Test if the right operand is an Order
+            # Test if the right operand is an Sorted
             #
             # @return [Boolean]
             #
             # @api private
             def optimizable?
-              right.kind_of?(Axiom::Relation::Operation::Order)
+              right.kind_of?(Axiom::Relation::Operation::Sorted)
             end
 
-            # Drop the Order and wrap the right operand
+            # Drop the Sorted and wrap the right operand
             #
             # @return [Binary]
             #
@@ -97,7 +97,7 @@ module Axiom
               operation.class.new(left, right.operand)
             end
 
-          end # class OrderRight
+          end # class SortedRight
 
           # Optimize when the operands are Materialized
           class MaterializedOperands < self
