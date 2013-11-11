@@ -42,7 +42,7 @@ module Axiom
             #
             # @api private
             def optimize
-              Axiom::Function::Proposition.new(super)
+              Axiom::Function::Proposition.coerce(super)
             end
 
           end # class ConstantOperand
