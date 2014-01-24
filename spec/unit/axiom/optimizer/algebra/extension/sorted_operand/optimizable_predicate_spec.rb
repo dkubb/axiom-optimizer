@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Extension::SortedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:base)     { Relation.new([[:id, Integer]], LazyEnumerable.new) }
-  let(:relation) { operand.extend { }                                 }
+  let(:relation) { operand.extend {}                                  }
   let(:object)   { described_class.new(relation)                      }
 
   context 'when operand is sorted' do

@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Summarization::SortedOperand, '#optimize' do
 
   let(:base)     { Relation.new([[:id, Integer]], LazyEnumerable.new) }
   let(:operand)  { base.sort_by { |r| r.id }                          }
-  let(:relation) { operand.summarize([]) { }                          }
+  let(:relation) { operand.summarize([]) {}                           }
   let(:object)   { described_class.new(relation)                      }
 
   before do

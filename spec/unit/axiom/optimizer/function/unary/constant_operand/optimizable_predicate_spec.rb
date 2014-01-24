@@ -20,7 +20,7 @@ describe Optimizer::Function::Unary::ConstantOperand, '#optimizable?' do
   end
 
   context 'when the operand is not a constant' do
-    let(:operand) { proc { } }
+    let(:operand) { proc {}  }
 
     it { should be(false) }
   end

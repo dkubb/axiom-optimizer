@@ -6,7 +6,7 @@ describe Optimizer::Algebra::Summarization, '#summarize_per' do
   subject { object.summarize_per }
 
   let(:base)     { Relation.new([[:id, Integer]], [[1]]) }
-  let(:relation) { base.summarize(summarize_per) { }     }
+  let(:relation) { base.summarize(summarize_per) {}      }
   let(:object)   { described_class.new(relation)         }
 
   before do

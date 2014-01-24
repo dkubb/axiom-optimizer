@@ -1,10 +1,4 @@
-AllCops:
-  Includes:
-    - '**/*.rake'
-    - 'Gemfile'
-    - 'Gemfile.devtools'
-  Excludes:
-    - '**/vendor/**'
+inherit_from: ../.rubocop.yml
 
 # Avoid parameter lists longer than five parameters.
 ParameterLists:
@@ -29,7 +23,7 @@ CollectionMethods:
 # sections of code and visually separate them. When the keyword is at the same
 # level I think it sort of blends in with the def keywords and makes it harder
 # to scan the code and see where the sections are.
-AccessControl:
+AccessModifierIndentation:
   Enabled: false
 
 # Limit line length
@@ -40,20 +34,26 @@ LineLength:
 Documentation:
   Enabled: false
 
+# Do not always use &&/|| instead of and/or.
+AndOr:
+  Enabled: false
+
 # Do not favor modifier if/unless usage when you have a single-line body
 IfUnlessModifier:
+  Enabled: false
+
+# Allow case equality operator (in limited use within the specs)
+CaseEquality:
   Enabled: false
 
 # Constants do not always have to use SCREAMING_SNAKE_CASE
 ConstantName:
   Enabled: false
 
-# Do not check formatting of special comments like "TODO" or "OPTIMIZE"
-CommentAnnotation:
+# Not all trivial readers/writers can be defined with attr_* methods
+TrivialAccessors:
   Enabled: false
 
-# Do not force private to be indented to the same level as the code
-AccessControl:
-  Enabled: false
-IndentationWidth:
+# Allow empty lines around body
+EmptyLinesAroundBody:
   Enabled: false

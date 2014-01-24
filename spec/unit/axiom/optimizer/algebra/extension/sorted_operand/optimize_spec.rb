@@ -7,7 +7,7 @@ describe Optimizer::Algebra::Extension::SortedOperand, '#optimize' do
 
   let(:base)     { Relation.new([[:id, Integer]], LazyEnumerable.new) }
   let(:operand)  { base.sort_by { |r| r.id }                          }
-  let(:relation) { operand.extend { }                                 }
+  let(:relation) { operand.extend {}                                  }
   let(:object)   { described_class.new(relation)                      }
 
   before do

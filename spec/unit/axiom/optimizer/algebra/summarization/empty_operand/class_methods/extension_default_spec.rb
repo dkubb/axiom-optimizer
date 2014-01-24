@@ -15,7 +15,7 @@ describe Optimizer::Algebra::Summarization::EmptyOperand, '.extension_default' d
   end
 
   context 'when the function does not have a default' do
-    let(:function) { proc { } }
+    let(:function) { proc {}  }
 
     it { should be_nil }
   end
