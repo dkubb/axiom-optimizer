@@ -52,7 +52,7 @@ module Axiom
         @left_header  = left_header
         @right_header = right_header
 
-        partition!(predicate)
+        partition(predicate)
       end
 
     private
@@ -64,14 +64,14 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def partition!(predicate)
+      def partition(predicate)
         each_operand(predicate) do |operand|
           case operand
-          when Axiom::Function::Binary   then partition_binary!(operand)
-          when Axiom::Function::Unary    then partition_unary!(operand)
-          when Axiom::Attribute::Boolean then partition_attribute!(operand)
+          when Axiom::Function::Binary   then partition_binary(operand)
+          when Axiom::Function::Unary    then partition_unary(operand)
+          when Axiom::Attribute::Boolean then partition_attribute(operand)
           else
-            partition_proposition!(operand)
+            partition_proposition(operand)
           end
         end
       end
@@ -83,7 +83,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def partition_binary!(function)
+      def partition_binary(function)
         operands       = [function.left, function.right].grep(Axiom::Attribute)
         left_operands  = @left_header  & operands
         right_operands = @right_header & operands
@@ -103,7 +103,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def partition_unary!(function)
+      def partition_unary(function)
         operand = function.operand
         @left  &= function if @left_header.include?(operand)
         @right &= function if @right_header.include?(operand)
@@ -116,7 +116,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def partition_attribute!(attribute)
+      def partition_attribute(attribute)
         @left  &= attribute if @left_header.include?(attribute)
         @right &= attribute if @right_header.include?(attribute)
       end
@@ -128,7 +128,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def partition_proposition!(proposition)
+      def partition_proposition(proposition)
         @remainder &= proposition
         @left      &= proposition
         @right     &= proposition
