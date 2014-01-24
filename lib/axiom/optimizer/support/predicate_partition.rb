@@ -45,9 +45,7 @@ module Axiom
       #
       # @api private
       def initialize(predicate, left_header, right_header)
-        @left      = TAUTOLOGY
-        @right     = TAUTOLOGY
-        @remainder = TAUTOLOGY
+        @left = @right = @remainder = TAUTOLOGY
 
         @left_header  = left_header
         @right_header = right_header

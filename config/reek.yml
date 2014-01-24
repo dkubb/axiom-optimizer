@@ -1,17 +1,7 @@
 ---
 Attribute:
-  enabled: true
-  exclude:
-  - Axiom::Optimizer
-  - Axiom::Optimizer::Algebra::Extension
-  - Axiom::Optimizer::Algebra::Rename
-  - Axiom::Optimizer::Algebra::Restriction
-  - Axiom::Optimizer::Algebra::Summarization
-  - Axiom::Optimizer::Function::Binary
-  - Axiom::Optimizer::Function::Unary
-  - Axiom::Optimizer::Optimizable::ClassMethods
-  - Axiom::Optimizer::PredicatePartition
-  - Axiom::Optimizer::Relation::Operation::Unary
+  enabled: false
+  exclude: []
 BooleanParameter:
   enabled: true
   exclude: []
@@ -102,25 +92,8 @@ TooManyMethods:
 TooManyStatements:
   enabled: true
   exclude:
-  - Axiom::Optimizer#self.link_optimizers
-  - Axiom::Optimizer::Algebra::Projection::ExtensionOperand#new_extensions
-  - Axiom::Optimizer::Algebra::Summarization#initialize
-  - Axiom::Optimizer::Algebra::Summarization::EmptyOperand#extensions
-  - Axiom::Optimizer::Function#self.optimize_functions
-  - Axiom::Optimizer::Function::Binary#initialize
-  - Axiom::Optimizer::Function::Predicate::Comparable::NeverComparable#optimizable?
-  - Axiom::Optimizer::Function::Predicate::Comparable::NeverEquivalent#optimizable?
-  - Axiom::Optimizer::Function::Predicate::Enumerable#normalized_right_enumerable
-  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right
-  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_enumerable
-  - Axiom::Optimizer::Function::Predicate::Enumerable#optimize_right_range
-  - Axiom::Optimizer::Optimizable#optimize
-  - Axiom::Optimizer::PredicatePartition#initialize
-  - Axiom::Optimizer::PredicatePartition#partition!
-  - Axiom::Optimizer::PredicatePartition#partition_binary!
-  - Axiom::Optimizer::PredicatePartition#partition_proposition!
-  - Axiom::Optimizer::PredicatePartition#partition_unary!
-  max_statements: 2
+  - Axiom::Optimizer::PredicatePartition#partition_binary
+  max_statements: 5
 UncommunicativeMethodName:
   enabled: true
   exclude: []
